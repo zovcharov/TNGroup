@@ -2,16 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Main from "./pages/Main/Main";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
+import LoginPage from './pages/LoginPage/LoginPage';
 
-ReactDOM.render((
+import Footer from './components/Footer/Footer'
+
+const Routs = () => (
     <BrowserRouter>
-        <Main />
         <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/about' component={About}/>
+            <Route exact path='/login' component={LoginPage}/>
         </Switch>
     </BrowserRouter>
+);
+
+ReactDOM.render((
+    <React.Fragment>
+        <Routs />
+        <Footer />
+    </React.Fragment>
 ), document.getElementById("root"));
