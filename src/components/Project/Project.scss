@@ -1,0 +1,51 @@
+.project {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 1440px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  padding: 20px 40px 50px 30px;
+  margin-bottom: 40px;
+
+  &-col {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      color: #909090;
+      font-family: "Open Sans";
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 40px;
+    }
+
+    &__content {
+      &.content-text {
+        color: #505050;
+        font-family: "Open Sans";
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+
+        &--italian {
+          font-style: italic;
+        }
+      }
+
+      &.content-person {
+        display: flex;
+        justify-content: space-between;
+
+        .content-person__name {
+          margin-left: 20px;
+          color: #1b7176;
+          font-family: "Open Sans";
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
