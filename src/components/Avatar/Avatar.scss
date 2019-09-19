@@ -1,0 +1,10 @@
+.avatar {
+  background-size: cover;
+  border-radius: 100%;
+  display: inline-block;
+
+  &_size_m {
+    width: 36px;
+    height: 36px;
+  }
+}
