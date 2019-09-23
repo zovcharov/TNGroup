@@ -6,12 +6,15 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 
 import Footer from './components/Footer/Footer'
+import Wrapper from "./components/Wrapper/Wrapper";
 
 const Routs = () => (
     <BrowserRouter>
         <Switch>
+          <Wrapper>
             <Route exact path='/login' component={LoginPage}/>
-            <Route exact path='/projects' component={ProjectsPage}/>
+            <Route exact path='/' component={ProjectsPage}/>
+          </Wrapper>
         </Switch>
     </BrowserRouter>
 );
