@@ -1,0 +1,20 @@
+.profile {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  padding: 20px;
+  justify-content: space-between;
+  &__button {
+    &:after {
+      color: #FFFFFF;
+    }
+  }
+  &__name {
+    padding: 0;
+    color: #FFFFFF;
+    text-overflow: ellipsis;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
