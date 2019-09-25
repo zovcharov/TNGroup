@@ -43,7 +43,7 @@ const Dropdown = (props) => {
       document.removeEventListener('click', handleClickOutside, false)
       document.removeEventListener('contextmenu', handleClickOutside, false)
     }
-  })
+  }, [])
 
   return (
     <div
