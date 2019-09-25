@@ -1,0 +1,12 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &_disabled {
+    cursor: auto;
+  }
+  &:focus {
+    outline: none;
+  }
+}
