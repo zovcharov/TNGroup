@@ -1,20 +1,25 @@
 .profile {
   display: flex;
   align-items: center;
-  width: 300px;
-  padding: 20px;
   justify-content: space-between;
+  width: 300px;
+  padding: 0 40px 0 0;
   &__button {
+    padding: 10px 8px;
     &:after {
       color: #FFFFFF;
     }
   }
   &__name {
+    width: 174px;
+    text-align: left;
     padding: 0;
     color: #FFFFFF;
     text-overflow: ellipsis;
-    width: 200px;
     white-space: nowrap;
     overflow: hidden;
+  }
+  &__menu {
+    background-color: #505050;
   }
 }

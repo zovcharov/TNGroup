@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 import './Dropdown.scss'
 
 const getClassNames = (propsList, closed) => {
@@ -71,6 +72,21 @@ const DropdownItem = (props) => {
   return (
     <li onClick={onClick} className='dropdown__item'>{children}</li>
   )
+}
+
+Dropdown.propsTypes = {
+  disabled: PropTypes.bool,
+  label: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  width: PropTypes.string,
+  labelClass: PropTypes.string,
+  menuClass: PropTypes.string,
+  buttonClass: PropTypes.string
+}
+
+DropdownItem.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  onClick: PropTypes.func
 }
 
 export {Dropdown, DropdownItem}

@@ -7,11 +7,11 @@ import { Dropdown, DropdownItem } from '../Dropdown/Dropdown'
 const Profile = (props) => {
   const {
     avatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
-    name = 'Абыхуйлов Хуйтимберг Хуепуталов'
+    name = 'Иванов Иван Иванович'
   } = props
   return (
     <div className='profile'>
-      <Avatar size='l' avatarUrl={avatar} />
+      <Avatar width='76px' height='76px' avatarUrl={avatar} />
       <Dropdown
         label={name}
         labelClass='profile__name'
