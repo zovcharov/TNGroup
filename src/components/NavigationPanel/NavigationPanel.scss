@@ -1,0 +1,32 @@
+.navigation-panel {
+  display: flex;
+
+  &__links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__link {
+    border-radius: 20px;
+    background-color: #f3f3f3;
+    padding: 8px 25px;
+
+    color: #505050;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+
+    margin-right: 25px;
+
+    &--active {
+      background-color: #badbea;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+  }
+}

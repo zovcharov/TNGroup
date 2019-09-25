@@ -53,9 +53,11 @@ const projectsMock = [
 const ProjectsPage = () => {
     return (
         <div className="projects-page">
-            {projectsMock.map((project, index) => (
-                <Project {...project} key={project.number + index} />
-            ))}
+            {
+                projectsMock.map((project, index) => (
+                    <Project {...project} key={project.number + index} />
+                ))
+            }
         </div>
     )
 };
