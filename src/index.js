@@ -8,6 +8,8 @@ import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import Footer from './components/Footer/Footer'
 import Wrapper from "./components/Wrapper/Wrapper";
 
+import './main.scss'
+
 const Routs = () => (
     <BrowserRouter>
         <Switch>
