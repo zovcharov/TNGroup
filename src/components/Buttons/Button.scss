@@ -1,0 +1,52 @@
+.button {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 15px;
+
+  padding: 0 20px 0 15px;
+
+  border-radius: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__text {
+    color: #ffffff;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &_type_add-project {
+    background-image: url('./../../images/buttons-bgs/blue-btn.png');
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    .button__icon {
+      width: 40px;
+      height: 40px;
+      background-image: url('./../../icons/add-project-btn-icon.png');
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin-right: 25px;
+    }
+  }
+
+  &_type_add-task {
+    background-image: url('./../../images/buttons-bgs/green-btn.png');
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    .button__icon {
+      width: 40px;
+      height: 35px;
+      background-image: url('./../../icons/add-task-btn-icon.png');
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin-right: 25px;
+    }
+  }
+}
