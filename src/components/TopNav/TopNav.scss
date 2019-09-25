@@ -1,0 +1,26 @@
+.topNav {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  &__button {
+    padding: 8px 16px;
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    &-icon {
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 22px;
+      width: 24px;
+      margin-right: 16px;
+      background-position: center;
+      &_add {
+        background-image: url('../../images/add.svg');
+      }
+      &_favorite {
+        background-image: url('../../images/favorite.svg');
+      }
+    }
+  }
+}
