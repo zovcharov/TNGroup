@@ -13,10 +13,14 @@ const Avatar = (props) => {
     const {
         size,
         avatarUrl,
+        width,
+        height
     } = props;
 
     const styles = {
-        backgroundImage: `url('${avatarUrl}'`
+        backgroundImage: `url('${avatarUrl}'`,
+        width,
+        height
     }
 
     return (
