@@ -1,9 +1,12 @@
 .wrapper {
   display: flex;
+  &__page {
+    padding: 36px 72px;
+  }
 }
 
 .content {
   width: 100%;
   padding-top: 100px;
-  padding-left: 340px;
+  padding-left: 240px;
 }
