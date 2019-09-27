@@ -11,7 +11,7 @@ const Profile = (props) => {
   } = props
   return (
     <div className='profile'>
-      <Avatar width='76px' height='76px' avatarUrl={avatar} />
+      <Avatar width='52px' height='52px' avatarUrl={avatar} />
       <Dropdown
         label={name}
         labelClass='profile__name'
