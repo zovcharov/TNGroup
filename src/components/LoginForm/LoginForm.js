@@ -16,6 +16,7 @@ const LoginForm = () => {
             userName: login,
             password
         }).then(data => {
+            debugger
             localStorage.setItem('UserId', data.UserId);
             localStorage.setItem('UserRoles', data.UserRoles);
             localStorage.setItem('access_token', data.access_token);
