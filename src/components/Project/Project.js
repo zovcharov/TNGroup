@@ -6,14 +6,15 @@ import Avatar from './../Avatar/Avatar';
 import './Project.scss';
 
 const Project = (props) => {
+    debugger
     const {
-        name,
+        projectName,
         status,
-        updated,
-        number,
+        lastDateUpdate,
+        id,
         provider,
         executor,
-        expiration,
+        dateEnd,
     } = props;
 
     return (
@@ -21,7 +22,7 @@ const Project = (props) => {
             <div className="project-col">
                 <div className="project-col__title">Название</div>
                 <div className="project-col__content content-text">
-                    {name}
+                    {projectName}
                 </div>
             </div>
             <div className="project-col">
@@ -33,21 +34,21 @@ const Project = (props) => {
             <div className="project-col">
                 <div className="project-col__title">Обновлено</div>
                 <div className="project-col__content content-text content-text--italian">
-                    {updated}
+                    {lastDateUpdate.toString()}
                 </div>
             </div>
             <div className="project-col">
                 <div className="project-col__title">Номер №</div>
                 <div className="project-col__content content-text">
-                    {number}
+                    {id}
                 </div>
             </div>
-            <div className="project-col">
+            {/*<div className="project-col">
                 <div className="project-col__title">Поставщик</div>
                 <div className="project-col__content content-person">
                     <Avatar size="m" avatarUrl={provider.avatarUrl} />
                     <div className="content-person__name">
-                        {provider.name}
+                        {provider.name }
                     </div>
                 </div>
             </div>
@@ -59,18 +60,18 @@ const Project = (props) => {
                         {executor.name}
                     </div>
                 </div>
-            </div>
+            </div>*/}
             <div className="project-col">
                 <div className="project-col__title">Срок окончания</div>
                 <div className="project-col__content content-text">
-                    {expiration}
+                    {dateEnd.toString()}
                 </div>
             </div>
         </div>
     )
 };
 
-Project.propTypes = {
+/*Project.propTypes = {
     name: propTypes.string.isRequired,
     status: propTypes.string.isRequired,
     updated: propTypes.string.isRequired,
@@ -84,6 +85,6 @@ Project.propTypes = {
         avatarUrl: propTypes.string.isRequired,
     }).isRequired,
     expiration: propTypes.string.isRequired
-}
+}*/
 
 export default Project;

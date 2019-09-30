@@ -4,7 +4,7 @@ import LoginForm from './../../components/LoginForm/LoginForm';
 
 import './LoginPage.css';
 
-const LoginPage = () => {
+const LoginPage = ({onChangeContentActive}) => {
     return (
         <div className="login-page">
             <h3 className="login-page__title">Авторизация</h3>
