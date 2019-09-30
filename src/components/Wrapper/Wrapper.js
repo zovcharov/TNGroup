@@ -10,7 +10,9 @@ const Wrapper = ({children}) => {
       <Header />
       <Sidebar />
       <div className='content'>
-        {children}
+        <div className='wrapper__page'>
+          {children}
+        </div>
       </div>
     </div>
   )

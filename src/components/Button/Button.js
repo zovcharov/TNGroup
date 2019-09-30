@@ -22,13 +22,15 @@ const Button = (props) => {
     type = 'button',
     onClick = () => {},
     children,
-    disabled = false
+    disabled = false,
+    style
   } = props
   return (
     <button
       type={type}
       onClick={disabled ? () => {} : onClick}
-      className={getClassNames(props)}>
+      className={getClassNames(props)}
+      style={style}>
         {children}
     </button>
   )
@@ -38,7 +40,8 @@ Button.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  style: PropTypes.object
 }
 
 export default Button

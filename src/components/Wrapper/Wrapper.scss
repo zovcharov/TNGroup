@@ -1,9 +1,15 @@
 .wrapper {
+  min-height: 100vh;
   display: flex;
+  &__page {
+    height: 100%;
+    padding: 36px 72px;
+  }
 }
 
 .content {
   width: 100%;
-  padding-top: 100px;
-  padding-left: 340px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  padding-left: 240px;
 }

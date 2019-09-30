@@ -9,13 +9,15 @@ import Footer from './components/Footer/Footer'
 import Wrapper from "./components/Wrapper/Wrapper";
 
 import './main.scss'
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
 
 const Routs = () => (
     <BrowserRouter>
         <Switch>
           <Wrapper>
-            <Route exact path='/login' component={LoginPage}/>
-            <Route exact path='/' component={ProjectsPage}/>
+            <Route path='/login' component={LoginPage}/>
+            <Route path='/projects' component={ProjectsPage}/>
+            <Route exact path='/' component={DashboardPage}/>
           </Wrapper>
         </Switch>
     </BrowserRouter>
