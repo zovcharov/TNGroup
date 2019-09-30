@@ -19,12 +19,28 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(woff|woff2|ttf|eot)$/,
-        use: ['file-loader']
+        test: /\.(woff|woff2|ttf|eot|svg)$/,
+        include: [
+          path.resolve(__dirname, 'src/fonts'),
+        ],
+        use: ["file-loader"]
       },
       {
-        test: /\.(jpg|png|svg)$/,
-        use: ['file-loader']
+        test: /\.(jpg|png)$/,
+        use: [{
+          loader: "file-loader",
+          options: {
+            name: '[path][name].[ext]'
+          }
+        }],
+      },
+      {
+        test: /\.svg$/,
+        include: [
+          path.resolve(__dirname, 'src/icons'),
+          path.resolve(__dirname, 'src/images')
+        ],
+        use: ["svg-url-loader?noquotes=true"]
       },
       {
         test: /\.scss$/,
