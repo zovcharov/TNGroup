@@ -20,7 +20,7 @@ const LoginForm = () => {
             localStorage.setItem('UserRoles', data.UserRoles);
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('refresh_id', data.refresh_id);
-            window.location.pathname = '/projects';
+            window.location.pathname = '/';
         })
     };
 

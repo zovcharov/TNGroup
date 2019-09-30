@@ -25,6 +25,7 @@ const Button = (props) => {
     disabled = false,
     style
   } = props
+
   return (
     <button
       type={type}
