@@ -1,6 +1,6 @@
 const MENU_ITEMS = [
   {
-    link: '/',
+    link: '/projects',
     title: 'Задачи и проекты'
   },
   {

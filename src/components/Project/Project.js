@@ -5,8 +5,21 @@ import Avatar from './../Avatar/Avatar';
 
 import './Project.scss';
 
+const formatDate = (date) => {
+
+    let dd = date.getDate();
+    if (dd < 10) dd = '0' + dd;
+
+    let mm = date.getMonth() + 1;
+    if (mm < 10) mm = '0' + mm;
+
+    let yy = date.getFullYear() % 100;
+    if (yy < 10) yy = '0' + yy;
+
+    return dd + '.' + mm + '.' + yy;
+};
+
 const Project = (props) => {
-    debugger
     const {
         projectName,
         status,
@@ -34,7 +47,7 @@ const Project = (props) => {
             <div className="project-col">
                 <div className="project-col__title">Обновлено</div>
                 <div className="project-col__content content-text content-text--italian">
-                    {lastDateUpdate.toString()}
+                    {formatDate(lastDateUpdate)}
                 </div>
             </div>
             <div className="project-col">
@@ -64,7 +77,7 @@ const Project = (props) => {
             <div className="project-col">
                 <div className="project-col__title">Срок окончания</div>
                 <div className="project-col__content content-text">
-                    {dateEnd.toString()}
+                    {formatDate(dateEnd)}
                 </div>
             </div>
         </div>

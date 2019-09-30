@@ -24,8 +24,8 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 const Routs = () => (
     <BrowserRouter>
         <Switch>
+        <Route path='/login' component={LoginPage}/>
           <Wrapper>
-            <Route path='/login' component={LoginPage}/>
             <Route path='/projects' component={ProjectsPage}/>
             <Route exact path='/' component={DashboardPage}/>
           </Wrapper>
