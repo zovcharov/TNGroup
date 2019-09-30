@@ -1,0 +1,17 @@
+.square-panel {
+  width: 100%;
+  border: none;
+  flex-direction: column;
+  &_icon {
+    width: 100px;
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &_text {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: 18px;
+  }
+}
