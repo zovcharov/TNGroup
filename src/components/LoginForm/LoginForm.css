@@ -62,3 +62,9 @@
     align-items: center;
     justify-content: center;
 }
+
+
+
+.login-form__submit:focus {
+     outline: none;
+}

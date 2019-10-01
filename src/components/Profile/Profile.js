@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Avatar from '../Avatar/Avatar'
 import './Profile.scss'
 import { Dropdown, DropdownItem } from '../Dropdown/Dropdown'
+import {Link} from 'react-router-dom';
 
 const Profile = (props) => {
   const {
@@ -26,8 +26,7 @@ const Profile = (props) => {
         labelClass='profile__name'
         menuClass='profile__menu'
         buttonClass='profile__button'>
-          <DropdownItem>qweqwe</DropdownItem>
-          <DropdownItem>qweqwe</DropdownItem>
+          <DropdownItem><Link to="/profile">Профиль</Link></DropdownItem>
           <DropdownItem onClick={Logout}>Выйти</DropdownItem>
         </Dropdown>
     </div>

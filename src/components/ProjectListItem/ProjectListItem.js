@@ -1,9 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 import Avatar from './../Avatar/Avatar';
 
-import './Project.scss';
+import './ProjectListItem.scss';
 
 const formatDate = (date) => {
 
@@ -19,7 +20,7 @@ const formatDate = (date) => {
     return dd + '.' + mm + '.' + yy;
 };
 
-const Project = (props) => {
+const ProjectListItem = (props) => {
     const {
         projectName,
         status,
@@ -31,7 +32,7 @@ const Project = (props) => {
     } = props;
 
     return (
-        <div className="project">
+        <Link to={`/project/${id}`} className="project">
             <div className="project-col">
                 <div className="project-col__title">Название</div>
                 <div className="project-col__content content-text">
@@ -80,24 +81,8 @@ const Project = (props) => {
                     {formatDate(dateEnd)}
                 </div>
             </div>
-        </div>
+        </Link>
     )
 };
 
-/*Project.propTypes = {
-    name: propTypes.string.isRequired,
-    status: propTypes.string.isRequired,
-    updated: propTypes.string.isRequired,
-    number: propTypes.number.isRequired,
-    provider: propTypes.shape({
-        name: propTypes.string.isRequired,
-        avatarUrl: propTypes.string.isRequired,
-    }).isRequired,
-    executor: propTypes.shape({
-        name: propTypes.string.isRequired,
-        avatarUrl: propTypes.string.isRequired,
-    }).isRequired,
-    expiration: propTypes.string.isRequired
-}*/
-
-export default Project;
+export default ProjectListItem;

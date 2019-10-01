@@ -1,5 +1,4 @@
 export const selectFromProject = (project) => {
-    debugger
     return {
         projectName: project.ProjectName,
         status: project.Status,
