@@ -1,0 +1,20 @@
+.nav-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  &__input {
+    width: 100%;
+    position: relative;
+    padding-right: 40px;
+    &:after {
+      display: inline-block;
+      content: '';
+      position: absolute;
+      background: url('../../icons/nav-search.png') no-repeat center center/cover;
+      width: 40px;
+      height: 40px;
+      right: -40px;
+    }
+  }
+}
