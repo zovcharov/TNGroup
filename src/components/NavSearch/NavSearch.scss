@@ -3,18 +3,28 @@
   align-items: center;
   justify-content: center;
   width: 450px;
+  position: relative;
   &__input {
     width: 100%;
-    position: relative;
-    padding-right: 40px;
-    &:after {
-      display: inline-block;
-      content: '';
-      position: absolute;
-      background: url('../../icons/nav-search.png') no-repeat center center/cover;
-      width: 40px;
-      height: 40px;
-      right: -40px;
+    padding-right: 50px;
+    height: 46px;
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #fff;
+    border-left: none;
+    color: #fff;
+    font-size: 20px;
+    &:focus {
+      outline: none;
     }
+  }
+  &__icon {
+    position: absolute;
+    background: url('../../icons/nav-search.png') no-repeat center center/cover;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    cursor: pointer;
   }
 }
