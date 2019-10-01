@@ -47,10 +47,8 @@ const NavigationPanel = () => {
                         </Link>
                     ))
                 }
-            </div>
-            <div className="navigation-panel__buttons">
-                <AddButton text="Добавить проект" onClick={onAddProject} type="add-project" />
-                <AddButton text="Добавить задачу" onClick={onAddTask} type="add-task" />
+                    <AddButton text="Добавить проект" onClick={onAddProject} type="add-project" />
+                    <AddButton text="Добавить задачу" onClick={onAddTask} type="add-task" />
             </div>
         </div>
 

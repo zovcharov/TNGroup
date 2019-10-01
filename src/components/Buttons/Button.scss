@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 15px;
+  margin: 0 10px 0 0;
 
   padding: 0 20px 0 15px;
 
@@ -16,7 +16,7 @@
   &__text {
     color: #ffffff;
     font-family: "Open Sans";
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 400;
   }
 
@@ -26,12 +26,12 @@
     background-size: cover;
 
     .button__icon {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       background-image: url('./../../icons/add-project-btn-icon.png');
       -webkit-background-size: cover;
       background-size: cover;
-      margin-right: 25px;
+      margin-right: 10px;
     }
   }
 
@@ -41,12 +41,12 @@
     background-size: cover;
 
     .button__icon {
-      width: 40px;
-      height: 35px;
+      width: 30px;
+      height: 25px;
       background-image: url('./../../icons/add-task-btn-icon.png');
       -webkit-background-size: cover;
       background-size: cover;
-      margin-right: 25px;
+      margin-right: 10px;
     }
   }
 }
