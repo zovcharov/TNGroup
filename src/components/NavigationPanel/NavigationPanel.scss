@@ -1,10 +1,23 @@
 .navigation-panel {
   display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
   &__links {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: end;
     align-items: center;
+    flex-wrap: wrap;
+
+    .button {
+      margin-bottom: 10px;
+    }
   }
 
   &__link {
@@ -14,19 +27,19 @@
 
     color: #505050;
     font-family: "Open Sans";
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     text-decoration: none;
 
-    margin-right: 25px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     &--active {
       background-color: #badbea;
     }
-  }
-
-  &__buttons {
-    display: flex;
-    align-items: center;
   }
 }

@@ -13,6 +13,8 @@ import {
     fetchProjects,
 } from './../../redux/fetchers';
 
+import './ProjectsPage.scss';
+
 const ProjectsPage = ({projectsFetch, projectsUpdate, projectsDataState, projects}) => {
     useEffect(()  => {
         if (projectsDataState === 'pending') {
@@ -27,6 +29,9 @@ const ProjectsPage = ({projectsFetch, projectsUpdate, projectsDataState, project
 
     return (
         <div className="projects-page">
+            <div className="projects-page__title">
+                Проекты:
+            </div>
             {
                 projects.map((project) => {
                     debugger

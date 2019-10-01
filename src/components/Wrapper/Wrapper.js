@@ -4,9 +4,12 @@ import './Wrapper.scss'
 import Header from '../Header/Header'
 import Sidebar from '../Sidebar/Sidebar'
 import Preloader from '../Preloader/Preloader';
+import NavigationPanel from '../NavigationPanel/NavigationPanel';
 
 const Wrapper = ({children}) => {
     const [ isContentActive, onChangeContentActive ] = useState(false);
+
+    const isDashboard = window.location.pathname === '/'
 
     useEffect(() => {
         if (!localStorage.getItem('access_token') && window.location.pathname !== '/login') {
@@ -26,6 +29,9 @@ const Wrapper = ({children}) => {
             <Sidebar />
             <div className='content'>
                 <div className='wrapper__page'>
+                    {!isDashboard &&
+                      <NavigationPanel
+                    />}
                     {children}
                 </div>
             </div>
