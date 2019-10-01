@@ -34,7 +34,6 @@ const ProjectsPage = ({projectsFetch, projectsUpdate, projectsDataState, project
             </div>
             {
                 projects.map((project) => {
-                    debugger
                     return (
                         <Project {...project} key={project.id} />
                     )

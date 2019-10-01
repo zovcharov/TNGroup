@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import ApiProvider from './../../ApiProvider/ApiProvider';
+import Preloader from './../Preloader/Preloader';
 
 import './LoginForm.css';
 
 const LoginForm = () => {
     const [login, changeLogin] = useState('');
     const [password, changePassword] = useState('');
+    const [isLoading, changeLoading] = useState(false);
 
     const handleChangeLogin = event => changeLogin(event.target.value);
     const handleChangePassword = event => changePassword(event.target.value);
 
     const onLogin = () => {
+        if (isLoading) {
+            return null;
+        }
+
+        changeLoading(true);
         ApiProvider.Post('api', 'Auth', {
             clientName: 'MainProject',
             userName: login,
             password
         }).then(data => {
-            debugger
             localStorage.setItem('UserId', data.UserId);
             localStorage.setItem('UserRoles', data.UserRoles);
             localStorage.setItem('access_token', data.access_token);
@@ -42,8 +48,14 @@ const LoginForm = () => {
             <div className="login-form__item login-form__forget-pass">
                 <a href="#" className="forget-pass__link">Забыли пароль?</a>
             </div>
-            <button onClick={onLogin} className="login-form__item login-form__submit">
-                Войти в систему
+            <button  onClick={onLogin} className="login-form__item login-form__submit">
+                {
+                    isLoading ? (
+                        <Preloader />
+                    ) : (
+                        <span>Войти в систему</span>
+                    )
+                }
             </button>
         </div>
     )
