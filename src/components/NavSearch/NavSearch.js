@@ -26,7 +26,7 @@ const NavSearch = (props) => {
       <input
         value={value}
         onChange={event => changeValue(event.target.value)}
-        spellCheck="false"
+        spellCheck={false}
         type='text'
         onKeyPress={onPressEnter}
         className='nav-search__input' />
