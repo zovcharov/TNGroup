@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ApiProvider from './../../ApiProvider/ApiProvider';
 import Preloader from './../Preloader/Preloader';
 
+import { Login } from './../../Api/LoginApi';
+
 import './LoginForm.css';
 
 const LoginForm = () => {
@@ -18,17 +20,11 @@ const LoginForm = () => {
         }
 
         changeLoading(true);
-        ApiProvider.Post('api', 'Auth', {
-            clientName: 'MainProject',
-            userName: login,
-            password
-        }).then(data => {
-            localStorage.setItem('UserId', data.UserId);
-            localStorage.setItem('UserRoles', data.UserRoles);
-            localStorage.setItem('access_token', data.access_token);
-            localStorage.setItem('refresh_id', data.refresh_id);
-            window.location.pathname = '/';
-        })
+
+        Login(login, password)
+            .then(() => {
+                window.location.pathname = '/';
+            });
     };
 
     return (
