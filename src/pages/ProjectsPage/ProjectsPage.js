@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 
-import Project from './../../components/Project/Project';
+import ProjectListItem from '../../components/ProjectListItem/ProjectListItem';
 import Preloader from './../../components/Preloader/Preloader';
 
 import {
@@ -33,11 +33,9 @@ const ProjectsPage = ({projectsFetch, projectsUpdate, projectsDataState, project
                 Проекты:
             </div>
             {
-                projects.map((project) => {
-                    return (
-                        <Project {...project} key={project.id} />
-                    )
-                })
+                projects.map((project) => (
+                    <ProjectListItem {...project} key={project.id} />
+                ))
             }
         </div>
     )

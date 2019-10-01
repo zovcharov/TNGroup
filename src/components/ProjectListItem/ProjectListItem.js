@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 import Avatar from './../Avatar/Avatar';
 
-import './Project.scss';
+import './ProjectListItem.scss';
 
 const formatDate = (date) => {
 
@@ -20,7 +20,7 @@ const formatDate = (date) => {
     return dd + '.' + mm + '.' + yy;
 };
 
-const Project = (props) => {
+const ProjectListItem = (props) => {
     const {
         projectName,
         status,
@@ -85,4 +85,4 @@ const Project = (props) => {
     )
 };
 
-export default Project;
+export default ProjectListItem;
