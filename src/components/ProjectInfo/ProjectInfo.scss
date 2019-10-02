@@ -1,0 +1,22 @@
+.project-info {
+    &__cols-block {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__col {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+
+        height: 300px;
+
+        &:nth-child(1) {
+            width: 60%;
+        }
+
+        &:nth-child(2) {
+            width: 38%;
+        }
+    }
+}

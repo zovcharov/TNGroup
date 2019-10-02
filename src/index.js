@@ -1,19 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './redux/reducers';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
+import ProjectPage from './pages/ProjectPage/ProjectPage';
 
 import Footer from './components/Footer/Footer'
 import Wrapper from "./components/Wrapper/Wrapper";
 
 const defaultState = {
     projects: [],
-    projectsDataState: 'pending'
+    projectsDataState: 'pending',
+    singleProject: {},
+    singleProjectDataState: 'pending',
+
 };
 
 const store = createStore(rootReducer, defaultState);
@@ -22,15 +26,16 @@ import './main.scss'
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 
 const Routs = () => (
-    <BrowserRouter>
+    <HashRouter>
         <Switch>
         <Route path='/login' component={LoginPage}/>
           <Wrapper>
-            <Route path='/projects' component={ProjectsPage}/>
+            <Route path='/project/:projectId' component={ProjectPage}/>
+            <Route exact path='/projects' component={ProjectsPage}/>
             <Route exact path='/' component={DashboardPage}/>
           </Wrapper>
         </Switch>
-    </BrowserRouter>
+    </HashRouter>
 );
 
 ReactDOM.render((

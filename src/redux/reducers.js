@@ -1,6 +1,8 @@
 import {
+    PROJECTS_FETCH,
     PROJECTS_UPDATE,
-    PROJECTS_SET_DATA_STATUS, PROJECTS_FETCH,
+    SINGLE_PROJECT_FETCH,
+    SINGLE_PROJECT_UPDATE,
 } from './actions';
 
 import {
@@ -19,10 +21,11 @@ export default (state, action) => {
         case PROJECTS_FETCH:
             return stateAssign({ projectsDataState: 'loading' });
         case PROJECTS_UPDATE:
-            const a = selectFromProjects(action.data);
             return stateAssign({ projects: selectFromProjects(action.data), projectsDataState: 'loaded' });
-        case PROJECTS_SET_DATA_STATUS:
-            return state;
+        case SINGLE_PROJECT_FETCH:
+            return stateAssign({ singleProjectDataState: 'loading' });
+        case SINGLE_PROJECT_UPDATE:
+            return stateAssign({ singleProject: action.data, singleProjectDataState: 'loaded' });
         default:
             return state;
     }

@@ -1,36 +1,49 @@
 const MENU_ITEMS = [
   {
     link: '/projects',
-    title: 'Задачи и проекты'
+    title: 'Задачи и проекты',
+    bold: false,
+  },
+  {
+    link: '/plans',
+    title: 'Календарные планы',
+    bold: false,
+  },
+  {
+    link: '/reports',
+    title: 'Отчеты',
+    bold: false,
+  },
+  {
+    link: '/agreements',
+    title: 'Согласования',
+    bold: false,
+  },
+  {
+    link: '/risks',
+    title: 'Управление рисками',
+    bold: false,
   },
   {
     link: '/',
-    title: 'Календарные планы'
+    title: 'Добавить задачу',
+    bold: true,
   },
   {
     link: '/',
-    title: 'Отчеты'
+    title: 'Создать проект',
+    bold: true,
   },
   {
-    link: '/',
-    title: 'Согласования'
+    link: '/documents',
+    title: 'Документы',
+    bold: false,
   },
   {
-    link: '/',
-    title: 'Управление рисками'
+    link: '/favourites',
+    title: 'Избранное',
+    bold: false,
   },
-  {
-    link: '/',
-    title: 'Добавить задачу'
-  },
-  {
-    link: '/',
-    title: 'Создать проект'
-  },
-  {
-    link: '/',
-    title: 'Избранное'
-  },
-]
+];
 
 export default MENU_ITEMS

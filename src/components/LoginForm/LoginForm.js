@@ -23,7 +23,7 @@ const LoginForm = () => {
 
         Login(login, password)
             .then(() => {
-                window.location.pathname = '/';
+                window.location.hash = '#/';
             });
     };
 

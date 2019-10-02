@@ -10,7 +10,7 @@ const SideMenu = (props) => {
   return (
     <ul className='sideMenu'>
       {items.map((item, index) => (
-        <SideMenuItem key={index} to={item.link}>{item.title}</SideMenuItem>
+        <SideMenuItem key={index} to={item.link} bold={item.bold}>{item.title}</SideMenuItem>
       ))}
     </ul>
   )
@@ -19,10 +19,12 @@ const SideMenu = (props) => {
 const SideMenuItem = (props) => {
   const {
     to='/',
-    children
-  } = props
+    children,
+    bold,
+  } = props;
+
   return (
-    <li className='sideMenu__item'>
+    <li className={`sideMenu__item ${bold ? 'sideMenu__item--bold' : ''}`}>
       <Link to={to}>{children}</Link>
     </li>
   )
