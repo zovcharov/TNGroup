@@ -18,10 +18,10 @@ class ApiProvider {
         this.config.accessToken = token;
     }
 
-    Post(controller, func, data) {
+    Post(controller, param, data) {
         return axios({
             method: 'post',
-            url: `http://${this.apiUrl}/${controller}/${func}`,
+            url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
             data,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -29,10 +29,10 @@ class ApiProvider {
         }).then(res => res.data);
     }
 
-    Get(controller, func, data) {
+    Get(controller, param, data) {
         return axios({
             method: 'get',
-            url: `http://${this.apiUrl}/${controller}/${func}`,
+            url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
             data,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
