@@ -27,24 +27,44 @@ const LoginForm = () => {
             });
     };
 
+    const onPressEnter = (event) => {
+      if (event.key === 'Enter') {
+        onLogin()
+      }
+    }
+
     return (
         <div className="login-form">
             <div className="login-form__item login-form__login">
                 <label htmlFor="login" className="login-form__label">
                     Логин:
                 </label>
-                <input value={login} onChange={handleChangeLogin} type="text" id="login" className="login-form__input" />
+                <input
+                  value={login}
+                  onChange={handleChangeLogin}
+                  type="text"
+                  id="login"
+                  onKeyPress={onPressEnter}
+                  className="login-form__input" />
             </div>
             <div className="login-form__item login-form__pass">
                 <label htmlFor="password" className="login-form__label">
                     Пароль:
                 </label>
-                <input value={password} onChange={handleChangePassword} type="password" id="password" className="login-form__input" />
+                <input
+                  value={password}
+                  onChange={handleChangePassword}
+                  type="password"
+                  id="password"
+                  onKeyPress={onPressEnter}
+                  className="login-form__input" />
             </div>
             <div className="login-form__item login-form__forget-pass">
                 <a href="#" className="forget-pass__link">Забыли пароль?</a>
             </div>
-            <button  onClick={onLogin} className="login-form__item login-form__submit">
+            <button
+              onClick={onLogin}
+              className="login-form__item login-form__submit">
                 {
                     isLoading ? (
                         <Preloader />
