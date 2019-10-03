@@ -24,7 +24,6 @@ const Profile = (props) => {
       <Dropdown
         label={name}
         labelClass='profile__name'
-        menuClass='profile__menu'
         buttonClass='profile__button'>
           <DropdownItem><Link to="/profile">Профиль</Link></DropdownItem>
           <DropdownItem onClick={Logout}>Выйти</DropdownItem>
