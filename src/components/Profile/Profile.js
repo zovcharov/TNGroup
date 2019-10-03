@@ -15,7 +15,7 @@ const Profile = (props) => {
       localStorage.removeItem('UserRoles');
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_id');
-      window.location.pathname = '/login';
+      window.location.reload(true);
   };
 
   return (
