@@ -9,7 +9,6 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import ProjectPage from './pages/ProjectPage/ProjectPage';
 
-import Footer from './components/Footer/Footer'
 import Wrapper from "./components/Wrapper/Wrapper";
 
 const defaultState = {
@@ -42,7 +41,6 @@ ReactDOM.render((
     <Provider store={store}>
         <React.Fragment>
             <Routs />
-            <Footer />
         </React.Fragment>
     </Provider>
 ), document.getElementById("root"));
