@@ -15,7 +15,7 @@ const Profile = (props) => {
       localStorage.removeItem('UserRoles');
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_id');
-      window.location.pathname = '/login';
+      window.location.reload(true);
   };
 
   return (
@@ -24,7 +24,6 @@ const Profile = (props) => {
       <Dropdown
         label={name}
         labelClass='profile__name'
-        menuClass='profile__menu'
         buttonClass='profile__button'>
           <DropdownItem><Link to="/profile">Профиль</Link></DropdownItem>
           <DropdownItem onClick={Logout}>Выйти</DropdownItem>
