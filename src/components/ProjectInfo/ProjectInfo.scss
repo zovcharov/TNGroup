@@ -7,16 +7,17 @@
     &__col {
         display: flex;
         flex-direction: column;
-        background-color: #ffffff;
 
-        height: 300px;
-
-        &:nth-child(1) {
-            width: 60%;
-        }
-
-        &:nth-child(2) {
-            width: 38%;
-        }
+        width: 50%;
+        padding: 10px;
+    }
+    &__contaners-divider {
+      margin-bottom: 20px;
+    }
+    &__agreements {
+      padding: 10px;
+    }
+    .project-info__project-name-label {
+      font-size: 14px;
     }
 }

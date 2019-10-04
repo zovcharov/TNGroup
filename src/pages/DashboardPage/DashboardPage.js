@@ -69,10 +69,10 @@ const DashboardPage = (props) => {
       </div>
       <div className='dashboard-panels'>
         <div className='dashboard-tasks'>
-          <Container label='Последние задачи:' labelClass='dashboard-tasks__label'></Container>
+          <Container label='Последние задачи'></Container>
         </div>
         <div className='dashboard-agreements'>
-          <Container label='Последние согласования:'></Container>
+          <Container label='Последние согласования'></Container>
         </div>
       </div>
     </div>
