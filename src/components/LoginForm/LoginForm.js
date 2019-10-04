@@ -62,9 +62,7 @@ const LoginForm = () => {
             <div className="login-form__item login-form__forget-pass">
                 <a href="#" className="forget-pass__link">Забыли пароль?</a>
             </div>
-            <button
-              onClick={onLogin}
-              className="login-form__item login-form__submit">
+            <button  onClick={onLogin} className="login-form__item login-form__submit">
                 {
                     isLoading ? (
                         <Preloader />
