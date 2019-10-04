@@ -1,7 +1,7 @@
 import ApiProvider from './../ApiProvider/ApiProvider';
 
 export const Login = (userName, password) => {
-    return ApiProvider.Post('api', 'Auth', {
+    return ApiProvider.Post('Auth', '', {
         clientName: 'MainProject',
         userName,
         password

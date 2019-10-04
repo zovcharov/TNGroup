@@ -9,14 +9,14 @@ import NavigationPanel from '../NavigationPanel/NavigationPanel';
 const Wrapper = ({children}) => {
     const [ isContentActive, onChangeContentActive ] = useState(false);
 
-    const isDashboard = window.location.pathname === '/'
+    const isDashboard = window.location.hash === '#/'
 
     useEffect(() => {
-        if (!localStorage.getItem('access_token') && window.location.pathname !== '/login') {
-            window.location.pathname = '/login';
+        if (!localStorage.getItem('access_token') && window.location.hash !== '#/login') {
+            window.location.hash = '#/login';
         } else  {
-           if (localStorage.getItem('access_token') && window.location.pathname === '/login') {
-               window.location.pathname = '/';
+           if (localStorage.getItem('access_token') && window.location.pathname === '#/login') {
+               window.location.pathname = '#/';
            } else {
                onChangeContentActive(true);
            }

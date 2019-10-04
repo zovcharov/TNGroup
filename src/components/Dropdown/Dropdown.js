@@ -26,9 +26,9 @@ const Dropdown = (props) => {
     label,
     children,
     width = '100%',
-    labelClass,
-    menuClass,
-    buttonClass
+    labelClass = '',
+    menuClass = '',
+    buttonClass = ''
   } = props
 
   const [closed, toggle] = useState(true)
