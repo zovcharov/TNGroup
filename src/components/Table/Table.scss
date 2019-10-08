@@ -4,6 +4,7 @@
     // display: flex;
     &-cell {
       padding: 5px;
+      flex-grow: 1;
     }
   }
   &__row {
@@ -13,5 +14,6 @@
   &__cell {
     word-break: break-all;
     padding: 5px;
+    flex-grow: 1;
   }
 }
