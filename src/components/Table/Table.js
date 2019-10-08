@@ -41,7 +41,7 @@ const TableBody = (props) => {
             <div
               className='table__row'
               key={index}>
-                {columns.map(({name, width}, index) => {
+                {columns.map(({name, width = 'auto'}, index) => {
                   return (
                     <TableCell key={index} width={width}>
                       {item[name]}
@@ -62,7 +62,7 @@ const TableHead = (props) => {
   return (
     <div className='table__header'>
       <div className='table__row'>
-        {columns.map(({label = '', width='auto' }, index) => {
+        {columns.map(({label = '', width= 'auto' }, index) => {
           return (
             <div
               className='table__header-cell'
