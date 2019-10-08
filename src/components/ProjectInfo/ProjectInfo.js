@@ -2,6 +2,43 @@ import React from 'react';
 
 import './ProjectInfo.scss';
 import Container from '../Container/Container';
+import Table from '../Table/Table';
+
+const COLUMNS_TASKS = [
+  {
+    label: 'Название',
+    name: 'name',
+    width: '50%'
+  },
+  {
+    label: 'Статус',
+    name: 'state',
+    width: '30%'
+  },
+  {
+    label: 'Обновлено',
+    name: 'lastUpdate',
+    width: '20%'
+  }
+]
+
+const ITEMS_TASKS = [
+  {
+    name: 'aaarwqrqwrqwqwrrwqwrqwqqwra',
+    state: 'ИИИ',
+    lastUpdate: 'qrtqrq'
+  },
+  {
+    name: 'aaaqwrwqwrqrwrqwa',
+    state: 'ИИИ',
+    lastUpdate: 'qrtqrq'
+  },
+  {
+    name: 'aaaarqwqrqwrrwqrqwrqwrqwrqwrqwrrqwqrwqwr',
+    state: 'ИИИ',
+    lastUpdate: 'qrtqrq'
+  },
+]
 
 const ProjectInfo = ({info}) => {
     return (
@@ -16,7 +53,7 @@ const ProjectInfo = ({info}) => {
                   <Container
                     className='project-info__contaners-divider'
                     label='Задачи'>
-
+                      <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
                   </Container>
                   <Container
                     label='Риски'>
