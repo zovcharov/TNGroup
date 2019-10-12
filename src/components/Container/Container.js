@@ -13,7 +13,7 @@ const Container = (props) => {
   return (
     <div className={`container ${className}`}>
       <div className={`container-label ${labelClass}`}>
-        {`${label}:`}
+        {label && `${label}:`}
       </div>
       <div className='container-content'>
         {children}
