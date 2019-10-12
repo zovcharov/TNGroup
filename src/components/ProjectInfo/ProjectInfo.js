@@ -3,6 +3,7 @@ import React from 'react';
 import './ProjectInfo.scss';
 import Container from '../Container/Container';
 import Table from '../Table/Table';
+import ProjectPassport from '../ProjectMainInfo/ProjectPassport';
 
 const COLUMNS_TASKS = [
   {
@@ -41,6 +42,16 @@ const ITEMS_TASKS = [
 ]
 
 const ProjectInfo = ({info}) => {
+    const {
+      Alias,
+      PassportProject,
+      Participants
+    } = info
+    const passportInfo = {
+      Alias,
+      PassportProject,
+      Participants
+    }
     return (
         <div className="project-info">
             <div className="project-info__cols-block">
@@ -63,9 +74,9 @@ const ProjectInfo = ({info}) => {
                 <div className="project-info__col">
                 <Container
                   className='project-info__contaners-divider'
-                  label='Название проекта'
                   labelClass='project-info__project-name-label'>
-
+                    <ProjectPassport
+                      {...passportInfo} />
                 </Container>
                 </div>
             </div>
