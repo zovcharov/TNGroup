@@ -110,7 +110,7 @@ const ProjectMainInfo = (props) => {
           <InfoBlock label='Контролер проекта:'>
             {Objective}
           </InfoBlock>
-          <InfoBlock label='Контролер проекта:'>
+          <InfoBlock label='Руководитель:'>
             {Objective}
           </InfoBlock>
         </div>

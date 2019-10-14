@@ -49,8 +49,8 @@ const ProjectInfo = ({info}) => {
     } = info
     const passportInfo = {
       Alias,
-      PassportProject,
-      Participants
+      Participants,
+      ...PassportProject
     }
     return (
         <div className="project-info">
@@ -59,7 +59,7 @@ const ProjectInfo = ({info}) => {
                   <Container
                     className='project-info__contaners-divider'
                     label='Календарный план проекта'>
-
+                      <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
                   </Container>
                   <Container
                     className='project-info__contaners-divider'
@@ -68,7 +68,7 @@ const ProjectInfo = ({info}) => {
                   </Container>
                   <Container
                     label='Риски'>
-
+                      <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
                   </Container>
                 </div>
                 <div className="project-info__col">
@@ -83,7 +83,7 @@ const ProjectInfo = ({info}) => {
             <div className='project-info__agreements'>
               <Container
                 label='Согласования'>
-
+                  <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
               </Container>
             </div>
             {JSON.stringify(info)}
