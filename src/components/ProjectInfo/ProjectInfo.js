@@ -4,6 +4,7 @@ import './ProjectInfo.scss';
 import Container from '../Container/Container';
 import Table from '../Table/Table';
 import ProjectPassport from '../ProjectMainInfo/ProjectPassport';
+import ProjectFiles from '../ProjectFiles/ProjectFiles';
 
 const COLUMNS_TASKS = [
   {
@@ -77,6 +78,10 @@ const ProjectInfo = ({info}) => {
                   labelClass='project-info__project-name-label'>
                     <ProjectPassport
                       {...passportInfo} />
+                </Container>
+                <Container
+                  className='project-info__contaners-divider'>
+                    <ProjectFiles />
                 </Container>
                 </div>
             </div>
