@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './ProjectFiles.scss'
-import Button from '../Button/Button'
+import DefaultButton from "../Buttons/DefaultButton";
 
 const FILES = [
   {
@@ -39,7 +39,7 @@ const ProjectFiles = (props) => {
         })}
       </div>
       <div className='project-files__bottom'>
-        <Button>Прикрепить файлы</Button>
+        <DefaultButton>Прикрепить файлы</DefaultButton>
       </div>
     </div>
   )
