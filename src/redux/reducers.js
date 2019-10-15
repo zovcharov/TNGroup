@@ -9,11 +9,15 @@ import {
     TASKS_UPDATE,
     SCHEDULES_FETCH,
     SCHEDULES_UPDATE,
+    AGREEMENTS_FETCH,
+    AGREEMENTS_UPDATE,
 } from './actions';
 
 import {
     selectFromProjects
 } from './selectors';
+
+import agreementsMock from './mocks/agreementsMock';
 
 export default (state, action) => {
     const stateAssign = (data) => Object.assign({}, state, data);
@@ -39,6 +43,14 @@ export default (state, action) => {
             return stateAssign({ schedulesDataStatus: 'loading' });
         case SCHEDULES_UPDATE:
             return stateAssign({ schedules: action.data, schedulesDataStatus: 'loaded' });
+        case AGREEMENTS_FETCH:
+            return stateAssign({ agreementsDataStatus: 'loading' });
+        case AGREEMENTS_UPDATE:
+            return stateAssign({
+                agreements: action.data.agreements.length ? action.data.agreements : agreementsMock,
+                agreementsProjectId: action.data.projectId,
+                agreementsDataStatus: 'loaded',
+            });
         default:
             return state;
     }

@@ -25,10 +25,6 @@ const COLUMNS_TASKS = [
   }
 ]
 
-const COLUMNS_AGREEMENTS = [
-  
-]
-
 const ProjectInfo = ({info}) => {
     const {
       Id,

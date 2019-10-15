@@ -56,7 +56,11 @@ export const fetchAgreements = (projectId, fetchAction, updateAction) => {
 
     return ApiProvider.Get('Agreement', '', {curProjectId: projectId})
         .then(data => {
-            updateAction && updateAction(data);
-            return data;
+            let result = {
+                agreements: data || [],
+                projectId
+            };
+            updateAction && updateAction(result);
+            return result;
         })
 };

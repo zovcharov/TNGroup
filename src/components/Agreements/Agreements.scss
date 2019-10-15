@@ -1,0 +1,29 @@
+.agreements {
+    .table {
+        background-color: #fff;
+        border-radius: 4px;
+    }
+}
+
+.agreements-table {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 10px 30px 50px 30px;
+    border-radius: 4px;
+
+    &__title {
+        font-size: 12px;
+        color: #909090;
+        line-height: 60px;
+    }
+
+    &__data {
+        font-family: "Open Sans";
+        font-size: 14px;
+        color: #505050;
+    }
+
+    &__row {
+        border-bottom: 1px solid #e6e6e6;
+    }
+}

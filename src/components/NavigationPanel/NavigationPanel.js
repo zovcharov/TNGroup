@@ -37,15 +37,26 @@ const NavigationPanel = () => {
         return link.isActive ? 'navigation-panel__link--active' : '';
     }
 
+    return ''
+
     return (
         <div className="navigation-panel">
             <div className="navigation-panel__links">
                 {
-                    LINKS.map((link, index) => (
-                        <Link key={index} className={`navigation-panel__link ${setActiveLink(link)}`} to={link.url}>
-                            {link.title}
-                        </Link>
-                    ))
+                    LINKS.map((link, index) => {
+                        if (window.location.hash === '#/projects' && index === 0) {
+                            return (
+                                <Link key={index} className={`navigation-panel__link navigation-panel__link--active`} to="#/projects">
+                                    Все проекты
+                                </Link>
+                            )
+                        }
+                        return (
+                            <Link key={index} className={`navigation-panel__link ${setActiveLink(link)}`} to={link.url}>
+                                {link.title}
+                            </Link>
+                        )
+                    })
                 }
                     <AddButton text="Добавить проект" onClick={onAddProject} type="add-project" />
                     <AddButton text="Добавить задачу" onClick={onAddTask} type="add-task" />

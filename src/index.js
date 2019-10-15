@@ -8,6 +8,7 @@ import rootReducer from './redux/reducers';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import ProjectPage from './pages/ProjectPage/ProjectPage';
+import ProjectAgreementsPage from './pages/ProjectAgreementsPage/ProjectAgreementsPage';
 
 import Wrapper from "./components/Wrapper/Wrapper";
 
@@ -22,6 +23,11 @@ const defaultState = {
     tasksDataStatus: 'pending',
     schedules: [],
     schedulesDataStatus: 'pending',
+    userAgreements: [],
+    userAgreementsDataStatus: 'pending',
+    agreements: [],
+    agreementsDataStatus: 'pending',
+    agreementsProjectId: 0,
 };
 
 const store = createStore(rootReducer, defaultState);
@@ -34,9 +40,12 @@ const Routs = () => (
         <Switch>
         <Route path='/login' component={LoginPage}/>
           <Wrapper>
-            <Route path='/project/:projectId' component={ProjectPage}/>
-            <Route exact path='/projects' component={ProjectsPage}/>
-            <Route exact path='/' component={DashboardPage}/>
+              <Route exact path='/agreements/:projectId' component={ProjectAgreementsPage}/>
+              <Route path='/project/:projectId/tasks' component={ProjectPage}/>
+              <Route path='/project/:projectId/risks' component={ProjectPage}/>
+              <Route path='/project/:projectId' component={ProjectPage}/>
+              <Route exact path='/projects' component={ProjectsPage}/>
+              <Route exact path='/' component={DashboardPage}/>
           </Wrapper>
         </Switch>
     </HashRouter>

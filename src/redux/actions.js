@@ -29,6 +29,10 @@ export const RISKS_UPDATE = 'TNG/RISKS_UPDATE';
 export const AGREEMENTS_FETCH = 'TNG/AGREEMENTS_FETCH';
 export const AGREEMENTS_UPDATE = 'TNG/AGREEMENTS_UPDATE';
 
+// User agreement projects action types
+export const USER_AGREEMENTS_FETCH = 'TNG/USER_AGREEMENTS_FETCH';
+export const USER_AGREEMENTS_UPDATE = 'TNG/USER_AGREEMENTS_UPDATE';
+
 // Project actions
 export const projectsFetch = (data) => ({
     type: PROJECTS_FETCH,
@@ -94,5 +98,16 @@ export const agreementsFetch = () => ({
 
 export const agreementsUpdate = (data) => ({
     type: AGREEMENTS_UPDATE,
+    data
+});
+
+
+// User agreement actions
+export const userAgreementsFetch = () => ({
+    type: USER_AGREEMENTS_FETCH,
+});
+
+export const userAgreementsUpdate = (data) => ({
+    type: USER_AGREEMENTS_UPDATE,
     data
 });

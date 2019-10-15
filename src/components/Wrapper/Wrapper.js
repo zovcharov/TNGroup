@@ -21,8 +21,8 @@ const Wrapper = ({children, usersDataState, usersFetch, usersUpdate}) => {
         if (!localStorage.getItem('access_token') && window.location.hash !== '#/login') {
             window.location.hash = '#/login';
         } else  {
-           if (localStorage.getItem('access_token') && window.location.pathname === '#/login') {
-               window.location.pathname = '#/';
+           if (localStorage.getItem('access_token') && window.location.hash === '#/login') {
+               window.location.hash = '#/';
            } else {
                onChangeContentActive(true);
            }
