@@ -26,7 +26,14 @@ class ApiProvider {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
             }
-        }).then(res => res.data);
+        })
+            .then(res => res.data)
+            .catch(e => {
+                if (e.response.status === 401) {
+                    debugger
+                    return this.UpdateToken('post', controller, func, data)
+                }
+            })
     }
 
     Get(controller, param, data) {
@@ -37,7 +44,39 @@ class ApiProvider {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
             }
-        }).then(res => res.data);
+        })
+            .then(res => res.data)
+            .catch(e => {
+                if (e.response.status === 401) {
+                    debugger
+                    return this.UpdateToken('get', controller, func, data)
+                }
+            })
+    }
+
+    UpdateToken(methon, controller, func, data) {
+        return axios({
+            method: 'post',
+            url: `http://${this.apiUrl}/api/Auth/updateToken`,
+            data: {
+                clientName: 'MainProject',
+                refreshToken: localStorage.getItem('refresh_id'),
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            }
+        })
+            .then(res => {
+                debugger
+                if (methon === 'post') {
+                    return this.Post(controller, func, data);
+                }
+
+                return this.Get(controller, func, data);
+            })
+            .catch(e => {
+                debugger
+            })
     }
 }
 

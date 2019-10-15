@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux';
+import {
+    usersFetch,
+    usersUpdate
+} from '../../redux/actions';
+import {fetchUsers} from "../../redux/fetchers";
 
 import './Wrapper.scss'
 import Header from '../Header/Header'
@@ -6,7 +12,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Preloader from '../Preloader/Preloader';
 import NavigationPanel from '../NavigationPanel/NavigationPanel';
 
-const Wrapper = ({children}) => {
+const Wrapper = ({children, usersDataState, usersFetch, usersUpdate}) => {
     const [ isContentActive, onChangeContentActive ] = useState(false);
 
     const isDashboard = window.location.hash === '#/'
@@ -20,6 +26,12 @@ const Wrapper = ({children}) => {
            } else {
                onChangeContentActive(true);
            }
+        }
+    }, []);
+
+    useEffect(() => {
+        if (usersDataState === 'pending') {
+            fetchUsers(usersFetch, usersUpdate)
         }
     }, []);
 
@@ -41,4 +53,14 @@ const Wrapper = ({children}) => {
     )
 };
 
-export default Wrapper
+const mapStateToProps = ({ users, usersDataState }) => ({
+    users,
+    usersDataState
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    usersFetch: () => dispatch(usersFetch()),
+    usersUpdate: (data) => dispatch(usersUpdate(data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);

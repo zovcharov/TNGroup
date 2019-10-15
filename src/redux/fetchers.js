@@ -17,3 +17,23 @@ export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
             updateAction(data);
         })
 };
+
+export const fetchUsers = (fetchAction, updateAction) => {
+    fetchAction();
+    debugger
+
+    ApiProvider.Get('api', 'user')
+        .then(data => {
+            updateAction(data);
+        })
+};
+
+export const saveProject = (data) => {
+    ApiProvider.Post('api', 'project', data)
+        .then(data => {
+            debugger
+        })
+        .catch(err => {
+            debugger
+        })
+}

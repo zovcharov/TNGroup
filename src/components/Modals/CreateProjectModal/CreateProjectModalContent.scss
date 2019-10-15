@@ -1,0 +1,154 @@
+.project-modal {
+    .project-name {
+        grid-area: name;
+    }
+    .project-initiator {
+        grid-area: initiator;
+    }
+    .project-curator {
+        grid-area: curator;
+    }
+    .project-customer {
+        grid-area: customer;
+    }
+    .project-customer-contact {
+        grid-area: customer-contact;
+    }
+    .project-controller {
+        grid-area: controller;
+    }
+    .project-manager {
+        grid-area: manager;
+    }
+    .project-description {
+        grid-area: description;
+    }
+    .project-result {
+        grid-area: result;
+    }
+    .project-executors {
+        grid-area: executors;
+    }
+    .project-product {
+        grid-area: product;
+    }
+    .project-cost {
+        grid-area: cost;
+    }
+    .project-economic-factor {
+        grid-area: economic-factor;
+    }
+    .project-meeting-place {
+        grid-area: meeting-place;
+    }
+    .project-meeting-periodicity {
+        grid-area: meeting-periodicity;
+    }
+    .project-end-date {
+        grid-area: end-date;
+    }
+    .project-milestones {
+        grid-area: milestones;
+        position: relative;
+
+        &__add {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding-left: 10px;
+            padding-right: 5px;
+            width: 12px;
+            height: 12px;
+
+            &:hover {
+                &:before,
+                &:after {
+                    background-color: #838383;
+                }
+            }
+
+            &:before,
+            &:after {
+                position: absolute;
+                display: inline-block;
+                content: '';
+                top: 0;
+                width: 2px;
+                height: 13px;
+                background-color: #b6b6b6;
+
+                &:hover {
+                    background-color: black;
+                }
+            }
+
+            &:before {
+                transform: rotate(45deg)
+            }
+            &:after {
+                transform: rotate(-45deg)
+            }
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 250px 250px 250px 250px;
+        grid-template-rows: 90px 90px 90px 90px 90px 90px;
+        grid-template-areas:
+            "name initiator curator customer"
+            "goal customer-contact controller manager"
+            "description result executors executors"
+            "description product cost economic-factor"
+            "meeting-place meeting-periodicity end-date ."
+            "milestones milestones milestones milestones"
+    }
+
+    &__label {
+        font-family: OpenSans;
+        font-size: 14px;
+        text-align: left;
+        color: #707070;
+        margin-bottom: 15px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+
+        .footer__button {
+            margin-right: 0 !important;
+            margin-left: 10px;
+
+            .button__content {
+                font-family: OpenSans;
+                font-size: 14px;
+            }
+
+            &.button__add-files {
+                margin-right: auto !important;
+                color: #505050;
+            }
+
+            &.button__save-draft {
+                color: #505050;
+            }
+
+            &.button__save {
+                background: linear-gradient(135deg, rgb(30, 171, 88) 0%, rgb(30, 171, 88) 20%, rgb(122, 242, 88) 100%);
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+.content {
+    &__grid-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+    }
+}
