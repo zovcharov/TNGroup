@@ -1,16 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
-import {
-    usersFetch,
-    usersUpdate
-} from '../../redux/actions';
-import {fetchUsers} from "../../redux/fetchers";
 
 import './TngUserSelect.scss';
 
 let needActivateFocus = true;
 
-const TngUserSelect = ({usersFetch, usersUpdate, users, usersDataState, onChangeSelectedUser, multiUsers}) => {
+const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers}) => {
     const [isDropdownOpen, toggleDropDown] = useState(false);
     const [selectedUsersIds, onChangeSelectedUsersIds] = useState([]);
 
@@ -22,14 +17,18 @@ const TngUserSelect = ({usersFetch, usersUpdate, users, usersDataState, onChange
     }, [toggleDropDown]);
 
     const onSelectUser = (userId) => {
+        let newSelectedValues = selectedUsersIds.slice();
+
         if (selectedUsersIds.indexOf(userId) === -1) {
             if (multiUsers) {
-                onChangeSelectedUsersIds(selectedUsersIds.slice().push(userId));
+                newSelectedValues.push(userId)
+                onChangeSelectedUsersIds(newSelectedValues);
             } else {
-                onChangeSelectedUsersIds([userId])
+                newSelectedValues = [userId];
+                onChangeSelectedUsersIds(newSelectedValues)
             }
 
-            onChangeSelectedUser && onChangeSelectedUser(selectedUsersIds);
+            onChangeSelectedUser && onChangeSelectedUser(newSelectedValues);
         }
     };
 
@@ -44,6 +43,7 @@ const TngUserSelect = ({usersFetch, usersUpdate, users, usersDataState, onChange
 
     const renderSelectedUsers = () => selectedUsersIds.map(item => {
         const user = users.find(user => user.Id = item);
+
         return (
             <span className="user-select__selected-user" key={item}>
                 {user.UserName}
@@ -52,11 +52,11 @@ const TngUserSelect = ({usersFetch, usersUpdate, users, usersDataState, onChange
         )
     });
 
-    const getUsersList = () => users.map(item => (
+    const getUsersList = () => users && users.length ? users.map(item => (
         <div className="user-select__item" key={item.Id} onClick={() => {onSelectUser(item.Id)}}>
             { item.UserName }
         </div>
-    ));
+    )) : [];
 
     return (
         <div className="user-select">
@@ -83,9 +83,4 @@ const mapStateToProps = ({ users, usersDataState }) => ({
     usersDataState
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    usersFetch: () => dispatch(usersFetch()),
-    usersUpdate: (data) => dispatch(usersUpdate(data))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TngUserSelect);
+export default connect(mapStateToProps, null)(TngUserSelect);

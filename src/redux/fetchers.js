@@ -22,7 +22,7 @@ export const fetchUsers = (fetchAction, updateAction) => {
     fetchAction();
     debugger
 
-    ApiProvider.Get('api', 'user')
+    ApiProvider.Get('user')
         .then(data => {
             updateAction(data);
         })
