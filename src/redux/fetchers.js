@@ -18,8 +18,9 @@ export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
         .then(data => {
             project = data;
 
-            Promise.all([fetchTasks(projectId)]).then(res => {
+            Promise.all([fetchTasks(projectId), fetchAgreements(projectId)]).then(res => {
                 project.tasks = res[0];
+                project.agreement = res[1] && res[1].length ? res[1] : [];
 
                 updateAction(project);
             })
@@ -43,6 +44,16 @@ export const fetchTasks = (projectId, fetchAction, updateAction) => {
     fetchAction && fetchAction();
 
     return ApiProvider.Get('ProjectTask', '', {curProjectId: projectId})
+        .then(data => {
+            updateAction && updateAction(data);
+            return data;
+        })
+};
+
+export const fetchAgreements = (projectId, fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return ApiProvider.Get('Agreement', '', {curProjectId: projectId})
         .then(data => {
             updateAction && updateAction(data);
             return data;

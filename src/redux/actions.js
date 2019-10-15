@@ -25,6 +25,10 @@ export const SCHEDULES_UPDATE = 'TNG/SCHEDULES_UPDATE';
 export const RISKS_FETCH = 'TNG/RISKS_FETCH';
 export const RISKS_UPDATE = 'TNG/RISKS_UPDATE';
 
+// Agreement projects action types
+export const AGREEMENTS_FETCH = 'TNG/AGREEMENTS_FETCH';
+export const AGREEMENTS_UPDATE = 'TNG/AGREEMENTS_UPDATE';
+
 // Project actions
 export const projectsFetch = (data) => ({
     type: PROJECTS_FETCH,
@@ -80,5 +84,15 @@ export const risksFetch = () => ({
 
 export const risksUpdate = (data) => ({
     type: RISKS_UPDATE,
+    data
+});
+
+// Agreement actions
+export const agreementsFetch = () => ({
+    type: AGREEMENTS_FETCH,
+});
+
+export const agreementsUpdate = (data) => ({
+    type: AGREEMENTS_UPDATE,
     data
 });
