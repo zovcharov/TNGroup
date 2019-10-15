@@ -9,7 +9,7 @@ import ProjectFiles from '../ProjectFiles/ProjectFiles';
 const COLUMNS_TASKS = [
   {
     label: 'Название',
-    name: 'name',
+    name: 'Description',
     width: '50%'
   },
   {
@@ -19,41 +19,32 @@ const COLUMNS_TASKS = [
   },
   {
     label: 'Обновлено',
-    name: 'lastUpdate',
+    name: 'LastDateUpdate',
     width: '20%'
   }
 ]
 
-const ITEMS_TASKS = [
-  {
-    name: 'aaarwqrqwrqwqwrrwqwrqwqqwra',
-    state: 'ИИИ',
-    lastUpdate: 'qrtqrq'
-  },
-  {
-    name: 'aaaqwrwqwrqrwrqwa',
-    state: 'ИИИ',
-    lastUpdate: 'qrtqrq'
-  },
-  {
-    name: 'aaaarqwqrqwrrwqrqwrqwrqwrqwrqwrrqwqrwqwr',
-    state: 'ИИИ',
-    lastUpdate: 'qrtqrq'
-  },
+const COLUMNS_AGREEMENTS = [
+  
 ]
 
 const ProjectInfo = ({info}) => {
     const {
+      Id,
       Alias,
       PassportProject,
       Participants,
+      agreement,
       tasks
     } = info
     const passportInfo = {
+      Id,
       Alias,
       Participants,
-      ...PassportProject
+      ...PassportProject,
     }
+
+    console.log(info)
 
     return (
         <div className="project-info">
@@ -67,7 +58,7 @@ const ProjectInfo = ({info}) => {
                   <Container
                     className='project-info__contaners-divider'
                     label='Задачи'>
-                      <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
+                      <Table columns={COLUMNS_TASKS} items={tasks} />
                   </Container>
                   <Container
                     label='Риски'>
@@ -90,7 +81,7 @@ const ProjectInfo = ({info}) => {
             <div className='project-info__agreements'>
               <Container
                 label='Согласования'>
-                  <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
+                  <Table columns={COLUMNS_AGREEMENTS} items={agreement} />
               </Container>
             </div>
             {JSON.stringify(info)}
