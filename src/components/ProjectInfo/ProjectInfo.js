@@ -5,6 +5,7 @@ import Container from '../Container/Container';
 import Table from '../Table/Table';
 import ProjectPassport from '../ProjectMainInfo/ProjectPassport';
 import ProjectFiles from '../ProjectFiles/ProjectFiles';
+import {ITEMS_TASKS} from "../../ApiProvider/mockups";
 
 const COLUMNS_TASKS = [
   {
