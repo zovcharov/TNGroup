@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './ProjectPassport.scss'
 
-import formatDateToString from '../../helpers/helpers'
+import {formatDateToString} from '../../helpers/helpers'
 
 const ProjectMainInfo = (props) => {
   const {
