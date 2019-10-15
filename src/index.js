@@ -14,9 +14,11 @@ import Wrapper from "./components/Wrapper/Wrapper";
 const defaultState = {
     projects: [],
     projectsDataState: 'pending',
+    users: [],
+    usersDataState: 'pending',
     singleProject: {},
     singleProjectDataState: 'pending',
-    
+
 };
 
 const store = createStore(rootReducer, defaultState);
