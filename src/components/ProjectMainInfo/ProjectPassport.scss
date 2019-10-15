@@ -8,6 +8,9 @@
     &:first-child {
       padding-top: 0;
     }
+    &:last-child {
+      border-bottom: none;
+    }
   }
   &__col {
     display: flex;
@@ -21,6 +24,7 @@
 }
 
 .info-block {
+  padding: 0 0 10px;
   &__label {
     font-size: 13px;
     color: #909090;
