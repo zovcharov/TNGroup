@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from '../Table/Table';
+import Button from '../Button/Button';
 
 import './Agreements.scss';
 
@@ -28,34 +29,18 @@ const COLUMNS_AGREEMENTS = [
 
 const Agreements = ({ agreements }) => {
     return (
-        <div className="agreements">
-            <Table columns={COLUMNS_AGREEMENTS} items={agreements} />
-        </div>
+        <React.Fragment>
+            <div className="agreements__title">Согласования:</div>
+            <div className="agreements">
+                <Table columns={COLUMNS_AGREEMENTS} items={agreements} />
+                <div className="agreements__footer">
+                    <Button>
+                        <span>Добавить согласование</span>
+                    </Button>
+                </div>
+            </div>
+        </React.Fragment>
     )
-    /*return (
-        <table className="agreements-table">
-            <thead>
-                <tr>
-                    <td className="agreements-table__title">Название</td>
-                    <td className="agreements-table__title">Статус</td>
-                    <td className="agreements-table__title">Тип документа</td>
-                    <td className="agreements-table__title">Обновлено</td>
-                </tr>
-            </thead>
-            <tbody>
-            {
-                agreements.map(agreement => (
-                    <tr className="agreements-table__row">
-                        <td className="agreements-table__data">{agreement.Name}</td>
-                        <td className="agreements-table__data">{agreement.Status}</td>
-                        <td className="agreements-table__data">{agreement.DocumentType}</td>
-                        <td className="agreements-table__data">{agreement.LastDateUpdate.toDateString()}</td>
-                    </tr>
-                ))
-            }
-            </tbody>
-        </table>
-    )*/
 };
 
 export default Agreements;

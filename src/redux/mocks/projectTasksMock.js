@@ -1,0 +1,73 @@
+export const tasksMock = [
+    {
+        PlannedScheduleId: 1,
+        Description: 'Произвести внедрение проектно-цифровой платформы',
+        DateBegin: (new Date()).toDateString(),
+        DateEnd: (new Date()).toDateString(),
+        LastDateUpdate: (new Date()).toDateString(),
+        PerformerId: 1,
+        Performer: {
+            Name: 'Новиков Алексей Петрович',
+        },
+        PreviousConnectedTaskId: 1,
+        NextConnectedTaskId: 1,
+        Status: 'Выполняется',
+        Id: 1,
+    }, {
+        PlannedScheduleId: 1,
+        Description: 'Полевая сейсморазведка в Арском районе, на основе предыдущегопроект ',
+        DateBegin: (new Date()).toDateString(),
+        DateEnd: (new Date()).toDateString(),
+        LastDateUpdate: (new Date()).toDateString(),
+        PerformerId: 1,
+        Performer: {
+            Name: 'Новиков Алексей Петрович',
+        },
+        PreviousConnectedTaskId: 1,
+        NextConnectedTaskId: 1,
+        Status: 'Приостановлена',
+        Id: 4,
+    }, {
+        PlannedScheduleId: 1,
+        Description: 'Пройти ежегодное медицинское обследование',
+        DateBegin: (new Date()).toDateString(),
+        DateEnd: (new Date()).toDateString(),
+        LastDateUpdate: (new Date()).toDateString(),
+        PerformerId: 1,
+        Performer: {
+            Name: 'Новиков Алексей Петрович',
+        },
+        PreviousConnectedTaskId: 1,
+        NextConnectedTaskId: 1,
+        Status: 'Выполняется',
+        Id: 5,
+    }, {
+        PlannedScheduleId: 1,
+        Description: 'Пройти ежегодное медицинское обследование',
+        DateBegin: (new Date()).toDateString(),
+        DateEnd: (new Date()).toDateString(),
+        LastDateUpdate: (new Date()).toDateString(),
+        PerformerId: 1,
+        Performer: {
+            Name: 'Новиков Алексей Петрович',
+        },
+        PreviousConnectedTaskId: 1,
+        NextConnectedTaskId: 1,
+        Status: 'Завершена',
+        Id: 6,
+    }, {
+        PlannedScheduleId: 1,
+        Description: 'Пройти ежегодное медицинское обследование',
+        DateBegin: (new Date()).toDateString(),
+        DateEnd: (new Date()).toDateString(),
+        LastDateUpdate: (new Date()).toDateString(),
+        PerformerId: 1,
+        Performer: {
+            Name: 'Новиков Алексей Петрович',
+        },
+        PreviousConnectedTaskId: 1,
+        NextConnectedTaskId: 1,
+        Status: 'Приостановлена',
+        Id: 7,
+    }
+]

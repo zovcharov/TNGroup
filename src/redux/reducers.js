@@ -11,6 +11,10 @@ import {
     SCHEDULES_UPDATE,
     AGREEMENTS_FETCH,
     AGREEMENTS_UPDATE,
+    RISKS_FETCH,
+    RISKS_UPDATE,
+    PROJECT_TASKS_FETCH,
+    PROJECT_TASKS_UPDATE,
 } from './actions';
 
 import {
@@ -18,6 +22,8 @@ import {
 } from './selectors';
 
 import agreementsMock from './mocks/agreementsMock';
+import { unplannedRisksMock, plannedRisksMock } from './mocks/risksMock';
+import { tasksMock } from './mocks/projectTasksMock';
 
 export default (state, action) => {
     const stateAssign = (data) => Object.assign({}, state, data);
@@ -50,6 +56,23 @@ export default (state, action) => {
                 agreements: action.data.agreements.length ? action.data.agreements : agreementsMock,
                 agreementsProjectId: action.data.projectId,
                 agreementsDataStatus: 'loaded',
+            });
+        case RISKS_FETCH:
+            return stateAssign({ risksDataStatus: 'loading' });
+        case RISKS_UPDATE:
+            return stateAssign({
+                unplannedRisks: action.data.unplannedRisks.length ? action.data.unplannedRisks : unplannedRisksMock,
+                plannedRisks: action.data.plannedRisks.length ? action.data.plannedRisks : plannedRisksMock,
+                risksProjectId: action.data.projectId,
+                risksDataStatus: 'loaded',
+            });
+        case PROJECT_TASKS_FETCH:
+            return stateAssign({ tasksDataStatus: 'loading' });
+        case PROJECT_TASKS_UPDATE:
+            return stateAssign({
+                tasks: action.data.tasks.length ? action.data.tasks : tasksMock,
+                tasksProjectId: action.data.tasksProjectId,
+                tasksDataStatus: 'loaded',
             });
         default:
             return state;

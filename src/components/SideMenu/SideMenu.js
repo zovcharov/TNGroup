@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import './SideMenu.scss'
+import CreateProjectModal from './../Modals/CreateProjectModal/CreateProjectModal';
 
 const SideMenu = (props) => {
   const {
@@ -9,9 +10,13 @@ const SideMenu = (props) => {
   } = props
   return (
     <ul className='sideMenu'>
-      {items.map((item, index) => (
-        <SideMenuItem key={index} to={item.link} bold={item.bold}>{item.title}</SideMenuItem>
-      ))}
+      {
+        items.map((item, index) => (
+          <SideMenuItem key={index} to={item.link} bold={item.bold}>
+            {item.title}
+          </SideMenuItem>
+        ))
+      }
     </ul>
   )
 }

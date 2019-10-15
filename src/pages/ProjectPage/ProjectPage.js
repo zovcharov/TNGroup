@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import ProjectInfo from '../../components/ProjectInfo/ProjectInfo';
+import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
 
 import {fetchSingleProject} from '../../redux/fetchers';
 import {
@@ -30,9 +31,12 @@ const ProjectPage = (props) => {
     }
 
     return (
-        <div className="info">
-            <ProjectInfo info={singleProject} />
-        </div>
+        <React.Fragment>
+            <NavigationPanel  projectId={projectId} activePage="project" />
+            <div className="info">
+                <ProjectInfo info={singleProject} />
+            </div>
+        </React.Fragment>
     )
 };
 

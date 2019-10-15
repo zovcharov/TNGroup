@@ -9,6 +9,8 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import ProjectPage from './pages/ProjectPage/ProjectPage';
 import ProjectAgreementsPage from './pages/ProjectAgreementsPage/ProjectAgreementsPage';
+import ProjectRisksPage from './pages/ProjectRisksPage/ProjectRisksPage';
+import ProjectTasksPage from './pages/ProjectTasksPage/ProjectTasksPage';
 
 import Wrapper from "./components/Wrapper/Wrapper";
 
@@ -21,6 +23,7 @@ const defaultState = {
     singleProjectDataState: 'pending',
     tasks: [],
     tasksDataStatus: 'pending',
+    tasksProjectId: 0,
     schedules: [],
     schedulesDataStatus: 'pending',
     userAgreements: [],
@@ -28,6 +31,10 @@ const defaultState = {
     agreements: [],
     agreementsDataStatus: 'pending',
     agreementsProjectId: 0,
+    unplannedRisks: [],
+    plannedRisks: [],
+    risksDataStatus: 'pending',
+    risksProjectId: 0,
 };
 
 const store = createStore(rootReducer, defaultState);
@@ -40,12 +47,12 @@ const Routs = () => (
         <Switch>
         <Route path='/login' component={LoginPage}/>
           <Wrapper>
-              <Route exact path='/agreements/:projectId' component={ProjectAgreementsPage}/>
-              <Route path='/project/:projectId/tasks' component={ProjectPage}/>
-              <Route path='/project/:projectId/risks' component={ProjectPage}/>
-              <Route path='/project/:projectId' component={ProjectPage}/>
-              <Route exact path='/projects' component={ProjectsPage}/>
-              <Route exact path='/' component={DashboardPage}/>
+              <Route exact path='/agreements/:projectId' component={ProjectAgreementsPage} />
+              <Route exact path='/risks/:projectId' component={ProjectRisksPage} />
+              <Route exact path='/tasks/:projectId' component={ProjectTasksPage} />
+              <Route exact path='/project/:projectId' component={ProjectPage} />
+              <Route exact path='/projects' component={ProjectsPage} />
+              <Route exact path='/' component={DashboardPage} />
           </Wrapper>
         </Switch>
     </HashRouter>

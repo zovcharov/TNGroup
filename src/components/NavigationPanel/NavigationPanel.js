@@ -1,49 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 
 import AddButton from './../Buttons/AddButton';
+import CreateProjectModal from './../Modals/CreateProjectModal/CreateProjectModal';
 
 import './NavigationPanel.scss';
 
-const LINKS = [
+const getLinks = (projectId) => [
     {
+        name: 'project',
         title: 'Главная страница проекта',
-        url: '/projects',
-        isActive: true
+        url: `/project/${projectId}`,
     }, {
+        name: 'plans',
         title: 'Календарные планы',
-        url: '/plans',
-        isActive: false
+        url: `/plans/${projectId}`,
     }, {
+        name: 'tasks',
         title: 'Задачи',
-        url: '/tasks',
-        isActive: false
+        url: `/tasks/${projectId}`,
     }, {
+        name: 'risks',
         title: 'Риски',
-        url: '/risks',
-        isActive: false
+        url: `/risks/${projectId}`,
     }, {
+        name: 'agreements',
         title: 'Согласования',
-        url: '/agreements',
-        isActive: false
+        url: `/agreements/${projectId}`,
     }
 ];
 
-const NavigationPanel = () => {
+const NavigationPanel = ({ projectId, activePage }) => {
+    const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
+
+    const  openCreateProjectModal = () => onOpenCreateProjectModal(true);
+    const  closeCreateProjectModal = () => onOpenCreateProjectModal(false);
+
     const onAddProject = () => console.log('add project');
     const onAddTask = () => console.log('add task');
 
     const setActiveLink = (link) => {
-        return link.isActive ? 'navigation-panel__link--active' : '';
-    }
-
-    return ''
+        return link.name === activePage ? 'navigation-panel__link--active' : '';
+    };
 
     return (
         <div className="navigation-panel">
             <div className="navigation-panel__links">
                 {
-                    LINKS.map((link, index) => {
+                    getLinks(projectId).map((link, index) => {
                         if (window.location.hash === '#/projects' && index === 0) {
                             return (
                                 <Link key={index} className={`navigation-panel__link navigation-panel__link--active`} to="#/projects">
@@ -58,8 +62,10 @@ const NavigationPanel = () => {
                         )
                     })
                 }
-                    <AddButton text="Добавить проект" onClick={onAddProject} type="add-project" />
-                    <AddButton text="Добавить задачу" onClick={onAddTask} type="add-task" />
+                <AddButton text="Добавить проект" onClick={openCreateProjectModal} type="add-project" />
+                <AddButton text="Добавить задачу" onClick={onAddTask} type="add-task" />
+
+                <CreateProjectModal isOpen={isCreateProjectModalOpen} onClose={closeCreateProjectModal} />
             </div>
         </div>
 

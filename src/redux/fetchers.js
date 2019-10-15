@@ -51,16 +51,48 @@ export const fetchTasks = (projectId, fetchAction, updateAction) => {
         })
 };
 
+export const fetchProjectTasks = (projectId, fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return ApiProvider.Get('ProjectTask', '', {curProjectId: projectId})
+        .then(data => {
+            const result = {
+                tasks: data && data.length ? data : [],
+                projectId,
+            }
+            updateAction && updateAction(result);
+            return result;
+        })
+};
+
 export const fetchAgreements = (projectId, fetchAction, updateAction) => {
     fetchAction && fetchAction();
 
     return ApiProvider.Get('Agreement', '', {curProjectId: projectId})
         .then(data => {
-            let result = {
+            const result = {
                 agreements: data || [],
                 projectId
             };
             updateAction && updateAction(result);
             return result;
         })
+};
+
+export const fetchRisks = (projectId, fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return Promise.all([
+        ApiProvider.Get('UnplannedRisk', '', {curProjectId: projectId}),
+        ApiProvider.Get('PlannedRisk', '', {curProjectId: projectId}),
+    ]).then(res => {
+        const result = {
+            unplannedRisks: res[0] && res[0].length ? res[0] : [],
+            plannedRisks: res[1] && res[1].length ? res[0] : [],
+            projectId
+        };
+
+        updateAction && updateAction(result);
+        return res
+    });
 };

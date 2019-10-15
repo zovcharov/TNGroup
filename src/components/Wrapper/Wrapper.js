@@ -41,9 +41,6 @@ const Wrapper = ({children, usersDataState, usersFetch, usersUpdate}) => {
             <Sidebar />
             <div className='content'>
                 <div className='wrapper__page'>
-                    {!isDashboard &&
-                      <NavigationPanel
-                    />}
                     {children}
                 </div>
             </div>
