@@ -2,46 +2,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './ProjectPassport.scss'
 
-import formatDateToString from '../../helpers/helpers'
-
 const ProjectMainInfo = (props) => {
   const {
-    Name,
-    DateCreate,
+    Alias,
+    DateBegin,
     DateEnd,
-    Objective,
-    Description,
-    ExpectedResult,
-    ExpectedProduct,
-    MeetingLocation,
-    MeetingPeriodic,
-    EstimatedСost,
-    PlannedFinancingSource,
-    ApproximateEconomicEffect,
-    Customer
+    Objective
   } = props
-
-  const createDate = formatDateToString(DateCreate)
-  const endDate = formatDateToString(DateEnd)
-
   return (
     <div className='project-main-info'>
       <div className='project-main-info__row'>
         <InfoBlock label='Название проекта:'>
           <span className='project-main-info__label'>
-            {Name}
+            {Alias}
           </span>
         </InfoBlock>
       </div>
       <div className='project-main-info__row'>
         <div className='project-main-info__col'>
           <InfoBlock label='Дата постановки:'>
-            {createDate}
+            {DateBegin}
           </InfoBlock>
         </div>
         <div className='project-main-info__col'>
           <InfoBlock label='Дата окончания:'>
-            {endDate}
+            {DateEnd}
           </InfoBlock>
         </div>
       </div>
@@ -52,54 +37,54 @@ const ProjectMainInfo = (props) => {
       </div>
       <div className='project-main-info__row'>
         <InfoBlock label='Описание проекта:'>
-          {Description}
+          {Objective}
         </InfoBlock>
       </div>
       <div className='project-main-info__row'>
         <div className='project-main-info__col'>
           <InfoBlock label='Ожидаемый результат:'>
-            {ExpectedResult}
+            {Objective}
           </InfoBlock>
         </div>
         <div className='project-main-info__col'>
           <InfoBlock label='Ожидаемый продукт:'>
-            {ExpectedProduct}
+            {Objective}
           </InfoBlock>
         </div>
       </div>
       <div className='project-main-info__row'>
         <div className='project-main-info__col'>
           <InfoBlock label='Место проведения совещания:'>
-            {MeetingLocation}
+            {Objective}
           </InfoBlock>
         </div>
         <div className='project-main-info__col'>
           <InfoBlock label='Периодичность совещания:'>
-            {MeetingPeriodic}
+            {Objective}
           </InfoBlock>
         </div>
       </div>
       <div className='project-main-info__row'>
         <div className='project-main-info__col'>
           <InfoBlock label='Стоимость проекта(ориентировочно):'>
-            {EstimatedСost}
+            {Objective}
           </InfoBlock>
         </div>
         <div className='project-main-info__col'>
           <InfoBlock label='Источник финансирования:'>
-            {PlannedFinancingSource}
+            {Objective}
           </InfoBlock>
         </div>
       </div>
       <div className='project-main-info__row'>
         <div className='project-main-info__col'>
           <InfoBlock label='Экономический эффект:'>
-            {ApproximateEconomicEffect}
+            {Objective}
           </InfoBlock>
         </div>
         <div className='project-main-info__col'>
           <InfoBlock label='Заказчик:'>
-            {Customer}
+            {Objective}
           </InfoBlock>
         </div>
       </div>

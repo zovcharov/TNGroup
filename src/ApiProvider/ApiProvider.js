@@ -34,6 +34,7 @@ class ApiProvider {
             .then(res => res.data)
             .catch(e => {
                 if (e.response.status === 401) {
+                    debugger
                     return this.UpdateToken('post', controller, func, data)
                 }
             })
@@ -55,6 +56,7 @@ class ApiProvider {
             .then(res => res.data)
             .catch(e => {
                 if (e.response.status === 401) {
+                    debugger
                     return this.UpdateToken('get', controller, func, data)
                 }
             })
@@ -73,6 +75,7 @@ class ApiProvider {
             }
         })
             .then(res => {
+                debugger
                 if (methon === 'post') {
                     return this.Post(controller, func, data);
                 }
@@ -80,6 +83,7 @@ class ApiProvider {
                 return this.Get(controller, func, data);
             })
             .catch(e => {
+                debugger
             })
     }
 }

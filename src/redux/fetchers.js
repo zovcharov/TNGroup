@@ -1,5 +1,4 @@
 import ApiProvider from './../ApiProvider/ApiProvider';
-import { ITEMS_TASKS } from '../ApiProvider/mockups'
 
 export const fetchProjects = (fetchAction, updateAction) => {
     fetchAction();
@@ -20,7 +19,7 @@ export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
             project = data;
 
             Promise.all([fetchTasks(projectId), fetchAgreements(projectId)]).then(res => {
-                project.tasks = res[0].length === 0 ? ITEMS_TASKS : res[0];
+                project.tasks = res[0];
                 project.agreement = res[1] && res[1].length ? res[1] : [];
 
                 updateAction(project);
