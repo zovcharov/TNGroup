@@ -16,7 +16,7 @@ const defaultState = {
     projectsDataState: 'pending',
     singleProject: {},
     singleProjectDataState: 'pending',
-
+    
 };
 
 const store = createStore(rootReducer, defaultState);

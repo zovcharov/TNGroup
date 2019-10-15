@@ -1,0 +1,28 @@
+.project-main-info {
+  width: 100%;
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #e6e6e6;
+    padding: 20px 0;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+  &__col {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  &__label {
+    font-size: 24px;
+    width: 100%;
+  }
+}
+
+.info-block {
+  &__label {
+    font-size: 13px;
+    color: #909090;
+  }
+}
