@@ -46,13 +46,15 @@ const ProjectInfo = ({info}) => {
     const {
       Alias,
       PassportProject,
-      Participants
+      Participants,
+      tasks
     } = info
     const passportInfo = {
       Alias,
       Participants,
       ...PassportProject
     }
+
     return (
         <div className="project-info">
             <div className="project-info__cols-block">

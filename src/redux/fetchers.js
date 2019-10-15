@@ -12,28 +12,39 @@ export const fetchProjects = (fetchAction, updateAction) => {
 export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
     fetchAction();
 
+    let project = {};
+
     ApiProvider.Get('project', projectId)
         .then(data => {
-            updateAction(data);
+            project = data;
+
+            Promise.all([fetchTasks(projectId)]).then(res => {
+                project.tasks = res[0];
+
+                updateAction(project);
+            })
         })
 };
 
 export const fetchUsers = (fetchAction, updateAction) => {
     fetchAction();
-    debugger
 
-    ApiProvider.Get('user')
+    return ApiProvider.Get('user')
         .then(data => {
             updateAction(data);
         })
 };
 
 export const saveProject = (data) => {
-    ApiProvider.Post('api', 'project', data)
+    return ApiProvider.Post('api', 'project', data);
+};
+
+export const fetchTasks = (projectId, fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return ApiProvider.Get('ProjectTask', '', {curProjectId: projectId})
         .then(data => {
-            debugger
+            updateAction && updateAction(data);
+            return data;
         })
-        .catch(err => {
-            debugger
-        })
-}
+};

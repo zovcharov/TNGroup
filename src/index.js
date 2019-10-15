@@ -18,7 +18,10 @@ const defaultState = {
     usersDataState: 'pending',
     singleProject: {},
     singleProjectDataState: 'pending',
-
+    tasks: [],
+    tasksDataStatus: 'pending',
+    schedules: [],
+    schedulesDataStatus: 'pending',
 };
 
 const store = createStore(rootReducer, defaultState);

@@ -4,14 +4,26 @@ import ApiProvider from './../ApiProvider/ApiProvider'
 // Projects action types
 export const PROJECTS_FETCH = 'TNG/PROJECTS_FETCH';
 export const PROJECTS_UPDATE = 'TNG/PROJECTS_UPDATE';
-export const PROJECTS_SET_DATA_STATUS = 'TNG/PROJECTS_SET_DATA_STATUS';
+
+// Users action types
 export const USERS_FETCH = 'TNG/USERS_FETCH';
 export const USERS_UPDATE = 'TNG/USERS_UPDATE';
-export const USERS_SET_DATA_STATUS = 'TNG/USERS_SET_DATA_STATUS';
 
 // Single projects action types
 export const SINGLE_PROJECT_FETCH = 'TNG/SINGLE_PROJECT_FETCH';
 export const SINGLE_PROJECT_UPDATE = 'TNG/SINGLE_PROJECT_UPDATE';
+
+// Single projects action types
+export const TASKS_FETCH = 'TNG/TASKS_FETCH';
+export const TASKS_UPDATE = 'TNG/TASKS_UPDATE';
+
+// Schedule projects action types
+export const SCHEDULES_FETCH = 'TNG/SCHEDULES_FETCH';
+export const SCHEDULES_UPDATE = 'TNG/SCHEDULES_UPDATE';
+
+// Risks projects action types
+export const RISKS_FETCH = 'TNG/RISKS_FETCH';
+export const RISKS_UPDATE = 'TNG/RISKS_UPDATE';
 
 // Project actions
 export const projectsFetch = (data) => ({
@@ -31,11 +43,42 @@ export const singleProjectUpdate = (data) => ({
     data
 });
 
+// Users actions
 export const usersFetch = () => ({
     type: USERS_FETCH,
 });
 
 export const usersUpdate = (data) => ({
     type: USERS_UPDATE,
+    data
+});
+
+// Tasks actions
+export const tasksFetch = () => ({
+    type: TASKS_FETCH,
+});
+
+export const tasksUpdate = (data) => ({
+    type: TASKS_UPDATE,
+    data
+});
+
+// Schedule actions
+export const schedulesFetch = () => ({
+    type: SCHEDULES_FETCH,
+});
+
+export const schedulesUpdate = (data) => ({
+    type: SCHEDULES_UPDATE,
+    data
+});
+
+// Risks actions
+export const risksFetch = () => ({
+    type: RISKS_FETCH,
+});
+
+export const risksUpdate = (data) => ({
+    type: RISKS_UPDATE,
     data
 });

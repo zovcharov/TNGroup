@@ -19,12 +19,16 @@ class ApiProvider {
     }
 
     Post(controller, param, data) {
+        const token = data && data.curProjectId ?
+            `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
+            localStorage.getItem('access_token')
+
         return axios({
             method: 'post',
             url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
             data,
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                Authorization: `Bearer ${token}`,
             }
         })
             .then(res => res.data)
@@ -37,12 +41,16 @@ class ApiProvider {
     }
 
     Get(controller, param, data) {
+        const token = data && data.curProjectId ?
+            `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
+            localStorage.getItem('access_token')
+
         return axios({
             method: 'get',
             url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
             data,
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                Authorization: `Bearer ${token}`,
             }
         })
             .then(res => res.data)
