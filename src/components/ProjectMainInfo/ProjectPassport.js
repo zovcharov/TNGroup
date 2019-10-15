@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './ProjectPassport.scss'
 
 import {formatDateToString} from '../../helpers/helpers'
+import PersonItem from "../PersonItem/PersonItem";
 
 const ProjectMainInfo = (props) => {
   const {
@@ -18,11 +19,13 @@ const ProjectMainInfo = (props) => {
     EstimatedСost,
     PlannedFinancingSource,
     ApproximateEconomicEffect,
-    Customer
+    Customer,
+    Participants
   } = props
 
   const createDate = formatDateToString(DateCreate)
   const endDate = formatDateToString(DateEnd)
+  const projectOwner = Participants && Participants.find(part => part.ProjectRole === 1)
 
   return (
     <div className='project-main-info'>
@@ -126,7 +129,7 @@ const ProjectMainInfo = (props) => {
             {Objective}
           </InfoBlock>
           <InfoBlock label='Руководитель:'>
-            {Objective}
+            <PersonItem person={projectOwner} />
           </InfoBlock>
         </div>
       </div>
