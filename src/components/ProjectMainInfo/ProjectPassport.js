@@ -109,24 +109,24 @@ const ProjectMainInfo = (props) => {
       <div className='project-main-info__row'>
         <div className='project-main-info__col'>
           <InfoBlock label='Куратор:'>
-            {Objective}
+            <PersonItem person={projectOwner} />
           </InfoBlock>
         </div>
         <div className='project-main-info__col'>
           <InfoBlock label='Контактное лицо заказчика:'>
-            {Objective}
+            <PersonItem person={projectOwner} />
           </InfoBlock>
         </div>
       </div>
       <div className='project-main-info__row'>
         <div className='project-main-info__col'>
           <InfoBlock label='Исполнители:'>
-            {Objective}
+            <PersonItem person={projectOwner} />
           </InfoBlock>
         </div>
         <div className='project-main-info__col'>
           <InfoBlock label='Контролер проекта:'>
-            {Objective}
+            <PersonItem person={projectOwner} />
           </InfoBlock>
           <InfoBlock label='Руководитель:'>
             <PersonItem person={projectOwner} />
