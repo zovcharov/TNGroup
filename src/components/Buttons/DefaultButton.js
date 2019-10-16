@@ -4,10 +4,14 @@ import './DefaultButton.scss'
 
 const DefaultButton = (props) => {
     const {
-        children
+        children,
+        onClick = () => {}
     } = props
     return (
-        <Button className='default-button'>
+        <Button
+            className='default-button'
+            onClick={onClick}
+        >
             {children}
         </Button>
     )
