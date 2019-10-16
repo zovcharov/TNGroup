@@ -8,6 +8,7 @@ import ProjectFiles from '../ProjectFiles/ProjectFiles';
 import {ITEMS_TASKS} from "../../ApiProvider/mockups";
 import {COLUMNS_AGREEMENTS} from "../Agreements/Agreements";
 import DefaultButton from "../Buttons/DefaultButton";
+import {formatDateToString} from "../../helpers/helpers";
 
 const COLUMNS_TASKS = [
   {
@@ -25,6 +26,27 @@ const COLUMNS_TASKS = [
     name: 'LastDateUpdate',
     width: '20%'
   }
+]
+
+const COLUMNS_RISKS = [
+    {
+        label: 'Название',
+        name: 'Name',
+        width: '50%'
+    },
+    {
+        label: 'Статус',
+        name: 'State',
+        width: '30%'
+    },
+    {
+        label: 'Обновлено',
+        name: 'Date',
+        width: '20%',
+        cell: (item) => {
+            return formatDateToString(item)
+        }
+    }
 ]
 
 const BottomButtons = (props) => {
@@ -45,7 +67,8 @@ const ProjectInfo = ({info}) => {
       PassportProject,
       Participants,
       agreement,
-      tasks
+      tasks,
+      PlannedRisks
     } = info
     const passportInfo = {
       Id,
@@ -76,7 +99,7 @@ const ProjectInfo = ({info}) => {
                   </Container>
                   <Container
                     label='Риски'>
-                      <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
+                      <Table columns={COLUMNS_RISKS} items={PlannedRisks} />
                       <BottomButtons>
                           <DefaultButton>Показать все риски</DefaultButton>
                           <DefaultButton>Добавить риск</DefaultButton>

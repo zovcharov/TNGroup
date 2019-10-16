@@ -41,10 +41,10 @@ const TableBody = (props) => {
             <div
               className='table__row'
               key={index}>
-                {columns.map(({name, width = 'auto'}, index) => {
+                {columns.map(({name, width = 'auto', cell}, index) => {
                   return (
                     <TableCell key={index} width={width}>
-                      {item[name]}
+                      {cell ? cell(item[name]) : item[name]}
                     </TableCell>
                   )
                 })}
