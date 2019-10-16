@@ -38,7 +38,7 @@ export const fetchUsers = (fetchAction, updateAction) => {
 };
 
 export const saveProject = (data) => {
-    return ApiProvider.Post('api', 'project', data);
+    return ApiProvider.Post( 'project', '', data);
 };
 
 export const fetchTasks = (projectId, fetchAction, updateAction) => {
