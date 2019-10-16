@@ -1,10 +1,10 @@
 import React from 'react';
 import Table from '../Table/Table';
-import Button from '../Button/Button';
 
 import './Agreements.scss';
+import DefaultButton from "../Buttons/DefaultButton";
 
-const COLUMNS_AGREEMENTS = [
+export const COLUMNS_AGREEMENTS = [
     {
         label: 'Название',
         name: 'Name',
@@ -34,9 +34,9 @@ const Agreements = ({ agreements }) => {
             <div className="agreements">
                 <Table columns={COLUMNS_AGREEMENTS} items={agreements} />
                 <div className="agreements__footer">
-                    <Button>
+                    <DefaultButton>
                         <span>Добавить согласование</span>
-                    </Button>
+                    </DefaultButton>
                 </div>
             </div>
         </React.Fragment>
