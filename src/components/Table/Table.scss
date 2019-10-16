@@ -5,9 +5,12 @@
       word-break: break-all;
       padding: 5px;
       flex-grow: 1;
+      font-size: 13px;
+      color: #a6a6a6;
     }
     .table__row {
       border-bottom: none;
+      padding-bottom: 0;
     }
   }
   &__row {
