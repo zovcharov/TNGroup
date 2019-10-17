@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import './Dropdown.scss'
+import {useClickOutsideToClose} from "../../helpers/effects";
 
 const getClassNames = (propsList, closed) => {
   const {
@@ -32,18 +33,9 @@ const Dropdown = (props) => {
   } = props
 
   const [closed, toggle] = useState(true)
+
   const dropdownRef = useRef(null)
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!dropdownRef.current.contains(event.target)) toggle(true)
-    }
-    document.addEventListener('click', handleClickOutside, false)
-    document.addEventListener('contextmenu', handleClickOutside, false)
-    return () => {
-      document.removeEventListener('click', handleClickOutside, false)
-      document.removeEventListener('contextmenu', handleClickOutside, false)
-    }
-  }, [])
+  useClickOutsideToClose(dropdownRef, () => toggle(true))
 
   return (
     <div
