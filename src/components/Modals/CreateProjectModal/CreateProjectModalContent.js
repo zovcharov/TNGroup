@@ -11,10 +11,21 @@ import { saveProject } from './../../../redux/fetchers';
 
 import './CreateProjectModalContent.scss';
 
-const CreateProjectModalContent = (props) => {
+const CreateProjectModalContent = ({ onClose }) => {
     const [isMilestoneModalOpen, toggleMilestoneModal] = useState(false);
+
+    /* All Project Data for creation */
     const [milestones, updateMilestones] = useState([]);
     const [projectName, changeProjectName] = useState('');
+    const [projectDescription, changeProjectDescription] = useState('');
+    const [projectGoal, changeProjectGoal] = useState('');
+    const [projectResult, changeProjectResult] = useState('');
+    const [projectProduct, changeProjectProduct] = useState('');
+    const [projectCost, changeProjectCost] = useState('');
+    const [economicEffect, changeEconomicEffect] = useState('');
+    const [meetingPlace, changeMeetingPlace] = useState('');
+    const [meetingPeriodicity, changeMeetingPeriodicity] = useState('');
+    const [projectEndDate, changeProjectEndDate] = useState('');
 
     const onAddMilestone = () => toggleMilestoneModal(true);
     const onMilestoneModalClose = () => toggleMilestoneModal(false);
@@ -32,7 +43,18 @@ const CreateProjectModalContent = (props) => {
         saveProject({
             PassportProject: {
                 Name: projectName,
+                Description: projectDescription,
+                Objective: projectGoal,
+                ExpectedResult: projectResult,
+                ExpectedProduct: projectProduct,
+                DateEnd: projectEndDate,
+                MeetingLocation: meetingPlace,
+                MeetingPeriodic: meetingPeriodicity,
+                EstimatedCost: Number(projectCost),
+                ApproximateEconomicEffect: Number(economicEffect),
             }
+        }).then(res => {
+            onClose();
         })
     };
 
@@ -66,7 +88,7 @@ const CreateProjectModalContent = (props) => {
                 <div className="project-goal content__grid-item">
                     <div className="project-modal__label">Цель проекта:</div>
                     <div className="project-goal__input">
-                        <TngInput />
+                        <TngInput value={projectGoal} changeValue={changeProjectGoal} />
                     </div>
                 </div>
                 <div className="project-customer-contact content__grid-item">
@@ -90,13 +112,13 @@ const CreateProjectModalContent = (props) => {
                 <div className="project-description content__grid-item">
                     <div className="project-modal__label">Описание проекта:</div>
                     <div className="project-description__input">
-                        <TngInput multiline/>
+                        <TngInput multiline value={projectDescription} changeValue={changeProjectDescription} />
                     </div>
                 </div>
                 <div className="project-result content__grid-item">
                     <div className="project-modal__label">Ожидаемый результат:</div>
                     <div className="project-result__input">
-                        <TngInput />
+                        <TngInput value={projectResult} changeValue={changeProjectResult} />
                     </div>
                 </div>
                 <div className="project-executors content__grid-item">
@@ -108,37 +130,37 @@ const CreateProjectModalContent = (props) => {
                 <div className="project-product content__grid-item">
                     <div className="project-modal__label">Ожидаемый продукт:</div>
                     <div className="project-product__input">
-                        <TngInput />
+                        <TngInput value={projectProduct} changeValue={changeProjectProduct} />
                     </div>
                 </div>
                 <div className="project-cost content__grid-item">
                     <div className="project-modal__label">Стоимость проекта:</div>
                     <div className="project-cost__input">
-                        <TngInput />
+                        <TngInput value={projectCost} changeValue={changeProjectCost} />
                     </div>
                 </div>
                 <div className="project-economic-effect content__grid-item">
                     <div className="project-modal__label">Экономической эффект:</div>
                     <div className="project-economic-effect__input">
-                        <TngInput />
+                        <TngInput value={economicEffect} changeValue={changeEconomicEffect} />
                     </div>
                 </div>
                 <div className="project-meeting-place content__grid-item">
                     <div className="project-modal__label">Место проведения совещания:</div>
                     <div className="project-meeting-place__input">
-                        <TngInput />
+                        <TngInput value={meetingPlace} changeValue={changeMeetingPlace} />
                     </div>
                 </div>
                 <div className="project-meeting-periodicity content__grid-item">
                     <div className="project-modal__label">Периодичность совещаний:</div>
                     <div className="project-meeting-periodicity__input">
-                        <TngInput />
+                        <TngInput value={meetingPeriodicity} changeValue={changeMeetingPeriodicity} />
                     </div>
                 </div>
                 <div className="project-end-date content__grid-item">
                     <div className="project-modal__label">Дата окончания проекта:</div>
                     <div className="project-end-date__input">
-                        <DatePicker />
+                        <DatePicker value={projectEndDate} onDayChange={changeProjectEndDate}/>
                     </div>
                 </div>
                 <div className="project-milestones content__grid-item">

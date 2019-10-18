@@ -18,7 +18,7 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
 
     return (
         <ModalWrapper isOpen={isModalOpen} onClose={onCloseModal} title="Паспорт проекта">
-            <CreateProjectModalContent />
+            <CreateProjectModalContent onClose={onCloseModal}/>
         </ModalWrapper>
     )
 };
