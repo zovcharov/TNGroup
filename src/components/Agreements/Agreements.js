@@ -2,7 +2,7 @@ import React from 'react';
 import Table from '../Table/Table';
 
 import './Agreements.scss';
-import DefaultButton from "../Buttons/DefaultButton";
+import DefaultButton from "../Buttons/DefaultButton/DefaultButton";
 import {formatDateToString} from "../../helpers/helpers";
 
 export const COLUMNS_AGREEMENTS = [

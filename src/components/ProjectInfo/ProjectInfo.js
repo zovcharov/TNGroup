@@ -7,7 +7,7 @@ import ProjectPassport from '../ProjectMainInfo/ProjectPassport';
 import ProjectFiles from '../ProjectFiles/ProjectFiles';
 import {ITEMS_TASKS} from "../../ApiProvider/mockups";
 import {COLUMNS_AGREEMENTS} from "../Agreements/Agreements";
-import DefaultButton from "../Buttons/DefaultButton";
+import DefaultButton from "../Buttons/DefaultButton/DefaultButton";
 import {formatDateToString} from "../../helpers/helpers";
 
 const COLUMNS_TASKS = [

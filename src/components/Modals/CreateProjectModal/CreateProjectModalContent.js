@@ -5,11 +5,12 @@ import DatePicker from '../../DatePicker/DatePicker';
 import TngUserSelect from '../../TngUserSelect/TngUserSelect';
 import MilestonesInput from './components/MilestonesInput';
 import MilestoneModal from './../MilestoneModal/MilestoneModal';
-import Button from './../../Button/Button';
 
 import { saveProject } from './../../../redux/fetchers';
 
 import './CreateProjectModalContent.scss';
+import DefaultButton from "../../Buttons/DefaultButton/DefaultButton";
+import SubmitButton from "../../Buttons/SubmitButton/SubmitButton";
 
 const CreateProjectModalContent = (props) => {
     const [isMilestoneModalOpen, toggleMilestoneModal] = useState(false);
@@ -154,21 +155,21 @@ const CreateProjectModalContent = (props) => {
                 </div>
             </div>
             <div className="project-modal__footer">
-                <Button className="footer__button button__add-files">
+                <DefaultButton className="footer__button button__add-files">
                     <span className="button__content">
                         Прикрепить файлы
                     </span>
-                </Button>
-                <Button className="footer__button button__save-draft" onClick={onSaveDraft}>
+                </DefaultButton>
+                <DefaultButton className="footer__button button__save-draft" onClick={onSaveDraft}>
                     <span className="button__content">
                         Сохранить черновик
                     </span>
-                </Button>
-                <Button className="footer__button button__save">
+                </DefaultButton>
+                <SubmitButton className="footer__button">
                     <span className="button__content">
                         Отправить на согласование
                     </span>
-                </Button>
+                </SubmitButton>
             </div>
         </div>
     )
