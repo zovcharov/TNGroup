@@ -3,6 +3,7 @@ import Table from '../Table/Table';
 
 import './Agreements.scss';
 import DefaultButton from "../Buttons/DefaultButton";
+import {formatDateToString} from "../../helpers/helpers";
 
 export const COLUMNS_AGREEMENTS = [
     {
@@ -23,7 +24,10 @@ export const COLUMNS_AGREEMENTS = [
     {
         label: 'Обновлено',
         name: 'LastDateUpdate',
-        width: '25%'
+        width: '25%',
+        cell: (item) => {
+            return formatDateToString(item)
+        }
     }
 ]
 
