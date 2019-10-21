@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from '../Table/Table';
-import Button from '../Button/Button';
+import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 
 import './Risks.scss';
 
@@ -41,9 +41,9 @@ const Risks = ({ unplannedRisks, plannedRisks }) => {
             <div className="risks">
                 <Table columns={COLUMNS_RISKS} items={prepareData(unplannedRisks, plannedRisks)} />
                 <div className="risks__footer">
-                    <Button>
+                    <DefaultButton>
                         <span>Добавить риск</span>
-                    </Button>
+                    </DefaultButton>
                 </div>
             </div>
         </React.Fragment>

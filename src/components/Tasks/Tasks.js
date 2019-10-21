@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from '../Table/Table';
-import Button from '../Button/Button';
+import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 
 import './Tasks.scss';
 
@@ -65,9 +65,9 @@ const Tasks = ({ tasks }) => {
             <div className="risks">
                 <Table columns={COLUMNS_TASKS} items={prepareData(tasks)} />
                 <div className="risks__footer">
-                    <Button>
+                    <DefaultButton>
                         <span>Добавить задачу</span>
-                    </Button>
+                    </DefaultButton>
                 </div>
             </div>
         </React.Fragment>
