@@ -60,7 +60,7 @@ export const fetchProjectTasks = (projectId, fetchAction, updateAction) => {
             const result = {
                 tasks: data && data.length ? data : [],
                 projectId,
-            }
+            };
             updateAction && updateAction(result);
             return result;
         })
@@ -96,4 +96,24 @@ export const fetchRisks = (projectId, fetchAction, updateAction) => {
         updateAction && updateAction(result);
         return res
     });
+};
+
+export const fetchLastProjectTasks = (fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return ApiProvider.Get('LastProjectTask')
+        .then(data => {
+            updateAction && updateAction(data);
+            return data;
+        })
+};
+
+export const fetchLastAgreements = (fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return ApiProvider.Get('LastAgreement')
+        .then(data => {
+            updateAction && updateAction(data);
+            return data;
+        })
 };

@@ -1,10 +1,11 @@
 .button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border: none;
   border-radius: 4px;
+
   &_disabled {
     cursor: auto;
   }

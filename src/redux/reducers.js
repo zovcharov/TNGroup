@@ -15,10 +15,15 @@ import {
     RISKS_UPDATE,
     PROJECT_TASKS_FETCH,
     PROJECT_TASKS_UPDATE,
+    LAST_PROJECT_TASKS_FETCH,
+    LAST_PROJECT_TASKS_UPDATE,
+    LAST_AGREEMENTS_FETCH,
+    LAST_AGREEMENTS_UPDATE,
 } from './actions';
 
 import {
-    selectFromProjects
+    selectFromProjects,
+    selectFromTasks,
 } from './selectors';
 
 import agreementsMock from './mocks/agreementsMock';
@@ -74,6 +79,15 @@ export default (state, action) => {
                 tasksProjectId: action.data.tasksProjectId,
                 tasksDataStatus: 'loaded',
             });
+        case LAST_PROJECT_TASKS_FETCH:
+            return stateAssign({ lastProjectTasksDataStatus: 'loading' });
+        case LAST_PROJECT_TASKS_UPDATE:
+            return stateAssign({ lastProjectTasksDataStatus: 'loaded', lastProjectTasks: selectFromTasks(action.data) });
+        case LAST_AGREEMENTS_FETCH:
+            return stateAssign({ lastAgreementsDataStatus: 'loading' });
+        case LAST_AGREEMENTS_UPDATE:
+            debugger
+            return stateAssign({ lastAgreementsDataStatus: 'loaded', lastAgreements: action.data.length > 0 ? action.data : agreementsMock.slice(0, 3) });
         default:
             return state;
     }

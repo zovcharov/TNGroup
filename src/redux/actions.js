@@ -37,6 +37,14 @@ export const AGREEMENTS_UPDATE = 'TNG/AGREEMENTS_UPDATE';
 export const USER_AGREEMENTS_FETCH = 'TNG/USER_AGREEMENTS_FETCH';
 export const USER_AGREEMENTS_UPDATE = 'TNG/USER_AGREEMENTS_UPDATE';
 
+// Last project tasks action types
+export const LAST_PROJECT_TASKS_FETCH = 'TNG/LAST_PROJECT_TASKS_FETCH';
+export const LAST_PROJECT_TASKS_UPDATE = 'TNG/LAST_PROJECT_TASKS_UPDATE';
+
+// Last agreements action types
+export const LAST_AGREEMENTS_FETCH = 'TNG/LAST_AGREEMENTS_FETCH';
+export const LAST_AGREEMENTS_UPDATE = 'TNG/LAST_AGREEMENTS_TASKS_UPDATE';
+
 // Project actions
 export const projectsFetch = (data) => ({
     type: PROJECTS_FETCH,
@@ -123,5 +131,25 @@ export const userAgreementsFetch = () => ({
 
 export const userAgreementsUpdate = (data) => ({
     type: USER_AGREEMENTS_UPDATE,
+    data
+});
+
+// Last projects tasks actions
+export const lastProjectsTasksFetch = () => ({
+    type: LAST_PROJECT_TASKS_FETCH,
+});
+
+export const lastProjectsTasksUpdate = (data) => ({
+    type: LAST_PROJECT_TASKS_UPDATE,
+    data
+});
+
+// Last agreements actions
+export const lastAgreementsFetch = () => ({
+    type: LAST_AGREEMENTS_FETCH,
+});
+
+export const lastAgreementsUpdate = (data) => ({
+    type: LAST_AGREEMENTS_UPDATE,
     data
 });

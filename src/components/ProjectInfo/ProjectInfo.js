@@ -129,7 +129,6 @@ const ProjectInfo = ({info}) => {
                   </BottomButtons>
               </Container>
             </div>
-            {JSON.stringify(info)}
         </div>
     )
 };

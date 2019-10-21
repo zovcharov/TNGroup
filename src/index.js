@@ -35,6 +35,10 @@ const defaultState = {
     plannedRisks: [],
     risksDataStatus: 'pending',
     risksProjectId: 0,
+    lastProjectTasksDataStatus: 'pending',
+    lastProjectTasks: [],
+    lastAgreementsDataStatus: 'pending',
+    lastAgreements: [],
 };
 
 const store = createStore(rootReducer, defaultState);

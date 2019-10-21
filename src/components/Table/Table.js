@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Table.scss'
 
+import { formatDateToString } from './../../helpers/helpers';
+
 const Table = (props) => {
   const {
     columns = [],
@@ -27,7 +29,9 @@ const TableCell = (props) => {
       {children}
     </div>
   )
-}
+};
+
+const getValidCellValue = (cellData) => cellData instanceof Date ? formatDateToString(cellData) : cellData;
 
 const TableBody = (props) => {
   const {
@@ -41,13 +45,22 @@ const TableBody = (props) => {
             <div
               className='table__row'
               key={index}>
-                {columns.map(({name, width = 'auto', cell}, index) => {
-                  return (
-                    <TableCell key={index} width={width}>
-                      {cell ? cell(item[name]) : item[name]}
-                    </TableCell>
-                  )
-                })}
+                {
+                  columns.map(({name, width = 'auto', cell}, index) => {
+                    if (!item[name]) {
+                      return null;
+                    }
+
+                    const validCellValue = getValidCellValue(item[name]);
+                    return (
+                      <TableCell key={index} width={width}>
+                        {
+                          cell ? cell(validCellValue) : validCellValue
+                        }
+                      </TableCell>
+                    )
+                  })
+                }
             </div>
           )
         })}

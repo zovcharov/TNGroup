@@ -34,7 +34,7 @@ class ApiProvider {
             .then(res => res.data)
             .catch(e => {
                 if (e.response.status === 401) {
-                    return this.UpdateToken('post', controller, func, data)
+                    //return this.UpdateToken('post', controller, func, data)
                 }
             })
     }
@@ -55,7 +55,7 @@ class ApiProvider {
             .then(res => res.data)
             .catch(e => {
                 if (e.response.status === 401) {
-                    return this.UpdateToken('get', controller, func, data)
+                    //return this.UpdateToken('get', controller, func, data)
                 }
             })
     }
