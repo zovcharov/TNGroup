@@ -5,8 +5,9 @@ import './ModalWrapper.scss';
 import {useClickOutsideToClose} from "../../helpers/effects";
 
 const ModalWrapper = ({ isOpen, onClose, children, title }) => {
-    const overlayRef = useRef(null)
-    useClickOutsideToClose(overlayRef, onClose)
+    const overlayRef = useRef(null);
+    //useClickOutsideToClose(overlayRef, onClose);
+
     if (isOpen) {
         return (
             <TngPortal>

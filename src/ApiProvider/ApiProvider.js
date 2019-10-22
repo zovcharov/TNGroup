@@ -21,7 +21,7 @@ class ApiProvider {
     Post(controller, param, data) {
         const token = data && data.curProjectId ?
             `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
-            localStorage.getItem('access_token')
+            localStorage.getItem('access_token');
 
         return axios({
             method: 'post',
@@ -34,7 +34,7 @@ class ApiProvider {
             .then(res => res.data)
             .catch(e => {
                 if (e.response.status === 401) {
-                    //return this.UpdateToken('post', controller, func, data)
+                    return this.UpdateToken('post', controller, param, data)
                 }
             })
     }
@@ -42,7 +42,7 @@ class ApiProvider {
     Get(controller, param, data) {
         const token = data && data.curProjectId ?
             `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
-            localStorage.getItem('access_token')
+            localStorage.getItem('access_token');
 
         return axios({
             method: 'get',
@@ -55,18 +55,18 @@ class ApiProvider {
             .then(res => res.data)
             .catch(e => {
                 if (e.response.status === 401) {
-                    //return this.UpdateToken('get', controller, func, data)
+                    return this.UpdateToken('get', controller, param, data)
                 }
             })
     }
 
-    UpdateToken(methon, controller, func, data) {
+    UpdateToken(methon, controller, param, data) {
         return axios({
             method: 'post',
             url: `http://${this.apiUrl}/api/Auth/updateToken`,
             data: {
-                clientName: 'MainProject',
-                refreshToken: localStorage.getItem('refresh_id'),
+                'clientName': 'MainProject',
+                'refresh_id': localStorage.getItem('refresh_id'),
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -74,12 +74,10 @@ class ApiProvider {
         })
             .then(res => {
                 if (methon === 'post') {
-                    return this.Post(controller, func, data);
+                    return this.Post(controller, param, data);
                 }
 
-                return this.Get(controller, func, data);
-            })
-            .catch(e => {
+                return this.Get(controller, param, data);
             })
     }
 }
