@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
@@ -7,7 +7,11 @@ import './DatePicker.scss';
 const DatePicker = ({ onDayChange, value }) => {
     return (
         <div className="date-picker-wrapper">
-            <DayPickerInput value={value} onDayChange={onDayChange} placeholder="ГГГГ-ММ-ДД" />
+            <DayPickerInput
+                value={value}
+                onDayChange={useCallback((value) => onDayChange(value), [onDayChange])}
+                placeholder="ГГГГ-ММ-ДД"
+            />
             <span className="calendar-icon" />
         </div>
     )

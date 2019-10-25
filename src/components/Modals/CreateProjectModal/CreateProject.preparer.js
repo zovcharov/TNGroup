@@ -8,36 +8,43 @@ export const ROLES_IN_PROJECT = {
     Initiator: 6,
 };
 
+const isNumber = (value) => typeof value === 'number';
+const isObject = (value) => typeof value === 'object';
+
+const getIdFromParticipantItem = (participant) => {
+    return isNumber(participant) ? participant : isNumber(participant.EmployeeId) ?  participant.EmployeeId : 0;
+};
+
 const getParticipants = (participants) => {
     const preparedParticipants = [];
 
     preparedParticipants.push({
-        EmployeeId: participants.initiator[0],
+        EmployeeId: getIdFromParticipantItem(participants.initiator[0]),
         ProjectRole: ROLES_IN_PROJECT.Initiator,
     });
     preparedParticipants.push({
-        EmployeeId: participants.curator[0],
+        EmployeeId: getIdFromParticipantItem(participants.curator[0]),
         ProjectRole: ROLES_IN_PROJECT.Curator,
     });
     preparedParticipants.push({
-        EmployeeId: participants.customer[0],
+        EmployeeId: getIdFromParticipantItem(participants.customer[0]),
         ProjectRole: ROLES_IN_PROJECT.Customer,
     });
     preparedParticipants.push({
-        EmployeeId: participants.customerContact[0],
+        EmployeeId: getIdFromParticipantItem(participants.customerContact[0]),
         ProjectRole: ROLES_IN_PROJECT.Unknown,
     });
     preparedParticipants.push({
-        EmployeeId: participants.controller[0],
+        EmployeeId: getIdFromParticipantItem(participants.controller[0]),
         ProjectRole: ROLES_IN_PROJECT.Controller,
     });
     preparedParticipants.push({
-        EmployeeId: participants.manager[0],
+        EmployeeId: getIdFromParticipantItem(participants.manager[0]),
         ProjectRole: ROLES_IN_PROJECT.Manager,
     });
     participants.executors.forEach(item => {
         preparedParticipants.push({
-            EmployeeId: item,
+            EmployeeId: getIdFromParticipantItem(item),
             ProjectRole: ROLES_IN_PROJECT.Worker,
         });
     });

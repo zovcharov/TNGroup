@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import TngInput from './../../TngInput/TngInput';
 import DatePicker from '../../DatePicker/DatePicker';
 import TngUserSelect from '../../TngUserSelect/TngUserSelect';
-import MilestonesInput from './components/MilestonesInput';
+import MilestonesInput from '../components/Milestones/MilestonesInput';
 import MilestoneModal from './../MilestoneModal/MilestoneModal';
 
 import { saveProject, editProject } from './../../../redux/fetchers';
@@ -86,7 +86,7 @@ const CreateProjectModalContent = ({ onClose, setLoading, isEdit, ...props }) =>
         setLoading && setLoading(true);
 
         if (isEdit) {
-            editProject(prepareDataToSave(projectAllData))
+            editProject(prepareDataToSave(projectAllData), props.projectId)
                 .then(res => {
                     onClose();
                 })

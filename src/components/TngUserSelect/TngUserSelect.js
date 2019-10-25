@@ -70,7 +70,6 @@ const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers,
 
     const renderSelectedUsers = () => selectedUsersIds.map(item => {
         const user = users.find(user => user.Id === item);
-
         return (
             <span className="user-select__selected-user" key={item}>
                 {user.UserName}
@@ -81,7 +80,10 @@ const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers,
 
     useEffect(() => {
         if (selectedUsers && selectedUsers.length) {
-            onChangeSelectedUsersIds(selectedUsers.map(user => user.EmployeeId))
+            // TODO: Придумать механизм общей работы при создании и редактировании с пользователями
+            onChangeSelectedUsersIds(selectedUsers.map(user => {
+                return typeof user === 'number' ? user : user.EmployeeId ? user.EmployeeId : 0;
+            }))
         }
     }, [selectedUsers]);
 

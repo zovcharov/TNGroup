@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 import AddButton from './../Buttons/AddButton';
 import CreateProjectModal from './../Modals/CreateProjectModal/CreateProjectModal';
+import CreateTaskModal from './../Modals/CreateTaskModal/CreateTaskModal.container';
 
 import './NavigationPanel.scss';
 
@@ -32,11 +33,13 @@ const getLinks = (projectId) => [
 
 const NavigationPanel = ({ projectId, activePage }) => {
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
+    const [isCreateTaskModalOpen, onOpenTaskProjectModal] = useState(false);
 
     const  openCreateProjectModal = () => onOpenCreateProjectModal(true);
     const  closeCreateProjectModal = () => onOpenCreateProjectModal(false);
 
-    const onAddTask = () => console.log('add task');
+    const  openCreateTaskModal = () => onOpenTaskProjectModal(true);
+    const  closeCreateTaskModal = () => onOpenTaskProjectModal(false);
 
     const setActiveLink = (link) => {
         return link.name === activePage ? 'navigation-panel__link--active' : '';
@@ -62,9 +65,10 @@ const NavigationPanel = ({ projectId, activePage }) => {
                     })
                 }
                 <AddButton text="Добавить проект" onClick={openCreateProjectModal} type="add-project" />
-                <AddButton text="Добавить задачу" onClick={onAddTask} type="add-task" />
+                <AddButton text="Добавить задачу" onClick={openCreateTaskModal} type="add-task" />
 
                 <CreateProjectModal isOpen={isCreateProjectModalOpen} onClose={closeCreateProjectModal} />
+                <CreateTaskModal projectId={projectId} isOpen={isCreateTaskModalOpen} onClose={closeCreateTaskModal} />
             </div>
         </div>
 

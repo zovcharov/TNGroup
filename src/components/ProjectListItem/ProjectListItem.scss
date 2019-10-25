@@ -17,6 +17,10 @@
     display: flex;
     flex-direction: column;
 
+    &__name {
+      width: 350px;
+    }
+
     &__title {
       color: #909090;
       font-family: "Open Sans";

@@ -33,7 +33,7 @@ const ProjectListItem = (props) => {
 
     return (
         <Link to={`/project/${id}`} className="project">
-            <div className="project-col">
+            <div className="project-col project-col__name">
                 <div className="project-col__title">Название</div>
                 <div className="project-col__content content-text">
                     {projectName}

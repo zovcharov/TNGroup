@@ -106,4 +106,16 @@
             transform: rotate(-45deg)
         }
     }
+
+    &--single-item {
+        .milestones-input__item {
+            background-color: #fff;
+            display: inline-block;
+            color: #1b7176;
+            font-family: OpenSans;
+            font-size: 12px;
+            padding: 5px 10px;
+            margin-right: 3px;
+        }
+    }
 }

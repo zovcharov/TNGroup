@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import './MilestonesInput.scss';
 
-const MilestonesInput = ({ milestones = [], onAddMilestone }) => {
+const MilestonesInput = ({ milestones = [], onAddMilestone, singleItem }) => {
     const [currentMilestones, changeMilestones] = useState([]);
+    const [filled, changeFilled] = useState(false);
 
     useEffect(() => {
         changeMilestones(milestones);
@@ -15,7 +16,7 @@ const MilestonesInput = ({ milestones = [], onAddMilestone }) => {
         changeMilestones(newCurrentMilestones);
     };
 
-    const getMilestonesItems = () => currentMilestones.map((milestone, index) => (
+    const getMilestonesItems = () => currentMilestones.filter(item => !!item).map((milestone, index) => (
         <span key={`milestone-name-${index}`} className="milestones-input__item">
             {milestone.name}
             <span className="milestones-input__edit-item" />
@@ -23,8 +24,10 @@ const MilestonesInput = ({ milestones = [], onAddMilestone }) => {
         </span>
     ));
 
+    const getMilestoneClassname = () => singleItem ? 'milestones-input milestones-input--single-item' : 'milestones-input';
+
     return (
-        <div className="milestones-input">
+        <div className={getMilestoneClassname()}>
             <div className="milestones-input__input">
                 { getMilestonesItems() }
                 <div className="milestones-input__add-button" onClick={onAddMilestone}/>

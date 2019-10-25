@@ -42,8 +42,13 @@ export const saveProject = (data) => {
     return ApiProvider.Post( 'project', '', data);
 };
 
-export const editProject = (data) => {
-    return ApiProvider.Put( 'project', '', data);
+export const editProject = (data, projectId) => {
+    return ApiProvider.Put( 'project', '', {...data, curProjectId: projectId});
+};
+
+export const saveTask = (data, projectId) => {
+    debugger
+    return ApiProvider.Post( 'ProjectTask', '', {...data, curProjectId: projectId});
 };
 
 export const fetchTasks = (projectId, fetchAction, updateAction) => {
