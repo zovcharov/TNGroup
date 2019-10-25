@@ -60,7 +60,28 @@ class ApiProvider {
             })
     }
 
-    UpdateToken(methon, controller, param, data) {
+    Put(controller, param, data) {
+        const token = data && data.curProjectId ?
+            `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
+            localStorage.getItem('access_token');
+
+        return axios({
+            method: 'put',
+            url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
+            data,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+            .then(res => res.data)
+            .catch(e => {
+                if (e.response.status === 401) {
+                    return this.UpdateToken('get', controller, param, data)
+                }
+            })
+    }
+
+    UpdateToken(method, controller, param, data) {
         return axios({
             method: 'post',
             url: `http://${this.apiUrl}/api/Auth/updateToken`,
@@ -73,11 +94,13 @@ class ApiProvider {
             }
         })
             .then(res => {
-                if (methon === 'post') {
+                if (method === 'post') {
                     return this.Post(controller, param, data);
                 }
 
                 return this.Get(controller, param, data);
+            })
+            .catch(err => {
             })
     }
 }

@@ -36,7 +36,6 @@ const NavigationPanel = ({ projectId, activePage }) => {
     const  openCreateProjectModal = () => onOpenCreateProjectModal(true);
     const  closeCreateProjectModal = () => onOpenCreateProjectModal(false);
 
-    const onAddProject = () => console.log('add project');
     const onAddTask = () => console.log('add task');
 
     const setActiveLink = (link) => {

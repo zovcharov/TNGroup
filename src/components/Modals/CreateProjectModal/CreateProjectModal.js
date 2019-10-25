@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import CreateProjectModalContent from './CreateProjectModalContent';
 import ModalWrapper from './../ModalWrapper';
 
-const CreateProjectModal = ({ isOpen, onClose }) => {
+const CreateProjectModal = ({ isOpen, onClose, isEdit, ...props }) => {
     const [isModalOpen, onChangeModalOpen] = useState(false);
+    const [isLoading, changeLoading] = useState(false);
 
     const onCloseModal = () => {
         onClose();
@@ -17,8 +18,8 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
     }, [isOpen]);
 
     return (
-        <ModalWrapper isOpen={isModalOpen} onClose={onCloseModal} title="Паспорт проекта">
-            <CreateProjectModalContent onClose={onCloseModal}/>
+        <ModalWrapper isOpen={isModalOpen} onClose={onCloseModal} title="Паспорт проекта" isLoading={isLoading}>
+            <CreateProjectModalContent isEdit={isEdit} onClose={onCloseModal} setLoading={changeLoading} {...props}/>
         </ModalWrapper>
     )
 };

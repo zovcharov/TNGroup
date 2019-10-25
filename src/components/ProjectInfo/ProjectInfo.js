@@ -69,15 +69,14 @@ const ProjectInfo = ({info}) => {
       agreement,
       tasks,
       PlannedRisks
-    } = info
+    } = info;
+
     const passportInfo = {
       Id,
       Alias,
       Participants,
       ...PassportProject,
-    }
-
-    console.log(info)
+    };
 
     return (
         <div className="project-info">
@@ -111,7 +110,9 @@ const ProjectInfo = ({info}) => {
                   className='project-info__contaners-divider'
                   labelClass='project-info__project-name-label'>
                     <ProjectPassport
-                      {...passportInfo} />
+                      projectId={Id}
+                      {...passportInfo}
+                    />
                 </Container>
                 <Container
                   className='project-info__contaners-divider'>

@@ -86,7 +86,6 @@ export default (state, action) => {
         case LAST_AGREEMENTS_FETCH:
             return stateAssign({ lastAgreementsDataStatus: 'loading' });
         case LAST_AGREEMENTS_UPDATE:
-            debugger
             return stateAssign({ lastAgreementsDataStatus: 'loaded', lastAgreements: action.data.length > 0 ? action.data : agreementsMock.slice(0, 3) });
         default:
             return state;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TngInput from './../../TngInput/TngInput';
 import DatePicker from '../../DatePicker/DatePicker';
@@ -6,13 +6,23 @@ import TngUserSelect from '../../TngUserSelect/TngUserSelect';
 import MilestonesInput from './components/MilestonesInput';
 import MilestoneModal from './../MilestoneModal/MilestoneModal';
 
-import { saveProject } from './../../../redux/fetchers';
+import { saveProject, editProject } from './../../../redux/fetchers';
+import { ROLES_IN_PROJECT, prepareDataToSave } from './CreateProject.preparer';
 
 import './CreateProjectModalContent.scss';
 import DefaultButton from "../../Buttons/DefaultButton/DefaultButton";
 import SubmitButton from "../../Buttons/SubmitButton/SubmitButton";
 
-const CreateProjectModalContent = ({ onClose }) => {
+const findParticipantByRole = (participents, role) => {
+    const participant = participents.find(participant => participant.ProjectRole === ROLES_IN_PROJECT[role]);
+    return participant ? [participant] : [];
+};
+
+const findParticipantsByRole = (participents, role) => {
+    return participents.filter(participant => participant.ProjectRole === ROLES_IN_PROJECT[role]);
+};
+
+const CreateProjectModalContent = ({ onClose, setLoading, isEdit, ...props }) => {
     const [isMilestoneModalOpen, toggleMilestoneModal] = useState(false);
 
     /* All Project Data for creation */
@@ -27,6 +37,13 @@ const CreateProjectModalContent = ({ onClose }) => {
     const [meetingPlace, changeMeetingPlace] = useState('');
     const [meetingPeriodicity, changeMeetingPeriodicity] = useState('');
     const [projectEndDate, changeProjectEndDate] = useState('');
+    const [initiator, changeInitiator] = useState([]);
+    const [curator, changeCurator] = useState([]);
+    const [customer, changeCustomer] = useState([]);
+    const [customerContact, changeCustomerContact] = useState([]);
+    const [controller, changeController] = useState([]);
+    const [manager, changeManager] = useState([]);
+    const [executors, changeExecutors] = useState([]);
 
     const onAddMilestone = () => toggleMilestoneModal(true);
     const onMilestoneModalClose = () => toggleMilestoneModal(false);
@@ -41,23 +58,73 @@ const CreateProjectModalContent = ({ onClose }) => {
     };
 
     const onSaveDraft = () => {
-        saveProject({
-            PassportProject: {
-                Name: projectName,
-                Description: projectDescription,
-                Objective: projectGoal,
-                ExpectedResult: projectResult,
-                ExpectedProduct: projectProduct,
-                DateEnd: projectEndDate,
-                MeetingLocation: meetingPlace,
-                MeetingPeriodic: meetingPeriodicity,
-                EstimatedCost: Number(projectCost),
-                ApproximateEconomicEffect: Number(economicEffect),
-            }
-        }).then(res => {
-            onClose();
-        })
+        const projectAllData = {
+            participants: {
+                initiator,
+                curator,
+                customer,
+                customerContact,
+                controller,
+                manager,
+                executors,
+            },
+            projectName,
+            projectDescription,
+            projectGoal,
+            projectResult,
+            projectProduct,
+            projectEndDate,
+            meetingPlace,
+            meetingPeriodicity,
+            milestones,
+            projectCost: Number(projectCost),
+            economicEffect: Number(economicEffect),
+            passportId: props.Id,
+            projectId: props.projectId,
+        };
+
+        setLoading && setLoading(true);
+
+        if (isEdit) {
+            editProject(prepareDataToSave(projectAllData))
+                .then(res => {
+                    onClose();
+                })
+                .finally(() => {
+                    setLoading && setLoading(false);
+                })
+        } else {
+            saveProject(prepareDataToSave(projectAllData))
+                .then(res => {
+                    onClose();
+                })
+                .finally(() => {
+                    setLoading && setLoading(false);
+                })
+        }
     };
+
+    useEffect(() => {
+        if (isEdit) {
+            changeProjectName(props.Name);
+            changeProjectDescription(props.Description);
+            changeProjectGoal(props.Objective);
+            changeProjectResult(props.ExpectedResult);
+            changeProjectProduct(props.ExpectedProduct);
+            changeProjectCost(props.EstimatedСost);
+            changeEconomicEffect(props.ApproximateEconomicEffect);
+            changeMeetingPlace(props.MeetingLocation);
+            changeMeetingPeriodicity(props.MeetingPeriodic);
+            changeProjectEndDate(new Date(props.DateEnd));
+            changeInitiator(findParticipantByRole(props.Participants, 'Initiator'));
+            changeCurator(findParticipantByRole(props.Participants, 'Curator'));
+            changeCustomer(findParticipantByRole(props.Participants, 'Customer'));
+            changeCustomerContact(findParticipantByRole(props.Participants, 'Unknown'));
+            changeController(findParticipantByRole(props.Participants, 'Controller'));
+            changeManager(findParticipantByRole(props.Participants, 'Manager'));
+            changeExecutors(findParticipantsByRole(props.Participants, 'Worker'));
+        }
+    }, [isEdit]);
 
     return (
         <div className="project-modal">
@@ -71,19 +138,19 @@ const CreateProjectModalContent = ({ onClose }) => {
                 <div className="project-initiator content__grid-item">
                     <div className="project-modal__label">Инициатор:</div>
                     <div className="project-initiator__input">
-                        <TngUserSelect />
+                        <TngUserSelect onChangeSelectedUser={changeInitiator} selectedUsers={initiator} />
                     </div>
                 </div>
                 <div className="project-curator content__grid-item">
                     <div className="project-modal__label">Куратор:</div>
                     <div className="project-curator__input">
-                        <TngUserSelect />
+                        <TngUserSelect onChangeSelectedUser={changeCurator} selectedUsers={curator} />
                     </div>
                 </div>
                 <div className="project-customer content__grid-item">
                     <div className="project-modal__label">Заказчик:</div>
                     <div className="project-customer__input">
-                        <TngUserSelect />
+                        <TngUserSelect onChangeSelectedUser={changeCustomer} selectedUsers={customer} />
                     </div>
                 </div>
                 <div className="project-goal content__grid-item">
@@ -95,19 +162,19 @@ const CreateProjectModalContent = ({ onClose }) => {
                 <div className="project-customer-contact content__grid-item">
                     <div className="project-modal__label">Контактное лицо заказчика:</div>
                     <div className="project-customer-contact__input">
-                        <TngUserSelect />
+                        <TngUserSelect onChangeSelectedUser={changeCustomerContact} selectedUsers={customerContact}  />
                     </div>
                 </div>
                 <div className="project-controller content__grid-item">
                     <div className="project-modal__label">Контролёр проекта:</div>
                     <div className="project-controller__input">
-                        <TngUserSelect />
+                        <TngUserSelect onChangeSelectedUser={changeController} selectedUsers={controller} />
                     </div>
                 </div>
                 <div className="project-manager content__grid-item">
                     <div className="project-modal__label">Руководитель проекта:</div>
                     <div className="project-manager__input">
-                        <TngUserSelect />
+                        <TngUserSelect onChangeSelectedUser={changeManager} selectedUsers={manager} />
                     </div>
                 </div>
                 <div className="project-description content__grid-item">
@@ -125,7 +192,7 @@ const CreateProjectModalContent = ({ onClose }) => {
                 <div className="project-executors content__grid-item">
                     <div className="project-modal__label">Исполнители:</div>
                     <div className="project-executors__input">
-                        <TngInput />
+                        <TngUserSelect multiUsers onChangeSelectedUser={changeExecutors} selectedUsers={executors} />
                     </div>
                 </div>
                 <div className="project-product content__grid-item">

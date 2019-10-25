@@ -1,11 +1,38 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect ,useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 import './TngUserSelect.scss';
 
 let needActivateFocus = true;
 
-const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers}) => {
+const TngUserSelectDropdown = ({ users, onSelectUser }) => {
+
+    if (!users.length) {
+        return null;
+    }
+
+    const getUsersList = () => {
+        if (users && users.length) {
+            return users.map(item => (
+                <li
+                    className="user-select__item"
+                    key={`user-dropdown-${item.Login}`}
+                    onClick={() => onSelectUser(item.Id)}
+                >
+                    { item.UserName }
+                </li>
+            ))
+        }
+    };
+
+    return (
+        <ul className="user-select__dropdown">
+            { getUsersList() }
+        </ul>
+    )
+};
+
+const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers, selectedUsers}) => {
     const [isDropdownOpen, toggleDropDown] = useState(false);
     const [selectedUsersIds, onChangeSelectedUsersIds] = useState([]);
 
@@ -13,7 +40,7 @@ const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers}
         setTimeout(() => {
             needActivateFocus && toggleDropDown(false);
             needActivateFocus = true;
-        }, 100)
+        }, 200)
     }, [toggleDropDown]);
 
     const onSelectUser = (userId) => {
@@ -42,7 +69,7 @@ const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers}
     };
 
     const renderSelectedUsers = () => selectedUsersIds.map(item => {
-        const user = users.find(user => user.Id = item);
+        const user = users.find(user => user.Id === item);
 
         return (
             <span className="user-select__selected-user" key={item}>
@@ -52,11 +79,11 @@ const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers}
         )
     });
 
-    const getUsersList = () => users && users.length ? users.map(item => (
-        <div className="user-select__item" key={item.Id} onClick={() => {onSelectUser(item.Id)}}>
-            { item.UserName }
-        </div>
-    )) : [];
+    useEffect(() => {
+        if (selectedUsers && selectedUsers.length) {
+            onChangeSelectedUsersIds(selectedUsers.map(user => user.EmployeeId))
+        }
+    }, [selectedUsers]);
 
     return (
         <div className="user-select">
@@ -70,9 +97,10 @@ const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers}
             </div>
             {
                 isDropdownOpen &&
-                <div className="user-select__dropdown">
-                    { getUsersList() }
-                </div>
+                <TngUserSelectDropdown
+                    users={users}
+                    onSelectUser={onSelectUser}
+                />
             }
         </div>
     )
