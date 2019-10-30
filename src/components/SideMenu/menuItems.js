@@ -25,7 +25,7 @@ const MENU_ITEMS = [
     bold: false,
   },
   {
-    link: '/',
+    link: '/task',
     title: 'Добавить задачу',
     bold: true,
   },

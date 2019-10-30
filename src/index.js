@@ -14,6 +14,10 @@ import ProjectTasksPage from './pages/ProjectTasksPage/ProjectTasksPage';
 
 import Wrapper from "./components/Wrapper/Wrapper";
 
+import './main.scss'
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import TaskPage from "./pages/TaskPage/TaskPage";
+
 const defaultState = {
     projects: [],
     projectsDataState: 'pending',
@@ -43,9 +47,6 @@ const defaultState = {
 
 const store = createStore(rootReducer, defaultState);
 
-import './main.scss'
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
-
 const Routs = () => (
     <HashRouter>
         <Switch>
@@ -57,6 +58,7 @@ const Routs = () => (
               <Route exact path='/project/:projectId' component={ProjectPage} />
               <Route exact path='/projects' component={ProjectsPage} />
               <Route exact path='/' component={DashboardPage} />
+              <Route exact path='/task' component={TaskPage} />
           </Wrapper>
         </Switch>
     </HashRouter>
