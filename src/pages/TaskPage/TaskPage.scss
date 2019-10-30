@@ -1,0 +1,25 @@
+.task-panels {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.task-description {
+  &_main {
+    width: 65%;
+  }
+  &_additional {
+    width: 32%;
+  }
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  &__col {
+    &_3 {
+      width: 33%;
+    }
+  }
+}
