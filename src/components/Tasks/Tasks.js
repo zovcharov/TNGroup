@@ -1,75 +1,72 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom'
+
 import Table from '../Table/Table';
 import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
+import CreateTaskModal from './../Modals/CreateTaskModal/CreateTaskModal.container';
 
 import './Tasks.scss';
 
 const COLUMNS_TASKS = [
     {
         label: 'Название',
-        name: 'Description',
-        width: '30%'
+        name: 'nameCell',
+        width: '30%',
+        cell: (item) => <Link className="tasks__task-name" to={`/task/${item.id}`}>{item.name}</Link>
     },
     {
         label: 'Статус',
-        name: 'Status',
+        name: 'status',
         width: '15%'
     },
     {
         label: 'Обновлено',
-        name: 'LastDateUpdate',
+        name: 'lastDateUpdate',
         width: '10%'
     },
     {
         label: 'Номер',
-        name: 'Id',
+        name: 'id',
         width: '10%'
     },
     {
         label: 'Исполнитель',
-        name: 'Performer',
+        name: 'performerName',
         width: '25%'
     },
     {
         label: 'Дата окончания',
-        name: 'DateEnd',
+        name: 'dateEnd',
         width: '10%'
     }
-
 ];
 
-const prepareData = (tasks) => tasks.map((task => {
-    const {
-        Description,
-        Status,
-        LastDateUpdate,
-        Id,
-        Performer: { Name: Performer },
-        DateEnd,
-    } = task;
-
-    return {
-        Description,
-        Status,
-        LastDateUpdate,
-        Id,
-        Performer,
-        DateEnd,
+const prepareTasks = (tasks) => tasks.map(task => ({
+    ...task,
+    nameCell: {
+        name: task.name,
+        id: task.id,
     }
 }));
 
-const Tasks = ({ tasks }) => {
+const Tasks = ({ tasks, projectId }) => {
+    const [isCreateTaskModalOpen, onOpenTaskProjectModal] = useState(false);
+
+    const  openCreateTaskModal = useCallback(() => onOpenTaskProjectModal(true), []);
+    const  closeCreateTaskModal = useCallback(() => onOpenTaskProjectModal(false), []);
+
     return (
         <React.Fragment>
-            <div className="risks__title">Задачи:</div>
-            <div className="risks">
-                <Table columns={COLUMNS_TASKS} items={prepareData(tasks)} />
-                <div className="risks__footer">
-                    <DefaultButton>
+            <div className="tasks__title">Задачи:</div>
+            <div className="tasks">
+                <Table columns={COLUMNS_TASKS} items={prepareTasks(tasks)} />
+                <div className="tasks__footer">
+                    <DefaultButton onClick={openCreateTaskModal}>
                         <span>Добавить задачу</span>
                     </DefaultButton>
                 </div>
             </div>
+            <CreateTaskModal projectId={projectId} isOpen={isCreateTaskModalOpen} onClose={closeCreateTaskModal} />
         </React.Fragment>
     )
 };

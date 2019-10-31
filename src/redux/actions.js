@@ -45,6 +45,10 @@ export const LAST_PROJECT_TASKS_UPDATE = 'TNG/LAST_PROJECT_TASKS_UPDATE';
 export const LAST_AGREEMENTS_FETCH = 'TNG/LAST_AGREEMENTS_FETCH';
 export const LAST_AGREEMENTS_UPDATE = 'TNG/LAST_AGREEMENTS_TASKS_UPDATE';
 
+// Task action types
+export const SINGLE_TASK_FETCH = 'TNG/SINGLE_TASK_FETCH';
+export const SINGLE_TASK_UPDATE = 'TNG/SINGLE_TASK_UPDATE';
+
 // Project actions
 export const projectsFetch = (data) => ({
     type: PROJECTS_FETCH,
@@ -151,5 +155,15 @@ export const lastAgreementsFetch = () => ({
 
 export const lastAgreementsUpdate = (data) => ({
     type: LAST_AGREEMENTS_UPDATE,
+    data
+});
+
+// Task actions
+export const singleTaskFetch = () => ({
+    type: SINGLE_TASK_FETCH,
+});
+
+export const singleTaskUpdate = (data) => ({
+    type: SINGLE_TASK_UPDATE,
     data
 });

@@ -29,6 +29,7 @@
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "file-loader": "^4.2.0",
@@ -52,6 +53,7 @@
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
+    "react-select": "^3.0.8",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5"
   }
