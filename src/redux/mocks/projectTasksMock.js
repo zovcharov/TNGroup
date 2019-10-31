@@ -11,7 +11,7 @@ export const tasksMock = [
         },
         PreviousConnectedTaskId: 1,
         NextConnectedTaskId: 1,
-        Status: 'Выполняется',
+        Status: 0,
         Id: 1,
     }, {
         PlannedScheduleId: 1,
@@ -25,7 +25,7 @@ export const tasksMock = [
         },
         PreviousConnectedTaskId: 1,
         NextConnectedTaskId: 1,
-        Status: 'Приостановлена',
+        Status: 1,
         Id: 4,
     }, {
         PlannedScheduleId: 1,
@@ -39,7 +39,7 @@ export const tasksMock = [
         },
         PreviousConnectedTaskId: 1,
         NextConnectedTaskId: 1,
-        Status: 'Выполняется',
+        Status: 4,
         Id: 5,
     }, {
         PlannedScheduleId: 1,
@@ -53,7 +53,7 @@ export const tasksMock = [
         },
         PreviousConnectedTaskId: 1,
         NextConnectedTaskId: 1,
-        Status: 'Завершена',
+        Status: 3,
         Id: 6,
     }, {
         PlannedScheduleId: 1,
@@ -67,7 +67,7 @@ export const tasksMock = [
         },
         PreviousConnectedTaskId: 1,
         NextConnectedTaskId: 1,
-        Status: 'Приостановлена',
+        Status: 1,
         Id: 7,
     }
 ]

@@ -1,0 +1,29 @@
+.tng-select-container {
+    height: 40px;
+
+    &:focus {
+        outline: auto 5px #cccccc;
+    }
+
+    .tng-select {
+        &__control {
+            height: 100%;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__single-value {
+            font-family: OpenSans;
+            font-size: 14px;
+            text-align: left;
+            color: #707070;
+        }
+
+        &__option {
+            color: #000;
+            background-color: #fff;
+        }
+    }
+}

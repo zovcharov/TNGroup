@@ -1,0 +1,113 @@
+.risk-modal {
+    &__content {
+        .risk-name {
+            grid-area: name;
+        }
+        .risk-executor {
+            grid-area: executor;
+            padding-right: 35px;
+        }
+        .risk-start-date {
+            grid-area: start-date;
+            padding-right: 35px;
+        }
+        .risk-measure {
+            grid-area: measure;
+        }
+        .risk-prevention {
+            grid-area: prevention;
+        }
+        .risk-tasks {
+            grid-area: tasks;
+            padding-right: 50px;
+        }
+        .risk-status {
+            grid-area: status;
+            padding-right: 40px;
+        }
+        .risk-add-files {
+            display: flex;
+            justify-content: flex-end;
+            grid-area: add-files;
+        }
+
+        display: grid;
+        grid-template-columns: 250px 250px 250px 250px;
+        grid-template-rows: 90px 90px 190px 90px;
+        grid-template-areas:
+                "name name name name"
+                "executor executor start-date measure"
+                "prevention prevention prevention prevention"
+                "tasks tasks status add-files"
+    }
+
+    &__label {
+        font-family: OpenSans;
+        font-size: 14px;
+        text-align: left;
+        color: #707070;
+        margin-bottom: 15px;
+    }
+
+    .add-risk-files-button {
+        height: 40px;
+        margin-top: 32px;
+        margin-right: 0;
+    }
+
+    .risk-files {
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+
+        &__title {
+            color: #505050;
+            font-size: 24px;
+            line-height: 60px;
+            font-family: "Open Sans";
+        }
+
+        &__content {
+            height: 100px;
+            display: flex;
+        }
+
+        &__files-list {
+            height: 100px;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        .file-item {
+            color: #1b5176;
+            font-size: 12px;
+            line-height: 40px;
+            font-family: "Open Sans";
+            text-decoration: none;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+
+        .footer__button {
+            margin-right: 0 !important;
+            margin-left: 10px;
+
+            .button__content {
+                font-family: OpenSans;
+                font-size: 14px;
+            }
+
+            &.button__save {
+                background: linear-gradient(135deg, rgb(30, 171, 88) 0%, rgb(30, 171, 88) 20%, rgb(122, 242, 88) 100%);
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

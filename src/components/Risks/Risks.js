@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from '../Table/Table';
 import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
+import RiskModalContainer from '../Modals/RiskModal/RiskModal.container';
 
 import './Risks.scss';
 
@@ -34,18 +35,24 @@ const prepareData = (unplannedRisks, plannedRisks) => {
     return [...preparedUnplannedRisks, ...preparedPlannedRisks];
 };
 
-const Risks = ({ unplannedRisks, plannedRisks }) => {
+const Risks = ({ unplannedRisks, plannedRisks, projectId }) => {
+    const [isRiskModalOpen, toggleRiskModal] = useState(false);
+
+    const onOpenRiskModal = () => toggleRiskModal(true);
+    const onCloseRiskModal = () => toggleRiskModal(false);
+
     return (
         <React.Fragment>
             <div className="risks__title">Риски:</div>
             <div className="risks">
                 <Table columns={COLUMNS_RISKS} items={prepareData(unplannedRisks, plannedRisks)} />
                 <div className="risks__footer">
-                    <DefaultButton>
+                    <DefaultButton onClick={onOpenRiskModal}>
                         <span>Добавить риск</span>
                     </DefaultButton>
                 </div>
             </div>
+            <RiskModalContainer isOpen={isRiskModalOpen} onClose={onCloseRiskModal} projectId={projectId}/>
         </React.Fragment>
     )
 };
