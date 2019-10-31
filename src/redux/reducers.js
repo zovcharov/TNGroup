@@ -19,16 +19,18 @@ import {
     LAST_PROJECT_TASKS_UPDATE,
     LAST_AGREEMENTS_FETCH,
     LAST_AGREEMENTS_UPDATE,
+    SINGLE_TASK_FETCH,
+    SINGLE_TASK_UPDATE,
 } from './actions';
 
 import {
     selectFromProjects,
     selectFromTasks,
+    selectFromLastTasks
 } from './selectors';
 
 import agreementsMock from './mocks/agreementsMock';
 import { unplannedRisksMock, plannedRisksMock } from './mocks/risksMock';
-import { tasksMock } from './mocks/projectTasksMock';
 
 export default (state, action) => {
     const stateAssign = (data) => Object.assign({}, state, data);
@@ -75,18 +77,22 @@ export default (state, action) => {
             return stateAssign({ tasksDataStatus: 'loading' });
         case PROJECT_TASKS_UPDATE:
             return stateAssign({
-                tasks: action.data.tasks.length ? action.data.tasks : tasksMock,
+                tasks: selectFromTasks(action.data.tasks),
                 tasksProjectId: action.data.tasksProjectId,
                 tasksDataStatus: 'loaded',
             });
         case LAST_PROJECT_TASKS_FETCH:
             return stateAssign({ lastProjectTasksDataStatus: 'loading' });
         case LAST_PROJECT_TASKS_UPDATE:
-            return stateAssign({ lastProjectTasksDataStatus: 'loaded', lastProjectTasks: selectFromTasks(action.data) });
+            return stateAssign({ lastProjectTasksDataStatus: 'loaded', lastProjectTasks: selectFromLastTasks(action.data) });
         case LAST_AGREEMENTS_FETCH:
             return stateAssign({ lastAgreementsDataStatus: 'loading' });
         case LAST_AGREEMENTS_UPDATE:
             return stateAssign({ lastAgreementsDataStatus: 'loaded', lastAgreements: action.data.length > 0 ? action.data : agreementsMock.slice(0, 3) });
+        case SINGLE_TASK_FETCH:
+            return stateAssign({ singleTaskDataState: 'loading' });
+        case SINGLE_TASK_UPDATE:
+            return stateAssign({ singleTaskDataState: 'loaded', singleTask: action.data });
         default:
             return state;
     }

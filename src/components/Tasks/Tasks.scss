@@ -1,4 +1,4 @@
-.risks {
+.tasks {
     background-color: #fff;
     border-radius: 4px;
     padding: 10px 30px 30px 30px;
@@ -18,6 +18,13 @@
         .button {
             margin-right: 0;
         }
+    }
+
+    &__task-name {
+        font-family: "Open Sans";
+        font-size: 14px;
+        color: #505050;
+        font-weight: normal;
     }
 
     .table {

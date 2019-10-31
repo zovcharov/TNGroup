@@ -40,7 +40,7 @@ const ProjectRisksPage = (props) => {
     return (
         <React.Fragment>
             <NavigationPanel  projectId={projectId} activePage="risks" />
-            <Risks unplannedRisks={unplannedRisks}  plannedRisks={plannedRisks}/>
+            <Risks unplannedRisks={unplannedRisks}  plannedRisks={plannedRisks} projectId={projectId}/>
         </React.Fragment>
     );
 };

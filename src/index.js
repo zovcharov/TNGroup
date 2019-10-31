@@ -39,6 +39,8 @@ const defaultState = {
     lastProjectTasks: [],
     lastAgreementsDataStatus: 'pending',
     lastAgreements: [],
+    singleTask: {},
+    singleTaskDataState: 'pending',
 };
 
 const store = createStore(rootReducer, defaultState);

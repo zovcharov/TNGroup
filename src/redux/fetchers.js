@@ -47,7 +47,6 @@ export const editProject = (data, projectId) => {
 };
 
 export const saveTask = (data, projectId) => {
-    debugger
     return ApiProvider.Post( 'ProjectTask', '', {...data, curProjectId: projectId});
 };
 
@@ -124,5 +123,16 @@ export const fetchLastAgreements = (fetchAction, updateAction) => {
         .then(data => {
             updateAction && updateAction(data);
             return data;
+        })
+};
+
+export const fetchSingleTask = (projectId, fetchAction, updateAction) => {
+    fetchAction();
+
+    return ApiProvider.Get('ProjectTask', taskId)
+        .then(data => {
+            updateAction(data);
+
+            return data
         })
 };
