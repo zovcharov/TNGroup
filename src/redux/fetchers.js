@@ -126,7 +126,7 @@ export const fetchLastAgreements = (fetchAction, updateAction) => {
         })
 };
 
-export const fetchSingleTask = (projectId, fetchAction, updateAction) => {
+export const fetchSingleTask = (taskId, fetchAction, updateAction) => {
     fetchAction();
 
     return ApiProvider.Get('ProjectTask', taskId)
