@@ -136,3 +136,13 @@ export const fetchSingleTask = (projectId, fetchAction, updateAction) => {
             return data
         })
 };
+
+export const fetchSchedules = (projectId, fetchAction, updateAction) => {
+    fetchAction && fetchAction(projectId);
+
+    return ApiProvider.Get('PlannedSchedule', '', { curProjectId: projectId })
+        .then(data => {
+            updateAction && updateAction(data);
+            return data;
+        })
+};

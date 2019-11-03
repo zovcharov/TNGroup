@@ -47,7 +47,7 @@ const mapStateToProps = ({singleProject, singleProjectDataState}) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     singleProjectFetch: () => dispatch(singleProjectFetch()),
-    singleProjectUpdate: id => dispatch(singleProjectUpdate(id)),
+    singleProjectUpdate: (data) => dispatch(singleProjectUpdate(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
