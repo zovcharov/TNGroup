@@ -1,3 +1,4 @@
+import { DEFAULT_STORE } from './defaultStore';
 import {
     PROJECTS_FETCH,
     PROJECTS_UPDATE,
@@ -19,8 +20,11 @@ import {
     LAST_PROJECT_TASKS_UPDATE,
     LAST_AGREEMENTS_FETCH,
     LAST_AGREEMENTS_UPDATE,
+    SCHEDULE_FETCH,
+    SCHEDULE_UPDATE,
     SINGLE_TASK_FETCH,
     SINGLE_TASK_UPDATE,
+    RESET_STATE,
 } from './actions';
 
 import {
@@ -32,7 +36,7 @@ import {
 import agreementsMock from './mocks/agreementsMock';
 import { unplannedRisksMock, plannedRisksMock } from './mocks/risksMock';
 
-export default (state, action) => {
+export default (state = DEFAULT_STORE, action) => {
     const stateAssign = (data) => Object.assign({}, state, data);
 
     switch (action.type) {
@@ -93,6 +97,12 @@ export default (state, action) => {
             return stateAssign({ singleTaskDataState: 'loading' });
         case SINGLE_TASK_UPDATE:
             return stateAssign({ singleTaskDataState: 'loaded', singleTask: action.data });
+        case SCHEDULE_FETCH:
+            return stateAssign({ schedulesDataStatus: 'loading' });
+        case SCHEDULE_UPDATE:
+            return stateAssign({ schedulesDataStatus: 'loaded', schedules: action.data });
+        case RESET_STATE:
+            return DEFAULT_STORE;
         default:
             return state;
     }

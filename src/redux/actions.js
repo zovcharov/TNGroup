@@ -45,9 +45,15 @@ export const LAST_PROJECT_TASKS_UPDATE = 'TNG/LAST_PROJECT_TASKS_UPDATE';
 export const LAST_AGREEMENTS_FETCH = 'TNG/LAST_AGREEMENTS_FETCH';
 export const LAST_AGREEMENTS_UPDATE = 'TNG/LAST_AGREEMENTS_TASKS_UPDATE';
 
+// Schedule action types
+export const SCHEDULE_FETCH = 'TNG/SCHEDULE_FETCH';
+export const SCHEDULE_UPDATE = 'TNG/SCHEDULE_UPDATE';
+
 // Task action types
 export const SINGLE_TASK_FETCH = 'TNG/SINGLE_TASK_FETCH';
 export const SINGLE_TASK_UPDATE = 'TNG/SINGLE_TASK_UPDATE';
+
+export const RESET_STATE = 'TNG/RESET_STATE';
 
 // Project actions
 export const projectsFetch = (data) => ({
@@ -158,6 +164,16 @@ export const lastAgreementsUpdate = (data) => ({
     data
 });
 
+// Schedule actions
+export const scheduleFetch = () => ({
+    type: SCHEDULES_FETCH,
+});
+
+export const scheduleUpdate = (data) => ({
+    type: SCHEDULES_UPDATE,
+    data
+});
+
 // Task actions
 export const singleTaskFetch = () => ({
     type: SINGLE_TASK_FETCH,
@@ -166,4 +182,8 @@ export const singleTaskFetch = () => ({
 export const singleTaskUpdate = (data) => ({
     type: SINGLE_TASK_UPDATE,
     data
+});
+
+export const resetState = () => ({
+    type: RESET_STATE,
 });
