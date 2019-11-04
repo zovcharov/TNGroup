@@ -11,6 +11,7 @@ import {
     COLUMNS_SUBTASKS,
     ITEMS_SUBTASK
 } from './TaskInfo.constants'
+import Commentaries from "../Commentaries/Commentaries";
 
 const TaskInfo = (props) => {
     const {
@@ -73,7 +74,7 @@ const TaskInfo = (props) => {
             <Container className='task-panels' label='Ближайшие вехи'>
                 <Table columns={COLUMNS_PROJECT_EVENTS} items={ProjectEvents}/>
             </Container>
-
+            <Commentaries />
         </div>
     )
 }
