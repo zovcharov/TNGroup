@@ -11,6 +11,7 @@ import ProjectPage from './pages/ProjectPage/ProjectPage';
 import ProjectAgreementsPage from './pages/ProjectAgreementsPage/ProjectAgreementsPage';
 import ProjectRisksPage from './pages/ProjectRisksPage/ProjectRisksPage';
 import ProjectTasksPage from './pages/ProjectTasksPage/ProjectTasksPage';
+import PlansPage from './pages/PlansPage/PlansPage';
 
 import Wrapper from "./components/Wrapper/Wrapper";
 
@@ -56,6 +57,7 @@ const Routs = () => (
               <Route exact path='/agreements/:projectId' component={ProjectAgreementsPage} />
               <Route exact path='/risks/:projectId' component={ProjectRisksPage} />
               <Route exact path='/tasks/:projectId' component={ProjectTasksPage} />
+              <Route exact path='/plans/:projectId' component={PlansPage} />
               <Route exact path='/project/:projectId' component={ProjectPage} />
               <Route exact path='/projects' component={ProjectsPage} />
               <Route exact path='/' component={DashboardPage} />

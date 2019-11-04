@@ -19,6 +19,8 @@ import {
     LAST_PROJECT_TASKS_UPDATE,
     LAST_AGREEMENTS_FETCH,
     LAST_AGREEMENTS_UPDATE,
+    SCHEDULE_FETCH,
+    SCHEDULE_UPDATE,
     SINGLE_TASK_FETCH,
     SINGLE_TASK_UPDATE,
 } from './actions';
@@ -93,6 +95,10 @@ export default (state, action) => {
             return stateAssign({ singleTaskDataState: 'loading' });
         case SINGLE_TASK_UPDATE:
             return stateAssign({ singleTaskDataState: 'loaded', singleTask: action.data });
+        case SCHEDULE_FETCH:
+            return stateAssign({ schedulesDataStatus: 'loading' });
+        case SCHEDULE_UPDATE:
+            return stateAssign({ schedulesDataStatus: 'loaded', schedules: action.data });
         default:
             return state;
     }
