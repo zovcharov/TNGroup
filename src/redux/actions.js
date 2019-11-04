@@ -53,6 +53,8 @@ export const SCHEDULE_UPDATE = 'TNG/SCHEDULE_UPDATE';
 export const SINGLE_TASK_FETCH = 'TNG/SINGLE_TASK_FETCH';
 export const SINGLE_TASK_UPDATE = 'TNG/SINGLE_TASK_UPDATE';
 
+export const RESET_STATE = 'TNG/RESET_STATE';
+
 // Project actions
 export const projectsFetch = (data) => ({
     type: PROJECTS_FETCH,
@@ -180,4 +182,8 @@ export const singleTaskFetch = () => ({
 export const singleTaskUpdate = (data) => ({
     type: SINGLE_TASK_UPDATE,
     data
+});
+
+export const resetState = () => ({
+    type: RESET_STATE,
 });

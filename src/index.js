@@ -13,41 +13,15 @@ import ProjectRisksPage from './pages/ProjectRisksPage/ProjectRisksPage';
 import ProjectTasksPage from './pages/ProjectTasksPage/ProjectTasksPage';
 import PlansPage from './pages/PlansPage/PlansPage';
 
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import Wrapper from "./components/Wrapper/Wrapper";
 
-const defaultState = {
-    projects: [],
-    projectsDataState: 'pending',
-    users: [],
-    usersDataState: 'pending',
-    singleProject: {},
-    singleProjectDataState: 'pending',
-    tasks: [],
-    tasksDataStatus: 'pending',
-    tasksProjectId: 0,
-    schedules: [],
-    schedulesDataStatus: 'pending',
-    userAgreements: [],
-    userAgreementsDataStatus: 'pending',
-    agreements: [],
-    agreementsDataStatus: 'pending',
-    agreementsProjectId: 0,
-    unplannedRisks: [],
-    plannedRisks: [],
-    risksDataStatus: 'pending',
-    risksProjectId: 0,
-    lastProjectTasksDataStatus: 'pending',
-    lastProjectTasks: [],
-    lastAgreementsDataStatus: 'pending',
-    lastAgreements: [],
-    singleTask: {},
-    singleTaskDataState: 'pending',
-};
-
-const store = createStore(rootReducer, defaultState);
+import { DEFAULT_STORE } from './redux/defaultStore';
 
 import './main.scss'
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
+
+const store = createStore(rootReducer, DEFAULT_STORE);
+
 
 const Routs = () => (
     <HashRouter>
