@@ -1,0 +1,71 @@
+.planned-risk-modal {
+    &__content {
+        .planned-risk-name {
+            grid-area: name;
+        }
+        .planned-risk-prevention {
+            grid-area: prevention;
+            padding-right: 15px;
+        }
+        .planned-risk-response-plan {
+            grid-area: response-plan;
+        }
+        .planned-risk-prevent-measures {
+            grid-area: prevent-measures;
+            padding-right: 15px;
+        }
+        .planned-risk-measures-results {
+            grid-area: measures-results;
+        }
+        .planned-risk-consequences {
+            grid-area: consequences;
+            padding-right: 15px;
+        }
+        .planned-risk-start-date {
+            grid-area: start-date;
+            padding-right: 35px;
+        }
+        .planned-risk-measure {
+            grid-area: measure;
+        }
+
+        display: grid;
+        grid-template-columns: 250px 250px 250px 250px;
+        grid-template-rows: 90px 190px 190px 90px;
+        grid-template-areas:
+                "name name name name"
+                "prevention prevention response-plan response-plan"
+                "prevent-measures prevent-measures measures-results measures-results"
+                "consequences consequences start-date measure"
+    }
+
+    &__label {
+        font-family: OpenSans;
+        font-size: 14px;
+        text-align: left;
+        color: #707070;
+        margin-bottom: 15px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+
+        .footer__button {
+            margin-right: 0 !important;
+            margin-left: 10px;
+
+            .button__content {
+                font-family: OpenSans;
+                font-size: 14px;
+            }
+
+            &.button__save {
+                background: linear-gradient(135deg, rgb(30, 171, 88) 0%, rgb(30, 171, 88) 20%, rgb(122, 242, 88) 100%);
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
