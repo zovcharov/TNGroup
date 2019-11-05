@@ -22,7 +22,6 @@ export const selectFromProject = (project) => {
 
 // TODO: убрать мок на имени
 export const selectFromTask = (task) => {
-    debugger
     return {
         description: task.Description,
         name: task.Name || 'ффф',
@@ -40,6 +39,13 @@ export const selectFromLastTask = (task) => {
         status: getTextStatus(task.Status).woman,
         id: task.Id,
         lastDateUpdate: new Date(task.LastDateUpdate),
+    }
+};
+
+export const selectProjectPermissions = (project) => {
+    return {
+        canAddPlannedRisk: project.Status === 0,
+        canAddUnplannedRisk: project.Status === 3,
     }
 };
 

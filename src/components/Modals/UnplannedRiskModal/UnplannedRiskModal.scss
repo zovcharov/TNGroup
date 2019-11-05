@@ -1,0 +1,59 @@
+.risk-modal {
+    &__content {
+        .risk-name {
+            grid-area: name;
+        }
+        .risk-start-date {
+            grid-area: start-date;
+        }
+        .risk-eliminate-measures {
+            grid-area: eliminate-measures;
+            padding-right: 20px;
+        }
+        .risk-measures-results {
+            grid-area: measures-results;
+        }
+        .risk-consequences {
+            grid-area: consequences;
+            padding-right: 15px;
+        }
+
+        display: grid;
+        grid-template-columns: 250px 250px 250px 250px;
+        grid-template-rows: 90px 190px 90px;
+        grid-template-areas:
+                "name name name name"
+                "eliminate-measures eliminate-measures measures-results measures-results"
+                "consequences consequences consequences start-date"
+    }
+
+    &__label {
+        font-family: OpenSans;
+        font-size: 14px;
+        text-align: left;
+        color: #707070;
+        margin-bottom: 15px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+
+        .footer__button {
+            margin-right: 0 !important;
+            margin-left: 10px;
+
+            .button__content {
+                font-family: OpenSans;
+                font-size: 14px;
+            }
+
+            &.button__save {
+                background: linear-gradient(135deg, rgb(30, 171, 88) 0%, rgb(30, 171, 88) 20%, rgb(122, 242, 88) 100%);
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

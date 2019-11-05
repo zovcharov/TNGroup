@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import ModalWrapper from './../ModalWrapper';
-import RiskModal from './RiskModal';
+import PlannedRiskModal from './PlannedRiskModal';
 
-const RiskModalContainer = ({ isOpen, onClose, isEdit, projectId, ...props }) => {
+const PlannedRiskModalContainer = ({ isOpen, onClose, isEdit, projectId, ...props }) => {
     const [isModalOpen, onChangeModalOpen] = useState(false);
     const [isLoading, changeLoading] = useState(false);
 
@@ -17,10 +17,10 @@ const RiskModalContainer = ({ isOpen, onClose, isEdit, projectId, ...props }) =>
     }, [isOpen]);
 
     return (
-        <ModalWrapper isOpen={isModalOpen} onClose={onCloseModal} title="Создание риска" isLoading={isLoading}>
-            <RiskModal {...props} onClose={onCloseModal} projectId={projectId} setLoading={changeLoading} />
+        <ModalWrapper isOpen={isModalOpen} onClose={onCloseModal} title="Запланированный риск" isLoading={isLoading}>
+            <PlannedRiskModal {...props} onClose={onCloseModal} projectId={projectId} setLoading={changeLoading} />
         </ModalWrapper>
     )
 };
 
-export default RiskModalContainer;
+export default PlannedRiskModalContainer;

@@ -25,4 +25,5 @@ export const DEFAULT_STORE = {
     lastAgreements: [],
     singleTask: {},
     singleTaskDataState: 'pending',
+    projectPermissions: {},
 };

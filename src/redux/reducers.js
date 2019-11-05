@@ -30,7 +30,8 @@ import {
 import {
     selectFromProjects,
     selectFromTasks,
-    selectFromLastTasks
+    selectFromLastTasks,
+    selectProjectPermissions
 } from './selectors';
 
 import agreementsMock from './mocks/agreementsMock';
@@ -47,7 +48,11 @@ export default (state = DEFAULT_STORE, action) => {
         case SINGLE_PROJECT_FETCH:
             return stateAssign({ singleProjectDataState: 'loading' });
         case SINGLE_PROJECT_UPDATE:
-            return stateAssign({ singleProject: action.data, singleProjectDataState: 'loaded' });
+            return stateAssign({
+                singleProject: action.data,
+                singleProjectDataState: 'loaded',
+                projectPermissions: selectProjectPermissions(action.data)
+            });
         case USERS_FETCH:
             return stateAssign({ usersDataState: 'loading' });
         case USERS_UPDATE:

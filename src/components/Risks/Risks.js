@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Table from '../Table/Table';
 import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
-import RiskModalContainer from '../Modals/RiskModal/RiskModal.container';
+import PlannedRiskModalContainer from '../Modals/PlannedRiskModal/PlannedRiskModal.container';
+import UnplannedRiskModalContainer from '../Modals/UnplannedRiskModal/UnplannedRiskModal.container';
 
 import './Risks.scss';
 
@@ -35,11 +36,15 @@ const prepareData = (unplannedRisks, plannedRisks) => {
     return [...preparedUnplannedRisks, ...preparedPlannedRisks];
 };
 
-const Risks = ({ unplannedRisks, plannedRisks, projectId }) => {
-    const [isRiskModalOpen, toggleRiskModal] = useState(false);
+const Risks = ({ unplannedRisks, plannedRisks, projectId, projectPermissions }) => {
+    const [isPlannedRiskModalOpen, togglePlannedRiskModal] = useState(false);
+    const [isUnplannedRiskModalOpen, toggleUnplannedRiskModal] = useState(false);
 
-    const onOpenRiskModal = () => toggleRiskModal(true);
-    const onCloseRiskModal = () => toggleRiskModal(false);
+    const onOpenPlannedRiskModal = () => togglePlannedRiskModal(true);
+    const onClosePlannedRiskModal = () => togglePlannedRiskModal(false);
+
+    const onOpenUnplannedRiskModal = () => toggleUnplannedRiskModal(true);
+    const onCloseUnplannedRiskModal = () => toggleUnplannedRiskModal(false);
 
     return (
         <React.Fragment>
@@ -47,12 +52,22 @@ const Risks = ({ unplannedRisks, plannedRisks, projectId }) => {
             <div className="risks">
                 <Table columns={COLUMNS_RISKS} items={prepareData(unplannedRisks, plannedRisks)} />
                 <div className="risks__footer">
-                    <DefaultButton onClick={onOpenRiskModal}>
-                        <span>Добавить риск</span>
-                    </DefaultButton>
+                    {
+                        projectPermissions.canAddPlannedRisk &&
+                        <DefaultButton className="create-planned-risk-button" onClick={onOpenPlannedRiskModal}>
+                            <span>Добавить запланированный риск</span>
+                        </DefaultButton>
+                    }
+                    {
+                        projectPermissions.canAddUnplannedRisk &&
+                        <DefaultButton className="create-unplanned-risk-button" onClick={onOpenUnplannedRiskModal}>
+                            <span>Добавить незапланированный риск</span>
+                        </DefaultButton>
+                    }
                 </div>
             </div>
-            <RiskModalContainer isOpen={isRiskModalOpen} onClose={onCloseRiskModal} projectId={projectId}/>
+            <PlannedRiskModalContainer isOpen={isPlannedRiskModalOpen} onClose={onClosePlannedRiskModal} projectId={projectId}/>
+            <UnplannedRiskModalContainer isOpen={isUnplannedRiskModalOpen} onClose={onCloseUnplannedRiskModal} projectId={projectId}/>
         </React.Fragment>
     )
 };

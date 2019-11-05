@@ -146,3 +146,11 @@ export const fetchSchedules = (projectId, fetchAction, updateAction) => {
             return data;
         })
 };
+
+export const savePlannedRisk = (projectId, data) => {
+    return ApiProvider.Post( 'PlannedRisk', '', { curProjectId: projectId, ...data });
+};
+
+export const saveUnplannedRisk = (projectId, data) => {
+    return ApiProvider.Post( 'UnplannedRisk', '', { curProjectId: projectId, ...data });
+};
