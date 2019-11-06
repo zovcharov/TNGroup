@@ -149,7 +149,7 @@ const ProjectMainInfo = (props) => {
     )
 }
 
-const InfoBlock = ({ label, children }) => {
+export const InfoBlock = ({ label, children }) => {
     return (
         <div className='info-block'>
             <p className='info-block__label'>{label}</p>

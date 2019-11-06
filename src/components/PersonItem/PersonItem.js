@@ -1,19 +1,25 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './PersonItem.scss'
 
 const PersonItem = (props) => {
     const {
-        Name = 'Иванов Иван Иванович',
-        RefUrlAvatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg'
+        name = 'Иванов Иван Иванович',
+        refUrlAvatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg'
     } = props
     return (
         <div className='person-item'>
             <span className='person-item__avatar' style={{
-                backgroundImage: `url(${RefUrlAvatar})`
+                backgroundImage: `url(${refUrlAvatar})`
             }} />
-            <a className='person-item__name'>{Name}</a>
+            <a className='person-item__name'>{name}</a>
         </div>
     )
+}
+
+PersonItem.propTypes = {
+    name: PropTypes.string,
+    refUrlAvatar: PropTypes.string
 }
 
 export default PersonItem

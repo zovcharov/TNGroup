@@ -14,6 +14,7 @@ import ProjectTasksPage from './pages/ProjectTasksPage/ProjectTasksPage';
 import PlansPage from './pages/PlansPage/PlansPage';
 
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import TaskPage from "./pages/TaskPage/TaskPage";
 import Wrapper from "./components/Wrapper/Wrapper";
 
 import { DEFAULT_STORE } from './redux/defaultStore';
@@ -35,6 +36,7 @@ const Routs = () => (
               <Route exact path='/project/:projectId' component={ProjectPage} />
               <Route exact path='/projects' component={ProjectsPage} />
               <Route exact path='/' component={DashboardPage} />
+              <Route exact path='/task' component={TaskPage} />
           </Wrapper>
         </Switch>
     </HashRouter>

@@ -11,6 +11,9 @@
         "modules": true,
         "classes": true
     },
+    "rules": {
+        "indent": ["error", 4]
+    },
     "plugins":[
         "react"
     ]
