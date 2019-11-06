@@ -132,7 +132,9 @@ const DashboardPage = (props) => {
                         Boolean(lastAgreements.length) &&
                         <Container label='Последние согласования'>
                             <Table columns={COLUMNS_AGREEMENTS} items={lastAgreements} />
-                            <PseudoButton link="/agreements">Смотреть все запросы</PseudoButton>
+                            <div className='dashboard-agreements__bottom'>
+                                <PseudoButton link="/agreements">Смотреть все запросы</PseudoButton>
+                            </div>
                         </Container>
                     }
                 </div>
