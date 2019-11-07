@@ -28,6 +28,14 @@ import {
     fetchLastAgreements
 } from './../../redux/fetchers';
 
+export const prepareLastTasks = (tasks) => tasks.map(task => ({
+    ...task,
+    nameCell: {
+        description: task.description,
+        id: task.id,
+    }
+}));
+
 const DashboardPage = (props) => {
     const {
         lastProjectsTasksFetch,
@@ -122,7 +130,7 @@ const DashboardPage = (props) => {
                     {
                         Boolean(lastProjectTasks.length) &&
                         <Container label='Последние задачи'>
-                            <Table columns={COLUMNS_TASKS} items={lastProjectTasks} />
+                            <Table columns={COLUMNS_TASKS} items={prepareLastTasks(lastProjectTasks)} />
                             <PseudoButton link="/tasks">Смотреть все задачи</PseudoButton>
                         </Container>
                     }

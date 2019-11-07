@@ -1,5 +1,6 @@
 import PersonItem from "../PersonItem/PersonItem";
 import React from "react";
+import {formatDateToString} from "../../helpers/helpers";
 
 export const COLUMNS_PROJECT_EVENTS = [
     {
@@ -32,6 +33,9 @@ export const COLUMNS_SUBTASKS = [
         label: 'Дата окончания',
         name: 'Date',
         width: '30%',
+        cell: (item) => (
+            formatDateToString(item)
+        )
     },
     {
         label: 'Постановщик задачи',
@@ -46,7 +50,7 @@ export const COLUMNS_SUBTASKS = [
 export const ITEMS_SUBTASK = [
     {
         Name: 'Fffff',
-        Date: 'qqffqfqf',
+        Date: '01.01.2020',
         Person: 'qrqrqrq',
     },
 ];

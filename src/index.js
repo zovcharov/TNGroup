@@ -36,7 +36,7 @@ const Routs = () => (
               <Route exact path='/project/:projectId' component={ProjectPage} />
               <Route exact path='/projects' component={ProjectsPage} />
               <Route exact path='/' component={DashboardPage} />
-              <Route exact path='/task' component={TaskPage} />
+              <Route exact path='/task/:taskId' component={TaskPage} />
           </Wrapper>
         </Switch>
     </HashRouter>

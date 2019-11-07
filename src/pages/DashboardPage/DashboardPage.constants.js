@@ -1,8 +1,12 @@
+import {Link} from "react-router-dom";
+import React from "react";
+
 export const COLUMNS_TASKS = [
     {
         label: 'Название',
-        name: 'description',
-        width: '55%'
+        name: 'nameCell',
+        width: '55%',
+        cell: (item) => <Link className="tasks__task-name" to={`/task/${item.id}`}>{item.description}</Link>
     },
     {
         label: 'Статус',
