@@ -31,7 +31,8 @@ import {
     selectFromProjects,
     selectFromTasks,
     selectFromLastTasks,
-    selectProjectPermissions
+    selectProjectPermissions,
+    selectFromPlannedRisks
 } from './selectors';
 
 import agreementsMock from './mocks/agreementsMock';
@@ -77,8 +78,8 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ risksDataStatus: 'loading' });
         case RISKS_UPDATE:
             return stateAssign({
-                unplannedRisks: action.data.unplannedRisks.length ? action.data.unplannedRisks : unplannedRisksMock,
-                plannedRisks: action.data.plannedRisks.length ? action.data.plannedRisks : plannedRisksMock,
+                unplannedRisks: selectFromPlannedRisks(action.data.unplannedRisks),
+                plannedRisks: selectFromPlannedRisks(action.data.plannedRisks),
                 risksProjectId: action.data.projectId,
                 risksDataStatus: 'loaded',
             });

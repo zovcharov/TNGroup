@@ -18,6 +18,7 @@ const UnplannedRiskModal = ({projectId, onClose, setLoading, ...props}) => {
 
     const onSubmitRisk = () => {
         const preparedData = {
+            ProjectId: Number(projectId),
             MeasuresTakenToEliminateConsequences: eliminateMeasures,
             ResultsOfMeasuresTaken: measuresResults,
             Name: riskName,

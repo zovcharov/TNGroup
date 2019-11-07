@@ -20,6 +20,7 @@ const PlannedRiskModal = ({projectId, onClose, setLoading, ...props}) => {
 
     const onSubmitRisk = () => {
         const preparedData = {
+            ProjectId: Number(projectId),
             PreventionPlan: prevention,
             ResponsePlan: responsePlan,
             Measure: measure,

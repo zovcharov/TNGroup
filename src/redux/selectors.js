@@ -10,6 +10,13 @@ export const getTextStatus = (statusNumber) => {
     }
 };
 
+export const getRiskStatus = (statusNumber) => {
+    switch (statusNumber) {
+        case 0: return 'Риск не сработал';
+        case 1: return 'Риск сработал';
+    }
+};
+
 export const selectFromProject = (project) => {
     return {
         projectName: project.ProjectName,
@@ -49,6 +56,15 @@ export const selectProjectPermissions = (project) => {
     }
 };
 
+export const selectPlannedRisk = (risk) => {
+    return {
+        ...risk,
+        Status: getRiskStatus(risk.Status),
+        Date: formatDateToString(risk.Date),
+    }
+};
+
 export const selectFromProjects = (projects) => projects.map(selectFromProject);
 export const selectFromTasks = (tasks) => tasks.map(selectFromTask);
 export const selectFromLastTasks = (tasks) => tasks.map(selectFromLastTask);
+export const selectFromPlannedRisks = (risks) => risks.map(selectPlannedRisk);

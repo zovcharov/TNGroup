@@ -97,7 +97,7 @@ export const fetchRisks = (projectId, fetchAction, updateAction) => {
     ]).then(res => {
         const result = {
             unplannedRisks: res[0] && res[0].length ? res[0] : [],
-            plannedRisks: res[1] && res[1].length ? res[0] : [],
+            plannedRisks: res[1] && res[1].length ? res[1] : [],
             projectId
         };
 

@@ -7,7 +7,7 @@ export const unplannedRisksMock = [
         Date: (new Date()).toDateString(),
         Consequences: '',
         Id: 0,
-        Status: 'Сработал',
+        Status: 'Риск сработал',
     }, {
         ProjectId: 0,
         MeasuresTakenToEliminateConsequences: '',
@@ -16,7 +16,7 @@ export const unplannedRisksMock = [
         Date: (new Date()).toDateString(),
         Consequences: '',
         Id: 1,
-        Status: 'Сработал',
+        Status: 'Риск сработал',
     }, {
         ProjectId: 0,
         MeasuresTakenToEliminateConsequences: '',
@@ -25,7 +25,7 @@ export const unplannedRisksMock = [
         Date: (new Date()).toDateString(),
         Consequences: '',
         Id: 2,
-        Status: 'Несработал',
+        Status: 'Риск сработал',
     }
 ];
 
