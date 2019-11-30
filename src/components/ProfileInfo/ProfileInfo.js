@@ -11,6 +11,7 @@ const ProfileInfo = (props) => {
     const {
         UserName = 'Sample sample',
         Email = 'sample@sample.com',
+        Avatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
     } = info
     console.log(info)
     return (
@@ -18,7 +19,9 @@ const ProfileInfo = (props) => {
             <div className='profile-info'>
                 <Container label='Профиль'>
                     <div className='profile-info__container'>
-                        <div className='profile-info__avatar' />
+                        <div className='profile-info__avatar'>
+                            <img src={Avatar}/>
+                        </div>
                         <div className='profile-info__infoarea'>
                             <div className='profile-info__row'>
                                 <InfoBlock label='Имя:'>{UserName}</InfoBlock>
