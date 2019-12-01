@@ -20,6 +20,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import { DEFAULT_STORE } from './redux/defaultStore';
 
 import './main.scss'
+import UserDocumentsPage from "./pages/UserDocumentsPage/UserDocumentsPage";
 
 const store = createStore(rootReducer, DEFAULT_STORE);
 
@@ -37,6 +38,7 @@ const Routs = () => (
               <Route exact path='/projects' component={ProjectsPage} />
               <Route exact path='/' component={DashboardPage} />
               <Route exact path='/task/:taskId' component={TaskPage} />
+              <Route exact path='/documents' component={UserDocumentsPage} />
           </Wrapper>
         </Switch>
     </HashRouter>

@@ -154,3 +154,12 @@ export const savePlannedRisk = (projectId, data) => {
 export const saveUnplannedRisk = (projectId, data) => {
     return ApiProvider.Post( 'UnplannedRisk', '', { curProjectId: projectId, ...data });
 };
+
+export const fetchUserDocuments = (fetchAction, updateAction) => {
+    fetchAction && fetchAction()
+    return ApiProvider.Get('Agreement', 'GetForUser')
+        .then((data) => {
+            updateAction && updateAction(data);
+            return data;
+        })
+}
