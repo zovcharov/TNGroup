@@ -75,6 +75,7 @@
     color: #505050;
     padding: 12px 24px;
     justify-content: center;
+    align-items: center;
     line-height: 1.5;
     font-size: 14px;
     background-color: #fff;
@@ -83,7 +84,9 @@
       color: #505050;
     }
     a {
+      text-align: center;
       text-decoration: none;
+      width: 100%
     }
     &:hover {
       background-color: #f3f3f3;
