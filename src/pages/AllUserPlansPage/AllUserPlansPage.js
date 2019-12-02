@@ -28,7 +28,6 @@ const PlansPage = (props) => {
         }
     }, [schedulesDataStatus, schedules]);
 
-    debugger
     return (
         <div className="plans-page">
             <div className="plans__title">Календарные планы:</div>

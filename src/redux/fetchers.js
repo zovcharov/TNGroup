@@ -172,7 +172,6 @@ export const fetchUserDocuments = (fetchAction, updateAction) => {
         .then((data) => {
             console.log(data)
             const mockedData = data.length === 0 ? documentsMock : data
-            debugger
             updateAction && updateAction(mockedData);
             return data;
         })
