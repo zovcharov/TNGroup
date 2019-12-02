@@ -28,4 +28,6 @@ export const DEFAULT_STORE = {
     projectPermissions: {},
     userSchedulesDataStatus: 'pending',
     userSchedules:  [],
+    userDocumentsDataStatus: 'pending',
+    userDocuments: [],
 };

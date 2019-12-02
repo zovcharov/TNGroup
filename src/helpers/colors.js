@@ -12,7 +12,6 @@ export const getColorsArray = (colorsCount, needGradient = false) => {
     const colors = [];
     let offset = 0;
 
-    debugger
     for (let i = 0; i < colorsCount; i++) {
         if (i * BASIC_HSL_STEP >= 360) {
             offset += 7;

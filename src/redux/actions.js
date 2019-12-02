@@ -60,6 +60,9 @@ export const USER_SCHEDULES_UPDATE = 'TNG/USER_SCHEDULES_UPDATE';
 
 export const RESET_STATE = 'TNG/RESET_STATE';
 
+export const USER_DOCUMENTS_FETCH = 'TNG/USER_DOCUMENTS_FETCH';
+export const USER_DOCUMENTS_UPDATE = 'TNG/USER_DOCUMENTS_UPDATE';
+
 // Project actions
 export const projectsFetch = (data) => ({
     type: PROJECTS_FETCH,
@@ -186,7 +189,7 @@ export const singleTaskFetch = () => ({
 
 export const singleTaskUpdate = (data) => ({
     type: SINGLE_TASK_UPDATE,
-    data
+    data,
 });
 
 export const resetState = () => ({
@@ -200,4 +203,13 @@ export const userSchedulesFetch = () => ({
 export const userSchedulesUpdate = (data) => ({
     type: USER_SCHEDULES_UPDATE,
     data
+});
+
+export const userDocumentsFetch = () => ({
+    type: USER_DOCUMENTS_FETCH,
+})
+
+export const userDocumentsUpdate = (data) => ({
+    type: USER_DOCUMENTS_UPDATE,
+    data,
 });

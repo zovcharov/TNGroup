@@ -22,6 +22,7 @@ import { DEFAULT_STORE } from './redux/defaultStore';
 
 import './main.scss'
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import UserDocumentsPage from "./pages/UserDocumentsPage/UserDocumentsPage";
 
 const store = createStore(rootReducer, DEFAULT_STORE);
 
@@ -41,6 +42,7 @@ const Routs = () => (
               <Route exact path='/task/:taskId' component={TaskPage} />
               <Route exact path='/userplans' component={AllUserPlansPage} />
               <Route exact path='/profile' component={ProfilePage} />
+              <Route exact path='/documents' component={UserDocumentsPage} />
           </Wrapper>
         </Switch>
     </HashRouter>
