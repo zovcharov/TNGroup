@@ -2,16 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import GanttChart from '../../components/GanttChart/GanttChart';
+import Preloader from '../../components/Preloader/Preloader';
 
 import { userFetchSchedules } from '../../redux/fetchers';
 import {
     userSchedulesFetch,
     userSchedulesUpdate
 } from '../../redux/actions';
-
-const Plan = (tasks, index) => (
-    <GanttChart key={`schedule-${index}`} ProjectTasks={tasks.tasks} />
-)
 
 const PlansPage = (props) => {
     const {
@@ -36,6 +33,10 @@ const PlansPage = (props) => {
                 schedules.filter(item => item.ProjectTasks.length).map((schedule, index) => (
                     <GanttChart key={`schedule-${index}`} ProjectTasks={schedule.ProjectTasks} />
                 ))
+            }
+            {
+                schedulesDataStatus === 'loading' &&
+                <Preloader fullScreen />
             }
         </div>
     )

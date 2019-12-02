@@ -66,8 +66,13 @@ const Risks = ({ unplannedRisks, plannedRisks, projectId, projectPermissions }) 
                     }
                 </div>
             </div>
-            <PlannedRiskModalContainer isOpen={isPlannedRiskModalOpen} onClose={onClosePlannedRiskModal} projectId={projectId}/>
-            <UnplannedRiskModalContainer isOpen={isUnplannedRiskModalOpen} onClose={onCloseUnplannedRiskModal} projectId={projectId}/>
+            {
+                projectId &&
+                <React.Fragment>
+                    <PlannedRiskModalContainer isOpen={isPlannedRiskModalOpen} onClose={onClosePlannedRiskModal} projectId={projectId}/>
+                    <UnplannedRiskModalContainer isOpen={isUnplannedRiskModalOpen} onClose={onCloseUnplannedRiskModal} projectId={projectId}/>
+                </React.Fragment>
+            }
         </React.Fragment>
     )
 };
