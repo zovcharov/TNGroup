@@ -170,7 +170,6 @@ export const fetchUserDocuments = (fetchAction, updateAction) => {
     fetchAction && fetchAction()
     return ApiProvider.Get('Agreement', 'GetForUser')
         .then((data) => {
-            console.log(data)
             const mockedData = data.length === 0 ? documentsMock : data
             updateAction && updateAction(mockedData);
             return data;
