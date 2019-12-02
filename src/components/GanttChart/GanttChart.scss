@@ -1,9 +1,11 @@
 $cell-width: 50px;
 
 .grantt-chart {
-    width: 1300px;
+    width: 100%;
+    max-width: 1300px;
     background-color: #fff;
     padding: 30px 40px 50px 30px;
+    margin-bottom: 30px;
 
     &__chart {
         position: relative;

@@ -154,3 +154,14 @@ export const savePlannedRisk = (projectId, data) => {
 export const saveUnplannedRisk = (projectId, data) => {
     return ApiProvider.Post( 'UnplannedRisk', '', { curProjectId: projectId, ...data });
 };
+
+export const userFetchSchedules = (fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return ApiProvider.Get('PlannedSchedule', 'getforuser')
+        .then(data => {
+            debugger
+            updateAction && updateAction(data);
+            return data;
+        })
+};

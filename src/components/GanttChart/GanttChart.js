@@ -83,9 +83,13 @@ const renderPerformers = (tasks, colors) => {
 };
 
 const GanttChart = ({ ProjectTasks }) => {
-    const [colors, setColors] = useState(0)
-    const scheduleTasks = ProjectTasks.slice();
+    const [colors, setColors] = useState(0) ;
+    const scheduleTasks = ProjectTasks.slice().filter(task => (new Date(task.DateEnd) > (new Date(task.DateBegin))));
     scheduleTasks.sort((taskA, taskB) => (new Date(taskA.DateBegin)) - (new Date(taskB.DateBegin)));
+
+    if(scheduleTasks.length === 0) {
+        return null;
+    }
 
     const datesArray = getDatesArray(scheduleTasks[0].DateBegin, scheduleTasks[scheduleTasks.length - 1].DateEnd);
 

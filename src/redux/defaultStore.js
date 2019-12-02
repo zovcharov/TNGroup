@@ -26,4 +26,6 @@ export const DEFAULT_STORE = {
     singleTask: {},
     singleTaskDataState: 'pending',
     projectPermissions: {},
+    userSchedulesDataStatus: 'pending',
+    userSchedules:  [],
 };

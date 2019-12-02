@@ -5,7 +5,7 @@ const MENU_ITEMS = [
     bold: false,
   },
   {
-    link: '/plans',
+    link: '/userplans',
     title: 'Календарные планы',
     bold: false,
   },
