@@ -107,6 +107,23 @@ export const fetchRisks = (projectId, fetchAction, updateAction) => {
     });
 };
 
+export const fetchUserRisks = (fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return Promise.all([
+        ApiProvider.Get('UnplannedRisk', 'getforuser'),
+        ApiProvider.Get('PlannedRisk', 'getforuser'),
+    ]).then(res => {
+        const result = {
+            unplannedRisks: res[0] && res[0].length ? res[0] : [],
+            plannedRisks: res[1] && res[1].length ? res[1] : []
+        };
+
+        updateAction && updateAction(result);
+        return res
+    });
+};
+
 export const fetchLastProjectTasks = (fetchAction, updateAction) => {
     fetchAction && fetchAction();
 

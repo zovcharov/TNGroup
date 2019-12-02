@@ -27,6 +27,9 @@ import {
     RESET_STATE,
     USER_SCHEDULES_FETCH,
     USER_SCHEDULES_UPDATE,
+    USER_RISKS_FETCH,
+    USER_RISKS_UPDATE,
+    USER_SCHEDULES_UPDATE,
     USER_DOCUMENTS_FETCH,
     USER_DOCUMENTS_UPDATE,
 } from './actions';
@@ -86,6 +89,14 @@ export default (state = DEFAULT_STORE, action) => {
                 plannedRisks: selectFromPlannedRisks(action.data.plannedRisks),
                 risksProjectId: action.data.projectId,
                 risksDataStatus: 'loaded',
+            });
+        case USER_RISKS_FETCH:
+            return stateAssign({ userRisksDataStatus: 'loading' });
+        case USER_RISKS_UPDATE:
+            return stateAssign({
+                userUnplannedRisks: selectFromPlannedRisks(action.data.unplannedRisks),
+                userPlannedRisks: selectFromPlannedRisks(action.data.plannedRisks),
+                userRisksDataStatus: 'loaded',
             });
         case PROJECT_TASKS_FETCH:
             return stateAssign({ tasksDataStatus: 'loading' });

@@ -53,10 +53,17 @@ export const SCHEDULE_UPDATE = 'TNG/SCHEDULE_UPDATE';
 export const SINGLE_TASK_FETCH = 'TNG/SINGLE_TASK_FETCH';
 export const SINGLE_TASK_UPDATE = 'TNG/SINGLE_TASK_UPDATE';
 
-
 // User schedule
 export const USER_SCHEDULES_FETCH = 'TNG/USER_SCHEDULES_FETCH';
 export const USER_SCHEDULES_UPDATE = 'TNG/USER_SCHEDULES_UPDATE';
+
+// User reports
+export const USER_REPORTS_FETCH = 'TNG/USER_REPORTS_FETCH';
+export const USER_REPORTS_UPDATE = 'TNG/USER_REPORTS_UPDATE';
+
+// All user risks
+export const USER_RISKS_FETCH = 'TNG/USER_RISKS_FETCH';
+export const USER_RISKS_UPDATE = 'TNG/USER_RISKS_UPDATE';
 
 export const RESET_STATE = 'TNG/RESET_STATE';
 
@@ -92,6 +99,7 @@ export const usersUpdate = (data) => ({
 });
 
 // Tasks actions
+// TODO: проверить использование
 export const tasksFetch = () => ({
     type: TASKS_FETCH,
 });
@@ -100,7 +108,6 @@ export const tasksUpdate = (data) => ({
     type: TASKS_UPDATE,
     data
 });
-
 
 // Project tasks actions
 export const projectTasksFetch = () => ({
@@ -113,6 +120,7 @@ export const projectTasksUpdate = (data) => ({
 });
 
 // Schedule actions
+// TODO: проверить использование
 export const schedulesFetch = () => ({
     type: SCHEDULES_FETCH,
 });
@@ -129,6 +137,16 @@ export const risksFetch = () => ({
 
 export const risksUpdate = (data) => ({
     type: RISKS_UPDATE,
+    data
+});
+
+// User risks actions
+export const userRisksFetch = () => ({
+    type: USER_RISKS_FETCH,
+});
+
+export const userRisksUpdate = (data) => ({
+    type: USER_RISKS_UPDATE,
     data
 });
 
@@ -207,9 +225,19 @@ export const userSchedulesUpdate = (data) => ({
 
 export const userDocumentsFetch = () => ({
     type: USER_DOCUMENTS_FETCH,
-})
+});
 
 export const userDocumentsUpdate = (data) => ({
     type: USER_DOCUMENTS_UPDATE,
     data,
 });
+
+export const userReportsFetch = () => ({
+    type: USER_REPORTS_FETCH,
+});
+
+export const userReportsUpdate = (data) => ({
+    type: USER_REPORTS_UPDATE,
+    data
+});
+

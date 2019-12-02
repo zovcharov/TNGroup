@@ -30,4 +30,7 @@ export const DEFAULT_STORE = {
     userSchedules:  [],
     userDocumentsDataStatus: 'pending',
     userDocuments: [],
+    userPlannedRisks: [],
+    userUnplannedRisks: [],
+    userRisksDataStatus: 'pending',
 };

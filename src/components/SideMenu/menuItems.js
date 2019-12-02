@@ -20,7 +20,7 @@ const MENU_ITEMS = [
     bold: false,
   },
   {
-    link: '/risks',
+    link: '/userrisks',
     title: 'Управление рисками',
     bold: false,
   },
