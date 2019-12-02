@@ -25,6 +25,8 @@ import {
     SINGLE_TASK_FETCH,
     SINGLE_TASK_UPDATE,
     RESET_STATE,
+    USER_SCHEDULES_FETCH,
+    USER_SCHEDULES_UPDATE,
     USER_DOCUMENTS_FETCH,
     USER_DOCUMENTS_UPDATE,
 } from './actions';
@@ -109,6 +111,10 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ schedulesDataStatus: 'loading' });
         case SCHEDULE_UPDATE:
             return stateAssign({ schedulesDataStatus: 'loaded', schedules: action.data });
+        case USER_SCHEDULES_FETCH:
+            return stateAssign({ userSchedulesDataStatus: 'loading' });
+        case USER_SCHEDULES_UPDATE:
+            return stateAssign({ userSchedulesDataStatus: 'loaded', userSchedules: action.data });
         case USER_DOCUMENTS_FETCH:
             return stateAssign({ userDocumentsDataStatus: 'loading' });
         case USER_DOCUMENTS_UPDATE:

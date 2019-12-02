@@ -2,19 +2,19 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import GanttChart from '../../components/GanttChart/GanttChart';
-import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
 
-import { fetchSchedules } from '../../redux/fetchers';
+import { userFetchSchedules } from '../../redux/fetchers';
 import {
-    scheduleFetch,
-    scheduleUpdate
+    userSchedulesFetch,
+    userSchedulesUpdate
 } from '../../redux/actions';
 
-import './PlansPage.scss';
+const Plan = (tasks, index) => (
+    <GanttChart key={`schedule-${index}`} ProjectTasks={tasks.tasks} />
+)
 
 const PlansPage = (props) => {
     const {
-        match: { params: { projectId } },
         scheduleFetch,
         scheduleUpdate,
         schedulesDataStatus,
@@ -24,17 +24,17 @@ const PlansPage = (props) => {
 
     useEffect(() => {
         if (schedulesDataStatus === 'pending') {
-            fetchSchedules(projectId, scheduleFetch, scheduleUpdate)
+            userFetchSchedules(scheduleFetch, scheduleUpdate)
         }
     }, [schedulesDataStatus, schedules]);
 
+    debugger
     return (
         <div className="plans-page">
-            <NavigationPanel projectId={projectId} activePage="plans" />
             <div className="plans__title">Календарные планы:</div>
             {
                 schedulesDataStatus === 'loaded' &&
-                schedules.map((schedule, index) => (
+                schedules.filter(item => item.ProjectTasks.length).map((schedule, index) => (
                     <GanttChart key={`schedule-${index}`} ProjectTasks={schedule.ProjectTasks} />
                 ))
             }
@@ -43,13 +43,13 @@ const PlansPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    schedulesDataStatus: state.schedulesDataStatus,
-    schedules: state.schedules,
+    schedulesDataStatus: state.userSchedulesDataStatus,
+    schedules: state.userSchedules,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    scheduleFetch: () => dispatch(scheduleFetch()),
-    scheduleUpdate: (data) => dispatch(scheduleUpdate(data)),
+    scheduleFetch: () => dispatch(userSchedulesFetch()),
+    scheduleUpdate: (data) => dispatch(userSchedulesUpdate(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlansPage);

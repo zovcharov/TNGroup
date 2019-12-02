@@ -149,9 +149,9 @@ const ProjectMainInfo = (props) => {
     )
 }
 
-export const InfoBlock = ({ label, children }) => {
+export const InfoBlock = ({ label, children, className = '' }) => {
     return (
-        <div className='info-block'>
+        <div className={`info-block ${className}`}>
             <p className='info-block__label'>{label}</p>
             <div className='info-block__content'>
                 {children}

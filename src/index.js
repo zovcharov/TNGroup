@@ -12,6 +12,7 @@ import ProjectAgreementsPage from './pages/ProjectAgreementsPage/ProjectAgreemen
 import ProjectRisksPage from './pages/ProjectRisksPage/ProjectRisksPage';
 import ProjectTasksPage from './pages/ProjectTasksPage/ProjectTasksPage';
 import PlansPage from './pages/PlansPage/PlansPage';
+import AllUserPlansPage from './pages/AllUserPlansPage/AllUserPlansPage';
 
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import TaskPage from "./pages/TaskPage/TaskPage";
@@ -20,6 +21,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import { DEFAULT_STORE } from './redux/defaultStore';
 
 import './main.scss'
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import UserDocumentsPage from "./pages/UserDocumentsPage/UserDocumentsPage";
 
 const store = createStore(rootReducer, DEFAULT_STORE);
@@ -38,6 +40,8 @@ const Routs = () => (
               <Route exact path='/projects' component={ProjectsPage} />
               <Route exact path='/' component={DashboardPage} />
               <Route exact path='/task/:taskId' component={TaskPage} />
+              <Route exact path='/userplans' component={AllUserPlansPage} />
+              <Route exact path='/profile' component={ProfilePage} />
               <Route exact path='/documents' component={UserDocumentsPage} />
           </Wrapper>
         </Switch>
