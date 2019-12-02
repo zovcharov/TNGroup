@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './redux/reducers';
@@ -14,6 +14,8 @@ import ProjectTasksPage from './pages/ProjectTasksPage/ProjectTasksPage';
 import PlansPage from './pages/PlansPage/PlansPage';
 import AllUserPlansPage from './pages/AllUserPlansPage/AllUserPlansPage';
 import AllUserRisksPage from './pages/AllUserRisksPage/AllUserRisksPage';
+import AllUserAgreementsPage from './pages/AllUserAgreementsPage/AllUserAgreementsPage';
+import NotFound from './pages/NotFound/NotFound';
 
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import TaskPage from "./pages/TaskPage/TaskPage";
@@ -31,7 +33,7 @@ const store = createStore(rootReducer, DEFAULT_STORE);
 const Routs = () => (
     <HashRouter>
         <Switch>
-        <Route path='/login' component={LoginPage}/>
+            <Route path='/login' component={LoginPage}/>
           <Wrapper>
               <Route exact path='/agreements/:projectId' component={ProjectAgreementsPage} />
               <Route exact path='/risks/:projectId' component={ProjectRisksPage} />
@@ -43,8 +45,10 @@ const Routs = () => (
               <Route exact path='/task/:taskId' component={TaskPage} />
               <Route exact path='/userplans' component={AllUserPlansPage} />
               <Route exact path='/userrisks' component={AllUserRisksPage} />
+              <Route exact path='/useragreements' component={AllUserAgreementsPage} />
               <Route exact path='/profile' component={ProfilePage} />
               <Route exact path='/documents' component={UserDocumentsPage} />
+              <Route exact path='/notfound' component={NotFound} />
           </Wrapper>
         </Switch>
     </HashRouter>

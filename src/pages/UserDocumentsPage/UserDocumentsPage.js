@@ -23,7 +23,7 @@ const USER_DOCUMENTS_PAGE_COLUMNS = [
         name: 'Description',
         width: '40%',
     }
-]
+];
 
 export const prepareUserDocuments = (data) => {
     return data && data.map(item => ({
@@ -41,20 +41,22 @@ const UserDocumentsPage = (props) => {
         userDocumentsDataStatus,
         userDocumentsFetch,
         userDocumentsUpdate,
-    } = props
+    } = props;
+
     useEffect(() => {
         if (userDocumentsDataStatus === 'pending') {
             fetchUserDocuments(userDocumentsFetch, userDocumentsUpdate);
         }
-    })
+    });
     return (
         <div>
-            <Container label='Документы:'>
+            <div className="document__title">Документы:</div>
+            <Container>
                 <Table columns={USER_DOCUMENTS_PAGE_COLUMNS} items={prepareUserDocuments(userDocuments)}/>
             </Container>
         </div>
     );
-}
+};
 
 const mapStateToProps = (state) => ({
     userDocuments: state.userDocuments,

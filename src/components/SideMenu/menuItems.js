@@ -15,7 +15,7 @@ const MENU_ITEMS = [
     bold: false,
   },
   {
-    link: '/agreements',
+    link: '/useragreements',
     title: 'Согласования',
     bold: false,
   },
@@ -23,16 +23,6 @@ const MENU_ITEMS = [
     link: '/userrisks',
     title: 'Управление рисками',
     bold: false,
-  },
-  {
-    link: '/task',
-    title: 'Добавить задачу',
-    bold: true,
-  },
-  {
-    link: '/',
-    title: 'Создать проект',
-    bold: true,
   },
   {
     link: '/documents',

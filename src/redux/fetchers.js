@@ -89,6 +89,15 @@ export const fetchAgreements = (projectId, fetchAction, updateAction) => {
         })
 };
 
+export const fetchUserAgreements = (fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+
+    return ApiProvider.Get('Agreement', 'getforuser')
+        .then(data => {
+            updateAction && updateAction(data);
+        })
+};
+
 export const fetchRisks = (projectId, fetchAction, updateAction) => {
     fetchAction && fetchAction();
 
@@ -185,7 +194,7 @@ export const userFetchSchedules = (fetchAction, updateAction) => {
 
 export const fetchUserDocuments = (fetchAction, updateAction) => {
     fetchAction && fetchAction()
-    return ApiProvider.Get('Agreement', 'GetForUser')
+    return ApiProvider.Get('Attachment', 'GetForUser')
         .then((data) => {
             const mockedData = data.length === 0 ? documentsMock : data
             updateAction && updateAction(mockedData);

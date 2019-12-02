@@ -29,9 +29,10 @@ import {
     USER_SCHEDULES_UPDATE,
     USER_RISKS_FETCH,
     USER_RISKS_UPDATE,
-    USER_SCHEDULES_UPDATE,
     USER_DOCUMENTS_FETCH,
     USER_DOCUMENTS_UPDATE,
+    USER_AGREEMENTS_FETCH,
+    USER_AGREEMENTS_UPDATE,
 } from './actions';
 
 import {
@@ -80,6 +81,13 @@ export default (state = DEFAULT_STORE, action) => {
                 agreements: action.data.agreements.length ? action.data.agreements : agreementsMock,
                 agreementsProjectId: action.data.projectId,
                 agreementsDataStatus: 'loaded',
+            });
+        case USER_AGREEMENTS_FETCH:
+            return stateAssign({ userAgreementsDataStatus: 'loading' });
+        case USER_AGREEMENTS_UPDATE:
+            return stateAssign({
+                userAgreements: action.data.length ? action.data : agreementsMock,
+                userAgreementsDataStatus: 'loaded',
             });
         case RISKS_FETCH:
             return stateAssign({ risksDataStatus: 'loading' });

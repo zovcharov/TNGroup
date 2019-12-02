@@ -29,19 +29,22 @@ export const COLUMNS_AGREEMENTS = [
             return formatDateToString(item)
         }
     }
-]
+];
 
-const Agreements = ({ agreements }) => {
+const Agreements = ({ agreements, canAddAgreement = false }) => {
     return (
         <React.Fragment>
             <div className="agreements__title">Согласования:</div>
             <div className="agreements">
                 <Table columns={COLUMNS_AGREEMENTS} items={agreements} />
-                <div className="agreements__footer">
-                    <DefaultButton>
-                        <span>Добавить согласование</span>
-                    </DefaultButton>
-                </div>
+                {
+                    canAddAgreement &&
+                    <div className="agreements__footer">
+                        <DefaultButton>
+                            <span>Добавить согласование</span>
+                        </DefaultButton>
+                    </div>
+                }
             </div>
         </React.Fragment>
     )

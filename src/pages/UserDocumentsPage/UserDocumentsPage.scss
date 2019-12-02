@@ -1,4 +1,10 @@
 .document {
+  &__title {
+    font-family: "Open Sans";
+    font-size: 30px;
+    color: #505050;
+    margin-bottom: 30px;
+  }
   &__name {
     font-family: "Open Sans";
     font-size: 14px;
