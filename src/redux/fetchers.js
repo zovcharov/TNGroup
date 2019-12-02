@@ -193,11 +193,18 @@ export const userFetchSchedules = (fetchAction, updateAction) => {
 };
 
 export const fetchUserDocuments = (fetchAction, updateAction) => {
-    fetchAction && fetchAction()
+    fetchAction && fetchAction();
     return ApiProvider.Get('Attachment', 'GetForUser')
         .then((data) => {
-            const mockedData = data.length === 0 ? documentsMock : data
+            const mockedData = data.length === 0 ? documentsMock : data;
             updateAction && updateAction(mockedData);
-            return data;
         })
-}
+};
+
+export const fetchUserReports = (fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+    return ApiProvider.Get('Report', 'GetForUser')
+        .then((data) => {
+            updateAction && updateAction(data);
+        })
+};

@@ -33,4 +33,6 @@ export const DEFAULT_STORE = {
     userPlannedRisks: [],
     userUnplannedRisks: [],
     userRisksDataStatus: 'pending',
+    userReports: [],
+    userReportsDataStatus: 'pending',
 };

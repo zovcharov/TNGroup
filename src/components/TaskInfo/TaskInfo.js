@@ -24,12 +24,11 @@ const TaskInfo = (props) => {
         Name,
         Id,
         ProjectEvents,
+        Performer,
     } = info
 
     const beginDate = formatDateToString(DateBegin)
     const endDate = formatDateToString(DateEnd)
-
-    console.log(info)
 
     return (
         <div className="task-page">
@@ -68,7 +67,6 @@ const TaskInfo = (props) => {
                     <InfoBlock label='Исполнитель:'>
                         <PersonItem />
                     </InfoBlock>
-                    <InfoBlock label="Проект">qrqrrqqrqrrqqrrq</InfoBlock>
                 </Container>
             </div>
             <Container className='task-panels' label='Ближайшие вехи'>

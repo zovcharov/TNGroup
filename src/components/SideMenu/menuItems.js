@@ -10,7 +10,7 @@ const MENU_ITEMS = [
     bold: false,
   },
   {
-    link: '/reports',
+    link: '/userreports',
     title: 'Отчеты',
     bold: false,
   },

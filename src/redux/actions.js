@@ -65,10 +65,10 @@ export const USER_REPORTS_UPDATE = 'TNG/USER_REPORTS_UPDATE';
 export const USER_RISKS_FETCH = 'TNG/USER_RISKS_FETCH';
 export const USER_RISKS_UPDATE = 'TNG/USER_RISKS_UPDATE';
 
-export const RESET_STATE = 'TNG/RESET_STATE';
-
 export const USER_DOCUMENTS_FETCH = 'TNG/USER_DOCUMENTS_FETCH';
 export const USER_DOCUMENTS_UPDATE = 'TNG/USER_DOCUMENTS_UPDATE';
+
+export const RESET_STATE = 'TNG/RESET_STATE';
 
 // Project actions
 export const projectsFetch = (data) => ({

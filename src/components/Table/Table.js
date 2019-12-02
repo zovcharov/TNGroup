@@ -9,6 +9,7 @@ const Table = (props) => {
         columns = [],
         items = []
     } = props
+
     return (
         <div className='table'>
             <TableHead columns={columns} />
@@ -50,7 +51,7 @@ const TableBody = (props) => {
                         >
                             {
                                 columns.map(({name, width = 'auto', cell}, index) => {
-                                    if (!item[name]) {
+                                    if (!item[name] && typeof item[name] !== 'boolean') {
                                         return null;
                                     }
 

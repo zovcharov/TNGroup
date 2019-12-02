@@ -15,6 +15,7 @@ import PlansPage from './pages/PlansPage/PlansPage';
 import AllUserPlansPage from './pages/AllUserPlansPage/AllUserPlansPage';
 import AllUserRisksPage from './pages/AllUserRisksPage/AllUserRisksPage';
 import AllUserAgreementsPage from './pages/AllUserAgreementsPage/AllUserAgreementsPage';
+import AllUserReports from './pages/AllUserReports/AllUserReports';
 import NotFound from './pages/NotFound/NotFound';
 
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
@@ -41,14 +42,15 @@ const Routs = () => (
               <Route exact path='/plans/:projectId' component={PlansPage} />
               <Route exact path='/project/:projectId' component={ProjectPage} />
               <Route exact path='/projects' component={ProjectsPage} />
-              <Route exact path='/' component={DashboardPage} />
               <Route exact path='/task/:taskId' component={TaskPage} />
               <Route exact path='/userplans' component={AllUserPlansPage} />
               <Route exact path='/userrisks' component={AllUserRisksPage} />
               <Route exact path='/useragreements' component={AllUserAgreementsPage} />
+              <Route exact path='/userreports' component={AllUserReports} />
               <Route exact path='/profile' component={ProfilePage} />
               <Route exact path='/documents' component={UserDocumentsPage} />
               <Route exact path='/notfound' component={NotFound} />
+              <Route exact path='/' component={DashboardPage} />
           </Wrapper>
         </Switch>
     </HashRouter>

@@ -33,6 +33,8 @@ import {
     USER_DOCUMENTS_UPDATE,
     USER_AGREEMENTS_FETCH,
     USER_AGREEMENTS_UPDATE,
+    USER_REPORTS_FETCH,
+    USER_REPORTS_UPDATE,
 } from './actions';
 
 import {
@@ -43,8 +45,8 @@ import {
     selectFromPlannedRisks
 } from './selectors';
 
+import { reportsMock } from './mocks/reportsMock';
 import agreementsMock from './mocks/agreementsMock';
-import { unplannedRisksMock, plannedRisksMock } from './mocks/risksMock';
 
 export default (state = DEFAULT_STORE, action) => {
     const stateAssign = (data) => Object.assign({}, state, data);
@@ -138,6 +140,13 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ userDocumentsDataStatus: 'loading' });
         case USER_DOCUMENTS_UPDATE:
             return stateAssign({ userDocumentsDataStatus: 'loaded', userDocuments: action.data });
+        case USER_REPORTS_FETCH:
+            return stateAssign({ userReportsDataStatus: 'loading' });
+        case USER_REPORTS_UPDATE:
+            return stateAssign({
+                userReportsDataStatus: 'loaded',
+                userReports: action.data && action.data.length ? action.data.length : reportsMock
+            });
         case RESET_STATE:
             return DEFAULT_STORE;
         default:
