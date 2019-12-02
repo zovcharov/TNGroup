@@ -26,7 +26,7 @@ const USER_DOCUMENTS_PAGE_COLUMNS = [
 ]
 
 export const prepareUserDocuments = (data) => {
-    return data.map(item => ({
+    return data && data.map(item => ({
         ...item,
         namedLink: {
             name: item.Name,
@@ -35,27 +35,6 @@ export const prepareUserDocuments = (data) => {
     }))
 };
 
-const documentsMock = [
-    {
-        Name: 'Первый док',
-        LocalPath: '#',
-        Description: 'qweqweqweqweqwe',
-        Author: 'Петров Петр Петрович'
-    },
-    {
-        Name: 'Второй док',
-        LocalPath: '#',
-        Description: 'qweqweqweqweqwe',
-        Author: 'Петров Петр Петрович'
-    },
-    {
-        Name: 'Третий док',
-        LocalPath: '#',
-        Description: 'qweqweqweqweqwe',
-        Author: 'Петров Петр Петрович'
-    },
-]
-
 const UserDocumentsPage = (props) => {
     const {
         userDocuments,
@@ -63,7 +42,6 @@ const UserDocumentsPage = (props) => {
         userDocumentsFetch,
         userDocumentsUpdate,
     } = props
-    console.log(props)
     useEffect(() => {
         if (userDocumentsDataStatus === 'pending') {
             fetchUserDocuments(userDocumentsFetch, userDocumentsUpdate);
@@ -72,7 +50,7 @@ const UserDocumentsPage = (props) => {
     return (
         <div>
             <Container label='Документы:'>
-                <Table columns={USER_DOCUMENTS_PAGE_COLUMNS} items={prepareUserDocuments(documentsMock)}/>
+                <Table columns={USER_DOCUMENTS_PAGE_COLUMNS} items={prepareUserDocuments(userDocuments)}/>
             </Container>
         </div>
     );
@@ -85,7 +63,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     userDocumentsFetch: () => dispatch(userDocumentsFetch()),
-    userDocumentsUpdate: () => dispatch(userDocumentsUpdate()),
+    userDocumentsUpdate: (data) => dispatch(userDocumentsUpdate(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDocumentsPage);

@@ -1,6 +1,7 @@
 import ApiProvider from './../ApiProvider/ApiProvider';
 import { ITEMS_TASKS } from '../ApiProvider/mockups'
 import agreementsMock from "./mocks/agreementsMock";
+import {documentsMock} from "./mocks/userDocumentsMock";
 
 export const fetchProjects = (fetchAction, updateAction) => {
     fetchAction();
@@ -169,7 +170,10 @@ export const fetchUserDocuments = (fetchAction, updateAction) => {
     fetchAction && fetchAction()
     return ApiProvider.Get('Agreement', 'GetForUser')
         .then((data) => {
-            updateAction && updateAction(data);
+            console.log(data)
+            const mockedData = data.length === 0 ? documentsMock : data
+            debugger
+            updateAction && updateAction(mockedData);
             return data;
         })
 }
