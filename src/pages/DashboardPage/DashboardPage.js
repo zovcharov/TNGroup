@@ -130,7 +130,11 @@ const DashboardPage = (props) => {
                     {
                         Boolean(lastProjectTasks.length) &&
                         <Container label='Последние задачи'>
-                            <Table columns={COLUMNS_TASKS} items={prepareLastTasks(lastProjectTasks)} />
+                            <Table
+                                columns={COLUMNS_TASKS}
+                                items={prepareLastTasks(lastProjectTasks)}
+                                reload={() => fetchLastProjectTasks(lastProjectsTasksFetch, lastProjectsTasksUpdate)}
+                            />
                             <PseudoButton link="/tasks">Смотреть все задачи</PseudoButton>
                         </Container>
                     }
@@ -139,7 +143,11 @@ const DashboardPage = (props) => {
                     {
                         Boolean(lastAgreements.length) &&
                         <Container label='Последние согласования'>
-                            <Table columns={COLUMNS_AGREEMENTS} items={lastAgreements} />
+                            <Table
+                                columns={COLUMNS_AGREEMENTS}
+                                items={lastAgreements}
+                                reload={() => fetchLastAgreements(lastAgreementsFetch, lastAgreementsUpdate)}
+                            />
                             <div className='dashboard-agreements__bottom'>
                                 <PseudoButton link="/agreements">Смотреть все запросы</PseudoButton>
                             </div>

@@ -7,11 +7,15 @@ import { formatDateToString } from './../../helpers/helpers';
 const Table = (props) => {
     const {
         columns = [],
-        items = []
+        items = [],
+        reload,
     } = props
 
     return (
         <div className='table'>
+            <div className='table__controls'>
+                {reload && <button className='table__refresh' onClick={reload} />}
+            </div>
             <TableHead columns={columns} />
             <TableBody items={items} columns={columns} />
         </div>
@@ -37,8 +41,14 @@ const getValidCellValue = (cellData) => cellData instanceof Date ? formatDateToS
 const TableBody = (props) => {
     const {
         items = [],
-        columns = []
+        columns = [],
     } = props;
+
+    if (!items.length) {
+        return <div className='table__row'>
+            <TableCell width='100%'>Пусто</TableCell>
+        </div>
+    }
 
     return (
         <div className='table__body'>
