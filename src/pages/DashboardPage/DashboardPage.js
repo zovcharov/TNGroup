@@ -128,37 +128,15 @@ const DashboardPage = (props) => {
             </div>
             <div className="dashboard-panels">
                 <div className="dashboard-tasks">
-                    {
-                        Boolean(lastProjectTasks.length)
-                        && (
-                            <Container label="Последние задачи">
-                                <Table
-                                    columns={COLUMNS_TASKS}
-                                    items={prepareLastTasks(lastProjectTasks)}
-                                />
-                                <PseudoButton link="/tasks">Смотреть все задачи</PseudoButton>
-                            </Container>
-                        )
-                    }
-                </div>
-                <div className="dashboard-agreements">
-                    {
-                        Boolean(lastAgreements.length)
-                        && (
-                            <Container label="Последние согласования">
-                                <Table
-                                    columns={COLUMNS_AGREEMENTS}
-                                    items={lastAgreements}
-                                />
-                                <div className="dashboard-agreements__bottom">
-                                    <PseudoButton link="/agreements">Смотреть все запросы</PseudoButton>
-                                </div>
-                            </Container>
-                        )
-                    }
+                    <Container label="Последние задачи">
+                        <Table
+                            columns={COLUMNS_TASKS}
+                            items={prepareLastTasks(lastProjectTasks)}
+                        />
+                        <PseudoButton link="/tasks">Смотреть все задачи</PseudoButton>
+                    </Container>
                 </div>
             </div>
-
             <CreateProjectModal isOpen={isCreateProjectModalOpen} onClose={closeCreateProjectModal} />
         </div>
     );
