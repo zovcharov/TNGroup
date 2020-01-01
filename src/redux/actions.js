@@ -70,6 +70,9 @@ export const USER_DOCUMENTS_UPDATE = 'TNG/USER_DOCUMENTS_UPDATE';
 
 export const RESET_STATE = 'TNG/RESET_STATE';
 
+export const USER_PROFILE_FETCH = 'TNG/USER_PROFILE_FETCH';
+export const USER_PROFILE_UPDATE = 'TNG/USER_PROFILE_UPDATE';
+
 // Project actions
 export const projectsFetch = (data) => ({
     type: PROJECTS_FETCH,
@@ -237,6 +240,15 @@ export const userReportsFetch = () => ({
 });
 
 export const userReportsUpdate = (data) => ({
+    type: USER_REPORTS_UPDATE,
+    data
+});
+
+export const userProfileFetch = () => ({
+    type: USER_REPORTS_FETCH,
+});
+
+export const userProfileUpdate = (data) => ({
     type: USER_REPORTS_UPDATE,
     data
 });

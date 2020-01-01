@@ -35,6 +35,8 @@ import {
     USER_AGREEMENTS_UPDATE,
     USER_REPORTS_FETCH,
     USER_REPORTS_UPDATE,
+    USER_PROFILE_FETCH,
+    USER_PROFILE_UPDATE,
 } from './actions';
 
 import {
@@ -147,6 +149,13 @@ export default (state = DEFAULT_STORE, action) => {
                 userReportsDataStatus: 'loaded',
                 userReports: action.data && action.data.length ? action.data.length : reportsMock
             });
+        case USER_PROFILE_FETCH:
+            return stateAssign(({userProfileFetchStatus: 'loading'}));
+        case USER_PROFILE_UPDATE:
+            return stateAssign(({
+                userProfileDataStatus: 'loaded',
+                userProfile: action.data && action.data
+            }));
         case RESET_STATE:
             return DEFAULT_STORE;
         default:

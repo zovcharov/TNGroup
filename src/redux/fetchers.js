@@ -208,3 +208,11 @@ export const fetchUserReports = (fetchAction, updateAction) => {
             updateAction && updateAction(data);
         })
 };
+
+export const fetchUserProfile = (fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+    return ApiProvider.Get('Employee', 'GetForUser')
+        .then((data) => {
+            updateAction && updateAction(data)
+        })
+};
