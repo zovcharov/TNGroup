@@ -245,11 +245,11 @@ export const userReportsUpdate = (data) => ({
 });
 
 export const userProfileFetch = () => ({
-    type: USER_REPORTS_FETCH,
+    type: USER_PROFILE_FETCH,
 });
 
 export const userProfileUpdate = (data) => ({
-    type: USER_REPORTS_UPDATE,
+    type: USER_PROFILE_UPDATE,
     data
 });
 

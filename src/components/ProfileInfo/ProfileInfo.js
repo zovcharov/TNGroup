@@ -3,45 +3,53 @@ import PropTypes from 'prop-types'
 import './ProfileInfo.scss'
 import Container from "../Container/Container";
 import {InfoBlock} from "../ProjectMainInfo/ProjectPassport";
+import {formatDateToString} from "../../helpers/helpers";
 
 const ProfileInfo = (props) => {
     const {
         info = {},
     } = props
     const {
-        UserName = 'Sample sample',
-        Email = 'sample@sample.com',
-        Avatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
-    } = info
-    console.log(info)
+        Name,
+        Email,
+        RefUrlAvatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
+        Phone,
+        Position,
+        Department,
+        IsWhatsApp,
+        DateBirth,
+        SocialNet,
+        Sex,
+        Skype
+    } = info;
     return (
         <div className='profile-page'>
             <div className='profile-info'>
                 <Container label='Профиль'>
                     <div className='profile-info__container'>
                         <div className='profile-info__avatar'>
-                            <img src={Avatar}/>
+                            <img src={RefUrlAvatar}/>
                         </div>
                         <div className='profile-info__infoarea'>
                             <div className='profile-info__row'>
-                                <InfoBlock label='Имя:'>{UserName}</InfoBlock>
-                                <InfoBlock label='Контактный телефон:'>Иванов Иван Иванович</InfoBlock>
+                                <InfoBlock label='Имя:'>{Name}</InfoBlock>
+                                <InfoBlock label='Контактный телефон:'>{Phone}</InfoBlock>
                             </div>
                             <div className='profile-info__row'>
-                                <InfoBlock label='Должность:'>Иванов Иван Иванович</InfoBlock>
+                                <InfoBlock label='Должность:'>{Position}</InfoBlock>
                                 <InfoBlock label='Электронная почта:'>{Email}</InfoBlock>
                             </div>
                             <div className='profile-info__row'>
-                                <InfoBlock label='Отдел:'>Иванов Иван Иванович</InfoBlock>
-                                <InfoBlock label='WhatsApp:'>Иванов Иван Иванович</InfoBlock>
+                                <InfoBlock label='Отдел:'>{Department}</InfoBlock>
+                                <InfoBlock label='WhatsApp:'>{IsWhatsApp ? 'Да' : 'Нет'}</InfoBlock>
                             </div>
                             <div className='profile-info__row'>
-                                <InfoBlock label='Дата рождения:'>Иванов Иван Иванович</InfoBlock>
-                                <InfoBlock label='Соц. Сети:'>Иванов Иван Иванович</InfoBlock>
+                                <InfoBlock label='Дата рождения:'>{formatDateToString(DateBirth)}</InfoBlock>
+                                <InfoBlock label='Соц. Сети:'>{SocialNet}</InfoBlock>
                             </div>
                             <div className='profile-info__row'>
-                                <InfoBlock label='Пол:'>Иванов Иван Иванович</InfoBlock>
-                                <InfoBlock label='Skype:'>Иванов Иван Иванович</InfoBlock>
+                                <InfoBlock label='Пол:'>{Sex ? 'Мужчина' : 'Женщина'}</InfoBlock>
+                                <InfoBlock label='Skype:'>{Skype}</InfoBlock>
                             </div>
                         </div>
                     </div>
