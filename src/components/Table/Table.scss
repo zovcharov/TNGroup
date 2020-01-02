@@ -18,6 +18,12 @@
     justify-content: space-between;
     padding: 20px 0;
     border-bottom: 2px solid #e6e6e6;
+    &_empty {
+      .table__cell {
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
   &__cell {
     word-break: break-all;

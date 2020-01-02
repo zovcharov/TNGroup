@@ -1,18 +1,44 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
+import {userProfileFetch, userProfileUpdate} from "../../redux/actions";
+import {fetchUserProfile} from "../../redux/fetchers";
 
 const ProfilePage = (props) => {
     const {
-        users = []
-    } = props
+        userProfile = {},
+        userProfileDataStatus,
+        userProfileFetch,
+        userProfileUpdate
+    } = props;
+
+    useEffect(() => {
+        if (userProfileDataStatus === 'pending') {
+            fetchUserProfile(userProfileFetch, userProfileUpdate)
+        }
+    });
+
     return (
-        <ProfileInfo info={users[0]} />
+        <ProfileInfo info={userProfile} />
     )
-}
+};
 
-const mapStateToProps = ({ users }) => ({
-    users,
-})
+ProfilePage.propTypes = {
+    userProfile: PropTypes.object,
+    userProfileDataStatus: PropTypes.string,
+    userProfileFetch: PropTypes.func,
+    userProfileUpdate: PropTypes.func
+};
 
-export default connect(mapStateToProps, {})(ProfilePage)
+const mapStateToProps = (state) => ({
+    userProfile: state.userProfile,
+    userProfileDataStatus: state.userProfileDataStatus
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    userProfileFetch: () => dispatch(userProfileFetch()),
+    userProfileUpdate: (data) => dispatch(userProfileUpdate(data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)

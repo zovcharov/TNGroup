@@ -47,7 +47,7 @@ const TableBody = (props) => {
 
     if (!items.length) {
         return (
-            <div className="table__row">
+            <div className="table__row table__row_empty">
                 <TableCell width="100%">Пусто</TableCell>
             </div>
         );

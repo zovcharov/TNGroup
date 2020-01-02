@@ -45,16 +45,7 @@
     }
   }
   &-tasks {
-    width: 75%;
+    width: 100%;
     display: flex;
-  }
-  &-agreements {
-    padding-left: 30px;
-    width: 25%;
-    display: flex;
-    &__bottom {
-      display: flex;
-      justify-content: center;
-    }
   }
 }
