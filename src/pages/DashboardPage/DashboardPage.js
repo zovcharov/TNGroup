@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 import './DashboardPage.scss';
 
@@ -69,16 +70,19 @@ const DashboardPage = (props) => {
             icon: tasksAndProjectsIcon,
             label: 'Задачи и проекты',
             bgPattern: 'linear-gradient(135deg, #ef8613 0%, #ef8613 20%, #f3b506 100%)',
+            to: 'projects'
         },
         {
             icon: risksIcon,
             label: 'Управление рисками',
             bgPattern: 'linear-gradient(135deg, #bc437d 0%, #bc437d 20%, #ef4d54 100%)',
+            to: 'userrisks'
         },
         {
             icon: agreementsIcon,
             label: 'Согласования',
             bgPattern: 'linear-gradient(135deg, #1eab58 0%, #1eab58 20%, #7af258 100%)',
+            to: 'useragreements'
         },
         {
             icon: employeesIcon,
@@ -100,11 +104,11 @@ const DashboardPage = (props) => {
     return (
         <div className="dashboard-page">
             <div className="dashboard-panels">
-                <div className="dashboard-calendar">
+                <Link to='userplans' className="dashboard-calendar">
                     <p className='dashboard-calendar__title'>
                         Календарные планы
                     </p>
-                </div>
+                </Link>
                 <div className="dashboard-shortcuts">
                     {
                         PANELS.map((panel, index) => {
@@ -113,11 +117,13 @@ const DashboardPage = (props) => {
                                 label,
                                 bgPattern,
                                 onClick,
+                                to='/'
                             } = panel;
 
                             return (
                                 <div key={index} className="dashboard-shortcuts__wrapper">
                                     <SquarePanel
+                                        to={to}
                                         icon={icon}
                                         bgPattern={bgPattern}
                                         onClick={onClick}

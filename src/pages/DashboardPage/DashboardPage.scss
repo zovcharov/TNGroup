@@ -17,6 +17,8 @@
   &-calendar {
     width: 345px;
     background: #FFFFFF url('../../icons/calendar-plans-btn-icon.png') no-repeat center center/60%;
+    text-decoration: none;
+    color: #505050;
     &__title {
       width: 100%;
       text-align: center;
