@@ -101,6 +101,7 @@ class ApiProvider {
                 return this.Get(controller, param, data);
             })
             .catch(err => {
+                window.location.hash = '#/login';
             })
     }
 }
