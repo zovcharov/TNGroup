@@ -100,7 +100,11 @@ const DashboardPage = (props) => {
     return (
         <div className="dashboard-page">
             <div className="dashboard-panels">
-                <div className="dashboard-calendar" />
+                <div className="dashboard-calendar">
+                    <p className='dashboard-calendar__title'>
+                        Календарные планы
+                    </p>
+                </div>
                 <div className="dashboard-shortcuts">
                     {
                         PANELS.map((panel, index) => {
