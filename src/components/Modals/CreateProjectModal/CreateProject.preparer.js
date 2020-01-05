@@ -18,31 +18,31 @@ const getIdFromParticipantItem = (participant) => {
 const getParticipants = (participants) => {
     const preparedParticipants = [];
 
-    preparedParticipants.push({
+    participants.initiator[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.initiator[0]),
         ProjectRole: ROLES_IN_PROJECT.Initiator,
     });
-    preparedParticipants.push({
+    participants.curator[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.curator[0]),
         ProjectRole: ROLES_IN_PROJECT.Curator,
     });
-    preparedParticipants.push({
+    participants.customer[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.customer[0]),
         ProjectRole: ROLES_IN_PROJECT.Customer,
     });
-    preparedParticipants.push({
+    participants.customerContact[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.customerContact[0]),
         ProjectRole: ROLES_IN_PROJECT.Unknown,
     });
-    preparedParticipants.push({
+    participants.controller[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.controller[0]),
         ProjectRole: ROLES_IN_PROJECT.Controller,
     });
-    preparedParticipants.push({
+    participants.manager[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.manager[0]),
         ProjectRole: ROLES_IN_PROJECT.Manager,
     });
-    participants.executors.forEach(item => {
+    participants.executors &&  participants.executors.forEach(item => {
         preparedParticipants.push({
             EmployeeId: getIdFromParticipantItem(item),
             ProjectRole: ROLES_IN_PROJECT.Worker,

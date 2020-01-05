@@ -12,14 +12,15 @@ const TngUserSelectDropdown = ({ users, onSelectUser }) => {
     }
 
     const getUsersList = () => {
+        console.log(users)
         if (users && users.length) {
             return users.map(item => (
                 <li
                     className="user-select__item"
-                    key={`user-dropdown-${item.Login}`}
+                    key={`user-dropdown-${item.User.Login}`}
                     onClick={() => onSelectUser(item.Id)}
                 >
-                    { item.UserName }
+                    { item.Name }
                 </li>
             ))
         }
@@ -72,7 +73,7 @@ const TngUserSelect = ({users, usersDataState, onChangeSelectedUser, multiUsers,
         const user = users.find(user => user.Id === item);
         return (
             <span className="user-select__selected-user" key={item}>
-                {user.UserName}
+                {user.Name}
                 <span className="user-select__remove-user" onClick={() => onRemoveUser(item)} />
             </span>
         )

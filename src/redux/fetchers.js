@@ -23,7 +23,7 @@ export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
 
             Promise.all([fetchTasks(projectId), fetchAgreements(projectId)]).then(res => {
                 project.tasks = res[0].length === 0 ? ITEMS_TASKS : res[0];
-                project.agreement = res[1] && res[1].length ? res[1] : agreementsMock;
+                project.agreement = res[1] && res[1].length ? res[1] : [];
 
                 updateAction(project);
             })
@@ -33,7 +33,7 @@ export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
 export const fetchUsers = (fetchAction, updateAction) => {
     fetchAction();
 
-    return ApiProvider.Get('user')
+    return ApiProvider.Get('Employee')
         .then(data => {
             updateAction(data);
         })
@@ -196,8 +196,7 @@ export const fetchUserDocuments = (fetchAction, updateAction) => {
     fetchAction && fetchAction();
     return ApiProvider.Get('Attachment', 'GetForUser')
         .then((data) => {
-            const mockedData = data.length === 0 ? documentsMock : data;
-            updateAction && updateAction(mockedData);
+            updateAction && updateAction(data.length === 0 ? [] : data);
         })
 };
 

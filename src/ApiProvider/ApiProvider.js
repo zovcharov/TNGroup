@@ -102,6 +102,8 @@ class ApiProvider {
             })
             .catch(err => {
                 window.location.hash = '#/login';
+                localStorage.removeItem('refresh_id');
+                localStorage.removeItem('access_token');
             })
     }
 }
