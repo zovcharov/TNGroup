@@ -20,7 +20,6 @@ const TngUserSelectDropdown = ({ users, onSelectUser }) => {
 
     // eslint-disable-next-line consistent-return
     const getUsersList = () => {
-        console.log(users)
         if (users && users.length) {
             return users.map((item) => (
                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
