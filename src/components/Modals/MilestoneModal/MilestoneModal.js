@@ -1,8 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-props-no-spreading */
 
-import ModalWrapper from './../ModalWrapper';
-import Button from './../../Button/Button';
-import DatePicker from './../../DatePicker/DatePicker';
+import React, { useState, useEffect } from 'react';
+
+import ModalWrapper from '../ModalWrapper';
+import Button from '../../Button/Button';
+import DatePicker from '../../DatePicker/DatePicker';
 
 import './MilestoneModal.scss';
 
@@ -10,9 +16,10 @@ const MilestoneModal = ({ isOpen, onClose, onSubmit }) => {
     const [isModalOpen, onChangeModalOpen] = useState(false);
     const [milestoneName, changeMilestoneName] = useState('');
     const [milestoneDate, changeMilestoneDate] = useState(new Date());
-    let inputRef = React.createRef();
+    const inputRef = React.createRef();
 
     const onCloseModal = () => {
+        // eslint-disable-next-line no-unused-expressions
         onClose && onClose();
         onChangeModalOpen(false);
     };
@@ -34,13 +41,16 @@ const MilestoneModal = ({ isOpen, onClose, onSubmit }) => {
         changeMilestoneName('');
         // Ёбаные хаки с закрытиями модалки, иначе может неправильно отработать
         setTimeout(() => {
+            // eslint-disable-next-line no-unused-expressions
             onClose && onClose();
             onChangeModalOpen(false);
         });
     };
 
     useEffect(() => {
+        // eslint-disable-next-line no-unused-expressions
         isOpen && onChangeModalOpen(true);
+        // eslint-disable-next-line no-unused-expressions
         inputRef.current && inputRef.current.focus();
     }, [isOpen, inputRef]);
 
@@ -61,7 +71,7 @@ const MilestoneModal = ({ isOpen, onClose, onSubmit }) => {
                 </Button>
             </div>
         </ModalWrapper>
-    )
+    );
 };
 
 export default MilestoneModal;

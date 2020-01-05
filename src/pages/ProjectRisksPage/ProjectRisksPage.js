@@ -1,5 +1,8 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import Risks from '../../components/Risks/Risks';
 import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
@@ -9,7 +12,7 @@ import {
     risksFetch,
     risksUpdate,
     singleProjectFetch,
-    singleProjectUpdate
+    singleProjectUpdate,
 } from '../../redux/actions';
 
 const ProjectRisksPage = (props) => {
@@ -22,10 +25,9 @@ const ProjectRisksPage = (props) => {
         risksFetch,
         risksUpdate,
         projectPermissions,
-        singleProject,
         singleProjectDataState,
         singleProjectFetch,
-        singleProjectUpdate
+        singleProjectUpdate,
     } = props;
 
     useEffect(() => {
@@ -34,11 +36,10 @@ const ProjectRisksPage = (props) => {
         }
     }, [risksDataStatus, unplannedRisks, plannedRisks]);
 
-    useEffect(()  => {
+    useEffect(() => {
         if (singleProjectDataState === 'pending') {
-            fetchSingleProject(projectId, singleProjectFetch, singleProjectUpdate)
+            fetchSingleProject(projectId, singleProjectFetch, singleProjectUpdate);
         }
-
     }, [projectId]);
 
     useEffect(() => {
@@ -48,30 +49,30 @@ const ProjectRisksPage = (props) => {
     }, [projectId]);
 
     if (risksDataStatus === 'loading') {
-        return <Preloader fullScreen />
+        return <Preloader fullScreen />;
     }
 
     return (
-        <React.Fragment>
-            <NavigationPanel  projectId={projectId} activePage="risks" />
+        <>
+            <NavigationPanel projectId={projectId} activePage="risks" />
             <Risks
                 projectPermissions={projectPermissions}
                 unplannedRisks={unplannedRisks}
                 plannedRisks={plannedRisks}
                 projectId={projectId}
             />
-        </React.Fragment>
+        </>
     );
 };
 
 const mapStateToProps = ({
-     unplannedRisks,
-     plannedRisks,
-     risksProjectId,
-     risksDataStatus,
-     projectPermissions,
-     singleProject,
-     singleProjectDataState
+    unplannedRisks,
+    plannedRisks,
+    risksProjectId,
+    risksDataStatus,
+    projectPermissions,
+    singleProject,
+    singleProjectDataState,
 }) => ({
     unplannedRisks,
     plannedRisks,
@@ -79,7 +80,7 @@ const mapStateToProps = ({
     risksDataStatus,
     projectPermissions,
     singleProject,
-    singleProjectDataState
+    singleProjectDataState,
 });
 
 const mapDispatchToProps = (dispatch) => ({

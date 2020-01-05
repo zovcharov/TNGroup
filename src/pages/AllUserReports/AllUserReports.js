@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
@@ -28,7 +31,7 @@ const AllUserReports = (props) => {
     }, []);
 
     if (userReportsDataStatus === 'loading') {
-        return <Preloader fullScreen />
+        return <Preloader fullScreen />;
     }
 
     return (
@@ -36,18 +39,18 @@ const AllUserReports = (props) => {
             <div className="user-reports__title">Отчеты:</div>
             <Reports reports={userReports} />
         </div>
-    )
+    );
 };
 
 const mapStateToProps = ({
     userReports,
-    userReportsDataStatus
+    userReportsDataStatus,
 }) => ({
     userReports,
-    userReportsDataStatus
+    userReportsDataStatus,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     userReportsFetch: () => dispatch(userReportsFetch()),
     userReportsUpdate: (data) => dispatch(userReportsUpdate(data)),
 });

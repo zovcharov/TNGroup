@@ -1,6 +1,6 @@
-import PersonItem from "../PersonItem/PersonItem";
-import React from "react";
-import {formatDateToString} from "../../helpers/helpers";
+import React from 'react';
+import PersonItem from '../PersonItem/PersonItem';
+import { formatDateToString } from '../../helpers/helpers';
 
 export const COLUMNS_PROJECT_EVENTS = [
     {
@@ -17,11 +17,11 @@ export const COLUMNS_PROJECT_EVENTS = [
         label: 'Прикреплено',
         name: 'Person',
         width: '30%',
-        cell: (item) => (
+        cell: () => (
             <PersonItem />
         ),
     },
-]
+];
 
 export const COLUMNS_SUBTASKS = [
     {
@@ -35,13 +35,13 @@ export const COLUMNS_SUBTASKS = [
         width: '30%',
         cell: (item) => (
             formatDateToString(item)
-        )
+        ),
     },
     {
         label: 'Постановщик задачи',
         name: 'Person',
         width: '30%',
-        cell: (item) => (
+        cell: () => (
             <PersonItem />
         ),
     },

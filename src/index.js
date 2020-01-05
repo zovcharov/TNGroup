@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -18,15 +18,15 @@ import AllUserAgreementsPage from './pages/AllUserAgreementsPage/AllUserAgreemen
 import AllUserReports from './pages/AllUserReports/AllUserReports';
 import NotFound from './pages/NotFound/NotFound';
 
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
-import TaskPage from "./pages/TaskPage/TaskPage";
-import Wrapper from "./components/Wrapper/Wrapper";
+import DashboardPage from './pages/DashboardPage/DashboardPage';
+import TaskPage from './pages/TaskPage/TaskPage';
+import Wrapper from './components/Wrapper/Wrapper';
 
 import { DEFAULT_STORE } from './redux/defaultStore';
 
-import './main.scss'
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import UserDocumentsPage from "./pages/UserDocumentsPage/UserDocumentsPage";
+import './main.scss';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import UserDocumentsPage from './pages/UserDocumentsPage/UserDocumentsPage';
 
 const store = createStore(rootReducer, DEFAULT_STORE);
 
@@ -34,32 +34,32 @@ const store = createStore(rootReducer, DEFAULT_STORE);
 const Routs = () => (
     <HashRouter>
         <Switch>
-            <Route path='/login' component={LoginPage}/>
-          <Wrapper>
-              <Route exact path='/agreements/:projectId' component={ProjectAgreementsPage} />
-              <Route exact path='/risks/:projectId' component={ProjectRisksPage} />
-              <Route exact path='/tasks/:projectId' component={ProjectTasksPage} />
-              <Route exact path='/plans/:projectId' component={PlansPage} />
-              <Route exact path='/project/:projectId' component={ProjectPage} />
-              <Route exact path='/projects' component={ProjectsPage} />
-              <Route exact path='/task/:taskId' component={TaskPage} />
-              <Route exact path='/userplans' component={AllUserPlansPage} />
-              <Route exact path='/userrisks' component={AllUserRisksPage} />
-              <Route exact path='/useragreements' component={AllUserAgreementsPage} />
-              <Route exact path='/userreports' component={AllUserReports} />
-              <Route exact path='/profile' component={ProfilePage} />
-              <Route exact path='/documents' component={UserDocumentsPage} />
-              <Route exact path='/notfound' component={NotFound} />
-              <Route exact path='/' component={DashboardPage} />
-          </Wrapper>
+            <Route path="/login" component={LoginPage} />
+            <Wrapper>
+                <Route exact path="/agreements/:projectId" component={ProjectAgreementsPage} />
+                <Route exact path="/risks/:projectId" component={ProjectRisksPage} />
+                <Route exact path="/tasks/:projectId" component={ProjectTasksPage} />
+                <Route exact path="/plans/:projectId" component={PlansPage} />
+                <Route exact path="/project/:projectId" component={ProjectPage} />
+                <Route exact path="/projects" component={ProjectsPage} />
+                <Route exact path="/task/:taskId" component={TaskPage} />
+                <Route exact path="/userplans" component={AllUserPlansPage} />
+                <Route exact path="/userrisks" component={AllUserRisksPage} />
+                <Route exact path="/useragreements" component={AllUserAgreementsPage} />
+                <Route exact path="/userreports" component={AllUserReports} />
+                <Route exact path="/profile" component={ProfilePage} />
+                <Route exact path="/documents" component={UserDocumentsPage} />
+                <Route exact path="/notfound" component={NotFound} />
+                <Route exact path="/" component={DashboardPage} />
+            </Wrapper>
         </Switch>
     </HashRouter>
 );
 
 ReactDOM.render((
     <Provider store={store}>
-        <React.Fragment>
+        <>
             <Routs />
-        </React.Fragment>
+        </>
     </Provider>
-), document.getElementById("root"));
+), document.getElementById('root'));

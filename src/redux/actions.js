@@ -1,6 +1,3 @@
-import { createAction } from 'redux-actions';
-import ApiProvider from './../ApiProvider/ApiProvider'
-
 // Projects action types
 export const PROJECTS_FETCH = 'TNG/PROJECTS_FETCH';
 export const PROJECTS_UPDATE = 'TNG/PROJECTS_UPDATE';
@@ -74,21 +71,21 @@ export const USER_PROFILE_FETCH = 'TNG/USER_PROFILE_FETCH';
 export const USER_PROFILE_UPDATE = 'TNG/USER_PROFILE_UPDATE';
 
 // Project actions
-export const projectsFetch = (data) => ({
+export const projectsFetch = () => ({
     type: PROJECTS_FETCH,
 });
 export const projectsUpdate = (data) => ({
     type: PROJECTS_UPDATE,
-    data
+    data,
 });
 
 // Single project actions
-export const singleProjectFetch = (data) => ({
+export const singleProjectFetch = () => ({
     type: SINGLE_PROJECT_FETCH,
 });
 export const singleProjectUpdate = (data) => ({
     type: SINGLE_PROJECT_UPDATE,
-    data
+    data,
 });
 
 // Users actions
@@ -98,7 +95,7 @@ export const usersFetch = () => ({
 
 export const usersUpdate = (data) => ({
     type: USERS_UPDATE,
-    data
+    data,
 });
 
 // Tasks actions
@@ -109,7 +106,7 @@ export const tasksFetch = () => ({
 
 export const tasksUpdate = (data) => ({
     type: TASKS_UPDATE,
-    data
+    data,
 });
 
 // Project tasks actions
@@ -119,7 +116,7 @@ export const projectTasksFetch = () => ({
 
 export const projectTasksUpdate = (data) => ({
     type: PROJECT_TASKS_UPDATE,
-    data
+    data,
 });
 
 // Schedule actions
@@ -130,7 +127,7 @@ export const schedulesFetch = () => ({
 
 export const schedulesUpdate = (data) => ({
     type: SCHEDULES_UPDATE,
-    data
+    data,
 });
 
 // Risks actions
@@ -140,7 +137,7 @@ export const risksFetch = () => ({
 
 export const risksUpdate = (data) => ({
     type: RISKS_UPDATE,
-    data
+    data,
 });
 
 // User risks actions
@@ -150,7 +147,7 @@ export const userRisksFetch = () => ({
 
 export const userRisksUpdate = (data) => ({
     type: USER_RISKS_UPDATE,
-    data
+    data,
 });
 
 // Agreement actions
@@ -160,7 +157,7 @@ export const agreementsFetch = () => ({
 
 export const agreementsUpdate = (data) => ({
     type: AGREEMENTS_UPDATE,
-    data
+    data,
 });
 
 // User agreement actions
@@ -170,7 +167,7 @@ export const userAgreementsFetch = () => ({
 
 export const userAgreementsUpdate = (data) => ({
     type: USER_AGREEMENTS_UPDATE,
-    data
+    data,
 });
 
 // Last projects tasks actions
@@ -180,7 +177,7 @@ export const lastProjectsTasksFetch = () => ({
 
 export const lastProjectsTasksUpdate = (data) => ({
     type: LAST_PROJECT_TASKS_UPDATE,
-    data
+    data,
 });
 
 // Last agreements actions
@@ -190,7 +187,7 @@ export const lastAgreementsFetch = () => ({
 
 export const lastAgreementsUpdate = (data) => ({
     type: LAST_AGREEMENTS_UPDATE,
-    data
+    data,
 });
 
 // Schedule actions
@@ -200,7 +197,7 @@ export const scheduleFetch = () => ({
 
 export const scheduleUpdate = (data) => ({
     type: SCHEDULES_UPDATE,
-    data
+    data,
 });
 
 // Task actions
@@ -223,7 +220,7 @@ export const userSchedulesFetch = () => ({
 
 export const userSchedulesUpdate = (data) => ({
     type: USER_SCHEDULES_UPDATE,
-    data
+    data,
 });
 
 export const userDocumentsFetch = () => ({
@@ -241,7 +238,7 @@ export const userReportsFetch = () => ({
 
 export const userReportsUpdate = (data) => ({
     type: USER_REPORTS_UPDATE,
-    data
+    data,
 });
 
 export const userProfileFetch = () => ({
@@ -250,6 +247,5 @@ export const userProfileFetch = () => ({
 
 export const userProfileUpdate = (data) => ({
     type: USER_PROFILE_UPDATE,
-    data
+    data,
 });
-

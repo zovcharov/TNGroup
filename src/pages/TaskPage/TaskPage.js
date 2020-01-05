@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './TaskPage.scss';
@@ -11,21 +14,21 @@ const TaskPage = (props) => {
         singleTask,
         singleTaskDataState,
         singleTaskFetch,
-        singleTaskUpdate
-    } = props
+        singleTaskUpdate,
+    } = props;
 
     useEffect(() => {
         if (singleTaskDataState === 'pending') {
             fetchSingleTask(taskId, singleTaskFetch, singleTaskUpdate);
         }
-    }, [taskId])
+    }, [taskId]);
 
     return (
-        <React.Fragment>
+        <>
             <TaskInfo info={singleTask} />
-        </React.Fragment>
-    )
-}
+        </>
+    );
+};
 
 const mapStateToProps = ({ singleTask, singleTaskDataState }) => ({
     singleTask,

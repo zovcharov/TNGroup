@@ -1,11 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-props-no-spreading */
+
+import React, { useRef } from 'react';
 import TngPortal from '../TngPortal/TngPortal';
 import Preloader from '../Preloader/Preloader';
 
 import './ModalWrapper.scss';
-import {useClickOutsideToClose} from "../../helpers/effects";
 
-const ModalWrapper = ({ isOpen, onClose, children, title, isLoading = false }) => {
+const ModalWrapper = ({
+    isOpen, onClose, children, title, isLoading = false,
+}) => {
     const overlayRef = useRef(null);
 
     if (isOpen) {
@@ -14,10 +21,11 @@ const ModalWrapper = ({ isOpen, onClose, children, title, isLoading = false }) =
                 <div className="modal__overlay">
                     <div className="modal__window">
                         {
-                            isLoading &&
+                            isLoading && (
                                 <div className="modal__loader">
                                     <Preloader fullScreen />
                                 </div>
+                            )
                         }
                         <div className="modal__content" ref={overlayRef}>
                             <div className="modal__close" onClick={onClose} />
@@ -29,7 +37,7 @@ const ModalWrapper = ({ isOpen, onClose, children, title, isLoading = false }) =
                     </div>
                 </div>
             </TngPortal>
-        )
+        );
     }
 
     return null;

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 export const ROLES_IN_PROJECT = {
     Unknown: 0,
     Manager: 1,
@@ -9,12 +11,11 @@ export const ROLES_IN_PROJECT = {
 };
 
 const isNumber = (value) => typeof value === 'number';
-const isObject = (value) => typeof value === 'object';
 
-const getIdFromParticipantItem = (participant) => {
-    return isNumber(participant) ? participant : isNumber(participant.EmployeeId) ?  participant.EmployeeId : 0;
-};
-
+const getIdFromParticipantItem = (participant) => (
+    // eslint-disable-next-line no-nested-ternary
+    isNumber(participant) ? participant : isNumber(participant.EmployeeId) ? participant.EmployeeId : 0
+);
 const getParticipants = (participants) => {
     const preparedParticipants = [];
 
@@ -42,7 +43,7 @@ const getParticipants = (participants) => {
         EmployeeId: getIdFromParticipantItem(participants.manager[0]),
         ProjectRole: ROLES_IN_PROJECT.Manager,
     });
-    participants.executors &&  participants.executors.forEach(item => {
+    participants.executors && participants.executors.forEach((item) => {
         preparedParticipants.push({
             EmployeeId: getIdFromParticipantItem(item),
             ProjectRole: ROLES_IN_PROJECT.Worker,
@@ -52,26 +53,24 @@ const getParticipants = (participants) => {
     return preparedParticipants;
 };
 
-export const prepareDataToSave = (data) => {
-    return {
-        PassportProject: {
-            Name: data.projectName,
-            Description: data.projectDescription,
-            Objective: data.projectGoal,
-            ExpectedResult: data.projectResult,
-            ExpectedProduct: data.projectProduct,
-            DateEnd: data.projectEndDate,
-            MeetingLocation: data.meetingPlace,
-            MeetingPeriodic: data.meetingPeriodicity,
-            EstimatedCost: Number(data.projectCost),
-            ApproximateEconomicEffect: Number(data.economicEffect),
-        },
-        PassportProjectId: data.passportId,
-        Id: data.projectId,
-        Participants: getParticipants(data.participants),
-        ProjectEvents: data.milestones.map(milestine => ({
-            DateExecution: milestine.date,
-            Description: milestine.name,
-        }))
-    }
-};
+export const prepareDataToSave = (data) => ({
+    PassportProject: {
+        Name: data.projectName,
+        Description: data.projectDescription,
+        Objective: data.projectGoal,
+        ExpectedResult: data.projectResult,
+        ExpectedProduct: data.projectProduct,
+        DateEnd: data.projectEndDate,
+        MeetingLocation: data.meetingPlace,
+        MeetingPeriodic: data.meetingPeriodicity,
+        EstimatedCost: Number(data.projectCost),
+        ApproximateEconomicEffect: Number(data.economicEffect),
+    },
+    PassportProjectId: data.passportId,
+    Id: data.projectId,
+    Participants: getParticipants(data.participants),
+    ProjectEvents: data.milestones.map((milestine) => ({
+        DateExecution: milestine.date,
+        Description: milestine.name,
+    })),
+});

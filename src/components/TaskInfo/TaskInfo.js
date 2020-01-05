@@ -1,22 +1,26 @@
-import React, { useEffect } from 'react'
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
 
-import './TaskInfo.scss'
-import Container from "../Container/Container";
-import {InfoBlock} from "../ProjectMainInfo/ProjectPassport";
-import Table from "../Table/Table";
-import PersonItem from "../PersonItem/PersonItem";
-import {formatDateToString} from "../../helpers/helpers";
+import React from 'react';
+
+import './TaskInfo.scss';
+import Container from '../Container/Container';
+import { InfoBlock } from '../ProjectMainInfo/ProjectPassport';
+import Table from '../Table/Table';
+import PersonItem from '../PersonItem/PersonItem';
+import { formatDateToString } from '../../helpers/helpers';
 import {
     COLUMNS_PROJECT_EVENTS,
     COLUMNS_SUBTASKS,
-    ITEMS_SUBTASK
-} from './TaskInfo.constants'
-import Commentaries from "../Commentaries/Commentaries";
+    ITEMS_SUBTASK,
+} from './TaskInfo.constants';
+import Commentaries from '../Commentaries/Commentaries';
 
 const TaskInfo = (props) => {
     const {
-        info = {}
-    } = props
+        info = {},
+    } = props;
     const {
         DateBegin,
         DateEnd,
@@ -24,11 +28,10 @@ const TaskInfo = (props) => {
         Name,
         Id,
         ProjectEvents,
-        Performer,
-    } = info
+    } = info;
 
-    const beginDate = formatDateToString(DateBegin)
-    const endDate = formatDateToString(DateEnd)
+    const beginDate = formatDateToString(DateBegin);
+    const endDate = formatDateToString(DateEnd);
 
     return (
         <div className="task-page">
@@ -64,17 +67,17 @@ const TaskInfo = (props) => {
                             </InfoBlock>
                         </div>
                     </div>
-                    <InfoBlock label='Исполнитель:'>
+                    <InfoBlock label="Исполнитель:">
                         <PersonItem />
                     </InfoBlock>
                 </Container>
             </div>
-            <Container className='task-panels' label='Ближайшие вехи'>
-                <Table columns={COLUMNS_PROJECT_EVENTS} items={ProjectEvents}/>
+            <Container className="task-panels" label="Ближайшие вехи">
+                <Table columns={COLUMNS_PROJECT_EVENTS} items={ProjectEvents} />
             </Container>
             <Commentaries />
         </div>
-    )
-}
+    );
+};
 
-export default TaskInfo
+export default TaskInfo;

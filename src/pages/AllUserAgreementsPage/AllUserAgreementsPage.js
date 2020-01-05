@@ -1,12 +1,16 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import Agreements from '../../components/Agreements/Agreements';
 
 import { fetchUserAgreements } from '../../redux/fetchers';
 import {
     userAgreementsFetch,
-    userAgreementsUpdate
+    userAgreementsUpdate,
 } from '../../redux/actions';
 
 const AllUserAgreementsPage = (props) => {
@@ -24,19 +28,19 @@ const AllUserAgreementsPage = (props) => {
     }, [userAgreements, userAgreementsDataStatus]);
 
     if (userAgreementsDataStatus === 'loading') {
-        return <Preloader fullScreen />
+        return <Preloader fullScreen />;
     }
 
     return (
-        <React.Fragment>
+        <>
             <Agreements agreements={userAgreements} />
-        </React.Fragment>
+        </>
     );
 };
 
-const mapStateToProps = ({userAgreements, userAgreementsDataStatus}) => ({
+const mapStateToProps = ({ userAgreements, userAgreementsDataStatus }) => ({
     userAgreements,
-    userAgreementsDataStatus
+    userAgreementsDataStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

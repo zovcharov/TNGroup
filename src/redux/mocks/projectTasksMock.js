@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const tasksMock = [
     {
         PlannedScheduleId: 1,
@@ -69,5 +70,5 @@ export const tasksMock = [
         NextConnectedTaskId: 1,
         Status: 1,
         Id: 7,
-    }
-]
+    },
+];

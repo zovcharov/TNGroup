@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
 
-import AddButton from './../Buttons/AddButton';
-import CreateProjectModal from './../Modals/CreateProjectModal/CreateProjectModal';
-import CreateTaskModal from './../Modals/CreateTaskModal/CreateTaskModal.container';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import AddButton from '../Buttons/AddButton';
+import CreateProjectModal from '../Modals/CreateProjectModal/CreateProjectModal';
+import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 
 import './NavigationPanel.scss';
 
@@ -28,22 +32,20 @@ const getLinks = (projectId) => [
         name: 'agreements',
         title: 'Согласования',
         url: `/agreements/${projectId}`,
-    }
+    },
 ];
 
 const NavigationPanel = ({ projectId, activePage }) => {
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
     const [isCreateTaskModalOpen, onOpenTaskProjectModal] = useState(false);
 
-    const  openCreateProjectModal = () => onOpenCreateProjectModal(true);
-    const  closeCreateProjectModal = () => onOpenCreateProjectModal(false);
+    const openCreateProjectModal = () => onOpenCreateProjectModal(true);
+    const closeCreateProjectModal = () => onOpenCreateProjectModal(false);
 
-    const  openCreateTaskModal = () => onOpenTaskProjectModal(true);
-    const  closeCreateTaskModal = () => onOpenTaskProjectModal(false);
+    const openCreateTaskModal = () => onOpenTaskProjectModal(true);
+    const closeCreateTaskModal = () => onOpenTaskProjectModal(false);
 
-    const setActiveLink = (link) => {
-        return link.name === activePage ? 'navigation-panel__link--active' : '';
-    };
+    const setActiveLink = (link) => (link.name === activePage ? 'navigation-panel__link--active' : '');
 
     return (
         <div className="navigation-panel">
@@ -52,16 +54,18 @@ const NavigationPanel = ({ projectId, activePage }) => {
                     getLinks(projectId).map((link, index) => {
                         if (window.location.hash === '#/projects' && index === 0) {
                             return (
-                                <Link key={index} className={`navigation-panel__link navigation-panel__link--active`} to="#/projects">
+                                // eslint-disable-next-line react/no-array-index-key
+                                <Link key={index} className="navigation-panel__link navigation-panel__link--active" to="#/projects">
                                     Все проекты
                                 </Link>
-                            )
+                            );
                         }
                         return (
+                            // eslint-disable-next-line react/no-array-index-key
                             <Link key={index} className={`navigation-panel__link ${setActiveLink(link)}`} to={link.url}>
                                 {link.title}
                             </Link>
-                        )
+                        );
                     })
                 }
                 <AddButton text="Добавить проект" onClick={openCreateProjectModal} type="add-project" />
@@ -72,7 +76,7 @@ const NavigationPanel = ({ projectId, activePage }) => {
             </div>
         </div>
 
-    )
+    );
 };
 
 export default NavigationPanel;

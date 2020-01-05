@@ -1,7 +1,11 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/forbid-prop-types */
+
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import './DashboardPage.scss';
 
@@ -15,7 +19,7 @@ import employeesIcon from '../../icons/employees-btn-icon-big.png';
 import Container from '../../components/Container/Container';
 import CreateProjectModal from '../../components/Modals/CreateProjectModal/CreateProjectModal';
 import Table from '../../components/Table/Table';
-import { COLUMNS_TASKS, COLUMNS_AGREEMENTS } from './DashboardPage.constants';
+import { COLUMNS_TASKS } from './DashboardPage.constants';
 import PseudoButton from '../../components/Buttons/PseudoButton/PseudoButton';
 
 import {
@@ -47,7 +51,6 @@ const DashboardPage = (props) => {
         lastAgreementsFetch,
         lastAgreementsUpdate,
         lastAgreementsDataStatus,
-        lastAgreements,
     } = props;
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
 
@@ -70,19 +73,19 @@ const DashboardPage = (props) => {
             icon: tasksAndProjectsIcon,
             label: 'Задачи и проекты',
             bgPattern: 'linear-gradient(135deg, #ef8613 0%, #ef8613 20%, #f3b506 100%)',
-            to: 'projects'
+            to: 'projects',
         },
         {
             icon: risksIcon,
             label: 'Управление рисками',
             bgPattern: 'linear-gradient(135deg, #bc437d 0%, #bc437d 20%, #ef4d54 100%)',
-            to: 'userrisks'
+            to: 'userrisks',
         },
         {
             icon: agreementsIcon,
             label: 'Согласования',
             bgPattern: 'linear-gradient(135deg, #1eab58 0%, #1eab58 20%, #7af258 100%)',
-            to: 'useragreements'
+            to: 'useragreements',
         },
         {
             icon: employeesIcon,
@@ -104,8 +107,8 @@ const DashboardPage = (props) => {
     return (
         <div className="dashboard-page">
             <div className="dashboard-panels">
-                <Link to='userplans' className="dashboard-calendar">
-                    <p className='dashboard-calendar__title'>
+                <Link to="userplans" className="dashboard-calendar">
+                    <p className="dashboard-calendar__title">
                         Календарные планы
                     </p>
                 </Link>
@@ -117,10 +120,11 @@ const DashboardPage = (props) => {
                                 label,
                                 bgPattern,
                                 onClick,
-                                to='/'
+                                to = '/',
                             } = panel;
 
                             return (
+                                // eslint-disable-next-line react/no-array-index-key
                                 <div key={index} className="dashboard-shortcuts__wrapper">
                                     <SquarePanel
                                         to={to}
@@ -156,7 +160,6 @@ DashboardPage.propTypes = {
     lastProjectTasksDataStatus: PropTypes.string.isRequired,
     lastProjectTasks: PropTypes.array.isRequired,
     lastAgreementsDataStatus: PropTypes.string.isRequired,
-    lastAgreements: PropTypes.array.isRequired,
     lastProjectsTasksFetch: PropTypes.func.isRequired,
     lastAgreementsFetch: PropTypes.func.isRequired,
     lastProjectsTasksUpdate: PropTypes.func.isRequired,

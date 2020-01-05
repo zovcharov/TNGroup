@@ -10,10 +10,10 @@ export default [
         LastDateUpdate: (new Date()).toDateString(),
         PerformanceList: [],
         Id: 0,
-        Name: 'Согласование проекта'
+        Name: 'Согласование проекта',
     }, {
         DocumentId: 0,
-        DocumentType:  'Задача',
+        DocumentType: 'Задача',
         ProjectId: 1,
         Status: 'Не согласовано',
         Result: 0,
@@ -22,7 +22,7 @@ export default [
         LastDateUpdate: (new Date()).toDateString(),
         PerformanceList: [],
         Id: 1,
-        Name: 'Согласование задачи'
+        Name: 'Согласование задачи',
     }, {
         DocumentId: 0,
         DocumentType: 'Календарный план',
@@ -34,6 +34,6 @@ export default [
         LastDateUpdate: (new Date()).toDateString(),
         PerformanceList: [],
         Id: 2,
-        Name: 'Покупка товаров'
-    }
-]
+        Name: 'Покупка товаров',
+    },
+];

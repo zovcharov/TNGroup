@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
@@ -7,7 +10,7 @@ import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
 import { fetchSchedules } from '../../redux/fetchers';
 import {
     scheduleFetch,
-    scheduleUpdate
+    scheduleUpdate,
 } from '../../redux/actions';
 
 import './PlansPage.scss';
@@ -19,12 +22,11 @@ const PlansPage = (props) => {
         scheduleUpdate,
         schedulesDataStatus,
         schedules,
-        allPlansPage = false,
     } = props;
 
     useEffect(() => {
         if (schedulesDataStatus === 'pending') {
-            fetchSchedules(projectId, scheduleFetch, scheduleUpdate)
+            fetchSchedules(projectId, scheduleFetch, scheduleUpdate);
         }
     }, [schedulesDataStatus, schedules]);
 
@@ -33,13 +35,14 @@ const PlansPage = (props) => {
             <NavigationPanel projectId={projectId} activePage="plans" />
             <div className="plans__title">Календарные планы:</div>
             {
-                schedulesDataStatus === 'loaded' &&
-                schedules.map((schedule, index) => (
+                schedulesDataStatus === 'loaded'
+                && schedules.map((schedule, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
                     <GanttChart key={`schedule-${index}`} ProjectTasks={schedule.ProjectTasks} />
                 ))
             }
         </div>
-    )
+    );
 };
 
 const mapStateToProps = (state) => ({

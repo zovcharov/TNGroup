@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+
+import React from 'react';
 
 import './TngInput.scss';
 
@@ -14,7 +18,7 @@ const TngInput = (props) => {
     };
 
     if (multiline) {
-        return <textarea type="text" className="tng-input multiline" value={value || ''} onChange={onValueChange} />
+        return <textarea type="text" className="tng-input multiline" value={value || ''} onChange={onValueChange} />;
     }
 
     return (

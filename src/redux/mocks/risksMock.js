@@ -26,7 +26,7 @@ export const unplannedRisksMock = [
         Consequences: '',
         Id: 2,
         Status: 'Риск сработал',
-    }
+    },
 ];
 
 export const plannedRisksMock = [
@@ -57,5 +57,5 @@ export const plannedRisksMock = [
         Consequences: '',
         Id: 5,
         Status: 'Несработал',
-    }
+    },
 ];
