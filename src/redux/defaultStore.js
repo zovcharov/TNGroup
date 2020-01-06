@@ -13,6 +13,7 @@ export const DEFAULT_STORE = {
     schedulesDataStatus: 'pending',
     userAgreements: [],
     userAgreementsDataStatus: 'pending',
+    userAgreementsError: undefined,
     agreements: [],
     agreementsDataStatus: 'pending',
     agreementsProjectId: 0,

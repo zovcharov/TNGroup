@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import Agreements from '../../components/Agreements/Agreements';
+import TngError from '../../components/TngError/TngError';
 
 import { fetchUserAgreements } from '../../redux/fetchers';
 import {
@@ -19,28 +20,36 @@ const AllUserAgreementsPage = (props) => {
         userAgreementsDataStatus,
         userAgreementsFetch,
         userAgreementsUpdate,
+        userAgreementsError,
     } = props;
 
     useEffect(() => {
+        fetchUserAgreements(userAgreementsFetch, userAgreementsUpdate);
+    }, []);
+
+    /* useEffect(() => {
         if (userAgreementsDataStatus === 'pending') {
             fetchUserAgreements(userAgreementsFetch, userAgreementsUpdate);
         }
-    }, [userAgreements, userAgreementsDataStatus]);
+    }, [userAgreements, userAgreementsDataStatus]); */
 
     if (userAgreementsDataStatus === 'loading') {
         return <Preloader fullScreen />;
     }
 
+    if (userAgreementsError) {
+        return <TngError error={userAgreementsError} />;
+    }
+
     return (
-        <>
-            <Agreements agreements={userAgreements} />
-        </>
+        <Agreements agreements={userAgreements} />
     );
 };
 
-const mapStateToProps = ({ userAgreements, userAgreementsDataStatus }) => ({
+const mapStateToProps = ({ userAgreements, userAgreementsDataStatus, userAgreementsError }) => ({
     userAgreements,
     userAgreementsDataStatus,
+    userAgreementsError,
 });
 
 const mapDispatchToProps = (dispatch) => ({
