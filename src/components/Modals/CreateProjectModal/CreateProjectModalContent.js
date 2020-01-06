@@ -1,28 +1,35 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/anchor-is-valid,react/no-array-index-key */
+
 import React, { useState, useEffect } from 'react';
 
-import TngInput from './../../TngInput/TngInput';
+import TngInput from '../../TngInput/TngInput';
 import DatePicker from '../../DatePicker/DatePicker';
 import TngUserSelect from '../../TngUserSelect/TngUserSelect';
 import MilestonesInput from '../components/Milestones/MilestonesInput';
-import MilestoneModal from './../MilestoneModal/MilestoneModal';
+import MilestoneModal from '../MilestoneModal/MilestoneModal';
 
-import { saveProject, editProject } from './../../../redux/fetchers';
+import { saveProject, editProject } from '../../../redux/fetchers';
 import { ROLES_IN_PROJECT, prepareDataToSave } from './CreateProject.preparer';
 
 import './CreateProjectModalContent.scss';
-import DefaultButton from "../../Buttons/DefaultButton/DefaultButton";
-import SubmitButton from "../../Buttons/SubmitButton/SubmitButton";
+import DefaultButton from '../../Buttons/DefaultButton/DefaultButton';
+import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
 
 const findParticipantByRole = (participents, role) => {
-    const participant = participents.find(participant => participant.ProjectRole === ROLES_IN_PROJECT[role]);
+    const participant = participents.find((participant) => participant.ProjectRole === ROLES_IN_PROJECT[role]);
     return participant ? [participant] : [];
 };
 
-const findParticipantsByRole = (participents, role) => {
-    return participents.filter(participant => participant.ProjectRole === ROLES_IN_PROJECT[role]);
-};
+const findParticipantsByRole = (participents, role) => participents.filter((participant) => participant.ProjectRole === ROLES_IN_PROJECT[role]);
 
-const CreateProjectModalContent = ({ onClose, setLoading, isEdit, ...props }) => {
+const CreateProjectModalContent = ({
+    onClose, setLoading, isEdit, ...props
+}) => {
     const [isMilestoneModalOpen, toggleMilestoneModal] = useState(false);
 
     /* All Project Data for creation */
@@ -83,24 +90,27 @@ const CreateProjectModalContent = ({ onClose, setLoading, isEdit, ...props }) =>
             projectId: props.projectId,
         };
 
+        // eslint-disable-next-line no-unused-expressions
         setLoading && setLoading(true);
 
         if (isEdit) {
             editProject(prepareDataToSave(projectAllData), props.projectId)
-                .then(res => {
+                .then(() => {
                     onClose();
                 })
                 .finally(() => {
+                    // eslint-disable-next-line no-unused-expressions
                     setLoading && setLoading(false);
-                })
+                });
         } else {
             saveProject(prepareDataToSave(projectAllData))
-                .then(res => {
+                .then(() => {
                     onClose();
                 })
                 .finally(() => {
+                    // eslint-disable-next-line no-unused-expressions
                     setLoading && setLoading(false);
-                })
+                });
         }
     };
 
@@ -162,7 +172,7 @@ const CreateProjectModalContent = ({ onClose, setLoading, isEdit, ...props }) =>
                 <div className="project-customer-contact content__grid-item">
                     <div className="project-modal__label">Контактное лицо заказчика:</div>
                     <div className="project-customer-contact__input">
-                        <TngUserSelect onChangeSelectedUser={changeCustomerContact} selectedUsers={customerContact}  />
+                        <TngUserSelect onChangeSelectedUser={changeCustomerContact} selectedUsers={customerContact} />
                     </div>
                 </div>
                 <div className="project-controller content__grid-item">
@@ -228,13 +238,13 @@ const CreateProjectModalContent = ({ onClose, setLoading, isEdit, ...props }) =>
                 <div className="project-end-date content__grid-item">
                     <div className="project-modal__label">Дата окончания проекта:</div>
                     <div className="project-end-date__input">
-                        <DatePicker value={projectEndDate} onDayChange={changeProjectEndDate}/>
+                        <DatePicker value={projectEndDate} onDayChange={changeProjectEndDate} />
                     </div>
                 </div>
                 <div className="project-milestones content__grid-item">
                     <div className="project-modal__label">Вехи проета:</div>
                     <div className="project-milestones__input">
-                        <MilestonesInput onAddMilestone={onAddMilestone} milestones={milestones}/>
+                        <MilestonesInput onAddMilestone={onAddMilestone} milestones={milestones} />
                     </div>
                     <MilestoneModal
                         isOpen={isMilestoneModalOpen}
@@ -261,7 +271,7 @@ const CreateProjectModalContent = ({ onClose, setLoading, isEdit, ...props }) =>
                 </SubmitButton>
             </div>
         </div>
-    )
+    );
 };
 
 export default CreateProjectModalContent;

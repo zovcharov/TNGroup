@@ -1,5 +1,8 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import Risks from '../../components/Risks/Risks';
 
@@ -22,7 +25,7 @@ const AllUserRisksPage = (props) => {
     // Со страницы всех рисков не даем добавлять риски, только со страницы рисков проекта
     const projectPermissions = {
         canAddPlannedRisk: false,
-        canAddUnplannedRisk: false
+        canAddUnplannedRisk: false,
     };
 
     useEffect(() => {
@@ -32,24 +35,24 @@ const AllUserRisksPage = (props) => {
     }, [userRisksDataStatus, userUnplannedRisks, userPlannedRisks]);
 
     if (userRisksDataStatus === 'loading') {
-        return <Preloader fullScreen />
+        return <Preloader fullScreen />;
     }
 
     return (
-        <React.Fragment>
+        <>
             <Risks
                 projectPermissions={projectPermissions}
                 unplannedRisks={userUnplannedRisks}
                 plannedRisks={userPlannedRisks}
             />
-        </React.Fragment>
+        </>
     );
 };
 
 const mapStateToProps = ({
-     userPlannedRisks,
-     userUnplannedRisks,
-     userRisksDataStatus,
+    userPlannedRisks,
+    userUnplannedRisks,
+    userRisksDataStatus,
 }) => ({
     userPlannedRisks,
     userUnplannedRisks,

@@ -1,5 +1,8 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import Tasks from '../../components/Tasks/Tasks';
 import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
@@ -33,14 +36,14 @@ const ProjectRisksPage = (props) => {
     }, [projectId]);
 
     if (tasksDataStatus === 'loading') {
-        return <Preloader fullScreen />
+        return <Preloader fullScreen />;
     }
 
     return (
-        <React.Fragment>
+        <>
             <NavigationPanel projectId={projectId} activePage="tasks" />
             <Tasks projectId={projectId} tasks={tasks} />
-        </React.Fragment>
+        </>
     );
 };
 

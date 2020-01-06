@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const userProfileMock = {
     Name: 'Иванов Иван Иванович',
     Email: 'ivanivan@mail.ru',
@@ -9,5 +10,5 @@ export const userProfileMock = {
     DateBirth: '0001-01-01T00:00:00',
     SocialNet: 'vk/dungeonmaster',
     Sex: 0,
-    Skype: 'dungeonmaster'
+    Skype: 'dungeonmaster',
 };

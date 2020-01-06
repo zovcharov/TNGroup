@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
@@ -7,7 +10,7 @@ import Preloader from '../../components/Preloader/Preloader';
 import { userFetchSchedules } from '../../redux/fetchers';
 import {
     userSchedulesFetch,
-    userSchedulesUpdate
+    userSchedulesUpdate,
 } from '../../redux/actions';
 
 const PlansPage = (props) => {
@@ -16,12 +19,11 @@ const PlansPage = (props) => {
         scheduleUpdate,
         schedulesDataStatus,
         schedules,
-        allPlansPage = false,
     } = props;
 
     useEffect(() => {
         if (schedulesDataStatus === 'pending') {
-            userFetchSchedules(scheduleFetch, scheduleUpdate)
+            userFetchSchedules(scheduleFetch, scheduleUpdate);
         }
     }, [schedulesDataStatus, schedules]);
 
@@ -29,17 +31,18 @@ const PlansPage = (props) => {
         <div className="plans-page">
             <div className="plans__title">Календарные планы:</div>
             {
-                schedulesDataStatus === 'loaded' &&
-                schedules.filter(item => item.ProjectTasks.length).map((schedule, index) => (
+                schedulesDataStatus === 'loaded'
+                && schedules.filter((item) => item.ProjectTasks.length).map((schedule, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
                     <GanttChart key={`schedule-${index}`} ProjectTasks={schedule.ProjectTasks} />
                 ))
             }
             {
-                schedulesDataStatus === 'loading' &&
-                <Preloader fullScreen />
+                schedulesDataStatus === 'loading'
+                && <Preloader fullScreen />
             }
         </div>
-    )
+    );
 };
 
 const mapStateToProps = (state) => ({

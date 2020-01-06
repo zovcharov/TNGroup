@@ -1,18 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/anchor-is-valid,react/no-array-index-key */
+
+import React, { useState } from 'react';
 
 import './CreateTaskModal.scss';
-import TngInput from "../../TngInput/TngInput";
+import TngInput from '../../TngInput/TngInput';
 import DatePicker from '../../DatePicker/DatePicker';
 import TngUserSelect from '../../TngUserSelect/TngUserSelect';
-import SingleMilestoneInput from './../components/Milestones/SingleMilestoneInput';
-import MilestoneModal from './../MilestoneModal/MilestoneModal';
-import SubmitButton from "../../Buttons/SubmitButton/SubmitButton";
+import SingleMilestoneInput from '../components/Milestones/SingleMilestoneInput';
+import MilestoneModal from '../MilestoneModal/MilestoneModal';
+import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
 import { prepareTaskData } from './CreateTask.preparer';
-import { saveTask } from './../../../redux/fetchers';
+import { saveTask } from '../../../redux/fetchers';
 
 const FILES_MOCK = ['Отчет о предыдущем проекте.pdf', 'Договор подряда.docx', 'Внутренний регламент выполнения задач.pptx', 'Акт приема работ.pdf'];
 
-const CreateTaskModal = ({projectId, onClose, setLoading, ...props}) => {
+const CreateTaskModal = ({
+    projectId, onClose, setLoading,
+}) => {
     const [isStartMilestoneModalOpen, toggleStartMilestoneModal] = useState(false);
     const [isEndMilestoneModalOpen, toggleEndMilestoneModal] = useState(false);
 
@@ -24,6 +33,7 @@ const CreateTaskModal = ({projectId, onClose, setLoading, ...props}) => {
     const [taskDescription, changeTaskDescription] = useState('');
     const [taskStartMilestone, changeTaskStartMilestone] = useState({});
     const [taskEndMilestone, changeTaskEndMilestone] = useState(undefined);
+    // eslint-disable-next-line no-unused-vars
     const [taskFiles, changeTaskFiles] = useState(FILES_MOCK);
 
     const onAddStartMilestone = () => toggleStartMilestoneModal(true);
@@ -31,9 +41,9 @@ const CreateTaskModal = ({projectId, onClose, setLoading, ...props}) => {
     const onAddEndMilestone = () => toggleEndMilestoneModal(true);
     const onEndMilestoneModalClose = () => toggleEndMilestoneModal(false);
 
-    const onCreateStartMilestone = (name, date) => changeTaskStartMilestone({name, date});
+    const onCreateStartMilestone = (name, date) => changeTaskStartMilestone({ name, date });
     const onClearStartMilestone = () => changeTaskStartMilestone({});
-    const onCreateEndMilestone = (name, date) => changeTaskEndMilestone({name, date});
+    const onCreateEndMilestone = (name, date) => changeTaskEndMilestone({ name, date });
     const onClearEndMilestone = () => changeTaskEndMilestone({});
 
     const onSaveTask = () => {
@@ -47,14 +57,16 @@ const CreateTaskModal = ({projectId, onClose, setLoading, ...props}) => {
             taskEndMilestone,
         };
 
+        // eslint-disable-next-line no-unused-expressions
         setLoading && setLoading(true);
         saveTask(prepareTaskData(data), projectId)
-            .then(res => {
+            .then(() => {
                 onClose();
             })
             .finally(() => {
+                // eslint-disable-next-line no-unused-expressions
                 setLoading && setLoading(false);
-            })
+            });
     };
 
     const getFilesList = () => taskFiles.map((file, index) => (
@@ -64,7 +76,7 @@ const CreateTaskModal = ({projectId, onClose, setLoading, ...props}) => {
     return (
         <div className="task-modal">
             <div className="task-modal__content">
-                <div className="task-name task-modal__grid-item" >
+                <div className="task-name task-modal__grid-item">
                     <div className="task-modal__label">Название задачи:</div>
                     <div className="task-modal__input">
                         <TngInput value={taskName} changeValue={changeTaskName} />
@@ -130,7 +142,7 @@ const CreateTaskModal = ({projectId, onClose, setLoading, ...props}) => {
                         <div className="task-files__files-list">
                             { getFilesList() }
                         </div>
-                        <div className="task-files__add-files-btn"></div>
+                        <div className="task-files__add-files-btn" />
                     </div>
                 </div>
             </div>
@@ -142,7 +154,7 @@ const CreateTaskModal = ({projectId, onClose, setLoading, ...props}) => {
                 </SubmitButton>
             </div>
         </div>
-    )
+    );
 };
 
 export default CreateTaskModal;

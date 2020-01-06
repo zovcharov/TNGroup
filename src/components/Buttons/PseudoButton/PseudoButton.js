@@ -1,14 +1,16 @@
-import React from 'react'
-import Button from "../../Button/Button";
+/* eslint-disable react/prop-types */
 
-import './PseudoButton.scss'
+import React from 'react';
+import Button from '../../Button/Button';
+
+import './PseudoButton.scss';
 
 const PseudoButton = (props) => {
     const {
         className = '',
         children,
         onClick = () => {},
-        link='',
+        link = '',
     } = props;
 
     return (
@@ -19,7 +21,7 @@ const PseudoButton = (props) => {
         >
             {children}
         </Button>
-    )
-}
+    );
+};
 
-export default PseudoButton
+export default PseudoButton;

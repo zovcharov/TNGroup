@@ -1,5 +1,8 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import Agreements from '../../components/Agreements/Agreements';
 import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
@@ -7,7 +10,7 @@ import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
 import { fetchAgreements } from '../../redux/fetchers';
 import {
     agreementsFetch,
-    agreementsUpdate
+    agreementsUpdate,
 } from '../../redux/actions';
 
 const ProjectAgreementsPage = (props) => {
@@ -33,20 +36,20 @@ const ProjectAgreementsPage = (props) => {
     }, [projectId]);
 
     if (agreementsDataStatus === 'loading') {
-        return <Preloader fullScreen />
+        return <Preloader fullScreen />;
     }
 
     return (
-        <React.Fragment>
-            <NavigationPanel  projectId={projectId} activePage="agreements" />
+        <>
+            <NavigationPanel projectId={projectId} activePage="agreements" />
             <Agreements agreements={agreements} />
-        </React.Fragment>
+        </>
     );
 };
 
-const mapStateToProps = ({agreements, agreementsDataStatus, agreementsProjectId}) => ({
+const mapStateToProps = ({ agreements, agreementsDataStatus }) => ({
     agreements,
-    agreementsDataStatus
+    agreementsDataStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

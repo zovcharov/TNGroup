@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import './ProjectPassport.scss'
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/jsx-props-no-spreading */
 
-import {formatDateToString} from '../../helpers/helpers'
-import PersonItem from "../PersonItem/PersonItem";
-import CreateProjectModal from './../Modals/CreateProjectModal/CreateProjectModal';
+import React, { useState } from 'react';
+import './ProjectPassport.scss';
+
+import { formatDateToString } from '../../helpers/helpers';
+import PersonItem from '../PersonItem/PersonItem';
+import CreateProjectModal from '../Modals/CreateProjectModal/CreateProjectModal';
 
 const ProjectMainInfo = (props) => {
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
@@ -22,119 +26,120 @@ const ProjectMainInfo = (props) => {
         PlannedFinancingSource,
         ApproximateEconomicEffect,
         Customer,
-        Participants
+        Participants,
     } = props;
 
-    const  openCreateProjectModal = () => onOpenCreateProjectModal(true);
-    const  closeCreateProjectModal = () => onOpenCreateProjectModal(false);
+    const openCreateProjectModal = () => onOpenCreateProjectModal(true);
+    const closeCreateProjectModal = () => onOpenCreateProjectModal(false);
 
     const createDate = formatDateToString(DateCreate);
     const endDate = formatDateToString(DateEnd);
-    const projectOwner = Participants && Participants.find(part => part.ProjectRole === 1);
+    const projectOwner = Participants && Participants.find((part) => part.ProjectRole === 1);
 
     return (
-        <div className='project-main-info'>
-            <span className="project-main-info__edit-button" onClick={openCreateProjectModal}></span>
-            <div className='project-main-info__row'>
-                <InfoBlock label='Название проекта:'>
-                    <span className='project-main-info__label'>
+        <div className="project-main-info">
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+            <span className="project-main-info__edit-button" onClick={openCreateProjectModal} />
+            <div className="project-main-info__row">
+                <InfoBlock label="Название проекта:">
+                    <span className="project-main-info__label">
                         {Name}
                     </span>
                 </InfoBlock>
             </div>
-            <div className='project-main-info__row'>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Дата постановки:'>
+            <div className="project-main-info__row">
+                <div className="project-main-info__col">
+                    <InfoBlock label="Дата постановки:">
                         {createDate}
                     </InfoBlock>
                 </div>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Дата окончания:'>
+                <div className="project-main-info__col">
+                    <InfoBlock label="Дата окончания:">
                         {endDate}
                     </InfoBlock>
                 </div>
             </div>
-            <div className='project-main-info__row'>
-                <InfoBlock label='Цель проекта:'>
+            <div className="project-main-info__row">
+                <InfoBlock label="Цель проекта:">
                     {Objective}
                 </InfoBlock>
             </div>
-            <div className='project-main-info__row'>
-                <InfoBlock label='Описание проекта:'>
+            <div className="project-main-info__row">
+                <InfoBlock label="Описание проекта:">
                     {Description}
                 </InfoBlock>
             </div>
-            <div className='project-main-info__row'>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Ожидаемый результат:'>
+            <div className="project-main-info__row">
+                <div className="project-main-info__col">
+                    <InfoBlock label="Ожидаемый результат:">
                         {ExpectedResult}
                     </InfoBlock>
                 </div>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Ожидаемый продукт:'>
+                <div className="project-main-info__col">
+                    <InfoBlock label="Ожидаемый продукт:">
                         {ExpectedProduct}
                     </InfoBlock>
                 </div>
             </div>
-            <div className='project-main-info__row'>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Место проведения совещания:'>
+            <div className="project-main-info__row">
+                <div className="project-main-info__col">
+                    <InfoBlock label="Место проведения совещания:">
                         {MeetingLocation}
                     </InfoBlock>
                 </div>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Периодичность совещания:'>
+                <div className="project-main-info__col">
+                    <InfoBlock label="Периодичность совещания:">
                         {MeetingPeriodic}
                     </InfoBlock>
                 </div>
             </div>
-            <div className='project-main-info__row'>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Стоимость проекта(ориентировочно):'>
+            <div className="project-main-info__row">
+                <div className="project-main-info__col">
+                    <InfoBlock label="Стоимость проекта(ориентировочно):">
                         {EstimatedСost}
                     </InfoBlock>
                 </div>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Источник финансирования:'>
+                <div className="project-main-info__col">
+                    <InfoBlock label="Источник финансирования:">
                         {PlannedFinancingSource}
                     </InfoBlock>
                 </div>
             </div>
-            <div className='project-main-info__row'>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Экономический эффект:'>
+            <div className="project-main-info__row">
+                <div className="project-main-info__col">
+                    <InfoBlock label="Экономический эффект:">
                         {ApproximateEconomicEffect}
                     </InfoBlock>
                 </div>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Заказчик:'>
+                <div className="project-main-info__col">
+                    <InfoBlock label="Заказчик:">
                         {Customer}
                     </InfoBlock>
                 </div>
             </div>
-            <div className='project-main-info__row'>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Куратор:'>
+            <div className="project-main-info__row">
+                <div className="project-main-info__col">
+                    <InfoBlock label="Куратор:">
                         <PersonItem person={projectOwner} />
                     </InfoBlock>
                 </div>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Контактное лицо заказчика:'>
+                <div className="project-main-info__col">
+                    <InfoBlock label="Контактное лицо заказчика:">
                         <PersonItem person={projectOwner} />
                     </InfoBlock>
                 </div>
             </div>
-            <div className='project-main-info__row'>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Исполнители:'>
+            <div className="project-main-info__row">
+                <div className="project-main-info__col">
+                    <InfoBlock label="Исполнители:">
                         <PersonItem person={projectOwner} />
                     </InfoBlock>
                 </div>
-                <div className='project-main-info__col'>
-                    <InfoBlock label='Контролер проекта:'>
+                <div className="project-main-info__col">
+                    <InfoBlock label="Контролер проекта:">
                         <PersonItem person={projectOwner} />
                     </InfoBlock>
-                    <InfoBlock label='Руководитель:'>
+                    <InfoBlock label="Руководитель:">
                         <PersonItem person={projectOwner} />
                     </InfoBlock>
                 </div>
@@ -142,22 +147,20 @@ const ProjectMainInfo = (props) => {
             <CreateProjectModal
                 isOpen={isCreateProjectModalOpen}
                 onClose={closeCreateProjectModal}
-                isEdit={true}
+                isEdit
                 {...props}
             />
         </div>
-    )
-}
+    );
+};
 
-export const InfoBlock = ({ label, children, className = '' }) => {
-    return (
-        <div className={`info-block ${className}`}>
-            <p className='info-block__label'>{label}</p>
-            <div className='info-block__content'>
-                {children}
-            </div>
+export const InfoBlock = ({ label, children, className = '' }) => (
+    <div className={`info-block ${className}`}>
+        <p className="info-block__label">{label}</p>
+        <div className="info-block__content">
+            {children}
         </div>
-    )
-}
+    </div>
+);
 
-export default ProjectMainInfo
+export default ProjectMainInfo;

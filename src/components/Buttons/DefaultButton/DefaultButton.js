@@ -1,13 +1,15 @@
-import React from 'react'
-import Button from "../../Button/Button";
-import './DefaultButton.scss'
+/* eslint-disable react/prop-types */
+
+import React from 'react';
+import Button from '../../Button/Button';
+import './DefaultButton.scss';
 
 const DefaultButton = (props) => {
     const {
         className = '',
         children,
-        onClick = () => {}
-    } = props
+        onClick = () => {},
+    } = props;
     return (
         <Button
             className={`default-button ${className}`}
@@ -15,7 +17,7 @@ const DefaultButton = (props) => {
         >
             {children}
         </Button>
-    )
-}
+    );
+};
 
-export default DefaultButton
+export default DefaultButton;

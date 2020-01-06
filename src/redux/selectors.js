@@ -1,5 +1,6 @@
-import { formatDateToString } from './../helpers/helpers';
+import { formatDateToString } from '../helpers/helpers';
 
+// eslint-disable-next-line consistent-return
 export const getTextStatus = (statusNumber) => {
     switch (statusNumber) {
         case 0: return { man: 'Новый', woman: 'Новая' };
@@ -7,62 +8,55 @@ export const getTextStatus = (statusNumber) => {
         case 2: return { man: 'Выполнен', woman: 'Выполнена' };
         case 3: return { man: 'Отменён', woman: 'Отменена' };
         case 4: return { man: 'Ожидает', woman: 'Ожидает' };
+        default: return { man: '', woman: '' };
     }
 };
 
+// eslint-disable-next-line consistent-return
 export const getRiskStatus = (statusNumber) => {
     switch (statusNumber) {
         case 0: return 'Риск не сработал';
         case 1: return 'Риск сработал';
+        default: return '';
     }
 };
 
-export const selectFromProject = (project) => {
-    return {
-        projectName: project.ProjectName,
-        status: project.Status,
-        lastDateUpdate: new Date(project.LastDateUpdate),
-        id: project.Id,
-        dateEnd: new Date(project.DateEnd),
-    }
-};
+export const selectFromProject = (project) => ({
+    projectName: project.ProjectName,
+    status: project.Status,
+    lastDateUpdate: new Date(project.LastDateUpdate),
+    id: project.Id,
+    dateEnd: new Date(project.DateEnd),
+});
 
 // TODO: убрать мок на имени
-export const selectFromTask = (task) => {
-    return {
-        description: task.Description,
-        name: task.Name || 'ффф',
-        status: getTextStatus(task.Status).woman,
-        id: task.Id,
-        lastDateUpdate: new Date(task.LastDateUpdate),
-        performerName: task.Performer && task.Performer.Name,
-        dateEnd: formatDateToString(task.DateEnd)
-    }
-};
+export const selectFromTask = (task) => ({
+    description: task.Description,
+    name: task.Name || 'ффф',
+    status: getTextStatus(task.Status).woman,
+    id: task.Id,
+    lastDateUpdate: new Date(task.LastDateUpdate),
+    performerName: task.Performer && task.Performer.Name,
+    dateEnd: formatDateToString(task.DateEnd),
+});
 
-export const selectFromLastTask = (task) => {
-    return {
-        description: task.Description,
-        status: getTextStatus(task.Status).woman,
-        id: task.Id,
-        lastDateUpdate: new Date(task.LastDateUpdate),
-    }
-};
+export const selectFromLastTask = (task) => ({
+    description: task.Description,
+    status: getTextStatus(task.Status).woman,
+    id: task.Id,
+    lastDateUpdate: new Date(task.LastDateUpdate),
+});
 
-export const selectProjectPermissions = (project) => {
-    return {
-        canAddPlannedRisk: project.Status === 0,
-        canAddUnplannedRisk: project.Status === 3,
-    }
-};
+export const selectProjectPermissions = (project) => ({
+    canAddPlannedRisk: project.Status === 0,
+    canAddUnplannedRisk: project.Status === 3,
+});
 
-export const selectPlannedRisk = (risk) => {
-    return {
-        ...risk,
-        Status: getRiskStatus(risk.Status),
-        Date: formatDateToString(risk.Date),
-    }
-};
+export const selectPlannedRisk = (risk) => ({
+    ...risk,
+    Status: getRiskStatus(risk.Status),
+    Date: formatDateToString(risk.Date),
+});
 
 export const selectFromProjects = (projects = []) => projects.map(selectFromProject);
 export const selectFromTasks = (tasks = []) => tasks.map(selectFromTask);

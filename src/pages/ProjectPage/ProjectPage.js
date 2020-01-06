@@ -1,13 +1,16 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Preloader from '../../components/Preloader/Preloader';
 import ProjectInfo from '../../components/ProjectInfo/ProjectInfo';
 import NavigationPanel from '../../components/NavigationPanel/NavigationPanel';
 
-import {fetchSingleProject} from '../../redux/fetchers';
+import { fetchSingleProject } from '../../redux/fetchers';
 import {
     singleProjectFetch,
-    singleProjectUpdate
+    singleProjectUpdate,
 } from '../../redux/actions';
 
 const ProjectPage = (props) => {
@@ -16,33 +19,32 @@ const ProjectPage = (props) => {
         singleProject,
         singleProjectDataState,
         singleProjectFetch,
-        singleProjectUpdate
+        singleProjectUpdate,
     } = props;
 
-    useEffect(()  => {
+    useEffect(() => {
         if (singleProjectDataState === 'pending') {
-            fetchSingleProject(projectId, singleProjectFetch, singleProjectUpdate)
+            fetchSingleProject(projectId, singleProjectFetch, singleProjectUpdate);
         }
-
     }, [projectId]);
 
     if (singleProjectDataState === 'loading') {
-        return <Preloader fullScreen />
+        return <Preloader fullScreen />;
     }
 
     return (
-        <React.Fragment>
-            <NavigationPanel  projectId={projectId} activePage="project" />
+        <>
+            <NavigationPanel projectId={projectId} activePage="project" />
             <div className="info">
                 <ProjectInfo info={singleProject} />
             </div>
-        </React.Fragment>
-    )
+        </>
+    );
 };
 
-const mapStateToProps = ({singleProject, singleProjectDataState}) => ({
+const mapStateToProps = ({ singleProject, singleProjectDataState }) => ({
     singleProject,
-    singleProjectDataState
+    singleProjectDataState,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,3 +1,8 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Table.scss';
@@ -14,6 +19,7 @@ const Table = (props) => {
     return (
         <div className="table">
             <div className="table__controls">
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,react/button-has-type */}
                 {reload && <button className="table__refresh" onClick={reload} />}
             </div>
             <TableHead columns={columns} />
@@ -111,8 +117,8 @@ const TableHead = (props) => {
 };
 
 Table.propTypes = {
-    columns: PropTypes.array.isRequired,
-    items: PropTypes.array.isRequired,
+    columns: PropTypes.shape([]).isRequired,
+    items: PropTypes.shape([]).isRequired,
 };
 
 export default Table;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const DEFAULT_STORE = {
     projects: [],
     projectsDataState: 'pending',
@@ -27,7 +28,7 @@ export const DEFAULT_STORE = {
     singleTaskDataState: 'pending',
     projectPermissions: {},
     userSchedulesDataStatus: 'pending',
-    userSchedules:  [],
+    userSchedules: [],
     userDocumentsDataStatus: 'pending',
     userDocuments: [],
     userPlannedRisks: [],
@@ -36,5 +37,5 @@ export const DEFAULT_STORE = {
     userReports: [],
     userReportsDataStatus: 'pending',
     userProfile: {},
-    userProfileDataStatus: 'pending'
+    userProfileDataStatus: 'pending',
 };

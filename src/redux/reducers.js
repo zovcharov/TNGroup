@@ -44,14 +44,14 @@ import {
     selectFromTasks,
     selectFromLastTasks,
     selectProjectPermissions,
-    selectFromPlannedRisks
+    selectFromPlannedRisks,
 } from './selectors';
 
 import { reportsMock } from './mocks/reportsMock';
 import agreementsMock from './mocks/agreementsMock';
 
 export default (state = DEFAULT_STORE, action) => {
-    const stateAssign = (data) => Object.assign({}, state, data);
+    const stateAssign = (data) => ({ ...state, ...data });
 
     switch (action.type) {
         case PROJECTS_FETCH:
@@ -64,7 +64,7 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({
                 singleProject: action.data,
                 singleProjectDataState: 'loaded',
-                projectPermissions: selectProjectPermissions(action.data)
+                projectPermissions: selectProjectPermissions(action.data),
             });
         case USERS_FETCH:
             return stateAssign({ usersDataState: 'loading' });
@@ -125,7 +125,10 @@ export default (state = DEFAULT_STORE, action) => {
         case LAST_AGREEMENTS_FETCH:
             return stateAssign({ lastAgreementsDataStatus: 'loading' });
         case LAST_AGREEMENTS_UPDATE:
-            return stateAssign({ lastAgreementsDataStatus: 'loaded', lastAgreements: action.data.length > 0 ? action.data : agreementsMock.slice(0, 3) });
+            return stateAssign({
+                lastAgreementsDataStatus: 'loaded',
+                lastAgreements: action.data.length > 0 ? action.data : [],
+            });
         case SINGLE_TASK_FETCH:
             return stateAssign({ singleTaskDataState: 'loading' });
         case SINGLE_TASK_UPDATE:
@@ -147,18 +150,18 @@ export default (state = DEFAULT_STORE, action) => {
         case USER_REPORTS_UPDATE:
             return stateAssign({
                 userReportsDataStatus: 'loaded',
-                userReports: action.data && action.data.length ? action.data.length : reportsMock
+                userReports: action.data && action.data.length ? action.data.length : reportsMock,
             });
         case USER_PROFILE_FETCH:
-            return stateAssign({userProfileFetchStatus: 'loading'});
+            return stateAssign({ userProfileFetchStatus: 'loading' });
         case USER_PROFILE_UPDATE:
             return stateAssign({
                 userProfileDataStatus: 'loaded',
-                userProfile: action.data && action.data
+                userProfile: action.data && action.data,
             });
         case RESET_STATE:
             return DEFAULT_STORE;
         default:
             return state;
     }
-}
+};

@@ -1,5 +1,7 @@
+/* eslint-disable consistent-return */
+
 import axios from 'axios';
-import config from './../config/index';
+import config from '../config/index';
 
 class ApiProvider {
     constructor() {
@@ -19,66 +21,66 @@ class ApiProvider {
     }
 
     Post(controller, param, data) {
-        const token = data && data.curProjectId ?
-            `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
-            localStorage.getItem('access_token');
+        const token = data && data.curProjectId
+            ? `${localStorage.getItem('access_token')};currPr=${data.curProjectId}`
+            : localStorage.getItem('access_token');
 
         return axios({
             method: 'post',
-            url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
+            url: `http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`,
             data,
             headers: {
                 Authorization: `Bearer ${token}`,
-            }
+            },
         })
-            .then(res => res.data)
-            .catch(e => {
+            .then((res) => res.data)
+            .catch((e) => {
                 if (e.response.status === 401) {
-                    return this.UpdateToken('post', controller, param, data)
+                    return this.UpdateToken('post', controller, param, data);
                 }
-            })
+            });
     }
 
     Get(controller, param, data) {
-        const token = data && data.curProjectId ?
-            `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
-            localStorage.getItem('access_token');
+        const token = data && data.curProjectId
+            ? `${localStorage.getItem('access_token')};currPr=${data.curProjectId}`
+            : localStorage.getItem('access_token');
 
         return axios({
             method: 'get',
-            url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
+            url: `http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`,
             data,
             headers: {
                 Authorization: `Bearer ${token}`,
-            }
+            },
         })
-            .then(res => res.data)
-            .catch(e => {
+            .then((res) => res.data)
+            .catch((e) => {
                 if (e.response.status === 401) {
-                    return this.UpdateToken('get', controller, param, data)
+                    return this.UpdateToken('get', controller, param, data);
                 }
-            })
+            });
     }
 
     Put(controller, param, data) {
-        const token = data && data.curProjectId ?
-            `${localStorage.getItem('access_token')};currPr=${data.curProjectId}` :
-            localStorage.getItem('access_token');
+        const token = data && data.curProjectId
+            ? `${localStorage.getItem('access_token')};currPr=${data.curProjectId}`
+            : localStorage.getItem('access_token');
 
         return axios({
             method: 'put',
-            url: `http://${this.apiUrl}/api/${controller}${param ? '/' + param : ''}`,
+            url: `http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`,
             data,
             headers: {
                 Authorization: `Bearer ${token}`,
-            }
+            },
         })
-            .then(res => res.data)
-            .catch(e => {
+            .then((res) => res.data)
+            .catch((e) => {
                 if (e.response.status === 401) {
-                    return this.UpdateToken('get', controller, param, data)
+                    return this.UpdateToken('get', controller, param, data);
                 }
-            })
+            });
     }
 
     UpdateToken(method, controller, param, data) {
@@ -86,23 +88,25 @@ class ApiProvider {
             method: 'post',
             url: `http://${this.apiUrl}/api/Auth/updateToken`,
             data: {
-                'clientName': 'MainProject',
-                'refresh_id': localStorage.getItem('refresh_id'),
+                clientName: 'MainProject',
+                refresh_id: localStorage.getItem('refresh_id'),
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            }
+            },
         })
-            .then(res => {
+            .then(() => {
                 if (method === 'post') {
                     return this.Post(controller, param, data);
                 }
 
                 return this.Get(controller, param, data);
             })
-            .catch(err => {
+            .catch(() => {
                 window.location.hash = '#/login';
-            })
+                localStorage.removeItem('refresh_id');
+                localStorage.removeItem('access_token');
+            });
     }
 }
 

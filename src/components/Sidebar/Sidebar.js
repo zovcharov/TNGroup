@@ -1,15 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './Sidebar.scss'
-import { SideMenu } from '../SideMenu/SideMenu'
-import MENU_ITEMS from '../SideMenu/menuItems'
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/require-default-props */
 
-const Sidebar = (props) => {
-  return (
-    <aside className='sidebar'>
-      <SideMenu items={MENU_ITEMS} />
+import React from 'react';
+import './Sidebar.scss';
+import { SideMenu } from '../SideMenu/SideMenu';
+import MENU_ITEMS from '../SideMenu/menuItems';
+
+const Sidebar = () => (
+    <aside className="sidebar">
+        <SideMenu items={MENU_ITEMS} />
     </aside>
-  )
-}
+);
 
-export default Sidebar
+export default Sidebar;

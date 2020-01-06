@@ -1,13 +1,15 @@
-import React from 'react'
-import Button from "../../Button/Button";
-import './SubmitButton.scss'
+/* eslint-disable react/prop-types */
+
+import React from 'react';
+import Button from '../../Button/Button';
+import './SubmitButton.scss';
 
 const SubmitButton = (props) => {
     const {
         className = '',
         children,
-        onClick = () => {}
-    } = props
+        onClick = () => {},
+    } = props;
     return (
         <Button
             className={`submit-button ${className}`}
@@ -15,7 +17,7 @@ const SubmitButton = (props) => {
         >
             {children}
         </Button>
-    )
-}
+    );
+};
 
-export default SubmitButton
+export default SubmitButton;

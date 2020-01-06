@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import PersonItem from '../PersonItem/PersonItem';
 
 import './Commentaries.scss';
 
-const Commentaries = (props) => (
+const Commentaries = () => (
     <div className="commentaries">
         <div className="comments">
             <p className="comments__title">Комментарии:</p>
