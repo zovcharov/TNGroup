@@ -94,7 +94,13 @@ export const fetchUserAgreements = (fetchAction, updateAction) => {
     return ApiProvider.Get('Agreement', 'getforuser')
         .then((data) => {
             // eslint-disable-next-line no-unused-expressions
-            updateAction && updateAction(data);
+            updateAction && updateAction({
+                agreements: data,
+            });
+        })
+        .catch((e) => {
+            // eslint-disable-next-line no-unused-expressions
+            updateAction && updateAction({ error: e });
         });
 };
 

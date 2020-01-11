@@ -1,0 +1,15 @@
+.tng-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__title {
+        color: #505050;
+        margin-bottom: 30px;
+    }
+
+    &__message {
+        color: #909090;
+    }
+}

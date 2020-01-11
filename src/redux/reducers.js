@@ -90,8 +90,9 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ userAgreementsDataStatus: 'loading' });
         case USER_AGREEMENTS_UPDATE:
             return stateAssign({
-                userAgreements: action.data.length ? action.data : agreementsMock,
+                userAgreements: action.data.agreements && action.data.agreements.length ? action.data.agreements : [],
                 userAgreementsDataStatus: 'loaded',
+                userAgreementsError: action.data.error,
             });
         case RISKS_FETCH:
             return stateAssign({ risksDataStatus: 'loading' });

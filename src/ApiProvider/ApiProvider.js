@@ -59,6 +59,8 @@ class ApiProvider {
                 if (e.response.status === 401) {
                     return this.UpdateToken('get', controller, param, data);
                 }
+
+                throw (e);
             });
     }
 

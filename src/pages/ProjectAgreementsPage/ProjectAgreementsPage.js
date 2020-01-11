@@ -24,6 +24,10 @@ const ProjectAgreementsPage = (props) => {
     } = props;
 
     useEffect(() => {
+        fetchAgreements(Number(projectId), agreementsFetch, agreementsUpdate);
+    }, []);
+
+    useEffect(() => {
         if (agreementsDataStatus === 'pending') {
             fetchAgreements(Number(projectId), agreementsFetch, agreementsUpdate);
         }
