@@ -49,7 +49,7 @@ export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
 
             Promise.all([fetchTasks(projectId), fetchAgreements(projectId)]).then((res) => {
                 project.tasks = res[0].length === 0 ? ITEMS_TASKS : res[0];
-                project.agreement = res[1] && res[1].length ? res[1] : [];
+                project.agreements = res[1] && res[1].agreements.length ? res[1].agreements : [];
 
                 updateAction(project);
             });
@@ -233,5 +233,11 @@ export const fetchUserProfile = (fetchAction, updateAction) => {
         .then((data) => {
             // eslint-disable-next-line no-unused-expressions
             updateAction && updateAction(data);
+        });
+};
+
+export const makeAgreementDecision = (data) => {
+    return ApiProvider.Put('Agreement', '', data)
+        .then((data) => {
         });
 };

@@ -35,4 +35,57 @@
             font-weight: normal;
         }
     }
+
+    .agreement-decisions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__button {
+            opacity: 0.6;
+
+            &:first-child {
+                margin-bottom: 15px;
+            }
+
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+
+            &_type_accept {
+                color: #909090;
+                width: 14px;
+                height: 8px;
+                border-bottom: solid 3px #909090;
+                border-left: solid 3px #909090;
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-45deg);
+            }
+
+            &_type_decline {
+                width: 14px;
+                height: 14px;
+                position: relative;
+
+                &:before, &:after {
+                    position: absolute;
+                    content: '';
+                    left: 5px;
+                    height: 14px;
+                    width: 3px;
+                    background-color: #909090;
+                }
+
+                &:before {
+                    transform: rotate(45deg);
+                }
+
+                &:after {
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
 }

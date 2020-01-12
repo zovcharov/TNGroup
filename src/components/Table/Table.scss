@@ -29,6 +29,8 @@
     word-break: break-all;
     padding: 5px;
     flex-grow: 1;
+    display: flex;
+    align-items: center;
   }
   &__controls {
     display: flex;

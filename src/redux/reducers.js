@@ -45,10 +45,10 @@ import {
     selectFromLastTasks,
     selectProjectPermissions,
     selectFromPlannedRisks,
+    selectUserAgreements,
 } from './selectors';
 
 import { reportsMock } from './mocks/reportsMock';
-import agreementsMock from './mocks/agreementsMock';
 
 export default (state = DEFAULT_STORE, action) => {
     const stateAssign = (data) => ({ ...state, ...data });
@@ -62,7 +62,10 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ singleProjectDataState: 'loading' });
         case SINGLE_PROJECT_UPDATE:
             return stateAssign({
-                singleProject: action.data,
+                singleProject: {
+                    ...action.data,
+                    agreements: selectUserAgreements(action.data.agreements),
+                },
                 singleProjectDataState: 'loaded',
                 projectPermissions: selectProjectPermissions(action.data),
             });
@@ -82,7 +85,9 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ agreementsDataStatus: 'loading' });
         case AGREEMENTS_UPDATE:
             return stateAssign({
-                agreements: action.data.agreements.length ? action.data.agreements : agreementsMock,
+                agreements: action.data.agreements.length
+                    ? selectUserAgreements(action.data.agreements)
+                    : [],
                 agreementsProjectId: action.data.projectId,
                 agreementsDataStatus: 'loaded',
             });
@@ -90,7 +95,9 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ userAgreementsDataStatus: 'loading' });
         case USER_AGREEMENTS_UPDATE:
             return stateAssign({
-                userAgreements: action.data.agreements && action.data.agreements.length ? action.data.agreements : [],
+                userAgreements: action.data.agreements && action.data.agreements.length
+                    ? selectUserAgreements(action.data.agreements)
+                    : [],
                 userAgreementsDataStatus: 'loaded',
                 userAgreementsError: action.data.error,
             });

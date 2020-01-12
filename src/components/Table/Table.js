@@ -69,8 +69,18 @@ const TableBody = (props) => {
                     >
                         {
                             columns.map(({ name, width = 'auto', cell }, index) => {
-                                if (!item[name] && typeof item[name] !== 'boolean') {
+                                if (!item[name] && typeof item[name] !== 'boolean' && name !== 'FAKE_CELL') {
                                     return null;
+                                }
+
+                                if (name === 'FAKE_CELL') {
+                                    return (
+                                        <TableCell key={index} width={width}>
+                                            {
+                                                cell ? cell() : ''
+                                            }
+                                        </TableCell>
+                                    )
                                 }
 
                                 const validCellValue = getValidCellValue(item[name]);

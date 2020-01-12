@@ -69,7 +69,7 @@ const ProjectInfo = ({ info }) => {
         Alias,
         PassportProject,
         Participants,
-        agreement,
+        agreements,
         tasks,
         PlannedRisks,
     } = info;
@@ -132,7 +132,7 @@ const ProjectInfo = ({ info }) => {
                 <Container
                     label="Согласования"
                 >
-                    <Table columns={COLUMNS_AGREEMENTS} items={agreement} />
+                    <Table columns={COLUMNS_AGREEMENTS} items={agreements} />
                     <BottomButtons>
                         <DefaultButton>Показать все согласования</DefaultButton>
                         <DefaultButton>Добавить согласование</DefaultButton>

@@ -64,37 +64,39 @@ const CreateProjectModalContent = ({
         updateMilestones(newMilestones);
     };
 
-    const onSaveDraft = () => {
-        const projectAllData = {
-            participants: {
-                initiator,
-                curator,
-                customer,
-                customerContact,
-                controller,
-                manager,
-                executors,
-            },
-            projectName,
-            projectDescription,
-            projectGoal,
-            projectResult,
-            projectProduct,
-            projectEndDate,
-            meetingPlace,
-            meetingPeriodicity,
-            milestones,
-            projectCost: Number(projectCost),
-            economicEffect: Number(economicEffect),
-            passportId: props.Id,
-            projectId: props.projectId,
-        };
+    const getProjectData = (isDraft) => ({
+        participants: {
+            initiator,
+            curator,
+            customer,
+            customerContact,
+            controller,
+            manager,
+            executors,
+        },
+        projectName,
+        projectDescription,
+        projectGoal,
+        projectResult,
+        projectProduct,
+        projectEndDate,
+        meetingPlace,
+        meetingPeriodicity,
+        milestones,
+        projectCost: Number(projectCost),
+        economicEffect: Number(economicEffect),
+        passportId: props.Id,
+        projectId: props.projectId,
+        isDraft: isDraft,
+        needAgreement: !isDraft,
+    });
 
+    const onSaveDraft = () => {
         // eslint-disable-next-line no-unused-expressions
         setLoading && setLoading(true);
 
         if (isEdit) {
-            editProject(prepareDataToSave(projectAllData), props.projectId)
+            editProject(prepareDataToSave(getProjectData(true)), props.projectId)
                 .then(() => {
                     onClose();
                 })
@@ -103,7 +105,32 @@ const CreateProjectModalContent = ({
                     setLoading && setLoading(false);
                 });
         } else {
-            saveProject(prepareDataToSave(projectAllData))
+            saveProject(prepareDataToSave(getProjectData(true)))
+                .then(() => {
+                    onClose();
+                })
+                .finally(() => {
+                    // eslint-disable-next-line no-unused-expressions
+                    setLoading && setLoading(false);
+                });
+        }
+    };
+
+    const onSendToAgreement = () => {
+        // eslint-disable-next-line no-unused-expressions
+        setLoading && setLoading(true);
+
+        if (isEdit) {
+            editProject(prepareDataToSave(getProjectData(false)), props.projectId)
+                .then(() => {
+                    onClose();
+                })
+                .finally(() => {
+                    // eslint-disable-next-line no-unused-expressions
+                    setLoading && setLoading(false);
+                });
+        } else {
+            saveProject(prepareDataToSave(getProjectData(false)))
                 .then(() => {
                     onClose();
                 })
@@ -264,7 +291,7 @@ const CreateProjectModalContent = ({
                         Сохранить черновик
                     </span>
                 </DefaultButton>
-                <SubmitButton className="footer__button">
+                <SubmitButton className="footer__button" onClick={onSendToAgreement}>
                     <span className="button__content">
                         Отправить на согласование
                     </span>

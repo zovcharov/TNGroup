@@ -21,6 +21,27 @@ export const getRiskStatus = (statusNumber) => {
     }
 };
 
+// eslint-disable-next-line consistent-return
+export const getAgreementNameByDocumentType = (docType) => {
+    switch (docType) {
+        case 0: return 'Согласование паспорта проекта';
+        case 1: return 'Согласование изменения паспорта проекта';
+        case 2: return 'Согласование календарного плана';
+        case 3: return 'Согласование изменения календарного плана';
+        case 4: return 'Согласование отчета';
+        default: return 'Согласование';
+    }
+};
+
+export const getAgreementResultString = (agreementResult) => {
+    switch (agreementResult) {
+        case 0: return 'На рассмотрении';
+        case 1: return 'Принято';
+        case 2: return 'Отклонено';
+        default: return 'Не указано';
+    }
+};
+
 export const selectFromProject = (project) => ({
     projectName: project.ProjectName,
     status: project.Status,
@@ -58,6 +79,18 @@ export const selectPlannedRisk = (risk) => ({
     Date: formatDateToString(risk.Date),
 });
 
+export const selectUserAgreement = (userAgreement) => ({
+    id: userAgreement.Id,
+    documentId: userAgreement.DocumentId,
+    projectId: userAgreement.ProjectId,
+    name: getAgreementNameByDocumentType(userAgreement.DocumentType),
+    resultString: getAgreementResultString(userAgreement.Result),
+    result: userAgreement.Result,
+    lastDateUpdate: userAgreement.LastDateUpdate,
+});
+
+
+export const selectUserAgreements = (userAgreements = []) => userAgreements.map(selectUserAgreement);
 export const selectFromProjects = (projects = []) => projects.map(selectFromProject);
 export const selectFromTasks = (tasks = []) => tasks.map(selectFromTask);
 export const selectFromLastTasks = (tasks = []) => tasks.map(selectFromLastTask);

@@ -14,35 +14,80 @@ import './Agreements.scss';
 import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 import { formatDateToString } from '../../helpers/helpers';
 
+import { makeAgreementDecision } from '../../redux/fetchers';
+
+const onAcceptAgreement = (agreementId) => {
+    makeAgreementDecision({
+        Id: agreementId,
+        Result: 1,
+    });
+};
+
+const onDeclineAgreement = (agreementId) => {
+    makeAgreementDecision({
+        Id: agreementId,
+        Result: 2,
+    });
+};
+
 export const COLUMNS_AGREEMENTS = [
     {
+        label: 'ИД документа',
+        name: 'documentId',
+        width: '10%',
+    },
+    {
         label: 'Название',
-        name: 'Name',
+        name: 'name',
+        width: '35%',
+    },
+    {
+        label: 'Результат',
+        name: 'resultString',
         width: '25%',
     },
     {
-        label: 'Статус',
-        name: 'Status',
-        width: '25%',
-    },
-    {
-        label: 'Тип документа',
-        name: 'DocumentType',
-        width: '25%',
+        label: 'ИД проекта',
+        name: 'projectId',
+        width: '10%',
     },
     {
         label: 'Обновлено',
-        name: 'LastDateUpdate',
-        width: '25%',
+        name: 'lastDateUpdate',
+        width: '15%',
         cell: (item) => formatDateToString(item),
     },
+    {
+        label: '',
+        name: 'buttons',
+        width: '5%',
+        cell: (item) => (
+            <div className="agreement-decisions">
+                <div
+                    className="agreement-decisions__button agreement-decisions__button_type_accept"
+                    onClick={() => onAcceptAgreement(item.id)}
+                />
+                <div
+                    className="agreement-decisions__button agreement-decisions__button_type_decline"
+                    onClick={() => onDeclineAgreement(item.id)}
+                />
+            </div>
+        ),
+    },
 ];
+
+const prepareAgreements = (agreements) => agreements.map((argeement) => ({
+    ...argeement,
+    buttons: {
+        id: argeement.id,
+    },
+}));
 
 const Agreements = ({ agreements, canAddAgreement = false }) => (
     <>
         <div className="agreements__title">Согласования:</div>
         <div className="agreements">
-            <Table columns={COLUMNS_AGREEMENTS} items={agreements} />
+            <Table columns={COLUMNS_AGREEMENTS} items={prepareAgreements(agreements)} />
             {
                 canAddAgreement
                     && (

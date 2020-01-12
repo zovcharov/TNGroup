@@ -65,6 +65,8 @@ export const prepareDataToSave = (data) => ({
         MeetingPeriodic: data.meetingPeriodicity,
         EstimatedCost: Number(data.projectCost),
         ApproximateEconomicEffect: Number(data.economicEffect),
+        // eslint-disable-next-line no-nested-ternary
+        StatusDocument: data.isDraft ? 1 : data.needAgreement ? 2 : 0,
     },
     PassportProjectId: data.passportId,
     Id: data.projectId,
