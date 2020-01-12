@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable react/forbid-prop-types */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -127,8 +128,12 @@ const TableHead = (props) => {
 };
 
 Table.propTypes = {
-    columns: PropTypes.shape([]).isRequired,
-    items: PropTypes.shape([]).isRequired,
+    columns: PropTypes.array.isRequired,
+    items: PropTypes.array,
 };
+
+Table.defaultProps = {
+    items: [],
+}
 
 export default Table;

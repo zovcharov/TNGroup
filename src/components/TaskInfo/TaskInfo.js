@@ -1,8 +1,9 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import './TaskInfo.scss';
 import Container from '../Container/Container';
@@ -16,6 +17,7 @@ import {
     ITEMS_SUBTASK,
 } from './TaskInfo.constants';
 import Commentaries from '../Commentaries/Commentaries';
+import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 
 const TaskInfo = (props) => {
     const {
@@ -33,6 +35,11 @@ const TaskInfo = (props) => {
     const beginDate = formatDateToString(DateBegin);
     const endDate = formatDateToString(DateEnd);
 
+    const [isCreateTaskModalOpen, changeCreateTaskModalOpen] = useState(false);
+
+    const onOpenCreateTaskModal = () => changeCreateTaskModalOpen(true);
+    const onCloseCreateTaskModal = () => changeCreateTaskModalOpen(false);
+
     return (
         <div className="task-page">
             <div className="task-panels">
@@ -47,6 +54,10 @@ const TaskInfo = (props) => {
                     </div>
                 </Container>
                 <Container className="task-description_additional">
+                    <span
+                        className="task-description_additional__edit-button"
+                        onClick={onOpenCreateTaskModal}
+                    />
                     <InfoBlock label="Название задачи">
                         {Name}
                     </InfoBlock>
@@ -76,6 +87,12 @@ const TaskInfo = (props) => {
                 <Table columns={COLUMNS_PROJECT_EVENTS} items={ProjectEvents} />
             </Container>
             <Commentaries />
+            <CreateTaskModal
+                isOpen={isCreateTaskModalOpen}
+                onClose={onCloseCreateTaskModal}
+                isEdit
+                {...props.info}
+            />
         </div>
     );
 };

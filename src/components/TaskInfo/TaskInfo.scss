@@ -23,4 +23,25 @@
       width: 33%;
     }
   }
+
+  &_additional {
+    position: relative;
+
+
+    &__edit-button {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-image: url("../../icons/edit-icon.png");
+      border-radius: 100%;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5 );
+        cursor: pointer;
+      }
+    }
+  }
 }

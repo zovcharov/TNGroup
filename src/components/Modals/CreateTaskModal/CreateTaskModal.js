@@ -5,7 +5,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/anchor-is-valid,react/no-array-index-key */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './CreateTaskModal.scss';
 import TngInput from '../../TngInput/TngInput';
@@ -20,7 +20,7 @@ import { saveTask } from '../../../redux/fetchers';
 const FILES_MOCK = ['Отчет о предыдущем проекте.pdf', 'Договор подряда.docx', 'Внутренний регламент выполнения задач.pptx', 'Акт приема работ.pdf'];
 
 const CreateTaskModal = ({
-    projectId, onClose, setLoading,
+    projectId, onClose, setLoading, isEdit, ...props
 }) => {
     const [isStartMilestoneModalOpen, toggleStartMilestoneModal] = useState(false);
     const [isEndMilestoneModalOpen, toggleEndMilestoneModal] = useState(false);
@@ -59,7 +59,7 @@ const CreateTaskModal = ({
 
         // eslint-disable-next-line no-unused-expressions
         setLoading && setLoading(true);
-        saveTask(prepareTaskData(data), projectId)
+        saveTask(prepareTaskData(data), projectId, isEdit)
             .then(() => {
                 onClose();
             })
@@ -72,6 +72,16 @@ const CreateTaskModal = ({
     const getFilesList = () => taskFiles.map((file, index) => (
         <a className="file-item" href="#" key={`file-${index}`}>{file}</a>
     ));
+
+    useEffect(() => {
+        if (isEdit) {
+            changeTaskName(props.Name);
+            changeTaskStartDate(new Date(props.DateBegin));
+            changeTaskEndDate(new Date(props.DateEnd));
+            changeTaskExecutors([props.PerformerId]);
+            changeTaskDescription(props.Description);
+        }
+    }, []);
 
     return (
         <div className="task-modal">

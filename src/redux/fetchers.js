@@ -69,7 +69,13 @@ export const saveProject = (data) => ApiProvider.Post('project', '', data);
 
 export const editProject = (data, projectId) => ApiProvider.Put('project', '', { ...data, curProjectId: projectId });
 
-export const saveTask = (data, projectId) => ApiProvider.Post('ProjectTask', '', { ...data, curProjectId: projectId });
+export const saveTask = (data, projectId, isEdit) => {
+    if (isEdit) {
+        return ApiProvider.Put('ProjectTask', '', { ...data, curProjectId: projectId });
+    }
+
+    return ApiProvider.Post('ProjectTask', '', { ...data, curProjectId: projectId });
+};
 
 export const fetchProjectTasks = (projectId, fetchAction, updateAction) => {
     // eslint-disable-next-line no-unused-expressions

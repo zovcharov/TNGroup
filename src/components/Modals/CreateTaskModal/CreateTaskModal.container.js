@@ -28,7 +28,13 @@ const CreateProjectModal = ({
 
     return (
         <ModalWrapper isOpen={isModalOpen} onClose={onCloseModal} title="Создание задачи" isLoading={isLoading}>
-            <CreateTaskModal {...props} onClose={onCloseModal} projectId={projectId} setLoading={changeLoading} />
+            <CreateTaskModal
+                isEdit={isEdit}
+                onClose={onCloseModal}
+                projectId={projectId}
+                setLoading={changeLoading}
+                {...props}
+            />
         </ModalWrapper>
     );
 };

@@ -87,7 +87,7 @@ const CreateProjectModalContent = ({
         economicEffect: Number(economicEffect),
         passportId: props.Id,
         projectId: props.projectId,
-        isDraft: isDraft,
+        isDraft,
         needAgreement: !isDraft,
     });
 
