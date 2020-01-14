@@ -48,8 +48,6 @@ import {
     selectUserAgreements,
 } from './selectors';
 
-import { reportsMock } from './mocks/reportsMock';
-
 export default (state = DEFAULT_STORE, action) => {
     const stateAssign = (data) => ({ ...state, ...data });
 
@@ -158,7 +156,7 @@ export default (state = DEFAULT_STORE, action) => {
         case USER_REPORTS_UPDATE:
             return stateAssign({
                 userReportsDataStatus: 'loaded',
-                userReports: action.data && action.data.length ? action.data.length : reportsMock,
+                userReports: action.data && action.data.length ? action.data.length : [],
             });
         case USER_PROFILE_FETCH:
             return stateAssign({ currentUserInfoDataStatus: 'loading' });

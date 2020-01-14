@@ -24,10 +24,14 @@ const ProjectPage = (props) => {
     } = props;
 
     useEffect(() => {
+        // Перваязагрузка проекта
         if (singleProjectDataState === 'pending') {
             fetchSingleProject(projectId, singleProjectFetch, singleProjectUpdate);
+        } else if (singleProjectDataState === 'loaded' && singleProject.Id !== Number(projectId)) {
+            // Зарузка при смене проекта
+            fetchSingleProject(projectId, singleProjectFetch, singleProjectUpdate);
         }
-    }, [projectId]);
+    }, [projectId, singleProjectDataState, singleProject]);
 
     if (singleProjectDataState === 'loading') {
         return <Preloader fullScreen />;

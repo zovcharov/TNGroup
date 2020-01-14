@@ -98,7 +98,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
                         className="project-info__contaners-divider"
                         label="Календарный план проекта"
                     >
-                        <Table columns={COLUMNS_TASKS} items={ITEMS_TASKS} />
+                        <Table columns={COLUMNS_TASKS} items={[]} />
                     </Container>
                     <Container
                         className="project-info__contaners-divider"
