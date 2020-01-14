@@ -25,8 +25,8 @@ const TngUserSelectDropdown = ({ users, onSelectUser }) => {
                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
                 <li
                     className="user-select__item"
-                    key={`user-dropdown-${item.User.Login}`}
-                    onClick={() => onSelectUser(item.Id)}
+                    key={`user-dropdown-${item.UserId}`}
+                    onClick={() => onSelectUser(item.UserId)}
                 >
                     { item.Name }
                 </li>

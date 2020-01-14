@@ -11,33 +11,33 @@ import { fetchUserProfile } from '../../redux/fetchers';
 
 const ProfilePage = (props) => {
     const {
-        userProfile = {},
-        userProfileDataStatus,
+        currentUserInfo = {},
+        currentUserInfoDataStatus,
         userProfileFetch,
         userProfileUpdate,
     } = props;
 
     useEffect(() => {
-        if (userProfileDataStatus === 'pending') {
+        if (currentUserInfoDataStatus === 'pending') {
             fetchUserProfile(userProfileFetch, userProfileUpdate);
         }
-    });
+    }, [currentUserInfoDataStatus]);
 
     return (
-        <ProfileInfo info={userProfile} />
+        <ProfileInfo info={currentUserInfo} />
     );
 };
 
 ProfilePage.propTypes = {
-    userProfile: PropTypes.shape({}),
-    userProfileDataStatus: PropTypes.string,
+    currentUserInfo: PropTypes.shape({}),
+    currentUserInfoDataStatus: PropTypes.string,
     userProfileFetch: PropTypes.func,
     userProfileUpdate: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
-    userProfile: state.userProfile,
-    userProfileDataStatus: state.userProfileDataStatus,
+    currentUserInfo: state.currentUserInfo,
+    currentUserInfoDataStatus: state.currentUserInfoDataStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

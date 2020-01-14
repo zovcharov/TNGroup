@@ -11,6 +11,8 @@ import React from 'react';
 
 import './Avatar.scss';
 
+import defaultAvatar from './img/default-avatar.png';
+
 const AVAILABLE_SIZES = ['s', 'm', 'l'];
 const DEFAULT_SIZE = 'm';
 
@@ -19,7 +21,7 @@ const getClassForSize = (size) => (AVAILABLE_SIZES.indexOf(size) !== -1 ? `avata
 const Avatar = (props) => {
     const {
         size,
-        avatarUrl,
+        avatarUrl = defaultAvatar,
         width,
         height,
     } = props;

@@ -63,7 +63,7 @@ const BottomButtons = (props) => {
     );
 };
 
-const ProjectInfo = ({ info }) => {
+const ProjectInfo = ({ info, currentUserId }) => {
     const {
         Id,
         Alias,
@@ -80,6 +80,15 @@ const ProjectInfo = ({ info }) => {
         Participants,
         ...PassportProject,
     };
+
+    const canUserEditProject = () => (Participants && Participants.filter((participant) => {
+        if (participant.EmployeeId === currentUserId
+           && (participant.ProjectRole === 1 || participant.ProjectRole === 6)) {
+            return true;
+        }
+
+        return false;
+    }).length > 0);
 
     return (
         <div className="project-info">
@@ -118,6 +127,7 @@ const ProjectInfo = ({ info }) => {
                     >
                         <ProjectPassport
                             projectId={Id}
+                            canUserEditProject={canUserEditProject()}
                             {...passportInfo}
                         />
                     </Container>

@@ -7,17 +7,26 @@ import { connect } from 'react-redux';
 import {
     usersFetch,
     usersUpdate,
+    userProfileFetch,
+    userProfileUpdate,
 } from '../../redux/actions';
-import { fetchUsers } from '../../redux/fetchers';
+import {fetchUserProfile, fetchUsers} from '../../redux/fetchers';
 
 import './Wrapper.scss';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import Preloader from '../Preloader/Preloader';
 
-const Wrapper = ({
-    children, usersDataState, usersFetch, usersUpdate,
-}) => {
+const Wrapper = (props) => {
+    const {
+        children,
+        usersDataState,
+        usersFetch,
+        usersUpdate,
+        userProfileFetch,
+        userProfileUpdate,
+        currentUserInfoDataStatus,
+    } = props;
     const [isContentActive, onChangeContentActive] = useState(false);
 
     useEffect(() => {
@@ -36,6 +45,12 @@ const Wrapper = ({
         }
     }, []);
 
+    useEffect(() => {
+        if (currentUserInfoDataStatus === 'pending') {
+            fetchUserProfile(userProfileFetch, userProfileUpdate);
+        }
+    }, [currentUserInfoDataStatus]);
+
     return isContentActive ? (
         <div className="wrapper">
             <Header />
@@ -51,14 +66,17 @@ const Wrapper = ({
     );
 };
 
-const mapStateToProps = ({ users, usersDataState }) => ({
-    users,
-    usersDataState,
+const mapStateToProps = (state) => ({
+    currentUserInfoDataStatus: state.currentUserInfoDataStatus,
+    users: state.users,
+    usersDataState: state.usersDataState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     usersFetch: () => dispatch(usersFetch()),
     usersUpdate: (data) => dispatch(usersUpdate(data)),
+    userProfileFetch: () => dispatch(userProfileFetch()),
+    userProfileUpdate: (data) => dispatch(userProfileUpdate(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);

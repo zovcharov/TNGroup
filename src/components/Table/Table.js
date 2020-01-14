@@ -23,7 +23,10 @@ const Table = (props) => {
                 {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,react/button-has-type */}
                 {reload && <button className="table__refresh" onClick={reload} />}
             </div>
-            <TableHead columns={columns} />
+            {
+                items.lenght
+                && <TableHead columns={columns} />
+            }
             <TableBody items={items} columns={columns} />
         </div>
     );
@@ -81,7 +84,7 @@ const TableBody = (props) => {
                                                 cell ? cell() : ''
                                             }
                                         </TableCell>
-                                    )
+                                    );
                                 }
 
                                 const validCellValue = getValidCellValue(item[name]);
@@ -134,6 +137,6 @@ Table.propTypes = {
 
 Table.defaultProps = {
     items: [],
-}
+};
 
 export default Table;

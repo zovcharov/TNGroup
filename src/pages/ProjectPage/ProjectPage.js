@@ -20,6 +20,7 @@ const ProjectPage = (props) => {
         singleProjectDataState,
         singleProjectFetch,
         singleProjectUpdate,
+        currentUserInfo = { UserId: 0 },
     } = props;
 
     useEffect(() => {
@@ -36,13 +37,14 @@ const ProjectPage = (props) => {
         <>
             <NavigationPanel projectId={projectId} activePage="project" />
             <div className="info">
-                <ProjectInfo info={singleProject} />
+                <ProjectInfo info={singleProject} currentUserId={currentUserInfo.UserId} />
             </div>
         </>
     );
 };
 
-const mapStateToProps = ({ singleProject, singleProjectDataState }) => ({
+const mapStateToProps = ({ currentUserInfo, singleProject, singleProjectDataState }) => ({
+    currentUserInfo,
     singleProject,
     singleProjectDataState,
 });

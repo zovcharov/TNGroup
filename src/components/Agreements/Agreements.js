@@ -12,22 +12,23 @@ import Table from '../Table/Table';
 
 import './Agreements.scss';
 import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
+import AgreementsButtons from './AgreementsButtons';
 import { formatDateToString } from '../../helpers/helpers';
 
 import { makeAgreementDecision } from '../../redux/fetchers';
 
-const onAcceptAgreement = (agreementId) => {
-    makeAgreementDecision({
-        Id: agreementId,
+const onAcceptAgreement = (agreementId, projectId) => {
+    return makeAgreementDecision({
+        AgreementId: agreementId,
         Result: 1,
-    });
+    }, projectId);
 };
 
-const onDeclineAgreement = (agreementId) => {
-    makeAgreementDecision({
-        Id: agreementId,
+const onDeclineAgreement = (agreementId, projectId) => {
+    return makeAgreementDecision({
+        AgreementId: agreementId,
         Result: 2,
-    });
+    }, projectId);
 };
 
 export const COLUMNS_AGREEMENTS = [
@@ -62,32 +63,40 @@ export const COLUMNS_AGREEMENTS = [
         name: 'buttons',
         width: '5%',
         cell: (item) => (
-            <div className="agreement-decisions">
-                <div
-                    className="agreement-decisions__button agreement-decisions__button_type_accept"
-                    onClick={() => onAcceptAgreement(item.id)}
-                />
-                <div
-                    className="agreement-decisions__button agreement-decisions__button_type_decline"
-                    onClick={() => onDeclineAgreement(item.id)}
-                />
-            </div>
+            <AgreementsButtons
+                onAcceptAgreement={onAcceptAgreement}
+                onDeclineAgreement={onDeclineAgreement}
+                agreementId={item.id}
+                projectId={item.projectId}
+                performanceList={item.performanceList}
+                userId={item.userId}
+                updateAgreementsList={item.updateAgreementsList}
+            />
         ),
     },
 ];
 
-const prepareAgreements = (agreements) => agreements.map((argeement) => ({
-    ...argeement,
+const prepareAgreements = (agreements, userId, updateAgreementsList) => agreements.map((agreement) => ({
+    ...agreement,
     buttons: {
-        id: argeement.id,
+        id: agreement.id,
+        projectId: agreement.projectId,
+        performanceList: agreement.performanceList,
+        updateAgreementsList,
+        userId,
     },
 }));
 
-const Agreements = ({ agreements, canAddAgreement = false }) => (
+const Agreements = ({
+    agreements, canAddAgreement = false, currentUserInfo, updateAgreementsList,
+}) => (
     <>
         <div className="agreements__title">Согласования:</div>
         <div className="agreements">
-            <Table columns={COLUMNS_AGREEMENTS} items={prepareAgreements(agreements)} />
+            <Table
+                columns={COLUMNS_AGREEMENTS}
+                items={prepareAgreements(agreements, currentUserInfo.UserId, updateAgreementsList)}
+            />
             {
                 canAddAgreement
                     && (

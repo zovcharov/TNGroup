@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ProfileInfo.scss';
 import Container from '../Container/Container';
+import Avatar from '../Avatar/Avatar';
 import { InfoBlock } from '../ProjectMainInfo/ProjectPassport';
 import { formatDateToString } from '../../helpers/helpers';
 
@@ -16,7 +17,7 @@ const ProfileInfo = (props) => {
     const {
         Name,
         Email,
-        RefUrlAvatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
+        RefUrlAvatar,
         Phone,
         Position,
         Department,
@@ -26,13 +27,19 @@ const ProfileInfo = (props) => {
         Sex,
         Skype,
     } = info;
+
     return (
         <div className="profile-page">
             <div className="profile-info">
                 <Container label="Профиль">
                     <div className="profile-info__container">
                         <div className="profile-info__avatar">
-                            <img src={RefUrlAvatar} alt="" />
+                            <Avatar
+                                size="m"
+                                avatarUrl={RefUrlAvatar}
+                                width="124px"
+                                height="256px"
+                            />
                         </div>
                         <div className="profile-info__infoarea">
                             <div className="profile-info__row">

@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 
 import React, { useState } from 'react';
 import './ProjectPassport.scss';
@@ -22,11 +23,12 @@ const ProjectMainInfo = (props) => {
         ExpectedProduct,
         MeetingLocation,
         MeetingPeriodic,
-        EstimatedСost,
+        EstimatedCost,
         PlannedFinancingSource,
         ApproximateEconomicEffect,
         Customer,
         Participants,
+        canUserEditProject,
     } = props;
 
     const openCreateProjectModal = () => onOpenCreateProjectModal(true);
@@ -38,8 +40,10 @@ const ProjectMainInfo = (props) => {
 
     return (
         <div className="project-main-info">
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-            <span className="project-main-info__edit-button" onClick={openCreateProjectModal} />
+            {
+                canUserEditProject
+                && <span className="project-main-info__edit-button" onClick={openCreateProjectModal} />
+            }
             <div className="project-main-info__row">
                 <InfoBlock label="Название проекта:">
                     <span className="project-main-info__label">
@@ -96,7 +100,7 @@ const ProjectMainInfo = (props) => {
             <div className="project-main-info__row">
                 <div className="project-main-info__col">
                     <InfoBlock label="Стоимость проекта(ориентировочно):">
-                        {EstimatedСost}
+                        {EstimatedCost}
                     </InfoBlock>
                 </div>
                 <div className="project-main-info__col">

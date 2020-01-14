@@ -148,7 +148,7 @@ const CreateProjectModalContent = ({
             changeProjectGoal(props.Objective);
             changeProjectResult(props.ExpectedResult);
             changeProjectProduct(props.ExpectedProduct);
-            changeProjectCost(props.EstimatedСost);
+            changeProjectCost(props.EstimatedCost);
             changeEconomicEffect(props.ApproximateEconomicEffect);
             changeMeetingPlace(props.MeetingLocation);
             changeMeetingPeriodicity(props.MeetingPeriodic);

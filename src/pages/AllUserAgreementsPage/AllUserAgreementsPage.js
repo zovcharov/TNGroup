@@ -21,17 +21,14 @@ const AllUserAgreementsPage = (props) => {
         userAgreementsFetch,
         userAgreementsUpdate,
         userAgreementsError,
+        currentUserInfo = { UserId: 0 },
     } = props;
 
     useEffect(() => {
         fetchUserAgreements(userAgreementsFetch, userAgreementsUpdate);
     }, []);
 
-    /* useEffect(() => {
-        if (userAgreementsDataStatus === 'pending') {
-            fetchUserAgreements(userAgreementsFetch, userAgreementsUpdate);
-        }
-    }, [userAgreements, userAgreementsDataStatus]); */
+    const updateAgreementsList = () => fetchUserAgreements(userAgreementsFetch, userAgreementsUpdate);
 
     if (userAgreementsDataStatus === 'loading') {
         return <Preloader fullScreen />;
@@ -42,11 +39,18 @@ const AllUserAgreementsPage = (props) => {
     }
 
     return (
-        <Agreements agreements={userAgreements} />
+        <Agreements
+            agreements={userAgreements}
+            currentUserInfo={currentUserInfo}
+            updateAgreementsList={updateAgreementsList}
+        />
     );
 };
 
-const mapStateToProps = ({ userAgreements, userAgreementsDataStatus, userAgreementsError }) => ({
+const mapStateToProps = ({
+    userAgreements, userAgreementsDataStatus, userAgreementsError, currentUserInfo,
+}) => ({
+    currentUserInfo,
     userAgreements,
     userAgreementsDataStatus,
     userAgreementsError,

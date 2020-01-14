@@ -15,7 +15,7 @@ import {
 
 const Profile = (props) => {
     const {
-        avatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
+        avatar,
         name = 'Иванов Иван Иванович',
         resetState,
     } = props;

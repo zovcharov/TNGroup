@@ -87,6 +87,7 @@ export const selectUserAgreement = (userAgreement) => ({
     resultString: getAgreementResultString(userAgreement.Result),
     result: userAgreement.Result,
     lastDateUpdate: userAgreement.LastDateUpdate,
+    performanceList: userAgreement.PerformanceList,
 });
 
 

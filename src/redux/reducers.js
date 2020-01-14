@@ -161,11 +161,11 @@ export default (state = DEFAULT_STORE, action) => {
                 userReports: action.data && action.data.length ? action.data.length : reportsMock,
             });
         case USER_PROFILE_FETCH:
-            return stateAssign({ userProfileFetchStatus: 'loading' });
+            return stateAssign({ currentUserInfoDataStatus: 'loading' });
         case USER_PROFILE_UPDATE:
             return stateAssign({
-                userProfileDataStatus: 'loaded',
-                userProfile: action.data && action.data,
+                currentUserInfoDataStatus: 'loaded',
+                currentUserInfo: action.data,
             });
         case RESET_STATE:
             return DEFAULT_STORE;

@@ -21,6 +21,7 @@ const ProjectAgreementsPage = (props) => {
         agreementsProjectId,
         agreementsFetch,
         agreementsUpdate,
+        currentUserInfo = { UserId: 0 },
     } = props;
 
     useEffect(() => {
@@ -46,12 +47,13 @@ const ProjectAgreementsPage = (props) => {
     return (
         <>
             <NavigationPanel projectId={projectId} activePage="agreements" />
-            <Agreements agreements={agreements} />
+            <Agreements agreements={agreements} currentUserInfo={currentUserInfo} />
         </>
     );
 };
 
-const mapStateToProps = ({ agreements, agreementsDataStatus }) => ({
+const mapStateToProps = ({ agreements, agreementsDataStatus, currentUserInfo }) => ({
+    currentUserInfo,
     agreements,
     agreementsDataStatus,
 });

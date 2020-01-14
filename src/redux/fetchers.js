@@ -242,8 +242,8 @@ export const fetchUserProfile = (fetchAction, updateAction) => {
         });
 };
 
-export const makeAgreementDecision = (data) => {
-    return ApiProvider.Put('Agreement', '', data)
+export const makeAgreementDecision = (data, projectId) => {
+    return ApiProvider.Put('AgreementPerformance', '', { curProjectId: projectId, ...data })
         .then((data) => {
         });
 };

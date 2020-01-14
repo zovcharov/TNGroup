@@ -62,6 +62,12 @@
                 border-left: solid 3px #909090;
                 -webkit-transform: rotate(-5deg);
                 transform: rotate(-45deg);
+
+                &.agreement-decisions__button_result_voted {
+                    color: #00d43c;
+                    border-bottom: solid 3px #00d43c;
+                    border-left: solid 3px #00d43c;
+                }
             }
 
             &_type_decline {
@@ -76,6 +82,12 @@
                     height: 14px;
                     width: 3px;
                     background-color: #909090;
+                }
+
+                &.agreement-decisions__button_result_voted {
+                    &:before, &:after {
+                        background-color: #ff0008;
+                    }
                 }
 
                 &:before {
