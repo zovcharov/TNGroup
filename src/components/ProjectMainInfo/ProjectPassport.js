@@ -10,6 +10,31 @@ import './ProjectPassport.scss';
 import { formatDateToString } from '../../helpers/helpers';
 import PersonItem from '../PersonItem/PersonItem';
 import CreateProjectModal from '../Modals/CreateProjectModal/CreateProjectModal';
+import {
+    PROJECT_MANAGER,
+    PROJECT_SUPERVISER,
+    PROJECT_WORKER,
+    PROJECT_CUSTOMER,
+    PROJECT_CURATOR,
+} from '../../pages/ProjectsPage/ProjectPage.constants';
+
+export const getPersonByRole = (partisipants = [], role) => {
+    const persons = partisipants.filter((part) => part.ProjectRole === role);
+    return (
+        persons.map(({Employee}) => (
+            <PersonItem person={Employee} />
+        ))
+    );
+}
+
+export const InfoBlock = ({ label, children, className = '' }) => (
+    <div className={`info-block ${className}`}>
+        <p className="info-block__label">{label}</p>
+        <div className="info-block__content">
+            {children}
+        </div>
+    </div>
+);
 
 const ProjectMainInfo = (props) => {
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
@@ -36,7 +61,6 @@ const ProjectMainInfo = (props) => {
 
     const createDate = formatDateToString(DateCreate);
     const endDate = formatDateToString(DateEnd);
-    const projectOwner = Participants && Participants.find((part) => part.ProjectRole === 1);
 
     return (
         <div className="project-main-info">
@@ -124,27 +148,27 @@ const ProjectMainInfo = (props) => {
             <div className="project-main-info__row">
                 <div className="project-main-info__col">
                     <InfoBlock label="Куратор:">
-                        <PersonItem person={projectOwner} />
+                        {getPersonByRole(Participants, PROJECT_CURATOR)}
                     </InfoBlock>
                 </div>
                 <div className="project-main-info__col">
                     <InfoBlock label="Контактное лицо заказчика:">
-                        <PersonItem person={projectOwner} />
+                        {getPersonByRole(Participants, PROJECT_CUSTOMER)}
                     </InfoBlock>
                 </div>
             </div>
             <div className="project-main-info__row">
                 <div className="project-main-info__col">
                     <InfoBlock label="Исполнители:">
-                        <PersonItem person={projectOwner} />
+                        {getPersonByRole(Participants, PROJECT_WORKER)}
                     </InfoBlock>
                 </div>
                 <div className="project-main-info__col">
                     <InfoBlock label="Контролер проекта:">
-                        <PersonItem person={projectOwner} />
+                        {getPersonByRole(Participants, PROJECT_SUPERVISER)}
                     </InfoBlock>
                     <InfoBlock label="Руководитель:">
-                        <PersonItem person={projectOwner} />
+                        {getPersonByRole(Participants, PROJECT_MANAGER)}
                     </InfoBlock>
                 </div>
             </div>
@@ -157,14 +181,5 @@ const ProjectMainInfo = (props) => {
         </div>
     );
 };
-
-export const InfoBlock = ({ label, children, className = '' }) => (
-    <div className={`info-block ${className}`}>
-        <p className="info-block__label">{label}</p>
-        <div className="info-block__content">
-            {children}
-        </div>
-    </div>
-);
 
 export default ProjectMainInfo;

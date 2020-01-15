@@ -5,29 +5,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './PersonItem.scss';
+import Avatar from '../Avatar/Avatar';
 
 const PersonItem = (props) => {
+    const { person = {} } = props
     const {
-        name = 'Иванов Иван Иванович',
-        refUrlAvatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
-    } = props;
+        Name,
+        RefUrlAvatar,
+    } = person;
     return (
         <div className="person-item">
-            <span
-                className="person-item__avatar"
-                style={{
-                    backgroundImage: `url(${refUrlAvatar})`,
-                }}
-            />
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a className="person-item__name">{name}</a>
+            <Avatar avatarUrl={RefUrlAvatar} />
+            <a className="person-item__name">{Name}</a>
         </div>
     );
 };
 
 PersonItem.propTypes = {
-    name: PropTypes.string,
-    refUrlAvatar: PropTypes.string,
+    Name: PropTypes.string,
+    RefUrlAvatar: PropTypes.string,
 };
 
 export default PersonItem;
