@@ -3,17 +3,19 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { useState  } from 'react';
 
 import './ProjectInfo.scss';
 import Container from '../Container/Container';
 import Table from '../Table/Table';
 import ProjectPassport from '../ProjectMainInfo/ProjectPassport';
 import ProjectFiles from '../ProjectFiles/ProjectFiles';
-import { ITEMS_TASKS } from '../../ApiProvider/mockups';
 import { COLUMNS_AGREEMENTS } from '../Agreements/Agreements';
 import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 import { formatDateToString } from '../../helpers/helpers';
+import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
+import UnplannedRiskModalContainer from '../Modals/UnplannedRiskModal/UnplannedRiskModal.container';
+import PlannedRiskModalContainer from "../Modals/PlannedRiskModal/PlannedRiskModal.container";
 
 const COLUMNS_TASKS = [
     {
@@ -81,6 +83,15 @@ const ProjectInfo = ({ info, currentUserId }) => {
         ...PassportProject,
     };
 
+    const [isCreateTaskModalOpen, toggleCreateTaskModalOpen] = useState(false);
+    const [isUnplannedRiskModalOpen, toggleUnplannedRiskModal] = useState(false);
+
+    const onOpenCreateTaskModal = () => toggleCreateTaskModalOpen(true);
+    const onCloseCreateTaskModal = () => toggleCreateTaskModalOpen(false);
+
+    const onOpenUnplannedRiskModal = () => toggleUnplannedRiskModal(true);
+    const onCloseUnplannedRiskModal = () => toggleUnplannedRiskModal(false);
+
     const canUserEditProject = () => (Participants && Participants.filter((participant) => {
         if (participant.EmployeeId === currentUserId
            && (participant.ProjectRole === 1 || participant.ProjectRole === 6)) {
@@ -106,8 +117,16 @@ const ProjectInfo = ({ info, currentUserId }) => {
                     >
                         <Table columns={COLUMNS_TASKS} items={tasks} />
                         <BottomButtons>
-                            <DefaultButton>Показать все задачи</DefaultButton>
-                            <DefaultButton>Добавить задачу</DefaultButton>
+                            <DefaultButton
+                                link={`/tasks/${Id}`}
+                            >
+                                Показать все задачи
+                            </DefaultButton>
+                            <DefaultButton
+                                onClick={onOpenCreateTaskModal}
+                            >
+                                Добавить задачу
+                            </DefaultButton>
                         </BottomButtons>
                     </Container>
                     <Container
@@ -115,8 +134,16 @@ const ProjectInfo = ({ info, currentUserId }) => {
                     >
                         <Table columns={COLUMNS_RISKS} items={PlannedRisks} />
                         <BottomButtons>
-                            <DefaultButton>Показать все риски</DefaultButton>
-                            <DefaultButton>Добавить риск</DefaultButton>
+                            <DefaultButton
+                                link={`/risks/${Id}`}
+                            >
+                                Показать все риски
+                            </DefaultButton>
+                            <DefaultButton
+                                onClick={onOpenUnplannedRiskModal}
+                            >
+                                Добавить риск
+                            </DefaultButton>
                         </BottomButtons>
                     </Container>
                 </div>
@@ -149,6 +176,9 @@ const ProjectInfo = ({ info, currentUserId }) => {
                     </BottomButtons>
                 </Container>
             </div>
+
+            <CreateTaskModal projectId={Id} isOpen={isCreateTaskModalOpen} onClose={onCloseCreateTaskModal} />
+            <UnplannedRiskModalContainer isOpen={isUnplannedRiskModalOpen} onClose={onCloseUnplannedRiskModal} projectId={Id} />
         </div>
     );
 };

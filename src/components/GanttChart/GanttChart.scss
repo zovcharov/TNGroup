@@ -42,16 +42,12 @@ $cell-width: 50px;
             font-size: 14px;
             text-align: center;
 
-            &:not(&:last-child):after {
+            &:after {
                 content: '';
                 position: absolute;
                 right: 0;
                 height: 400px;
                 border-right: 1px solid rgba(0, 0, 0, .15);
-            }
-
-            &:last-child:after {
-                display: none;
             }
         }
     }

@@ -14,5 +14,4 @@ export const prepareTaskData = (data) => ({
             Description: data.taskEndMilestone && data.taskEndMilestone.name,
         },
     ],
-    PlannedScheduleId: 15,
 });
