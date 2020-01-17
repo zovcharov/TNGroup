@@ -1,33 +1,52 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import './PersonItem.scss';
 
-const PersonItem = (props) => {
+import Avatar from '../Avatar/Avatar';
+
+const PersonItem = ({ person = {} }) => {
     const {
-        name = 'Иванов Иван Иванович',
-        refUrlAvatar = 'https://www.rusdialog.ru/images/news/news_view/5107a4952d8cf8344551a6c9f4f80d0b.jpg',
-    } = props;
+        Name = '',
+        RefUrlAvatar = '',
+    } = person;
+
+    if (!Name) {
+        return (
+            <div className="person-item">
+                <span className="person-item__empty" />
+            </div>
+        );
+    }
+
     return (
         <div className="person-item">
-            <span
+            <Avatar
                 className="person-item__avatar"
-                style={{
-                    backgroundImage: `url(${refUrlAvatar})`,
-                }}
+                size="m"
+                avatarUrl={RefUrlAvatar || undefined}
             />
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a className="person-item__name">{name}</a>
+            <a className="person-item__name">{Name}</a>
         </div>
     );
 };
 
 PersonItem.propTypes = {
-    name: PropTypes.string,
-    refUrlAvatar: PropTypes.string,
+    person: propTypes.shape({
+        Name: propTypes.string.isRequired,
+        RefUrlAvatar: propTypes.string,
+    }),
+};
+
+PersonItem.defaultProps = {
+    person: {
+        Name: '',
+        RefUrlAvatar: '',
+    },
 };
 
 export default PersonItem;
