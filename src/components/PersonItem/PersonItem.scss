@@ -15,4 +15,11 @@
     width: calc(100% - 48px);
     word-break: break-word;
   }
+
+  &__empty {
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background-color: #498d91;
+  }
 }

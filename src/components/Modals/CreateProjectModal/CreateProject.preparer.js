@@ -14,7 +14,7 @@ const isNumber = (value) => typeof value === 'number';
 
 const getIdFromParticipantItem = (participant) => (
     // eslint-disable-next-line no-nested-ternary
-    isNumber(participant) ? participant : isNumber(participant.EmployeeId) ? participant.EmployeeId : 0
+    isNumber(participant) ? participant : isNumber(participant.Id) ? participant.Id : 0
 );
 const getParticipants = (participants) => {
     const preparedParticipants = [];

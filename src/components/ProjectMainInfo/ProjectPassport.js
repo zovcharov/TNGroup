@@ -10,6 +10,7 @@ import './ProjectPassport.scss';
 import { formatDateToString } from '../../helpers/helpers';
 import PersonItem from '../PersonItem/PersonItem';
 import CreateProjectModal from '../Modals/CreateProjectModal/CreateProjectModal';
+import { findParticipantByRole, findParticipantsByRole } from '../../helpers/usersHelper';
 
 const ProjectMainInfo = (props) => {
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
@@ -26,7 +27,6 @@ const ProjectMainInfo = (props) => {
         EstimatedCost,
         PlannedFinancingSource,
         ApproximateEconomicEffect,
-        Customer,
         Participants,
         canUserEditProject,
     } = props;
@@ -36,7 +36,12 @@ const ProjectMainInfo = (props) => {
 
     const createDate = formatDateToString(DateCreate);
     const endDate = formatDateToString(DateEnd);
-    const projectOwner = Participants && Participants.find((part) => part.ProjectRole === 1);
+
+    const projectManager = Participants && findParticipantByRole(Participants, 'Manager')[0];
+    const projectCurator = Participants && findParticipantByRole(Participants, 'Curator')[0];
+    const projectCustomer = Participants && findParticipantByRole(Participants, 'Customer')[0];
+    const projectController = Participants && findParticipantByRole(Participants, 'Controller')[0];
+    const projectWorkers = Participants && findParticipantsByRole(Participants, 'Worker');
 
     return (
         <div className="project-main-info">
@@ -117,34 +122,33 @@ const ProjectMainInfo = (props) => {
                 </div>
                 <div className="project-main-info__col">
                     <InfoBlock label="Заказчик:">
-                        {Customer}
+                        <PersonItem person={projectCustomer} />
                     </InfoBlock>
                 </div>
             </div>
             <div className="project-main-info__row">
                 <div className="project-main-info__col">
                     <InfoBlock label="Куратор:">
-                        <PersonItem person={projectOwner} />
-                    </InfoBlock>
-                </div>
-                <div className="project-main-info__col">
-                    <InfoBlock label="Контактное лицо заказчика:">
-                        <PersonItem person={projectOwner} />
+                        <PersonItem person={projectCurator} />
                     </InfoBlock>
                 </div>
             </div>
             <div className="project-main-info__row">
                 <div className="project-main-info__col">
                     <InfoBlock label="Исполнители:">
-                        <PersonItem person={projectOwner} />
+                        {
+                            projectWorkers && projectWorkers.map((worker) => (
+                                <PersonItem person={worker} key={`worker-${worker.Id}`} />
+                            ))
+                        }
                     </InfoBlock>
                 </div>
                 <div className="project-main-info__col">
                     <InfoBlock label="Контролер проекта:">
-                        <PersonItem person={projectOwner} />
+                        <PersonItem person={projectController} />
                     </InfoBlock>
                     <InfoBlock label="Руководитель:">
-                        <PersonItem person={projectOwner} />
+                        <PersonItem person={projectManager} />
                     </InfoBlock>
                 </div>
             </div>
