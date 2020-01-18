@@ -10,31 +10,7 @@ import './ProjectPassport.scss';
 import { formatDateToString } from '../../helpers/helpers';
 import PersonItem from '../PersonItem/PersonItem';
 import CreateProjectModal from '../Modals/CreateProjectModal/CreateProjectModal';
-import {
-    PROJECT_MANAGER,
-    PROJECT_SUPERVISER,
-    PROJECT_WORKER,
-    PROJECT_CUSTOMER,
-    PROJECT_CURATOR,
-} from '../../pages/ProjectsPage/ProjectPage.constants';
-
-export const getPersonByRole = (partisipants = [], role) => {
-    const persons = partisipants.filter((part) => part.ProjectRole === role);
-    return (
-        persons.map(({Employee}) => (
-            <PersonItem person={Employee} />
-        ))
-    );
-}
-
-export const InfoBlock = ({ label, children, className = '' }) => (
-    <div className={`info-block ${className}`}>
-        <p className="info-block__label">{label}</p>
-        <div className="info-block__content">
-            {children}
-        </div>
-    </div>
-);
+import { findParticipantByRole, findParticipantsByRole } from '../../helpers/usersHelper';
 
 const ProjectMainInfo = (props) => {
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
@@ -51,7 +27,6 @@ const ProjectMainInfo = (props) => {
         EstimatedCost,
         PlannedFinancingSource,
         ApproximateEconomicEffect,
-        Customer,
         Participants,
         canUserEditProject,
     } = props;
@@ -61,6 +36,12 @@ const ProjectMainInfo = (props) => {
 
     const createDate = formatDateToString(DateCreate);
     const endDate = formatDateToString(DateEnd);
+
+    const projectManager = Participants && findParticipantByRole(Participants, 'Manager')[0];
+    const projectCurator = Participants && findParticipantByRole(Participants, 'Curator')[0];
+    const projectCustomer = Participants && findParticipantByRole(Participants, 'Customer')[0];
+    const projectController = Participants && findParticipantByRole(Participants, 'Controller')[0];
+    const projectWorkers = Participants && findParticipantsByRole(Participants, 'Worker');
 
     return (
         <div className="project-main-info">
@@ -141,34 +122,33 @@ const ProjectMainInfo = (props) => {
                 </div>
                 <div className="project-main-info__col">
                     <InfoBlock label="Заказчик:">
-                        {Customer}
+                        <PersonItem person={projectCustomer} />
                     </InfoBlock>
                 </div>
             </div>
             <div className="project-main-info__row">
                 <div className="project-main-info__col">
                     <InfoBlock label="Куратор:">
-                        {getPersonByRole(Participants, PROJECT_CURATOR)}
-                    </InfoBlock>
-                </div>
-                <div className="project-main-info__col">
-                    <InfoBlock label="Контактное лицо заказчика:">
-                        {getPersonByRole(Participants, PROJECT_CUSTOMER)}
+                        <PersonItem person={projectCurator} />
                     </InfoBlock>
                 </div>
             </div>
             <div className="project-main-info__row">
                 <div className="project-main-info__col">
                     <InfoBlock label="Исполнители:">
-                        {getPersonByRole(Participants, PROJECT_WORKER)}
+                        {
+                            projectWorkers && projectWorkers.map((worker) => (
+                                <PersonItem person={worker} key={`worker-${worker.Id}`} />
+                            ))
+                        }
                     </InfoBlock>
                 </div>
                 <div className="project-main-info__col">
                     <InfoBlock label="Контролер проекта:">
-                        {getPersonByRole(Participants, PROJECT_SUPERVISER)}
+                        <PersonItem person={projectController} />
                     </InfoBlock>
                     <InfoBlock label="Руководитель:">
-                        {getPersonByRole(Participants, PROJECT_MANAGER)}
+                        <PersonItem person={projectManager} />
                     </InfoBlock>
                 </div>
             </div>
@@ -181,5 +161,14 @@ const ProjectMainInfo = (props) => {
         </div>
     );
 };
+
+export const InfoBlock = ({ label, children, className = '' }) => (
+    <div className={`info-block ${className}`}>
+        <p className="info-block__label">{label}</p>
+        <div className="info-block__content">
+            {children}
+        </div>
+    </div>
+);
 
 export default ProjectMainInfo;

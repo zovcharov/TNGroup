@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 import './CreateTaskModal.scss';
 import TngInput from '../../TngInput/TngInput';
 import DatePicker from '../../DatePicker/DatePicker';
-import TngUserSelect from '../../TngUserSelect/TngUserSelect';
+import UserSelect from '../../UserSelect/UserSelect';
 import SingleMilestoneInput from '../components/Milestones/SingleMilestoneInput';
 import MilestoneModal from '../MilestoneModal/MilestoneModal';
 import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
@@ -78,7 +78,7 @@ const CreateTaskModal = ({
             changeTaskName(props.Name);
             changeTaskStartDate(new Date(props.DateBegin));
             changeTaskEndDate(new Date(props.DateEnd));
-            changeTaskExecutors([props.PerformerId]);
+            changeTaskExecutors([props.Performer]);
             changeTaskDescription(props.Description);
         }
     }, []);
@@ -95,7 +95,7 @@ const CreateTaskModal = ({
                 <div className="task-executors task-modal__grid-item">
                     <div className="task-modal__label">Исполнитель:</div>
                     <div className="task-modal__input">
-                        <TngUserSelect onChangeSelectedUser={changeTaskExecutors} selectedUsers={taskExecutors} />
+                        <UserSelect onChangeSelectedUser={changeTaskExecutors} selectedUsers={taskExecutors} />
                     </div>
                 </div>
                 <div className="task-start-day task-modal__grid-item">

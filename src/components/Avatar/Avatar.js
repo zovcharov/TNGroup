@@ -24,6 +24,7 @@ const Avatar = (props) => {
         avatarUrl = defaultAvatar,
         width,
         height,
+        className = '',
     } = props;
 
     const styles = {
@@ -33,7 +34,7 @@ const Avatar = (props) => {
     };
 
     return (
-        <div style={styles} className={`avatar ${getClassForSize(size)}`} />
+        <div style={styles} className={`avatar ${getClassForSize(size)} ${className}`} />
     );
 };
 

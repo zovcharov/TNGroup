@@ -9,23 +9,18 @@ import React, { useState, useEffect } from 'react';
 
 import TngInput from '../../TngInput/TngInput';
 import DatePicker from '../../DatePicker/DatePicker';
-import TngUserSelect from '../../TngUserSelect/TngUserSelect';
+import UserSelect from '../../UserSelect/UserSelect';
 import MilestonesInput from '../components/Milestones/MilestonesInput';
 import MilestoneModal from '../MilestoneModal/MilestoneModal';
 
 import { saveProject, editProject } from '../../../redux/fetchers';
-import { ROLES_IN_PROJECT, prepareDataToSave } from './CreateProject.preparer';
+import { prepareDataToSave } from './CreateProject.preparer';
 
 import './CreateProjectModalContent.scss';
 import DefaultButton from '../../Buttons/DefaultButton/DefaultButton';
 import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
 
-const findParticipantByRole = (participents, role) => {
-    const participant = participents.find((participant) => participant.ProjectRole === ROLES_IN_PROJECT[role]);
-    return participant ? [participant] : [];
-};
-
-const findParticipantsByRole = (participents, role) => participents.filter((participant) => participant.ProjectRole === ROLES_IN_PROJECT[role]);
+import { findParticipantByRole, findParticipantsByRole } from '../../../helpers/usersHelper';
 
 const CreateProjectModalContent = ({
     onClose, setLoading, isEdit, ...props
@@ -175,19 +170,19 @@ const CreateProjectModalContent = ({
                 <div className="project-initiator content__grid-item">
                     <div className="project-modal__label">Инициатор:</div>
                     <div className="project-initiator__input">
-                        <TngUserSelect onChangeSelectedUser={changeInitiator} selectedUsers={initiator} />
+                        <UserSelect onChangeSelectedUser={changeInitiator} selectedUsers={initiator} />
                     </div>
                 </div>
                 <div className="project-curator content__grid-item">
                     <div className="project-modal__label">Куратор:</div>
                     <div className="project-curator__input">
-                        <TngUserSelect onChangeSelectedUser={changeCurator} selectedUsers={curator} />
+                        <UserSelect onChangeSelectedUser={changeCurator} selectedUsers={curator} />
                     </div>
                 </div>
                 <div className="project-customer content__grid-item">
                     <div className="project-modal__label">Заказчик:</div>
                     <div className="project-customer__input">
-                        <TngUserSelect onChangeSelectedUser={changeCustomer} selectedUsers={customer} />
+                        <UserSelect onChangeSelectedUser={changeCustomer} selectedUsers={customer} />
                     </div>
                 </div>
                 <div className="project-goal content__grid-item">
@@ -199,19 +194,19 @@ const CreateProjectModalContent = ({
                 <div className="project-customer-contact content__grid-item">
                     <div className="project-modal__label">Контактное лицо заказчика:</div>
                     <div className="project-customer-contact__input">
-                        <TngUserSelect onChangeSelectedUser={changeCustomerContact} selectedUsers={customerContact} />
+                        <UserSelect onChangeSelectedUser={changeCustomerContact} selectedUsers={customerContact} />
                     </div>
                 </div>
                 <div className="project-controller content__grid-item">
                     <div className="project-modal__label">Контролёр проекта:</div>
                     <div className="project-controller__input">
-                        <TngUserSelect onChangeSelectedUser={changeController} selectedUsers={controller} />
+                        <UserSelect onChangeSelectedUser={changeController} selectedUsers={controller} />
                     </div>
                 </div>
                 <div className="project-manager content__grid-item">
                     <div className="project-modal__label">Руководитель проекта:</div>
                     <div className="project-manager__input">
-                        <TngUserSelect onChangeSelectedUser={changeManager} selectedUsers={manager} />
+                        <UserSelect onChangeSelectedUser={changeManager} selectedUsers={manager} />
                     </div>
                 </div>
                 <div className="project-description content__grid-item">
@@ -229,7 +224,7 @@ const CreateProjectModalContent = ({
                 <div className="project-executors content__grid-item">
                     <div className="project-modal__label">Исполнители:</div>
                     <div className="project-executors__input">
-                        <TngUserSelect multiUsers onChangeSelectedUser={changeExecutors} selectedUsers={executors} />
+                        <UserSelect multiUsers onChangeSelectedUser={changeExecutors} selectedUsers={executors} />
                     </div>
                 </div>
                 <div className="project-product content__grid-item">

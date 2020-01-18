@@ -4,7 +4,7 @@ export const prepareTaskData = (data) => ({
     Description: data.taskDescription,
     DateBegin: new Date(data.taskStartDate),
     DateEnd: new Date(data.taskEndDate),
-    PerformerId: data.taskExecutors.length ? data.taskExecutors[0] : 0,
+    PerformerId: data.taskExecutors.length ? data.taskExecutors[0].Id : 0,
     ProjectEvents: [
         {
             DateExecution: data.taskStartMilestone && data.taskStartMilestone.date,
@@ -14,5 +14,4 @@ export const prepareTaskData = (data) => ({
             Description: data.taskEndMilestone && data.taskEndMilestone.name,
         },
     ],
-    PlannedScheduleId: 15,
 });
