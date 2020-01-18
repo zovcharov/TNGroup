@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-expressions */
 
-export const ROLES_IN_PROJECT = {
-    Unknown: 0,
-    Manager: 1,
-    Curator: 2,
-    Customer: 3,
-    Controller: 4,
-    Worker: 5,
-    Initiator: 6,
-};
+import {
+    PROJECT_ROLE_CONTROLLER,
+    PROJECT_ROLE_CURATOR,
+    PROJECT_ROLE_CUSTOMER,
+    PROJECT_ROLE_INITIATOR, PROJECT_ROLE_MANAGER,
+    PROJECT_ROLE_UNKNOWN, PROJECT_ROLE_WORKER
+} from "../../../helpers/usersHelper";
 
 const isNumber = (value) => typeof value === 'number';
 
@@ -21,32 +19,32 @@ const getParticipants = (participants) => {
 
     participants.initiator[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.initiator[0]),
-        ProjectRole: ROLES_IN_PROJECT.Initiator,
+        ProjectRole: PROJECT_ROLE_INITIATOR,
     });
     participants.curator[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.curator[0]),
-        ProjectRole: ROLES_IN_PROJECT.Curator,
+        ProjectRole: PROJECT_ROLE_CURATOR,
     });
     participants.customer[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.customer[0]),
-        ProjectRole: ROLES_IN_PROJECT.Customer,
+        ProjectRole: PROJECT_ROLE_CUSTOMER,
     });
     participants.customerContact[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.customerContact[0]),
-        ProjectRole: ROLES_IN_PROJECT.Unknown,
+        ProjectRole: PROJECT_ROLE_UNKNOWN,
     });
     participants.controller[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.controller[0]),
-        ProjectRole: ROLES_IN_PROJECT.Controller,
+        ProjectRole: PROJECT_ROLE_CONTROLLER,
     });
     participants.manager[0] && preparedParticipants.push({
         EmployeeId: getIdFromParticipantItem(participants.manager[0]),
-        ProjectRole: ROLES_IN_PROJECT.Manager,
+        ProjectRole: PROJECT_ROLE_MANAGER,
     });
     participants.executors && participants.executors.forEach((item) => {
         preparedParticipants.push({
             EmployeeId: getIdFromParticipantItem(item),
-            ProjectRole: ROLES_IN_PROJECT.Worker,
+            ProjectRole: PROJECT_ROLE_WORKER,
         });
     });
 

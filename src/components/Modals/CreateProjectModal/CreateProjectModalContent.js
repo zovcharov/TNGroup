@@ -20,7 +20,12 @@ import './CreateProjectModalContent.scss';
 import DefaultButton from '../../Buttons/DefaultButton/DefaultButton';
 import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
 
-import { findParticipantByRole, findParticipantsByRole } from '../../../helpers/usersHelper';
+import {
+    findParticipantByRole,
+    findParticipantsByRole, PROJECT_ROLE_CONTROLLER,
+    PROJECT_ROLE_CURATOR, PROJECT_ROLE_CUSTOMER,
+    PROJECT_ROLE_INITIATOR, PROJECT_ROLE_MANAGER, PROJECT_ROLE_UNKNOWN, PROJECT_ROLE_WORKER
+} from '../../../helpers/usersHelper';
 
 const CreateProjectModalContent = ({
     onClose, setLoading, isEdit, ...props
@@ -148,13 +153,13 @@ const CreateProjectModalContent = ({
             changeMeetingPlace(props.MeetingLocation);
             changeMeetingPeriodicity(props.MeetingPeriodic);
             changeProjectEndDate(new Date(props.DateEnd));
-            changeInitiator(findParticipantByRole(props.Participants, 'Initiator'));
-            changeCurator(findParticipantByRole(props.Participants, 'Curator'));
-            changeCustomer(findParticipantByRole(props.Participants, 'Customer'));
-            changeCustomerContact(findParticipantByRole(props.Participants, 'Unknown'));
-            changeController(findParticipantByRole(props.Participants, 'Controller'));
-            changeManager(findParticipantByRole(props.Participants, 'Manager'));
-            changeExecutors(findParticipantsByRole(props.Participants, 'Worker'));
+            changeInitiator(findParticipantByRole(props.Participants, PROJECT_ROLE_INITIATOR));
+            changeCurator(findParticipantByRole(props.Participants, PROJECT_ROLE_CURATOR));
+            changeCustomer(findParticipantByRole(props.Participants, PROJECT_ROLE_CUSTOMER));
+            changeCustomerContact(findParticipantByRole(props.Participants, PROJECT_ROLE_UNKNOWN));
+            changeController(findParticipantByRole(props.Participants, PROJECT_ROLE_CONTROLLER));
+            changeManager(findParticipantByRole(props.Participants, PROJECT_ROLE_MANAGER));
+            changeExecutors(findParticipantsByRole(props.Participants, PROJECT_ROLE_WORKER));
         }
     }, [isEdit]);
 
