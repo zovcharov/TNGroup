@@ -16,6 +16,7 @@ import { formatDateToString } from '../../helpers/helpers';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 import UnplannedRiskModalContainer from '../Modals/UnplannedRiskModal/UnplannedRiskModal.container';
 import PlannedRiskModalContainer from "../Modals/PlannedRiskModal/PlannedRiskModal.container";
+import GanttChart from "../GanttChart/GanttChart";
 
 const COLUMNS_TASKS = [
     {
@@ -74,6 +75,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
         agreements,
         tasks,
         PlannedRisks,
+        PlannedSchedules = [],
     } = info;
 
     const passportInfo = {
@@ -109,7 +111,11 @@ const ProjectInfo = ({ info, currentUserId }) => {
                         className="project-info__contaners-divider"
                         label="Календарный план проекта"
                     >
-                        <Table columns={COLUMNS_TASKS} items={[]} />
+                        {
+                            PlannedSchedules.map((schedule, index) => (
+                                <GanttChart key={`schedule-index-${index}`} ProjectTasks={schedule.ProjectTasks} />
+                            ))
+                        }
                     </Container>
                     <Container
                         className="project-info__contaners-divider"

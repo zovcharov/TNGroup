@@ -80,7 +80,7 @@ const renderPerformers = (tasks, colors) => tasks.map((task, index) => {
                 </span>
             </div>
             <div className="task-performers__performer">
-                { task.Performer.Name }
+                { (task.Performer && task.Performer.Name) || 'Нет исполнителя задачи' }
             </div>
         </li>
     );
