@@ -68,8 +68,8 @@ const BottomButtons = (props) => {
 
 export const getLastSchedule = (PlannedSchedules = []) => {
     const lastSchedule = Boolean(PlannedSchedules.length)
-        && PlannedSchedules.reduce((prev, curr) => (prev.Version < curr.Version ? curr : prev))
-    return lastSchedule.ProjectTasks ? lastSchedule.ProjectTasks : []
+        && PlannedSchedules.reduce((prev, curr) => (prev.Version < curr.Version ? curr : prev));
+    return lastSchedule.ProjectTasks ? lastSchedule.ProjectTasks : [];
 }
 
 const ProjectInfo = ({ info, currentUserId }) => {
