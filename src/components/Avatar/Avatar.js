@@ -28,7 +28,7 @@ const Avatar = (props) => {
     } = props;
 
     const styles = {
-        backgroundImage: `url('${avatarUrl}'`,
+        backgroundImage: `url('${avatarUrl || defaultAvatar}'`,
         width,
         height,
     };

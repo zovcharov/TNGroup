@@ -16,6 +16,7 @@ import { formatDateToString } from '../../helpers/helpers';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 import UnplannedRiskModalContainer from '../Modals/UnplannedRiskModal/UnplannedRiskModal.container';
 import PlannedRiskModalContainer from "../Modals/PlannedRiskModal/PlannedRiskModal.container";
+import GanttChart from "../GanttChart/GanttChart";
 
 const COLUMNS_TASKS = [
     {
@@ -65,6 +66,12 @@ const BottomButtons = (props) => {
     );
 };
 
+export const getLastSchedule = (PlannedSchedules = []) => {
+    const lastSchedule = Boolean(PlannedSchedules.length)
+        && PlannedSchedules.reduce((prev, curr) => (prev.Version < curr.Version ? curr : prev));
+    return lastSchedule.ProjectTasks ? lastSchedule.ProjectTasks : [];
+}
+
 const ProjectInfo = ({ info, currentUserId }) => {
     const {
         Id,
@@ -74,6 +81,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
         agreements,
         tasks,
         PlannedRisks,
+        PlannedSchedules = [],
     } = info;
 
     const passportInfo = {
@@ -91,6 +99,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
 
     const onOpenUnplannedRiskModal = () => toggleUnplannedRiskModal(true);
     const onCloseUnplannedRiskModal = () => toggleUnplannedRiskModal(false);
+    const lastSchedule = getLastSchedule(PlannedSchedules)
 
     const canUserEditProject = () => (Participants && Participants.filter((participant) => {
         if (participant.EmployeeId === currentUserId
@@ -109,7 +118,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
                         className="project-info__contaners-divider"
                         label="Календарный план проекта"
                     >
-                        <Table columns={COLUMNS_TASKS} items={[]} />
+                        <GanttChart ProjectTasks={lastSchedule} />
                     </Container>
                     <Container
                         className="project-info__contaners-divider"

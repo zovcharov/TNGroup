@@ -10,7 +10,12 @@ import './ProjectPassport.scss';
 import { formatDateToString } from '../../helpers/helpers';
 import PersonItem from '../PersonItem/PersonItem';
 import CreateProjectModal from '../Modals/CreateProjectModal/CreateProjectModal';
-import { findParticipantByRole, findParticipantsByRole } from '../../helpers/usersHelper';
+import {
+    findParticipantByRole,
+    findParticipantsByRole, PROJECT_ROLE_CONTROLLER,
+    PROJECT_ROLE_CURATOR, PROJECT_ROLE_CUSTOMER,
+    PROJECT_ROLE_MANAGER, PROJECT_ROLE_WORKER
+} from '../../helpers/usersHelper';
 
 const ProjectMainInfo = (props) => {
     const [isCreateProjectModalOpen, onOpenCreateProjectModal] = useState(false);
@@ -37,11 +42,11 @@ const ProjectMainInfo = (props) => {
     const createDate = formatDateToString(DateCreate);
     const endDate = formatDateToString(DateEnd);
 
-    const projectManager = Participants && findParticipantByRole(Participants, 'Manager')[0];
-    const projectCurator = Participants && findParticipantByRole(Participants, 'Curator')[0];
-    const projectCustomer = Participants && findParticipantByRole(Participants, 'Customer')[0];
-    const projectController = Participants && findParticipantByRole(Participants, 'Controller')[0];
-    const projectWorkers = Participants && findParticipantsByRole(Participants, 'Worker');
+    const projectManager = Participants && findParticipantByRole(Participants, PROJECT_ROLE_MANAGER)[0];
+    const projectCurator = Participants && findParticipantByRole(Participants, PROJECT_ROLE_CURATOR)[0];
+    const projectCustomer = Participants && findParticipantByRole(Participants, PROJECT_ROLE_CUSTOMER)[0];
+    const projectController = Participants && findParticipantByRole(Participants, PROJECT_ROLE_CONTROLLER)[0];
+    const projectWorkers = Participants && findParticipantsByRole(Participants, PROJECT_ROLE_WORKER);
 
     return (
         <div className="project-main-info">
