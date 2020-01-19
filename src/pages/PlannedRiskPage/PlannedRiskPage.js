@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import Risk from '../../components/Risk/Risk';
 import Preloader from '../../components/Preloader/Preloader';
-import { findParticipantByRole } from '../../helpers/usersHelper';
+import { findParticipantByRole, PROJECT_ROLE_MANAGER } from '../../helpers/usersHelper';
 
 import { fetchUserRisks, fetchSingleProject } from '../../redux/fetchers';
 import {
@@ -45,7 +45,7 @@ const PlannedRiskPage = (props) => {
         if (currentRisk && currentRisk.ProjectId && currentUserInfo.Id !== 0) {
             fetchSingleProject(currentRisk.ProjectId)
                 .then((res) => {
-                    const projectManager = findParticipantByRole(res.Participants, 'Manager');
+                    const projectManager = findParticipantByRole(res.Participants, PROJECT_ROLE_MANAGER);
                     changeCanUserEditAndDeleteRisk(projectManager && projectManager[0].Id === currentUserInfo.Id);
                 });
         }
