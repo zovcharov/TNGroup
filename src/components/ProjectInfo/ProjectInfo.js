@@ -66,6 +66,12 @@ const BottomButtons = (props) => {
     );
 };
 
+export const getLastSchedule = (PlannedSchedules = []) => {
+    const lastSchedule = Boolean(PlannedSchedules.length)
+        && PlannedSchedules.reduce((prev, curr) => (prev.Version < curr.Version ? curr : prev))
+    return lastSchedule.ProjectTasks ? lastSchedule.ProjectTasks : []
+}
+
 const ProjectInfo = ({ info, currentUserId }) => {
     const {
         Id,
@@ -93,6 +99,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
 
     const onOpenUnplannedRiskModal = () => toggleUnplannedRiskModal(true);
     const onCloseUnplannedRiskModal = () => toggleUnplannedRiskModal(false);
+    const lastSchedule = getLastSchedule(PlannedSchedules)
 
     const canUserEditProject = () => (Participants && Participants.filter((participant) => {
         if (participant.EmployeeId === currentUserId
@@ -111,11 +118,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
                         className="project-info__contaners-divider"
                         label="Календарный план проекта"
                     >
-                        {
-                            PlannedSchedules.map((schedule, index) => (
-                                <GanttChart key={`schedule-index-${index}`} ProjectTasks={schedule.ProjectTasks} />
-                            ))
-                        }
+                        <GanttChart ProjectTasks={lastSchedule} />
                     </Container>
                     <Container
                         className="project-info__contaners-divider"

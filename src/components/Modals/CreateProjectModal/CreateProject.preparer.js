@@ -4,9 +4,11 @@ import {
     PROJECT_ROLE_CONTROLLER,
     PROJECT_ROLE_CURATOR,
     PROJECT_ROLE_CUSTOMER,
-    PROJECT_ROLE_INITIATOR, PROJECT_ROLE_MANAGER,
-    PROJECT_ROLE_UNKNOWN, PROJECT_ROLE_WORKER
-} from "../../../helpers/usersHelper";
+    PROJECT_ROLE_INITIATOR,
+    PROJECT_ROLE_MANAGER,
+    PROJECT_ROLE_UNKNOWN,
+    PROJECT_ROLE_WORKER,
+} from '../../../helpers/usersHelper';
 
 const isNumber = (value) => typeof value === 'number';
 

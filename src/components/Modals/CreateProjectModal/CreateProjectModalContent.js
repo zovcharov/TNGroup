@@ -22,9 +22,14 @@ import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
 
 import {
     findParticipantByRole,
-    findParticipantsByRole, PROJECT_ROLE_CONTROLLER,
-    PROJECT_ROLE_CURATOR, PROJECT_ROLE_CUSTOMER,
-    PROJECT_ROLE_INITIATOR, PROJECT_ROLE_MANAGER, PROJECT_ROLE_UNKNOWN, PROJECT_ROLE_WORKER
+    findParticipantsByRole,
+    PROJECT_ROLE_CONTROLLER,
+    PROJECT_ROLE_CURATOR,
+    PROJECT_ROLE_CUSTOMER,
+    PROJECT_ROLE_INITIATOR,
+    PROJECT_ROLE_MANAGER,
+    PROJECT_ROLE_UNKNOWN,
+    PROJECT_ROLE_WORKER,
 } from '../../../helpers/usersHelper';
 
 const CreateProjectModalContent = ({
