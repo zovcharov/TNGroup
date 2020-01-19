@@ -6,6 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import './Table.scss';
 
 import { formatDateToString } from '../../helpers/helpers';
@@ -49,6 +51,26 @@ const TableCell = (props) => {
 
 const getValidCellValue = (cellData) => (cellData instanceof Date ? formatDateToString(cellData) : cellData);
 
+const TableRow = ({ children, link }) => {
+    if (link) {
+        return (
+            <Link
+                className="table__row"
+                to={link}
+            >
+                { children }
+            </Link>
+        );
+    }
+    return (
+        <div
+            className="table__row"
+        >
+            { children }
+        </div>
+    );
+};
+
 const TableBody = (props) => {
     const {
         items = [],
@@ -67,10 +89,7 @@ const TableBody = (props) => {
         <div className="table__body">
             {
                 items.map((item, index) => (
-                    <div
-                        className="table__row"
-                        key={index}
-                    >
+                    <TableRow key={index} link={item.link}>
                         {
                             columns.map(({ name, width = 'auto', cell }, index) => {
                                 if (!item[name] && typeof item[name] !== 'boolean' && name !== 'FAKE_CELL') {
@@ -97,7 +116,7 @@ const TableBody = (props) => {
                                 );
                             })
                         }
-                    </div>
+                    </TableRow>
                 ))
             }
         </div>

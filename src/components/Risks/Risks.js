@@ -18,7 +18,7 @@ const COLUMNS_RISKS = [
     },
     {
         label: 'Статус',
-        name: 'Status',
+        name: 'StatusText',
         width: '25%',
     },
     {
@@ -34,8 +34,16 @@ const COLUMNS_RISKS = [
 ];
 
 const prepareData = (unplannedRisks, plannedRisks) => {
-    const preparedUnplannedRisks = unplannedRisks.map((risk) => ({ ...risk, Type: 'Незапланированный' }));
-    const preparedPlannedRisks = plannedRisks.map((risk) => ({ ...risk, Type: 'Запланированный' }));
+    const preparedUnplannedRisks = unplannedRisks.map((risk) => ({
+        ...risk,
+        Type: 'Незапланированный',
+        link: `/unplannedrisk/${risk.Id}`,
+    }));
+    const preparedPlannedRisks = plannedRisks.map((risk) => ({
+        ...risk,
+        Type: 'Запланированный',
+        link: `/plannedrisk/${risk.Id}`,
+    }));
 
     return [...preparedUnplannedRisks, ...preparedPlannedRisks];
 };

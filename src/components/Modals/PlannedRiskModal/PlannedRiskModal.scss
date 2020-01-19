@@ -20,7 +20,10 @@
         .planned-risk-consequences {
             grid-area: consequences;
             padding-right: 15px;
-        }
+        }.planned-risk-status {
+             grid-area: status;
+             padding-right: 15px;
+         }
         .planned-risk-start-date {
             grid-area: start-date;
             padding-right: 35px;
@@ -36,7 +39,7 @@
                 "name name name name"
                 "prevention prevention response-plan response-plan"
                 "prevent-measures prevent-measures measures-results measures-results"
-                "consequences consequences start-date measure"
+                "consequences status start-date measure"
     }
 
     &__label {
