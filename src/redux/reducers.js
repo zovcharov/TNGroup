@@ -46,6 +46,7 @@ import {
     selectProjectPermissions,
     selectFromPlannedRisks,
     selectUserAgreements,
+    selectFromUnplannedRisks,
 } from './selectors';
 
 export default (state = DEFAULT_STORE, action) => {
@@ -103,7 +104,7 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ risksDataStatus: 'loading' });
         case RISKS_UPDATE:
             return stateAssign({
-                unplannedRisks: selectFromPlannedRisks(action.data.unplannedRisks),
+                unplannedRisks: selectFromUnplannedRisks(action.data.unplannedRisks),
                 plannedRisks: selectFromPlannedRisks(action.data.plannedRisks),
                 risksProjectId: action.data.projectId,
                 risksDataStatus: 'loaded',
@@ -112,7 +113,7 @@ export default (state = DEFAULT_STORE, action) => {
             return stateAssign({ userRisksDataStatus: 'loading' });
         case USER_RISKS_UPDATE:
             return stateAssign({
-                userUnplannedRisks: selectFromPlannedRisks(action.data.unplannedRisks),
+                userUnplannedRisks: selectFromUnplannedRisks(action.data.unplannedRisks),
                 userPlannedRisks: selectFromPlannedRisks(action.data.plannedRisks),
                 userRisksDataStatus: 'loaded',
             });

@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import Risk from '../../components/Risk/Risk';
+import PlannedRisk from '../../components/PlannedRisk/PlannedRisk';
 import Preloader from '../../components/Preloader/Preloader';
 import { findParticipantByRole, PROJECT_ROLE_MANAGER } from '../../helpers/usersHelper';
 
@@ -60,10 +60,9 @@ const PlannedRiskPage = (props) => {
     }
 
     return (
-        <Risk
+        <PlannedRisk
             {...currentRisk}
             canUserEditAndDeleteRisk={canUserEditAndDeleteRisk}
-            type="planned"
             onUpdateRisk={onUpdateRisk}
         />
     );

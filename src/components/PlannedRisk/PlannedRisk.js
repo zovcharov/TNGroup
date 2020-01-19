@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Container from '../Container/Container';
 
-import './Risk.scss';
+import './PlannedRisk.scss';
 import PlannedRiskModalContainer from '../Modals/PlannedRiskModal/PlannedRiskModal.container';
 import { formatDateToString } from '../../helpers/helpers';
 
@@ -30,7 +30,7 @@ const RiskInfoItem = ({ children, label }) => {
     );
 };
 
-const Risk = (props) => {
+const PlannedRisk = (props) => {
     const {
         Id,
         Consequences,
@@ -45,7 +45,6 @@ const Risk = (props) => {
         Name,
         StatusText,
         canUserEditAndDeleteRisk,
-        type,
         onUpdateRisk,
     } = props;
     const [riskModalOpen, toggleRiskModalOpen] = useState(false);
@@ -66,21 +65,6 @@ const Risk = (props) => {
         ProjectId,
         Name,
     });
-
-    const renderModalContainer = () => {
-        if (type === 'planned') {
-            return (
-                <PlannedRiskModalContainer
-                    isOpen={riskModalOpen}
-                    onClose={onCloseRiskModal}
-                    projectId={ProjectId}
-                    riskProps={prepareModalProps()}
-                    onUpdateRisk={onUpdateRisk}
-                    isEdit
-                />
-            );
-        }
-    };
 
     return (
         <div className="risk">
@@ -127,11 +111,16 @@ const Risk = (props) => {
                     {Consequences}
                 </RiskInfoItem>
             </Container>
-            {
-                renderModalContainer()
-            }
+            <PlannedRiskModalContainer
+                isOpen={riskModalOpen}
+                onClose={onCloseRiskModal}
+                projectId={ProjectId}
+                riskProps={prepareModalProps()}
+                onUpdateRisk={onUpdateRisk}
+                isEdit
+            />
         </div>
     );
 };
 
-export default Risk;
+export default PlannedRisk;

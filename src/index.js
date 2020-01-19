@@ -17,6 +17,7 @@ import AllUserRisksPage from './pages/AllUserRisksPage/AllUserRisksPage';
 import AllUserAgreementsPage from './pages/AllUserAgreementsPage/AllUserAgreementsPage';
 import AllUserReports from './pages/AllUserReports/AllUserReports';
 import PlannedRiskPage from './pages/PlannedRiskPage/PlannedRiskPage';
+import UnplannedRiskPage from './pages/UnplannedRiskPage/UnplannedRiskPage';
 import NotFound from './pages/NotFound/NotFound';
 
 import DashboardPage from './pages/DashboardPage/DashboardPage';
@@ -43,6 +44,7 @@ const Routs = () => (
                 <Route exact path="/plans/:projectId" component={PlansPage} />
                 <Route exact path="/project/:projectId" component={ProjectPage} />
                 <Route exact path="/plannedrisk/:riskId" component={PlannedRiskPage} />
+                <Route exact path="/unplannedrisk/:riskId" component={UnplannedRiskPage} />
                 <Route exact path="/projects" component={ProjectsPage} />
                 <Route exact path="/task/:taskId" component={TaskPage} />
                 <Route exact path="/userplans" component={AllUserPlansPage} />

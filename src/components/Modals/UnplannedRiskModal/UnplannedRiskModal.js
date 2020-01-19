@@ -3,7 +3,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './UnplannedRiskModal.scss';
 
@@ -14,7 +14,7 @@ import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
 import { saveUnplannedRisk } from '../../../redux/fetchers';
 
 const UnplannedRiskModal = ({
-    projectId, onClose, setLoading,
+    projectId, onClose, setLoading, isEdit, riskProps, onUpdateRisk,
 }) => {
     const [riskName, changeRiskName] = useState('');
     const [measuresResults, changeMeasuresResults] = useState('');
@@ -22,25 +22,53 @@ const UnplannedRiskModal = ({
     const [startDate, changeStartDate] = useState('');
     const [consequences, changeConsequences] = useState('');
 
-    const onSubmitRisk = () => {
-        const preparedData = {
+    const prepareData = () => {
+        if (isEdit) {
+            return {
+                ProjectId: Number(projectId),
+                Name: riskName,
+                Date: startDate,
+                MeasuresTakenToEliminateConsequences: eliminateMeasures,
+                ResultsOfMeasuresTaken: measuresResults,
+                Consequences: consequences,
+                Id: riskProps.Id,
+            };
+        }
+
+        return {
             ProjectId: Number(projectId),
-            MeasuresTakenToEliminateConsequences: eliminateMeasures,
-            ResultsOfMeasuresTaken: measuresResults,
             Name: riskName,
             Date: startDate,
+            MeasuresTakenToEliminateConsequences: eliminateMeasures,
+            ResultsOfMeasuresTaken: measuresResults,
             Consequences: consequences,
         };
+    };
+
+    useEffect(() => {
+        if (isEdit) {
+            changeRiskName(riskProps.Name);
+            changeMeasuresResults(riskProps.ResultsOfMeasuresTaken);
+            changeEliminateMeasures(riskProps.MeasuresTakenToEliminateConsequences);
+            changeStartDate(new Date(riskProps.Date));
+            changeConsequences(riskProps.Consequences);
+        }
+    }, [isEdit, riskProps]);
+
+    const onSubmitRisk = () => {
+        const preparedData = prepareData();
 
         // eslint-disable-next-line no-unused-expressions
         setLoading && setLoading(true);
-        saveUnplannedRisk(projectId, preparedData)
+        saveUnplannedRisk(projectId, preparedData, isEdit)
             .then(() => {
                 onClose();
             })
             .finally(() => {
                 // eslint-disable-next-line no-unused-expressions
                 setLoading && setLoading(false);
+                // eslint-disable-next-line no-unused-expressions
+                onUpdateRisk && onUpdateRisk();
             });
     };
 

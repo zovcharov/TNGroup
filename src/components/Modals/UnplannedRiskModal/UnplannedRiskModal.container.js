@@ -12,7 +12,7 @@ import ModalWrapper from '../ModalWrapper';
 import UnplannedRiskModal from './UnplannedRiskModal';
 
 const UnplannedRiskModalContainer = ({
-    isOpen, onClose, isEdit, projectId, ...props
+    isOpen, onClose, projectId, ...props
 }) => {
     const [isModalOpen, onChangeModalOpen] = useState(false);
     const [isLoading, changeLoading] = useState(false);

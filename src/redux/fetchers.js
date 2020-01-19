@@ -207,7 +207,13 @@ export const savePlannedRisk = (projectId, data, isEdit) => {
     return ApiProvider.Post('PlannedRisk', '', { curProjectId: projectId, ...data });
 };
 
-export const saveUnplannedRisk = (projectId, data) => ApiProvider.Post('UnplannedRisk', '', { curProjectId: projectId, ...data });
+export const saveUnplannedRisk = (projectId, data, isEdit) => {
+    if (isEdit) {
+        return ApiProvider.Put('UnplannedRisk', '', { curProjectId: projectId, ...data });
+    }
+
+    ApiProvider.Post('UnplannedRisk', '', { curProjectId: projectId, ...data });
+};
 
 export const userFetchSchedules = (fetchAction, updateAction) => {
     // eslint-disable-next-line no-unused-expressions

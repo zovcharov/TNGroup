@@ -78,6 +78,11 @@ export const selectPlannedRisk = (risk) => ({
     StatusText: getRiskStatus(risk.Status),
 });
 
+export const selectUnplannedRisk = (risk) => ({
+    ...risk,
+    StatusText: 'Сработал',
+});
+
 export const selectUserAgreement = (userAgreement) => ({
     id: userAgreement.Id,
     documentId: userAgreement.DocumentId,
@@ -95,3 +100,4 @@ export const selectFromProjects = (projects = []) => projects.map(selectFromProj
 export const selectFromTasks = (tasks = []) => tasks.map(selectFromTask);
 export const selectFromLastTasks = (tasks = []) => tasks.map(selectFromLastTask);
 export const selectFromPlannedRisks = (risks = []) => risks.map(selectPlannedRisk);
+export const selectFromUnplannedRisks = (risks = []) => risks.map(selectUnplannedRisk);

@@ -4,17 +4,19 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import Risk from '../../components/Risk/Risk';
+import UnplannedRisk from '../../components/UnplannedRisk/UnplannedRisk';
 import Preloader from '../../components/Preloader/Preloader';
 
-import { fetchUserRisks } from '../../redux/fetchers';
+import { fetchSingleProject, fetchUserRisks } from '../../redux/fetchers';
 import {
     userRisksFetch,
     userRisksUpdate,
 } from '../../redux/actions';
+import { findParticipantByRole, PROJECT_ROLE_MANAGER } from '../../helpers/usersHelper';
 
 const UnplannedRiskPage = (props) => {
     const {
+        currentUserInfo = { Id: 0 },
         userUnplannedRisks,
         userRisksDataStatus,
         userRisksFetch,
@@ -22,6 +24,7 @@ const UnplannedRiskPage = (props) => {
         match: { params: { riskId } },
     } = props;
     const [currentRisk, changeCurrentRisk] = useState({});
+    const [canUserEditAndDeleteRisk, changeCanUserEditAndDeleteRisk] = useState(false);
 
     useEffect(() => {
         if (userRisksDataStatus === 'pending') {
@@ -38,19 +41,39 @@ const UnplannedRiskPage = (props) => {
         }
     }, [userRisksDataStatus, userUnplannedRisks]);
 
+    useEffect(() => {
+        if (currentRisk && currentRisk.ProjectId && currentUserInfo.Id !== 0) {
+            fetchSingleProject(currentRisk.ProjectId)
+                .then((res) => {
+                    const projectManager = findParticipantByRole(res.Participants, PROJECT_ROLE_MANAGER);
+                    changeCanUserEditAndDeleteRisk(projectManager && projectManager[0].Id === currentUserInfo.Id);
+                });
+        }
+    }, [currentRisk, currentUserInfo]);
+
+    const onUpdateRisk = () => {
+        fetchUserRisks(userRisksFetch, userRisksUpdate);
+    };
+
     if (userRisksDataStatus === 'loading') {
         return <Preloader />;
     }
 
     return (
-        <Risk {...currentRisk} />
+        <UnplannedRisk
+            {...currentRisk}
+            canUserEditAndDeleteRisk={canUserEditAndDeleteRisk}
+            onUpdateRisk={onUpdateRisk}
+        />
     );
 };
 
 const mapStateToProps = ({
+    currentUserInfo,
     userUnplannedRisks,
     userRisksDataStatus,
 }) => ({
+    currentUserInfo,
     userUnplannedRisks,
     userRisksDataStatus,
 });
