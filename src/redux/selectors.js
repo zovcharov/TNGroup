@@ -75,8 +75,7 @@ export const selectProjectPermissions = (project) => ({
 
 export const selectPlannedRisk = (risk) => ({
     ...risk,
-    Status: getRiskStatus(risk.Status),
-    Date: formatDateToString(risk.Date),
+    StatusText: getRiskStatus(risk.Status),
 });
 
 export const selectUserAgreement = (userAgreement) => ({

@@ -1,0 +1,50 @@
+.risk {
+    position: relative;
+    max-width: 1000px;
+
+    &__container {
+        border-bottom: 2px solid #e6e6e6;
+        .container-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+    }
+
+     &__edit-btn {
+         display: inline-block;
+         width: 28px;
+         height: 28px;
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         background-image: url("../../icons/edit-icon.png");
+         border-radius: 100%;
+
+         &:hover {
+             background-color: rgba(0, 0, 0, 0.5 );
+             cursor: pointer;
+         }
+     }
+}
+
+.risk-info-item {
+    margin-right: 30px;
+    margin-bottom: 20px;
+    max-width: 300px;
+
+    &__title {
+        font-size: 14px;
+        color: #909090
+    }
+
+    &__content {
+        &_empty {
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background-color: #498d91;
+        }
+    }
+}
