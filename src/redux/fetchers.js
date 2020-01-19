@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import ApiProvider from '../ApiProvider/ApiProvider';
 import { ITEMS_TASKS } from '../ApiProvider/mockups';
 
@@ -39,19 +41,20 @@ export const fetchAgreements = (projectId, fetchAction, updateAction) => {
 };
 
 export const fetchSingleProject = (projectId, fetchAction, updateAction) => {
-    fetchAction();
+    fetchAction && fetchAction();
 
     let project = {};
 
-    ApiProvider.Get('project', projectId)
+    return ApiProvider.Get('project', projectId)
         .then((data) => {
             project = data;
 
-            Promise.all([fetchTasks(projectId), fetchAgreements(projectId)]).then((res) => {
+            return Promise.all([fetchTasks(projectId), fetchAgreements(projectId)]).then((res) => {
                 project.tasks = res[0].length ? res[0] : [];
                 project.agreements = res[1] && res[1].agreements.length ? res[1].agreements : [];
 
-                updateAction(project);
+                updateAction && updateAction(project);
+                return project;
             });
         });
 };
@@ -196,7 +199,13 @@ export const fetchSchedules = (projectId, fetchAction, updateAction) => {
         });
 };
 
-export const savePlannedRisk = (projectId, data) => ApiProvider.Post('PlannedRisk', '', { curProjectId: projectId, ...data });
+export const savePlannedRisk = (projectId, data, isEdit) => {
+    if (isEdit) {
+        return ApiProvider.Put('PlannedRisk', '', { curProjectId: projectId, ...data });
+    }
+
+    return ApiProvider.Post('PlannedRisk', '', { curProjectId: projectId, ...data });
+};
 
 export const saveUnplannedRisk = (projectId, data) => ApiProvider.Post('UnplannedRisk', '', { curProjectId: projectId, ...data });
 

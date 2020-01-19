@@ -3,7 +3,8 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactSelect from 'react-select';
 
 import './PlannedRiskModal.scss';
 
@@ -13,8 +14,13 @@ import SubmitButton from '../../Buttons/SubmitButton/SubmitButton';
 
 import { savePlannedRisk } from '../../../redux/fetchers';
 
+const RISK_STATUSES = [
+    { value: 0, label: 'Риск не сработал' },
+    { value: 1, label: 'Риск сработал' },
+];
+
 const PlannedRiskModal = ({
-    projectId, onClose, setLoading,
+    projectId, onClose, setLoading, isEdit, riskProps, onUpdateRisk,
 }) => {
     const [riskName, changeRiskName] = useState('');
     const [prevention, changePrevention] = useState('');
@@ -24,9 +30,26 @@ const PlannedRiskModal = ({
     const [measuresResults, changeMeasuresResults] = useState('');
     const [measure, changeMeasure] = useState('');
     const [consequences, changeConsequences] = useState('');
+    const [status, changeRiskStatus] = useState(RISK_STATUSES[0]);
 
-    const onSubmitRisk = () => {
-        const preparedData = {
+    const prepareData = () => {
+        if (isEdit) {
+            return {
+                ProjectId: Number(projectId),
+                PreventionPlan: prevention,
+                ResponsePlan: responsePlan,
+                Measure: measure,
+                MeasuresTakenToPrevent: preventMeasures,
+                ResultsOfPreventionMeasures: measuresResults,
+                Name: riskName,
+                Date: startDate,
+                Consequences: consequences,
+                Status: status.value,
+                Id: riskProps.Id,
+            };
+        }
+
+        return {
             ProjectId: Number(projectId),
             PreventionPlan: prevention,
             ResponsePlan: responsePlan,
@@ -36,19 +59,44 @@ const PlannedRiskModal = ({
             Name: riskName,
             Date: startDate,
             Consequences: consequences,
+            Status: status.value,
         };
+    };
+
+    const onSubmitRisk = () => {
+        const preparedData = prepareData();
 
         // eslint-disable-next-line no-unused-expressions
         setLoading && setLoading(true);
-        savePlannedRisk(projectId, preparedData)
+        savePlannedRisk(projectId, preparedData, isEdit)
             .then(() => {
                 onClose();
             })
             .finally(() => {
                 // eslint-disable-next-line no-unused-expressions
                 setLoading && setLoading(false);
+                // eslint-disable-next-line no-unused-expressions
+                onUpdateRisk && onUpdateRisk();
             });
     };
+
+    const onChangeRiskStatus = (status) => {
+        changeRiskStatus(status);
+    };
+
+    useEffect(() => {
+        if (isEdit) {
+            changeRiskName(riskProps.Name);
+            changePrevention(riskProps.PreventionPlan);
+            changeResponsePlan(riskProps.ResponsePlan);
+            changeStartDate(new Date(riskProps.Date));
+            changePreventMeasures(riskProps.MeasuresTakenToPrevent);
+            changeMeasuresResults(riskProps.ResultsOfPreventionMeasures);
+            changeMeasure(riskProps.Measure);
+            changeConsequences(riskProps.Consequences);
+            changeRiskStatus(RISK_STATUSES.find((status) => status.value === riskProps.Status));
+        }
+    }, [isEdit, riskProps]);
 
     return (
         <div className="planned-risk-modal">
@@ -89,6 +137,12 @@ const PlannedRiskModal = ({
                         <TngInput value={consequences} changeValue={changeConsequences} />
                     </div>
                 </div>
+                <div className="planned-risk-status risk-modal__grid-item">
+                    <div className="planned-risk-modal__label">Статус риска:</div>
+                    <div className="planned-risk-modal__input">
+                        <ReactSelect options={RISK_STATUSES} onChange={onChangeRiskStatus} value={status} />
+                    </div>
+                </div>
                 <div className="planned-risk-start-date risk-modal__grid-item">
                     <div className="planned-risk-modal__label">Дата события:</div>
                     <div className="planned-risk-modal__input">
@@ -105,7 +159,7 @@ const PlannedRiskModal = ({
             <div className="planned-risk-modal__footer">
                 <SubmitButton className="footer__button" onClick={onSubmitRisk}>
                     <span className="button__content">
-                        Отправить на согласование
+                        Сохранить
                     </span>
                 </SubmitButton>
             </div>
