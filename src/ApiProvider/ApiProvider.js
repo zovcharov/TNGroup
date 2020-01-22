@@ -43,12 +43,12 @@ class ApiProvider {
             });
     }
 
-    PostFile(controller, param, data, projectId, headers) {
+    PostFile(controller, param, data, projectId) {
         const token = projectId
             ? `${localStorage.getItem('access_token')};currPr=${projectId}`
             : localStorage.getItem('access_token');
 
-        const config1 = {
+        const requestConfig = {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`,
@@ -56,7 +56,7 @@ class ApiProvider {
         };
 
         return axios
-            .post(`http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`, data, config1)
+            .post(`http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`, data, requestConfig)
             .then((res) => res.data);
     }
 
