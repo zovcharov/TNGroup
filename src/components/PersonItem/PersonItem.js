@@ -10,6 +10,10 @@ import './PersonItem.scss';
 import Avatar from '../Avatar/Avatar';
 
 const PersonItem = ({ person = {}, singleString }) => {
+    if (!person) {
+        return null;
+    }
+
     const {
         Name = '',
         RefUrlAvatar = '',

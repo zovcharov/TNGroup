@@ -43,9 +43,9 @@ class ApiProvider {
             });
     }
 
-    PostFile(controller, param, data, headers) {
-        const token = data && data.curProjectId
-            ? `${localStorage.getItem('access_token')};currPr=${data.curProjectId}`
+    PostFile(controller, param, data, projectId, headers) {
+        const token = projectId
+            ? `${localStorage.getItem('access_token')};currPr=${projectId}`
             : localStorage.getItem('access_token');
 
         const config1 = {
@@ -53,10 +53,11 @@ class ApiProvider {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`,
             },
-        }
+        };
 
         return axios
-            .post(`http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`, data, config1);
+            .post(`http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`, data, config1)
+            .then((res) => res.data);
     }
 
     Get(controller, param, data) {
@@ -126,6 +127,27 @@ class ApiProvider {
                 window.location.hash = '#/login';
                 localStorage.removeItem('refresh_id');
                 localStorage.removeItem('access_token');
+            });
+    }
+
+    Delete(controller, param, data) {
+        const token = data && data.curProjectId
+            ? `${localStorage.getItem('access_token')};currPr=${data.curProjectId}`
+            : localStorage.getItem('access_token');
+
+        return axios({
+            method: 'delete',
+            url: `http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`,
+            data,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then((res) => res.data)
+            .catch((e) => {
+                if (e.response.status === 401) {
+                    return this.UpdateToken('get', controller, param, data);
+                }
             });
     }
 }
