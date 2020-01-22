@@ -13,7 +13,7 @@ import UserSelect from '../../UserSelect/UserSelect';
 import MilestonesInput from '../components/Milestones/MilestonesInput';
 import MilestoneModal from '../MilestoneModal/MilestoneModal';
 
-import { saveProject, editProject } from '../../../redux/fetchers';
+import { saveProject, editProject, uploadFile } from '../../../redux/fetchers';
 import { prepareDataToSave } from './CreateProject.preparer';
 
 import './CreateProjectModalContent.scss';
@@ -120,6 +120,13 @@ const CreateProjectModalContent = ({
                 });
         }
     };
+
+    const onUploadFile = (event) => {
+        const files = event.currentTarget.files;
+        let data = new FormData();
+        data.append('file',  files[0])
+        uploadFile(data);
+    }
 
     const onSendToAgreement = () => {
         // eslint-disable-next-line no-unused-expressions
@@ -287,6 +294,7 @@ const CreateProjectModalContent = ({
             </div>
             <div className="project-modal__footer">
                 <DefaultButton className="footer__button button__add-files">
+                    <input id="file-input" type="file" name="projectFiles" onChange={onUploadFile} />
                     <span className="button__content">
                         Прикрепить файлы
                     </span>

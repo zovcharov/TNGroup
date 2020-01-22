@@ -50,15 +50,19 @@ export const selectFromProject = (project) => ({
     dateEnd: new Date(project.DateEnd),
 });
 
-// TODO: убрать мок на имени
 export const selectFromTask = (task) => ({
     description: task.Description,
-    name: task.Name || 'ффф',
+    name: task.Name,
     status: getTextStatus(task.Status).woman,
     id: task.Id,
     lastDateUpdate: new Date(task.LastDateUpdate),
     performerName: task.Performer && task.Performer.Name,
     dateEnd: formatDateToString(task.DateEnd),
+});
+
+export const selectFromTaskFull = (task) => ({
+    ...task,
+    StatusText: getTextStatus(task.Status).woman
 });
 
 export const selectFromLastTask = (task) => ({
@@ -98,6 +102,7 @@ export const selectUserAgreement = (userAgreement) => ({
 export const selectUserAgreements = (userAgreements = []) => userAgreements.map(selectUserAgreement);
 export const selectFromProjects = (projects = []) => projects.map(selectFromProject);
 export const selectFromTasks = (tasks = []) => tasks.map(selectFromTask);
+export const selectFromTasksFull = (tasks = []) => tasks.map(selectFromTaskFull);
 export const selectFromLastTasks = (tasks = []) => tasks.map(selectFromLastTask);
 export const selectFromPlannedRisks = (risks = []) => risks.map(selectPlannedRisk);
 export const selectFromUnplannedRisks = (risks = []) => risks.map(selectUnplannedRisk);

@@ -20,18 +20,20 @@ class ApiProvider {
         this.config.accessToken = token;
     }
 
-    Post(controller, param, data) {
+    Post(controller, param, data, headers) {
         const token = data && data.curProjectId
             ? `${localStorage.getItem('access_token')};currPr=${data.curProjectId}`
             : localStorage.getItem('access_token');
+
+        const head = Object.assign({}, headers, {
+            Authorization: `Bearer ${token}`,
+        });
 
         return axios({
             method: 'post',
             url: `http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`,
             data,
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+            headers: head,
         })
             .then((res) => res.data)
             .catch((e) => {
@@ -39,6 +41,22 @@ class ApiProvider {
                     return this.UpdateToken('post', controller, param, data);
                 }
             });
+    }
+
+    PostFile(controller, param, data, headers) {
+        const token = data && data.curProjectId
+            ? `${localStorage.getItem('access_token')};currPr=${data.curProjectId}`
+            : localStorage.getItem('access_token');
+
+        const config1 = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`,
+            },
+        }
+
+        return axios
+            .post(`http://${this.apiUrl}/api/${controller}${param ? `/${param}` : ''}`, data, config1);
     }
 
     Get(controller, param, data) {

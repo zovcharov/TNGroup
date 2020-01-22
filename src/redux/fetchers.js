@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-expressions */
 
 import ApiProvider from '../ApiProvider/ApiProvider';
-import { ITEMS_TASKS } from '../ApiProvider/mockups';
+
+import { selectFromTasksFull, selectFromPlannedRisks, selectFromUnplannedRisks } from './selectors';
 
 export const fetchProjects = (fetchAction, updateAction) => {
     fetchAction();
@@ -257,8 +258,28 @@ export const fetchUserProfile = (fetchAction, updateAction) => {
         });
 };
 
-export const makeAgreementDecision = (data, projectId) => {
-    return ApiProvider.Put('AgreementPerformance', '', { curProjectId: projectId, ...data })
-        .then((data) => {
-        });
-};
+export const makeAgreementDecision = (data, projectId) => ApiProvider.Put('AgreementPerformance', '', { curProjectId: projectId, ...data });
+
+export const uploadFile = (file) => ApiProvider.PostFile('Attachment', 'Upload', file, {
+    'Content-Type': 'multipart/form-data',
+});
+
+export const fetchReportData = (projectId) => Promise.all([
+    ApiProvider.Get('ProjectTask', '', { curProjectId: projectId }),
+    ApiProvider.Get('PlannedRisk', '', { curProjectId: projectId }),
+    ApiProvider.Get('UnplannedRisk', '', { curProjectId: projectId }),
+])
+    .then((response) => ({
+        tasks: selectFromTasksFull(response[0]),
+        plannedRisks: selectFromPlannedRisks(response[1]),
+        unplannedRisks: selectFromUnplannedRisks(response[2]),
+    }));
+
+export const fetchReportProjectTasks = (projectId) => ApiProvider.Get('ProjectTask', '', { curProjectId: projectId })
+    .then((response) => selectFromTasksFull(response));
+
+export const fetchReportPlannedRisks = (projectId) => ApiProvider.Get('PlannedRisk', '', { curProjectId: projectId })
+    .then((response) => selectFromPlannedRisks(response));
+
+export const fetchReportUnplannedRisks = (projectId) => ApiProvider.Get('UnplannedRisk', '', { curProjectId: projectId })
+    .then((response) => selectFromUnplannedRisks(response));

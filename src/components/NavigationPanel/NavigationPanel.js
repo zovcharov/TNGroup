@@ -68,7 +68,7 @@ const NavigationPanel = ({ projectId, activePage }) => {
                         );
                     })
                 }
-                <AddButton text="Добавить проект" onClick={openCreateProjectModal} type="add-project" />
+                <AddButton link={`/createreport/${projectId}`} text="Создать отчёт" type="add-project" />
                 <AddButton text="Добавить задачу" onClick={openCreateTaskModal} type="add-task" />
 
                 <CreateProjectModal isOpen={isCreateProjectModalOpen} onClose={closeCreateProjectModal} />

@@ -20,7 +20,7 @@ import { saveTask } from '../../../redux/fetchers';
 const FILES_MOCK = ['Отчет о предыдущем проекте.pdf', 'Договор подряда.docx', 'Внутренний регламент выполнения задач.pptx', 'Акт приема работ.pdf'];
 
 const CreateTaskModal = ({
-    projectId, onClose, setLoading, isEdit, ...props
+    projectId, onClose, setLoading, isEdit, onUpdateTask, ...props
 }) => {
     const [isStartMilestoneModalOpen, toggleStartMilestoneModal] = useState(false);
     const [isEndMilestoneModalOpen, toggleEndMilestoneModal] = useState(false);
@@ -66,6 +66,8 @@ const CreateTaskModal = ({
             .finally(() => {
                 // eslint-disable-next-line no-unused-expressions
                 setLoading && setLoading(false);
+                // eslint-disable-next-line no-unused-expressions
+                onUpdateTask && onUpdateTask();
             });
     };
 

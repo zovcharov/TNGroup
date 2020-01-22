@@ -9,7 +9,7 @@ import './PersonItem.scss';
 
 import Avatar from '../Avatar/Avatar';
 
-const PersonItem = ({ person = {} }) => {
+const PersonItem = ({ person = {}, singleString }) => {
     const {
         Name = '',
         RefUrlAvatar = '',
@@ -24,7 +24,7 @@ const PersonItem = ({ person = {} }) => {
     }
 
     return (
-        <div className="person-item">
+        <div className={`person-item ${singleString ? 'person-item_single-string' : ''}`}>
             <Avatar
                 className="person-item__avatar"
                 size="m"

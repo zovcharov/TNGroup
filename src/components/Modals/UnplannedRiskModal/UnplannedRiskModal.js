@@ -65,6 +65,7 @@ const UnplannedRiskModal = ({
                 onClose();
             })
             .finally(() => {
+                onClose();
                 // eslint-disable-next-line no-unused-expressions
                 setLoading && setLoading(false);
                 // eslint-disable-next-line no-unused-expressions
@@ -109,7 +110,7 @@ const UnplannedRiskModal = ({
             <div className="risk-modal__footer">
                 <SubmitButton className="footer__button" onClick={onSubmitRisk}>
                     <span className="button__content">
-                        Отправить на согласование
+                        Сохранить
                     </span>
                 </SubmitButton>
             </div>
