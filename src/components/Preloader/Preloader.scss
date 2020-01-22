@@ -9,7 +9,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 
     &:after {
@@ -22,6 +21,13 @@
         border: 5px solid #fff;
         border-color: #fff transparent #fff transparent;
         animation: lds-dual-ring 1.2s linear infinite;
+    }
+
+    &_theme_dark {
+        &:after {
+            border: 5px solid #505050;
+            border-color: #505050 transparent #505050 transparent;
+        }
     }
 }
 

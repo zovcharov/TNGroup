@@ -113,6 +113,28 @@
         margin-bottom: 15px;
     }
 
+    &__files {
+        padding-bottom: 20px;
+    }
+
+    &__files-title {
+        padding-left: 30px;
+        font-size: 24px;
+        color: #505050;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    &__files-list {
+        padding-left: 30px;
+        display: flex;
+    }
+
+    &__file-input {
+        display: none;
+    }
+
     &__footer {
         display: flex;
         justify-content: flex-end;
@@ -129,6 +151,15 @@
             &.button__add-files {
                 margin-right: auto !important;
                 color: #505050;
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 10px 0 0;
+                padding: 0 20px 0 15px;
+                border-radius: 4px;
+                border: 1px solid #cccccc;
+                cursor: pointer;
             }
 
             &.button__save-draft {

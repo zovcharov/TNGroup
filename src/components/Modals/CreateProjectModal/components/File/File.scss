@@ -1,0 +1,48 @@
+.file {
+    margin-right: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+
+    &__link {
+        color: #1b5176;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    &__cross {
+        position: relative;
+        widht: 20px;
+        height: 15px;
+        background-color: #bdbdbd;
+        margin-left: 10px;
+
+        &:hover {
+            cursor: pointer;
+
+            &:before,
+            &:after {
+                background-color: #828282;
+            }
+        }
+
+        &:before,
+        &:after {
+            position: absolute;
+            top: 1px;
+            left: 0;
+            content: '';
+            height: 13px;
+            width: 5px;
+            background-color: #bdbdbd;
+        }
+
+        &:before {
+            transform: rotate(45deg);
+        }
+
+        &:after {
+            transform: rotate(-45deg);
+        }
+    }
+}
