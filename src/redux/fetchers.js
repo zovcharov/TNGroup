@@ -260,7 +260,7 @@ export const fetchUserProfile = (fetchAction, updateAction) => {
 
 export const makeAgreementDecision = (data, projectId) => ApiProvider.Put('AgreementPerformance', '', { curProjectId: projectId, ...data });
 
-export const uploadFile = (file, projectId) => ApiProvider.PostFile('Attachment', 'Upload', file, projectId, {
+export const uploadProjectFile = (file, projectId) => ApiProvider.PostFile('Attachment', 'Upload', file, projectId, {
     'Content-Type': 'multipart/form-data',
 });
 

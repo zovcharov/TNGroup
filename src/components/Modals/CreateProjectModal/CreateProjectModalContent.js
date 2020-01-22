@@ -18,7 +18,7 @@ import Preloader from '../../Preloader/Preloader';
 import {
     saveProject,
     editProject,
-    uploadFile,
+    uploadProjectFile,
     deleteFile,
 } from '../../../redux/fetchers';
 import { prepareDataToSave } from './CreateProject.preparer';
@@ -137,7 +137,7 @@ const CreateProjectModalContent = ({
             data.append('file', files[0]);
 
             toggleIsFilesLoading(true);
-            uploadFile(data, props.projectId)
+            uploadProjectFile(data, props.projectId)
                 .then((res) => {
                     const files = attachments.slice();
                     files.push(res);
