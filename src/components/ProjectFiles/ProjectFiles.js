@@ -2,31 +2,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './ProjectFiles.scss';
-import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
-import { uploadProjectFile } from '../../redux/fetchers';
-import Preloader from '../Preloader/Preloader';
 
-const ProjectFiles = ({ files, changeFileList, projectId }) => {
-    debugger;
-    const [isFilesLoading, toggleIsFilesLoading] = useState(false);
-
+const ProjectFiles = ({ files, uploadFile }) => {
     const onUploadFile = (event) => {
         const { files: uploadedFiles } = event.currentTarget;
-        const data = new FormData();
-        data.append('file', uploadedFiles[0]);
-
-        toggleIsFilesLoading(true);
-        uploadProjectFile(data, projectId)
-            .then((res) => {
-                const filesList = files.slice();
-                filesList.push(res);
-                changeFileList(filesList);
-            })
-            .finally(() => {
-                toggleIsFilesLoading(false);
-            });
+        uploadFile(uploadedFiles[0]);
     };
 
     /**
@@ -39,10 +22,6 @@ const ProjectFiles = ({ files, changeFileList, projectId }) => {
     };
 
     const renderContent = () => {
-        if (isFilesLoading) {
-            return <Preloader theme="dark" />;
-        }
-
         if (files.length === 0) {
             return (
                 <div className="project-file__empty">
@@ -83,6 +62,16 @@ const ProjectFiles = ({ files, changeFileList, projectId }) => {
             </div>
         </div>
     );
+};
+
+ProjectFiles.propTypes = {
+    uploadFile: PropTypes.func.isRequired,
+    files: PropTypes.arrayOf(
+        PropTypes.shape({
+            Name: PropTypes.string,
+            Id: PropTypes.number,
+        }),
+    ).isRequired,
 };
 
 export default ProjectFiles;

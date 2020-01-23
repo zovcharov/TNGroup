@@ -16,6 +16,7 @@ import { formatDateToString } from '../../helpers/helpers';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 import UnplannedRiskModalContainer from '../Modals/UnplannedRiskModal/UnplannedRiskModal.container';
 import GanttChart from '../GanttChart/GanttChart';
+import { uploadProjectFile } from '../../redux/fetchers';
 
 const COLUMNS_TASKS = [
     {
@@ -103,6 +104,17 @@ const ProjectInfo = ({ info, currentUserId }) => {
     const onCloseUnplannedRiskModal = () => toggleUnplannedRiskModal(false);
     const lastSchedule = getLastSchedule(PlannedSchedules);
 
+    const uploadFile = (file) => {
+        const data = new FormData();
+        data.append('file', file);
+        uploadProjectFile(data, Id)
+            .then((res) => {
+                const filesList = fileList.slice();
+                filesList.push(res);
+                changeFileList(filesList);
+            });
+    };
+
     const canUserEditProject = () => (Participants && Participants.filter((participant) => {
         if (participant.EmployeeId === currentUserId
            && (participant.ProjectRole === 1 || participant.ProjectRole === 6)) {
@@ -173,7 +185,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
                     <Container
                         className="project-info__contaners-divider"
                     >
-                        <ProjectFiles files={fileList} changeFileList={changeFileList} projectId={Id} />
+                        <ProjectFiles files={fileList} uploadFile={uploadFile} />
                     </Container>
                 </div>
             </div>

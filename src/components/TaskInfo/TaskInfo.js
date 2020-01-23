@@ -12,10 +12,10 @@ import { InfoBlock } from '../ProjectMainInfo/ProjectPassport';
 import Table from '../Table/Table';
 import PersonItem from '../PersonItem/PersonItem';
 import { formatDateToString } from '../../helpers/helpers';
-import {
-    COLUMNS_PROJECT_EVENTS,
-} from './TaskInfo.constants';
+import { COLUMNS_PROJECT_EVENTS } from './TaskInfo.constants';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
+import ProjectFiles from '../ProjectFiles/ProjectFiles';
+import { uploadTaskFile } from '../../redux/fetchers';
 
 const TaskInfo = (props) => {
     const {
@@ -31,9 +31,11 @@ const TaskInfo = (props) => {
         Performer,
         PreviousConnectedTaskId,
         NextConnectedTaskId,
-        taskFiles
+        taskFiles,
+        ProjectId,
     } = info;
-    console.log(taskFiles)
+
+    const [fileList, changeFileList] = useState(taskFiles);
 
     const beginDate = formatDateToString(DateBegin);
     const endDate = formatDateToString(DateEnd);
@@ -43,6 +45,17 @@ const TaskInfo = (props) => {
     const onOpenCreateTaskModal = () => changeCreateTaskModalOpen(true);
     const onCloseCreateTaskModal = () => changeCreateTaskModalOpen(false);
 
+    const uploadFile = (file) => {
+        const data = new FormData();
+        data.append('file', file);
+        uploadTaskFile(data, Id, ProjectId)
+            .then((res) => {
+                const filesList = fileList.slice();
+                filesList.push(res);
+                changeFileList(filesList);
+            });
+    };
+
     return (
         <div className="task-page">
             <div className="task-panels">
@@ -51,7 +64,7 @@ const TaskInfo = (props) => {
                         {Description}
                     </InfoBlock>
                     <InfoBlock label="Прикрепленные файлы">
-
+                        <ProjectFiles files={fileList} uploadFile={uploadFile} />
                     </InfoBlock>
                     <div className="task-description_related-tasks">
                         <div className="task-description_related-tasks_link-left">
