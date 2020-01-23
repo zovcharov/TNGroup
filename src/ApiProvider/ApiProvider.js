@@ -2,6 +2,9 @@
 
 import axios from 'axios';
 import config from '../config/index';
+// eslint-disable-next-line import/no-cycle
+import { store } from '../index';
+import { resetState } from '../redux/actions';
 
 class ApiProvider {
     constructor() {
@@ -124,9 +127,12 @@ class ApiProvider {
                 return this.Get(controller, param, data);
             })
             .catch(() => {
-                window.location.hash = '#/login';
-                localStorage.removeItem('refresh_id');
+                localStorage.removeItem('UserId');
+                localStorage.removeItem('UserRoles');
                 localStorage.removeItem('access_token');
+                localStorage.removeItem('refresh_id');
+                store.dispatch(resetState());
+                window.location.hash = '#/login';
             });
     }
 

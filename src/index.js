@@ -31,7 +31,8 @@ import './main.scss';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import UserDocumentsPage from './pages/UserDocumentsPage/UserDocumentsPage';
 
-const store = createStore(rootReducer, DEFAULT_STORE);
+// eslint-disable-next-line import/prefer-default-export
+export const store = createStore(rootReducer, DEFAULT_STORE);
 
 
 const Routs = () => (
