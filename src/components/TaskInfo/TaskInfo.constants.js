@@ -23,34 +23,3 @@ export const COLUMNS_PROJECT_EVENTS = [
     },
 ];
 
-export const COLUMNS_SUBTASKS = [
-    {
-        label: 'Название задачи',
-        name: 'Name',
-        width: '40%',
-    },
-    {
-        label: 'Дата окончания',
-        name: 'Date',
-        width: '30%',
-        cell: (item) => (
-            formatDateToString(item)
-        ),
-    },
-    {
-        label: 'Постановщик задачи',
-        name: 'Person',
-        width: '30%',
-        cell: () => (
-            <PersonItem />
-        ),
-    },
-];
-
-export const ITEMS_SUBTASK = [
-    {
-        Name: 'Fffff',
-        Date: '01.01.2020',
-        Person: 'qrqrqrq',
-    },
-];

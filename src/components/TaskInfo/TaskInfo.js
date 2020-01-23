@@ -3,7 +3,8 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import './TaskInfo.scss';
 import Container from '../Container/Container';
@@ -11,17 +12,15 @@ import { InfoBlock } from '../ProjectMainInfo/ProjectPassport';
 import Table from '../Table/Table';
 import PersonItem from '../PersonItem/PersonItem';
 import { formatDateToString } from '../../helpers/helpers';
-import {
-    COLUMNS_PROJECT_EVENTS,
-    COLUMNS_SUBTASKS,
-    ITEMS_SUBTASK,
-} from './TaskInfo.constants';
-import Commentaries from '../Commentaries/Commentaries';
+import { COLUMNS_PROJECT_EVENTS } from './TaskInfo.constants';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
+import FilesComponent from '../FilesComponent/FilesComponent';
+import { uploadTaskFile } from '../../redux/fetchers';
 
 const TaskInfo = (props) => {
     const {
         info = {},
+        taskFiles,
     } = props;
     const {
         DateBegin,
@@ -30,7 +29,14 @@ const TaskInfo = (props) => {
         Name,
         Id,
         ProjectEvents,
+        Performer,
+        PreviousConnectedTaskId,
+        NextConnectedTaskId,
+        ProjectId,
     } = info;
+
+    const [fileList, changeFileList] = useState([]);
+    const [isFilesLoading, changeIsFilesLoading] = useState(false);
 
     const beginDate = formatDateToString(DateBegin);
     const endDate = formatDateToString(DateEnd);
@@ -40,6 +46,23 @@ const TaskInfo = (props) => {
     const onOpenCreateTaskModal = () => changeCreateTaskModalOpen(true);
     const onCloseCreateTaskModal = () => changeCreateTaskModalOpen(false);
 
+    useEffect(() => {
+        changeFileList(taskFiles);
+    }, [taskFiles]);
+
+    const uploadFile = (file) => {
+        const data = new FormData();
+        data.append('file', file);
+        changeIsFilesLoading(true);
+        uploadTaskFile(data, Id, ProjectId)
+            .then((res) => {
+                const filesList = fileList.slice();
+                filesList.push(res);
+                changeFileList(filesList);
+                changeIsFilesLoading(false);
+            });
+    };
+
     return (
         <div className="task-page">
             <div className="task-panels">
@@ -47,10 +70,18 @@ const TaskInfo = (props) => {
                     <InfoBlock label="Описание задачи">
                         {Description}
                     </InfoBlock>
-                    <InfoBlock label="Прикрепленные файлы" />
-                    <div className="task-subtasks">
-                        <span>Подзадачи:</span>
-                        <Table columns={COLUMNS_SUBTASKS} items={ITEMS_SUBTASK} />
+                    <InfoBlock label="Прикрепленные файлы">
+                        <FilesComponent files={fileList} uploadFile={uploadFile} isLoading={isFilesLoading} />
+                    </InfoBlock>
+                    <div className="task-description_related-tasks">
+                        <div className="task-description_related-tasks_link-left">
+                            {PreviousConnectedTaskId
+                            && <Link to={`/task/${PreviousConnectedTaskId}`}>{'< Предыдущая задача'}</Link>}
+                        </div>
+                        <div className="task-description_related-tasks_link-right">
+                            {NextConnectedTaskId
+                            && <Link to={`/task/${NextConnectedTaskId}`}>{'Следующая задача >'}</Link>}
+                        </div>
                     </div>
                 </Container>
                 <Container className="task-description_additional">
@@ -79,14 +110,13 @@ const TaskInfo = (props) => {
                         </div>
                     </div>
                     <InfoBlock label="Исполнитель:">
-                        <PersonItem />
+                        <PersonItem person={Performer} />
                     </InfoBlock>
                 </Container>
             </div>
             <Container className="task-panels" label="Ближайшие вехи">
                 <Table columns={COLUMNS_PROJECT_EVENTS} items={ProjectEvents} />
             </Container>
-            <Commentaries />
             <CreateTaskModal
                 isOpen={isCreateTaskModalOpen}
                 onClose={onCloseCreateTaskModal}

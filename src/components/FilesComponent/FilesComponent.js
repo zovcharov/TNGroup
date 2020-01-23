@@ -2,31 +2,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 
-import React, { useState } from 'react';
-import './ProjectFiles.scss';
-import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
-import { uploadProjectFile } from '../../redux/fetchers';
+import React from 'react';
+import PropTypes from 'prop-types';
+import './FilesComponent.scss';
 import Preloader from '../Preloader/Preloader';
 
-const ProjectFiles = ({ files, changeFileList, projectId }) => {
-    debugger;
-    const [isFilesLoading, toggleIsFilesLoading] = useState(false);
-
+const FilesComponent = ({ files, uploadFile, isLoading, title }) => {
     const onUploadFile = (event) => {
         const { files: uploadedFiles } = event.currentTarget;
-        const data = new FormData();
-        data.append('file', uploadedFiles[0]);
-
-        toggleIsFilesLoading(true);
-        uploadProjectFile(data, projectId)
-            .then((res) => {
-                const filesList = files.slice();
-                filesList.push(res);
-                changeFileList(filesList);
-            })
-            .finally(() => {
-                toggleIsFilesLoading(false);
-            });
+        uploadFile(uploadedFiles[0]);
     };
 
     /**
@@ -39,36 +23,40 @@ const ProjectFiles = ({ files, changeFileList, projectId }) => {
     };
 
     const renderContent = () => {
-        if (isFilesLoading) {
-            return <Preloader theme="dark" />;
-        }
-
         if (files.length === 0) {
             return (
-                <div className="project-file__empty">
+                <div className="files__empty">
                     Нет файлов
                 </div>
             );
         }
 
+        if (isLoading) {
+            return <Preloader theme="dark" />;
+        }
+
         return files.map(({ Name, Id }) => (
-            <div className="project-files__item" key={Id}>
-                <a className="project-files__link">{Name}</a>
+            <div className="files__item" key={Id}>
+                <a className="files__link">{Name}</a>
             </div>
         ));
     };
 
     return (
-        <div className="project-files">
-            <div className="project-files__header">
-                <p>Файлы проекта</p>
-            </div>
-            <div className="project-files__content">
+        <div className="files">
+            {
+                title && (
+                    <div className="files__header">
+                        <p>{title}</p>
+                    </div>
+                )
+            }
+            <div className="files__content">
                 {
                     renderContent()
                 }
             </div>
-            <div className="project-files__bottom">
+            <div className="files__bottom">
                 <label className="add-files__button" htmlFor="file-input">
                     Прикрепить файлы
                 </label>
@@ -85,4 +73,14 @@ const ProjectFiles = ({ files, changeFileList, projectId }) => {
     );
 };
 
-export default ProjectFiles;
+FilesComponent.propTypes = {
+    uploadFile: PropTypes.func.isRequired,
+    files: PropTypes.arrayOf(
+        PropTypes.shape({
+            Name: PropTypes.string,
+            Id: PropTypes.number,
+        }),
+    ).isRequired,
+};
+
+export default FilesComponent;

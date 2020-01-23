@@ -1,12 +1,15 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import './TaskPage.scss';
 import TaskInfo from '../../components/TaskInfo/TaskInfo';
-import { singleTaskFetch, singleTaskUpdate } from '../../redux/actions';
-import { fetchSingleTask } from '../../redux/fetchers';
+import {
+    singleTaskFetch,
+    singleTaskUpdate,
+} from '../../redux/actions';
+import { fetchSingleTask, fetchTaskFiles } from '../../redux/fetchers';
 
 const TaskPage = (props) => {
     const {
@@ -16,6 +19,7 @@ const TaskPage = (props) => {
         singleTaskFetch,
         singleTaskUpdate,
     } = props;
+    const [taskFiles, changeFiles] = useState([]);
 
     useEffect(() => {
         if (singleTaskDataState === 'pending') {
@@ -23,16 +27,23 @@ const TaskPage = (props) => {
         }
     }, [taskId]);
 
+    useEffect(() => {
+        fetchTaskFiles(taskId)
+            .then((files) => {
+                changeFiles(files);
+            });
+    }, []);
+
     return (
         <>
-            <TaskInfo info={singleTask} />
+            <TaskInfo info={{ ...singleTask}} taskFiles={taskFiles} />
         </>
     );
 };
 
-const mapStateToProps = ({ singleTask, singleTaskDataState }) => ({
-    singleTask,
-    singleTaskDataState,
+const mapStateToProps = (state) => ({
+    singleTask: state.singleTask,
+    singleTaskDataState: state.singleTaskDataState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
