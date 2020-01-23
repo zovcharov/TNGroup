@@ -23,5 +23,24 @@
     padding: 20px 0 0;
     display: flex;
     justify-content: center;
+
+    .add-files {
+      &__button {
+        color: #505050;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 10px 0 0;
+        padding: 0 20px 0 15px;
+        border-radius: 4px;
+        border: 1px solid #cccccc;
+        cursor: pointer;
+      }
+
+      &__file-input {
+        display: none;
+      }
+    }
   }
 }

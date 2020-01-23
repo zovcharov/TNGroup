@@ -149,16 +149,27 @@ const CreateProjectModalContent = ({
         }
     };
 
-    const onRemoveFile = (fileId) => {
-        toggleIsFilesLoading(true);
-        deleteFile(fileId, props.projectId)
-            .then(() => {
-                const files = attachments.filter((file) => file.Id !== fileId);
-                changeAttachments(files);
-            })
-            .finally(() => {
-                toggleIsFilesLoading(false);
-            });
+    const onRemoveFile = (fileId, fileName) => {
+        if (window.confirm(`Удалить файл '${fileName}'?`)) {
+            toggleIsFilesLoading(true);
+            deleteFile(fileId, props.projectId)
+                .then(() => {
+                    const files = attachments.filter((file) => file.Id !== fileId);
+                    changeAttachments(files);
+                })
+                .finally(() => {
+                    toggleIsFilesLoading(false);
+                });
+        }
+    };
+
+    /**
+     * Hack for detecting loading same file twice
+     * @param event
+     */
+    const onFileInputClick = (event) => {
+        // eslint-disable-next-line no-param-reassign
+        event.target.value = null;
     };
 
     const onSendToAgreement = () => {
@@ -215,18 +226,20 @@ const CreateProjectModalContent = ({
                 return <Preloader theme="dark" />;
             }
 
-            return (
-                <div className="project-modal__files">
-                    <div className="project-modal__files-title">Файлы проекта</div>
-                    <div className="project-modal__files-list">
-                        {
-                            attachments.map((file) => (
-                                <File {...file} onRemoveFile={onRemoveFile} />
-                            ))
-                        }
+            if (attachments.length > 0) {
+                return (
+                    <div className="project-modal__files">
+                        <div className="project-modal__files-title">Файлы проекта</div>
+                        <div className="project-modal__files-list">
+                            {
+                                attachments.map((file) => (
+                                    <File {...file} onRemoveFile={onRemoveFile} />
+                                ))
+                            }
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            }
         }
 
         return null;
@@ -356,7 +369,14 @@ const CreateProjectModalContent = ({
                 <label className="footer__button button__add-files" htmlFor="file-input">
                     Прикрепить файлы
                 </label>
-                <input id="file-input" type="file" className="project-modal__file-input" name="projectFiles" onChange={onUploadFile} />
+                <input
+                    id="file-input"
+                    type="file"
+                    className="project-modal__file-input"
+                    name="projectFiles"
+                    onChange={onUploadFile}
+                    onClick={onFileInputClick}
+                />
 
                 <DefaultButton className="footer__button button__save-draft" onClick={onSaveDraft}>
                     <span className="button__content">
