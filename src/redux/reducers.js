@@ -37,8 +37,6 @@ import {
     USER_REPORTS_UPDATE,
     USER_PROFILE_FETCH,
     USER_PROFILE_UPDATE,
-    TASK_FILES_FETCH,
-    TASK_FILES_UPDATE,
 } from './actions';
 
 import {
@@ -168,13 +166,6 @@ export default (state = DEFAULT_STORE, action) => {
                 currentUserInfoDataStatus: 'loaded',
                 currentUserInfo: action.data,
             });
-        case TASK_FILES_FETCH:
-            return stateAssign({ taskFilesDataStatus: 'loading' });
-        case TASK_FILES_UPDATE:
-            return stateAssign({
-                taskFilesDataStatus: 'loaded',
-                taskFiles: action.data,
-            })
         case RESET_STATE:
             return DEFAULT_STORE;
         default:

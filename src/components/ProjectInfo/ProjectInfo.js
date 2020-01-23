@@ -9,7 +9,7 @@ import './ProjectInfo.scss';
 import Container from '../Container/Container';
 import Table from '../Table/Table';
 import ProjectPassport from '../ProjectMainInfo/ProjectPassport';
-import ProjectFiles from '../ProjectFiles/ProjectFiles';
+import FilesComponent from '../FilesComponent/FilesComponent';
 import { COLUMNS_AGREEMENTS } from '../Agreements/Agreements';
 import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 import { formatDateToString } from '../../helpers/helpers';
@@ -85,6 +85,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
         Attachments = [],
     } = info;
     const [fileList, changeFileList] = useState(Attachments);
+    const [isFilesLoading, changeIsFilesLoading] = useState(false);
 
 
     const passportInfo = {
@@ -107,11 +108,13 @@ const ProjectInfo = ({ info, currentUserId }) => {
     const uploadFile = (file) => {
         const data = new FormData();
         data.append('file', file);
+        changeIsFilesLoading(true);
         uploadProjectFile(data, Id)
             .then((res) => {
                 const filesList = fileList.slice();
                 filesList.push(res);
                 changeFileList(filesList);
+                changeIsFilesLoading(false);
             });
     };
 
@@ -185,7 +188,12 @@ const ProjectInfo = ({ info, currentUserId }) => {
                     <Container
                         className="project-info__contaners-divider"
                     >
-                        <ProjectFiles files={fileList} uploadFile={uploadFile} />
+                        <FilesComponent
+                            files={fileList}
+                            uploadFile={uploadFile}
+                            isLoading={isFilesLoading}
+                            title="Файлы проекта"
+                        />
                     </Container>
                 </div>
             </div>

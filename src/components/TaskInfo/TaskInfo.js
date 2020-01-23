@@ -3,7 +3,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './TaskInfo.scss';
@@ -14,12 +14,13 @@ import PersonItem from '../PersonItem/PersonItem';
 import { formatDateToString } from '../../helpers/helpers';
 import { COLUMNS_PROJECT_EVENTS } from './TaskInfo.constants';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
-import ProjectFiles from '../ProjectFiles/ProjectFiles';
+import FilesComponent from '../FilesComponent/FilesComponent';
 import { uploadTaskFile } from '../../redux/fetchers';
 
 const TaskInfo = (props) => {
     const {
         info = {},
+        taskFiles,
     } = props;
     const {
         DateBegin,
@@ -31,11 +32,11 @@ const TaskInfo = (props) => {
         Performer,
         PreviousConnectedTaskId,
         NextConnectedTaskId,
-        taskFiles,
         ProjectId,
     } = info;
 
-    const [fileList, changeFileList] = useState(taskFiles);
+    const [fileList, changeFileList] = useState([]);
+    const [isFilesLoading, changeIsFilesLoading] = useState(false);
 
     const beginDate = formatDateToString(DateBegin);
     const endDate = formatDateToString(DateEnd);
@@ -45,14 +46,20 @@ const TaskInfo = (props) => {
     const onOpenCreateTaskModal = () => changeCreateTaskModalOpen(true);
     const onCloseCreateTaskModal = () => changeCreateTaskModalOpen(false);
 
+    useEffect(() => {
+        changeFileList(taskFiles);
+    }, [taskFiles]);
+
     const uploadFile = (file) => {
         const data = new FormData();
         data.append('file', file);
+        changeIsFilesLoading(true);
         uploadTaskFile(data, Id, ProjectId)
             .then((res) => {
                 const filesList = fileList.slice();
                 filesList.push(res);
                 changeFileList(filesList);
+                changeIsFilesLoading(false);
             });
     };
 
@@ -64,7 +71,7 @@ const TaskInfo = (props) => {
                         {Description}
                     </InfoBlock>
                     <InfoBlock label="Прикрепленные файлы">
-                        <ProjectFiles files={fileList} uploadFile={uploadFile} />
+                        <FilesComponent files={fileList} uploadFile={uploadFile} isLoading={isFilesLoading} />
                     </InfoBlock>
                     <div className="task-description_related-tasks">
                         <div className="task-description_related-tasks_link-left">

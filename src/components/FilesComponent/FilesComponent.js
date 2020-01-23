@@ -4,9 +4,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ProjectFiles.scss';
+import './FilesComponent.scss';
+import Preloader from '../Preloader/Preloader';
 
-const ProjectFiles = ({ files, uploadFile }) => {
+const FilesComponent = ({ files, uploadFile, isLoading, title }) => {
     const onUploadFile = (event) => {
         const { files: uploadedFiles } = event.currentTarget;
         uploadFile(uploadedFiles[0]);
@@ -24,30 +25,38 @@ const ProjectFiles = ({ files, uploadFile }) => {
     const renderContent = () => {
         if (files.length === 0) {
             return (
-                <div className="project-file__empty">
+                <div className="files__empty">
                     Нет файлов
                 </div>
             );
         }
 
+        if (isLoading) {
+            return <Preloader theme="dark" />;
+        }
+
         return files.map(({ Name, Id }) => (
-            <div className="project-files__item" key={Id}>
-                <a className="project-files__link">{Name}</a>
+            <div className="files__item" key={Id}>
+                <a className="files__link">{Name}</a>
             </div>
         ));
     };
 
     return (
-        <div className="project-files">
-            <div className="project-files__header">
-                <p>Файлы проекта</p>
-            </div>
-            <div className="project-files__content">
+        <div className="files">
+            {
+                title && (
+                    <div className="files__header">
+                        <p>{title}</p>
+                    </div>
+                )
+            }
+            <div className="files__content">
                 {
                     renderContent()
                 }
             </div>
-            <div className="project-files__bottom">
+            <div className="files__bottom">
                 <label className="add-files__button" htmlFor="file-input">
                     Прикрепить файлы
                 </label>
@@ -64,7 +73,7 @@ const ProjectFiles = ({ files, uploadFile }) => {
     );
 };
 
-ProjectFiles.propTypes = {
+FilesComponent.propTypes = {
     uploadFile: PropTypes.func.isRequired,
     files: PropTypes.arrayOf(
         PropTypes.shape({
@@ -74,4 +83,4 @@ ProjectFiles.propTypes = {
     ).isRequired,
 };
 
-export default ProjectFiles;
+export default FilesComponent;
