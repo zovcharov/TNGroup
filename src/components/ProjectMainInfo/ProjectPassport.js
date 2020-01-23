@@ -142,8 +142,8 @@ const ProjectMainInfo = (props) => {
                 <div className="project-main-info__col">
                     <InfoBlock label="Исполнители:">
                         {
-                            projectWorkers && projectWorkers.map((worker) => (
-                                <PersonItem person={worker} key={`worker-${worker.Id}`} />
+                            projectWorkers && projectWorkers.map((worker, index) => (
+                                <PersonItem person={worker} key={`worker-${index}`} />
                             ))
                         }
                     </InfoBlock>

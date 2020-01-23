@@ -12,8 +12,15 @@ import DatePicker from '../../DatePicker/DatePicker';
 import UserSelect from '../../UserSelect/UserSelect';
 import MilestonesInput from '../components/Milestones/MilestonesInput';
 import MilestoneModal from '../MilestoneModal/MilestoneModal';
+import File from './components/File/File';
+import Preloader from '../../Preloader/Preloader';
 
-import { saveProject, editProject, uploadFile } from '../../../redux/fetchers';
+import {
+    saveProject,
+    editProject,
+    uploadProjectFile,
+    deleteFile,
+} from '../../../redux/fetchers';
 import { prepareDataToSave } from './CreateProject.preparer';
 
 import './CreateProjectModalContent.scss';
@@ -56,6 +63,8 @@ const CreateProjectModalContent = ({
     const [controller, changeController] = useState([]);
     const [manager, changeManager] = useState([]);
     const [executors, changeExecutors] = useState([]);
+    const [attachments, changeAttachments] = useState([]);
+    const [isFilesLoading, toggleIsFilesLoading] = useState(false);
 
     const onAddMilestone = () => toggleMilestoneModal(true);
     const onMilestoneModalClose = () => toggleMilestoneModal(false);
@@ -122,11 +131,35 @@ const CreateProjectModalContent = ({
     };
 
     const onUploadFile = (event) => {
-        const files = event.currentTarget.files;
-        let data = new FormData();
-        data.append('file',  files[0])
-        uploadFile(data);
-    }
+        if (isEdit) {
+            const { files } = event.currentTarget;
+            const data = new FormData();
+            data.append('file', files[0]);
+
+            toggleIsFilesLoading(true);
+            uploadProjectFile(data, props.projectId)
+                .then((res) => {
+                    const files = attachments.slice();
+                    files.push(res);
+                    changeAttachments(files);
+                })
+                .finally(() => {
+                    toggleIsFilesLoading(false);
+                });
+        }
+    };
+
+    const onRemoveFile = (fileId) => {
+        toggleIsFilesLoading(true);
+        deleteFile(fileId, props.projectId)
+            .then(() => {
+                const files = attachments.filter((file) => file.Id !== fileId);
+                changeAttachments(files);
+            })
+            .finally(() => {
+                toggleIsFilesLoading(false);
+            });
+    };
 
     const onSendToAgreement = () => {
         // eslint-disable-next-line no-unused-expressions
@@ -172,8 +205,32 @@ const CreateProjectModalContent = ({
             changeController(findParticipantByRole(props.Participants, PROJECT_ROLE_CONTROLLER));
             changeManager(findParticipantByRole(props.Participants, PROJECT_ROLE_MANAGER));
             changeExecutors(findParticipantsByRole(props.Participants, PROJECT_ROLE_WORKER));
+            changeAttachments(props.Attachments);
         }
     }, [isEdit]);
+
+    const renderFiles = () => {
+        if (isEdit) {
+            if (isFilesLoading) {
+                return <Preloader theme="dark" />;
+            }
+
+            return (
+                <div className="project-modal__files">
+                    <div className="project-modal__files-title">Файлы проекта</div>
+                    <div className="project-modal__files-list">
+                        {
+                            attachments.map((file) => (
+                                <File {...file} onRemoveFile={onRemoveFile} />
+                            ))
+                        }
+                    </div>
+                </div>
+            );
+        }
+
+        return null;
+    };
 
     return (
         <div className="project-modal">
@@ -292,13 +349,15 @@ const CreateProjectModalContent = ({
                     />
                 </div>
             </div>
+            {
+                renderFiles()
+            }
             <div className="project-modal__footer">
-                <DefaultButton className="footer__button button__add-files">
-                    <input id="file-input" type="file" name="projectFiles" onChange={onUploadFile} />
-                    <span className="button__content">
-                        Прикрепить файлы
-                    </span>
-                </DefaultButton>
+                <label className="footer__button button__add-files" htmlFor="file-input">
+                    Прикрепить файлы
+                </label>
+                <input id="file-input" type="file" className="project-modal__file-input" name="projectFiles" onChange={onUploadFile} />
+
                 <DefaultButton className="footer__button button__save-draft" onClick={onSaveDraft}>
                     <span className="button__content">
                         Сохранить черновик

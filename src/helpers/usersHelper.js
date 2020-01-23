@@ -1,4 +1,4 @@
-export const PROJECT_ROLE_UNKNOWN = 0
+export const PROJECT_ROLE_UNKNOWN = 0;
 export const PROJECT_ROLE_MANAGER = 1;
 export const PROJECT_ROLE_CURATOR = 2;
 export const PROJECT_ROLE_CUSTOMER = 3;

@@ -15,7 +15,6 @@ import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 import { formatDateToString } from '../../helpers/helpers';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 import UnplannedRiskModalContainer from '../Modals/UnplannedRiskModal/UnplannedRiskModal.container';
-import PlannedRiskModalContainer from "../Modals/PlannedRiskModal/PlannedRiskModal.container";
 import GanttChart from "../GanttChart/GanttChart";
 
 const COLUMNS_TASKS = [
@@ -82,7 +81,9 @@ const ProjectInfo = ({ info, currentUserId }) => {
         tasks,
         PlannedRisks,
         PlannedSchedules = [],
+        Attachments = [],
     } = info;
+
 
     const passportInfo = {
         Id,
@@ -164,13 +165,14 @@ const ProjectInfo = ({ info, currentUserId }) => {
                         <ProjectPassport
                             projectId={Id}
                             canUserEditProject={canUserEditProject()}
+                            Attachments={Attachments}
                             {...passportInfo}
                         />
                     </Container>
                     <Container
                         className="project-info__contaners-divider"
                     >
-                        <ProjectFiles />
+                        <ProjectFiles files={Attachments} />
                     </Container>
                 </div>
             </div>
