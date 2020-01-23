@@ -8,6 +8,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
 import React from 'react';
+import propTypes from 'prop-types';
+import agreementPropTypes from '../../propTypes/agreementPropTypes';
+import employeePropTypes from '../../propTypes/employeePropTypes';
+
 import Table from '../Table/Table';
 
 import './Agreements.scss';
@@ -110,5 +114,12 @@ const Agreements = ({
         </div>
     </>
 );
+
+Agreements.propTypes = {
+    agreements: propTypes.arrayOf(agreementPropTypes),
+    canAddAgreement: propTypes.bool,
+    currentUserInfo: employeePropTypes,
+    updateAgreementsList: propTypes.func.isRequired,
+};
 
 export default Agreements;
