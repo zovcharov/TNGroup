@@ -3,7 +3,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React, { useState  } from 'react';
+import React, { useState } from 'react';
 
 import './ProjectInfo.scss';
 import Container from '../Container/Container';
@@ -15,7 +15,7 @@ import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 import { formatDateToString } from '../../helpers/helpers';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 import UnplannedRiskModalContainer from '../Modals/UnplannedRiskModal/UnplannedRiskModal.container';
-import GanttChart from "../GanttChart/GanttChart";
+import GanttChart from '../GanttChart/GanttChart';
 
 const COLUMNS_TASKS = [
     {
@@ -69,7 +69,7 @@ export const getLastSchedule = (PlannedSchedules = []) => {
     const lastSchedule = Boolean(PlannedSchedules.length)
         && PlannedSchedules.reduce((prev, curr) => (prev.Version < curr.Version ? curr : prev));
     return lastSchedule.ProjectTasks ? lastSchedule.ProjectTasks : [];
-}
+};
 
 const ProjectInfo = ({ info, currentUserId }) => {
     const {
@@ -77,12 +77,13 @@ const ProjectInfo = ({ info, currentUserId }) => {
         Alias,
         PassportProject,
         Participants,
-        agreements,
+        agreements = [],
         tasks,
         PlannedRisks,
         PlannedSchedules = [],
         Attachments = [],
     } = info;
+    const [fileList, changeFileList] = useState(Attachments);
 
 
     const passportInfo = {
@@ -100,7 +101,7 @@ const ProjectInfo = ({ info, currentUserId }) => {
 
     const onOpenUnplannedRiskModal = () => toggleUnplannedRiskModal(true);
     const onCloseUnplannedRiskModal = () => toggleUnplannedRiskModal(false);
-    const lastSchedule = getLastSchedule(PlannedSchedules)
+    const lastSchedule = getLastSchedule(PlannedSchedules);
 
     const canUserEditProject = () => (Participants && Participants.filter((participant) => {
         if (participant.EmployeeId === currentUserId
@@ -165,14 +166,14 @@ const ProjectInfo = ({ info, currentUserId }) => {
                         <ProjectPassport
                             projectId={Id}
                             canUserEditProject={canUserEditProject()}
-                            Attachments={Attachments}
+                            Attachments={fileList}
                             {...passportInfo}
                         />
                     </Container>
                     <Container
                         className="project-info__contaners-divider"
                     >
-                        <ProjectFiles files={Attachments} />
+                        <ProjectFiles files={fileList} changeFileList={changeFileList} projectId={Id} />
                     </Container>
                 </div>
             </div>

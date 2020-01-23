@@ -5,7 +5,7 @@ import './File.scss';
 
 const File = (props) => {
     const onClickRemove = () => {
-        props.onRemoveFile(props.Id);
+        props.onRemoveFile(props.Id, props.Name);
     };
 
     return (
