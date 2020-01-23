@@ -12,6 +12,25 @@
   &_additional {
     width: 32%;
   }
+  &_related-tasks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    &_link {
+      &-left {
+        display: flex;
+        justify-content: flex-start;
+      }
+      &-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #498d91;
+    }
+  }
   &__row {
     display: flex;
     justify-content: space-between;

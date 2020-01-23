@@ -4,6 +4,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './TaskInfo.scss';
 import Container from '../Container/Container';
@@ -13,10 +14,7 @@ import PersonItem from '../PersonItem/PersonItem';
 import { formatDateToString } from '../../helpers/helpers';
 import {
     COLUMNS_PROJECT_EVENTS,
-    COLUMNS_SUBTASKS,
-    ITEMS_SUBTASK,
 } from './TaskInfo.constants';
-import Commentaries from '../Commentaries/Commentaries';
 import CreateTaskModal from '../Modals/CreateTaskModal/CreateTaskModal.container';
 
 const TaskInfo = (props) => {
@@ -30,7 +28,12 @@ const TaskInfo = (props) => {
         Name,
         Id,
         ProjectEvents,
+        Performer,
+        PreviousConnectedTaskId,
+        NextConnectedTaskId,
+        taskFiles
     } = info;
+    console.log(taskFiles)
 
     const beginDate = formatDateToString(DateBegin);
     const endDate = formatDateToString(DateEnd);
@@ -47,10 +50,18 @@ const TaskInfo = (props) => {
                     <InfoBlock label="Описание задачи">
                         {Description}
                     </InfoBlock>
-                    <InfoBlock label="Прикрепленные файлы" />
-                    <div className="task-subtasks">
-                        <span>Подзадачи:</span>
-                        <Table columns={COLUMNS_SUBTASKS} items={ITEMS_SUBTASK} />
+                    <InfoBlock label="Прикрепленные файлы">
+
+                    </InfoBlock>
+                    <div className="task-description_related-tasks">
+                        <div className="task-description_related-tasks_link-left">
+                            {PreviousConnectedTaskId
+                            && <Link to={`/task/${PreviousConnectedTaskId}`}>{'< Предыдущая задача'}</Link>}
+                        </div>
+                        <div className="task-description_related-tasks_link-right">
+                            {NextConnectedTaskId
+                            && <Link to={`/task/${NextConnectedTaskId}`}>{'Следующая задача >'}</Link>}
+                        </div>
                     </div>
                 </Container>
                 <Container className="task-description_additional">
@@ -79,14 +90,13 @@ const TaskInfo = (props) => {
                         </div>
                     </div>
                     <InfoBlock label="Исполнитель:">
-                        <PersonItem />
+                        <PersonItem person={Performer} />
                     </InfoBlock>
                 </Container>
             </div>
             <Container className="task-panels" label="Ближайшие вехи">
                 <Table columns={COLUMNS_PROJECT_EVENTS} items={ProjectEvents} />
             </Container>
-            <Commentaries />
             <CreateTaskModal
                 isOpen={isCreateTaskModalOpen}
                 onClose={onCloseCreateTaskModal}

@@ -70,6 +70,9 @@ export const RESET_STATE = 'TNG/RESET_STATE';
 export const USER_PROFILE_FETCH = 'TNG/USER_PROFILE_FETCH';
 export const USER_PROFILE_UPDATE = 'TNG/USER_PROFILE_UPDATE';
 
+export const TASK_FILES_FETCH = 'TNG/TASK_FILES_FETCH'
+export const TASK_FILES_UPDATE = 'TNG/TASK_FILES_UPDATE'
+
 // Project actions
 export const projectsFetch = () => ({
     type: PROJECTS_FETCH,
@@ -249,3 +252,12 @@ export const userProfileUpdate = (data) => ({
     type: USER_PROFILE_UPDATE,
     data,
 });
+
+export const taskFilesFetch = () => ({
+    type: TASK_FILES_FETCH,
+})
+
+export const taskFilesUpdate = (data) =>({
+    type: TASK_FILES_UPDATE,
+    data,
+})

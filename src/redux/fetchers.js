@@ -283,3 +283,11 @@ export const fetchReportPlannedRisks = (projectId) => ApiProvider.Get('PlannedRi
 
 export const fetchReportUnplannedRisks = (projectId) => ApiProvider.Get('UnplannedRisk', '', { curProjectId: projectId })
     .then((response) => selectFromUnplannedRisks(response));
+
+export const fetchTaskFiles = (taskId, fetchAction, updateAction) => {
+    fetchAction && fetchAction();
+    ApiProvider.Get('Attachment', `getbyprojecttask?id=${taskId}`)
+        .then((data) => {
+            updateAction && updateAction(data);
+        });
+};
