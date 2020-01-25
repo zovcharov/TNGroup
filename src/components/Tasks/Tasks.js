@@ -14,9 +14,8 @@ import './Tasks.scss';
 const COLUMNS_TASKS = [
     {
         label: 'Название',
-        name: 'nameCell',
+        name: 'name',
         width: '30%',
-        cell: (item) => <Link className="tasks__task-name" to={`/task/${item.id}`}>{item.name}</Link>,
     },
     {
         label: 'Статус',
@@ -47,10 +46,7 @@ const COLUMNS_TASKS = [
 
 const prepareTasks = (tasks) => tasks.map((task) => ({
     ...task,
-    nameCell: {
-        name: task.name,
-        id: task.id,
-    },
+    link: `/task/${task.id}`
 }));
 
 const Tasks = ({ tasks, projectId }) => {
