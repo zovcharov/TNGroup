@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/no-cycle */
 
 import React, { useState } from 'react';
 
@@ -58,9 +59,10 @@ const COLUMNS_RISKS = [
 const BottomButtons = (props) => {
     const {
         children,
+        className = '',
     } = props;
     return (
-        <div className="bottom-buttons">
+        <div className={`bottom-buttons ${className}`}>
             {children}
         </div>
     );
@@ -202,9 +204,8 @@ const ProjectInfo = ({ info, currentUserId }) => {
                     label="Согласования"
                 >
                     <Table columns={COLUMNS_AGREEMENTS} items={agreements} />
-                    <BottomButtons>
-                        <DefaultButton>Показать все согласования</DefaultButton>
-                        <DefaultButton>Добавить согласование</DefaultButton>
+                    <BottomButtons className="bottom-buttons_end">
+                        <DefaultButton link="/useragreements" className="button">Показать все согласования</DefaultButton>
                     </BottomButtons>
                 </Container>
             </div>
