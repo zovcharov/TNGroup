@@ -57,5 +57,11 @@
     &__content {
         padding: 10px 0;
         word-break: break-all;
+        &_empty {
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background-color: #498d91;
+        }
     }
 }

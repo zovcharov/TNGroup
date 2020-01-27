@@ -14,7 +14,7 @@ import {
     findParticipantByRole,
     findParticipantsByRole, PROJECT_ROLE_CONTROLLER,
     PROJECT_ROLE_CURATOR, PROJECT_ROLE_CUSTOMER,
-    PROJECT_ROLE_MANAGER, PROJECT_ROLE_WORKER
+    PROJECT_ROLE_MANAGER, PROJECT_ROLE_WORKER,
 } from '../../helpers/usersHelper';
 
 const ProjectMainInfo = (props) => {
@@ -142,7 +142,9 @@ const ProjectMainInfo = (props) => {
                 <div className="project-main-info__col">
                     <InfoBlock label="Исполнители:">
                         {
-                            projectWorkers && projectWorkers.map((worker, index) => (
+                            projectWorkers
+                            && Boolean(projectWorkers.length)
+                            && projectWorkers.map((worker, index) => (
                                 <PersonItem person={worker} key={`worker-${index}`} />
                             ))
                         }
@@ -171,7 +173,7 @@ export const InfoBlock = ({ label, children, className = '' }) => (
     <div className={`info-block ${className}`}>
         <p className="info-block__label">{label}</p>
         <div className="info-block__content">
-            {children}
+            {children || <span className="info-block__content_empty" />}
         </div>
     </div>
 );
