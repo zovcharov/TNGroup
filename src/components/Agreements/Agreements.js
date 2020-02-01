@@ -7,29 +7,25 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
-import React from 'react';
+import React, { useState } from 'react';
 import Table from '../Table/Table';
+import PersonItem from '../PersonItem/PersonItem';
 
 import './Agreements.scss';
-import DefaultButton from '../Buttons/DefaultButton/DefaultButton';
 import AgreementsButtons from './AgreementsButtons';
 import { formatDateToString } from '../../helpers/helpers';
 
 import { makeAgreementDecision } from '../../redux/fetchers';
 
-const onAcceptAgreement = (agreementId, projectId) => {
-    return makeAgreementDecision({
-        AgreementId: agreementId,
-        Result: 1,
-    }, projectId);
-};
+const onAcceptAgreement = (agreementId, projectId) => makeAgreementDecision({
+    AgreementId: agreementId,
+    Result: 1,
+}, projectId);
 
-const onDeclineAgreement = (agreementId, projectId) => {
-    return makeAgreementDecision({
-        AgreementId: agreementId,
-        Result: 2,
-    }, projectId);
-};
+const onDeclineAgreement = (agreementId, projectId) => makeAgreementDecision({
+    AgreementId: agreementId,
+    Result: 2,
+}, projectId);
 
 export const COLUMNS_AGREEMENTS = [
     {
@@ -87,25 +83,86 @@ const prepareAgreements = (agreements, userId, updateAgreementsList) => agreemen
     },
 }));
 
+const Agreement = ({ agreement, userId, updateAgreementsList }) => {
+    const [isOpen, toggleIsOpen] = useState(false);
+
+    const onOpenInfo = () => toggleIsOpen(true);
+    const onCloseInfo = () => toggleIsOpen(false);
+
+    // Удаляем одинаковых участникоов согласования
+    const prepareParticipantsList = (participants) => participants.reduce((prevVal, curParticipant) => {
+        const findParticipant = prevVal.find((participantItem) => {
+            return participantItem.EmployeeId === curParticipant.ProjectUserRole.EmployeeId;
+        });
+
+        if (!findParticipant) {
+            prevVal.push(curParticipant.ProjectUserRole);
+        }
+
+        return prevVal;
+    }, []);
+
+    const renderInfoToggler = () => {
+        if (isOpen) {
+            return (
+                <div className="agreement-item__additional-info-button" onClick={onCloseInfo}>&uarr;</div>
+            );
+        }
+
+        return (
+            <div className="agreement-item__additional-info-button" onClick={onOpenInfo}>&darr;</div>
+        );
+    };
+
+    const renderParticipants = () => {
+        if (isOpen) {
+            return (
+                <div className="agreement-item__participants">
+                    <h4 className="agreement-item__participants-title">Участники согласования:</h4>
+                    <div className="agreement-item__participants-list">
+                        {
+                            prepareParticipantsList(agreement.performanceList).map((participant) => (
+                                <PersonItem person={participant.Employee} singleString />
+                            ))
+                        }
+                    </div>
+                </div>
+            );
+        }
+
+        return null;
+    };
+
+    return (
+        <div className="agreement-item">
+            <Table
+                columns={COLUMNS_AGREEMENTS}
+                items={prepareAgreements([agreement], userId, updateAgreementsList)}
+            />
+            {
+                renderParticipants()
+            }
+            {
+                renderInfoToggler()
+            }
+        </div>
+    );
+};
+
 const Agreements = ({
-    agreements, canAddAgreement = false, currentUserInfo, updateAgreementsList,
+    agreements, currentUserInfo, updateAgreementsList,
 }) => (
     <>
         <div className="agreements__title">Согласования:</div>
         <div className="agreements">
-            <Table
-                columns={COLUMNS_AGREEMENTS}
-                items={prepareAgreements(agreements, currentUserInfo.UserId, updateAgreementsList)}
-            />
             {
-                canAddAgreement
-                    && (
-                        <div className="agreements__footer">
-                            <DefaultButton>
-                                <span>Добавить согласование</span>
-                            </DefaultButton>
-                        </div>
-                    )
+                agreements.map((agreement, index) => (
+                    <Agreement
+                        agreement={agreement}
+                        userId={currentUserInfo.UserId}
+                        updateAgreementsList={updateAgreementsList}
+                    />
+                ))
             }
         </div>
     </>
