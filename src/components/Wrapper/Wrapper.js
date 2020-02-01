@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 import {
     usersFetch,
     usersUpdate,
-    userProfileFetch,
-    userProfileUpdate,
+    currentUserProfileFetch,
+    currentUserProfileUpdate,
 } from '../../redux/actions';
-import {fetchUserProfile, fetchUsers} from '../../redux/fetchers';
+import { fetchCurrentUserProfile, fetchUsers } from '../../redux/fetchers';
 
 import './Wrapper.scss';
 import Header from '../Header/Header';
@@ -47,7 +47,7 @@ const Wrapper = (props) => {
 
     useEffect(() => {
         if (currentUserInfoDataStatus === 'pending') {
-            fetchUserProfile(userProfileFetch, userProfileUpdate);
+            fetchCurrentUserProfile(userProfileFetch, userProfileUpdate);
         }
     }, [currentUserInfoDataStatus]);
 
@@ -75,8 +75,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     usersFetch: () => dispatch(usersFetch()),
     usersUpdate: (data) => dispatch(usersUpdate(data)),
-    userProfileFetch: () => dispatch(userProfileFetch()),
-    userProfileUpdate: (data) => dispatch(userProfileUpdate(data)),
+    userProfileFetch: () => dispatch(currentUserProfileFetch()),
+    userProfileUpdate: (data) => dispatch(currentUserProfileUpdate(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);

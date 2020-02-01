@@ -67,6 +67,9 @@ export const USER_DOCUMENTS_UPDATE = 'TNG/USER_DOCUMENTS_UPDATE';
 
 export const RESET_STATE = 'TNG/RESET_STATE';
 
+export const CURRENT_USER_PROFILE_FETCH = 'TNG/CURRENT_USER_PROFILE_FETCH';
+export const CURRENT_USER_PROFILE_UPDATE = 'TNG/CURRENT_USER_PROFILE_UPDATE';
+
 export const USER_PROFILE_FETCH = 'TNG/USER_PROFILE_FETCH';
 export const USER_PROFILE_UPDATE = 'TNG/USER_PROFILE_UPDATE';
 
@@ -238,6 +241,15 @@ export const userReportsFetch = () => ({
 
 export const userReportsUpdate = (data) => ({
     type: USER_REPORTS_UPDATE,
+    data,
+});
+
+export const currentUserProfileFetch = () => ({
+    type: CURRENT_USER_PROFILE_FETCH,
+});
+
+export const currentUserProfileUpdate = (data) => ({
+    type: CURRENT_USER_PROFILE_UPDATE,
     data,
 });
 

@@ -41,4 +41,6 @@ export const DEFAULT_STORE = {
     currentUserInfoDataStatus: 'pending',
     taskFiles: [],
     taskFilesDataStatus: 'pending',
+    userInfo: {},
+    userInfoDataStatus: 'pending',
 };

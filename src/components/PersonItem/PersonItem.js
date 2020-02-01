@@ -8,6 +8,7 @@ import propTypes from 'prop-types';
 import './PersonItem.scss';
 
 import Avatar from '../Avatar/Avatar';
+import { Link } from 'react-router-dom';
 
 const PersonItem = ({ person = {}, singleString }) => {
     if (!person) {
@@ -17,6 +18,7 @@ const PersonItem = ({ person = {}, singleString }) => {
     const {
         Name = '',
         RefUrlAvatar = '',
+        Id = 0,
     } = person;
 
     if (!Name) {
@@ -34,7 +36,7 @@ const PersonItem = ({ person = {}, singleString }) => {
                 size="m"
                 avatarUrl={RefUrlAvatar || undefined}
             />
-            <a className="person-item__name">{Name}</a>
+            <Link to={`/employee/${Id}`} className="person-item__name">{Name}</Link>
         </div>
     );
 };
