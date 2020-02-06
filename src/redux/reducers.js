@@ -35,6 +35,8 @@ import {
     USER_AGREEMENTS_UPDATE,
     USER_REPORTS_FETCH,
     USER_REPORTS_UPDATE,
+    CURRENT_USER_PROFILE_FETCH,
+    CURRENT_USER_PROFILE_UPDATE,
     USER_PROFILE_FETCH,
     USER_PROFILE_UPDATE,
 } from './actions';
@@ -159,12 +161,19 @@ export default (state = DEFAULT_STORE, action) => {
                 userReportsDataStatus: 'loaded',
                 userReports: action.data && action.data.length ? action.data.length : [],
             });
-        case USER_PROFILE_FETCH:
+        case CURRENT_USER_PROFILE_FETCH:
             return stateAssign({ currentUserInfoDataStatus: 'loading' });
-        case USER_PROFILE_UPDATE:
+        case CURRENT_USER_PROFILE_UPDATE:
             return stateAssign({
                 currentUserInfoDataStatus: 'loaded',
                 currentUserInfo: action.data,
+            });
+        case USER_PROFILE_FETCH:
+            return stateAssign({ userInfoDataStatus: 'loading' });
+        case USER_PROFILE_UPDATE:
+            return stateAssign({
+                userInfoDataStatus: 'loaded',
+                userInfo: action.data,
             });
         case RESET_STATE:
             return DEFAULT_STORE;

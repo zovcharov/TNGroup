@@ -30,6 +30,7 @@ import { DEFAULT_STORE } from './redux/defaultStore';
 import './main.scss';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import UserDocumentsPage from './pages/UserDocumentsPage/UserDocumentsPage';
+import EmployeePage from './pages/EmployeePage/EmployeePage';
 
 // eslint-disable-next-line import/prefer-default-export
 export const store = createStore(rootReducer, DEFAULT_STORE);
@@ -55,6 +56,7 @@ const Routs = () => (
                 <Route exact path="/useragreements" component={AllUserAgreementsPage} />
                 <Route exact path="/userreports" component={AllUserReports} />
                 <Route exact path="/profile" component={ProfilePage} />
+                <Route exact path="/employee/:employeeId" component={EmployeePage} />
                 <Route exact path="/documents" component={UserDocumentsPage} />
                 <Route exact path="/notfound" component={NotFound} />
                 <Route exact path="/" component={DashboardPage} />

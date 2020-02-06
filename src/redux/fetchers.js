@@ -248,7 +248,7 @@ export const fetchUserReports = (fetchAction, updateAction) => {
         });
 };
 
-export const fetchUserProfile = (fetchAction, updateAction) => {
+export const fetchCurrentUserProfile = (fetchAction, updateAction) => {
     // eslint-disable-next-line no-unused-expressions
     fetchAction && fetchAction();
     return ApiProvider.Get('Employee', 'GetForUser')
@@ -289,3 +289,13 @@ export const fetchReportUnplannedRisks = (projectId) => ApiProvider.Get('Unplann
     .then((response) => selectFromUnplannedRisks(response));
 
 export const fetchTaskFiles = (taskId) => ApiProvider.Get('Attachment', `getbyprojecttask?id=${taskId}`);
+
+export const fetchUserProfile = (userId, fetchAction, updateAction) => {
+    // eslint-disable-next-line no-unused-expressions
+    fetchAction && fetchAction();
+    return ApiProvider.Get('Employee', `${userId}`)
+        .then((data) => {
+            // eslint-disable-next-line no-unused-expressions
+            updateAction && updateAction(data);
+        });
+};
