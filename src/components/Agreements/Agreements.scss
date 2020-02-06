@@ -1,6 +1,4 @@
 .agreements {
-    background-color: #fff;
-    border-radius: 4px;
     padding: 10px 30px 30px 30px;
 
     &__title {
@@ -20,6 +18,44 @@
         }
     }
 
+    .agreement-item {
+        background-color: #fff;
+        margin-bottom: 15px;
+        border-radius: 4px;
+
+        &__additional-info-button {
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            color: #505050;
+            margin-top: 5px;
+            padding: 5px 0 0 0;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #dcdcdc;
+                color: #fff;
+                border-radius: 0 0 4px 4px;
+            }
+        }
+
+        &__participants {
+            padding: 0 30px;
+
+            &-title {
+                font-weight: normal;
+                color: #757575;
+                padding: 10px 0;
+            }
+
+            &-list {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    }
+
     .table {
         &__header {
             &-cell {
@@ -33,6 +69,10 @@
             font-size: 14px;
             color: #505050;
             font-weight: normal;
+        }
+
+        &__row {
+            border-bottom: none;
         }
     }
 

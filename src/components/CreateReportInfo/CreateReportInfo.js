@@ -50,7 +50,7 @@ const CreateReportInfo = (props) => {
                 )
             }
             {
-                reportPlannedRisks.length && (
+                reportPlannedRisks.length > 0 && (
                     <div className="create-report-info__planned-risks">
                         <div className="create-report-info__title">Запланированные риски:</div>
                         {
@@ -60,12 +60,19 @@ const CreateReportInfo = (props) => {
                 )
             }
             {
-                reportUnplannedRisks.length && (
+                reportUnplannedRisks.length > 0 && (
                     <div className="create-report-info__unplanned-risks">
                         <div className="create-report-info__title">Незапланированные риски:</div>
                         {
                             renderReportReportUnplannedRisks()
                         }
+                    </div>
+                )
+            }
+            {
+                reportTasks.length === 0 && reportPlannedRisks.length === 0 && reportUnplannedRisks.length === 0 && (
+                    <div>
+                        Нет информации для создания отчета
                     </div>
                 )
             }
