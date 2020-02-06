@@ -25,7 +25,7 @@ const ProfilePage = (props) => {
 
     useEffect(() => {
         if (userInfoDataStatus === 'pending') {
-            fetchUserProfile(+employeeId, userProfileFetch, userProfileUpdate);
+            fetchUserProfile(Number(employeeId), userProfileFetch, userProfileUpdate);
         }
     }, [userInfoDataStatus]);
 
