@@ -37,7 +37,7 @@ export const store = createStore(rootReducer, DEFAULT_STORE);
 
 const Routs = () => (
     <HashRouter>
-        <Switch>ссс
+        <Switch>
             <Route path="/login" component={LoginPage} />
             <Wrapper>
                 <Route exact path="/agreements/:projectId" component={ProjectAgreementsPage} />
