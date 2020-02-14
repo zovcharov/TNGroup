@@ -66,8 +66,9 @@ const DashboardPage = (props) => {
         },
         {
             icon: addTaskIcon,
-            label: 'Добавить задачу',
+            label: 'Отчеты',
             bgPattern: 'linear-gradient(135deg, #097896 0%, #097896 20%, #24a680 100%)',
+            to: 'userreports'
         },
         {
             icon: tasksAndProjectsIcon,
