@@ -15,10 +15,12 @@ import {
 
 const Profile = (props) => {
     const {
-        avatar,
-        name = 'Иванов Иван Иванович',
-        resetState,
+        currentUser = {}
     } = props;
+    const {
+        Name,
+        RefUrlAvatar,
+    } = currentUser
 
     const Logout = () => {
         localStorage.removeItem('UserId');
@@ -31,9 +33,9 @@ const Profile = (props) => {
 
     return (
         <div className="profile">
-            <Avatar width="52px" height="52px" avatarUrl={avatar} />
+            <Avatar width="52px" height="52px" avatarUrl={RefUrlAvatar} />
             <Dropdown
-                label={name}
+                label={Name}
                 labelClass="profile__name"
                 buttonClass="profile__button"
             >
@@ -44,8 +46,12 @@ const Profile = (props) => {
     );
 };
 
+const mapStateToProps = (state) => ({
+    currentUser: state.currentUserInfo,
+})
+
 const mapDispatchToProps = (dispatch) => ({
     resetState: () => dispatch(resetState()),
 });
 
-export default connect(null, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
